@@ -11,36 +11,49 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
+import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+
 /**
  * @author Matthias Spörkmann
  */
-public class Button extends Entity {
+public class Button extends Entity implements GameParameters{
 
-    public Button(String buttonName, int xPos, int yPos, int stateID) {
-        super(buttonName);
+	ANDEvent mainEvent;
+	Action changeState;
+	
+	/**
+	 * Button-class constructor
+	 * @param buttonID
+	 * @param xPos x-Position
+	 * @param yPos y-Position
+	 * @param stateID stateID of the State you want to enter by clicking
+	 */
+	public Button(String buttonID, int xPos, int yPos, int stateID) {
+		super(buttonID);
 
-        this.setPosition(new Vector2f(xPos, yPos));
-        try {
-            this.addComponent(
-                    new ImageRenderComponent(
-                        new Image("/images/entry.png")
-                    )
-            );
-        } catch (SlickException e) {
-            e.printStackTrace();
-        }
-        ANDEvent mainEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
-        switch (stateID){
-            case 1:
-                Action newGameAction = new ChangeStateInitAction(Breakout.GAMEPLAY_STATE);
-                mainEvents.addAction(newGameAction);
-                this.addComponent(mainEvents);
-                break;
-            default:
-                newGameAction = new ChangeStateInitAction(Breakout.MAINMENU_STATE);
-                mainEvents.addAction(newGameAction);
-                this.addComponent(mainEvents);
-                break;
-        }
-    }
+		this.setPosition(new Vector2f(xPos, yPos));
+		
+		try {
+			this.addComponent(new ImageRenderComponent(new Image(BUTTON_IMAGE)));
+			
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
+		
+		mainEvent = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
+		
+		// switch stateID, e.g. GAMEPLAY_STATE, MAINMENU_STATE, ...
+		switch (stateID) {
+		case GAMEPLAY_STATE:
+			changeState = new ChangeStateInitAction(Breakout.GAMEPLAY_STATE);
+			break;
+			
+		default:
+			changeState = new ChangeStateInitAction(Breakout.MAINMENU_STATE);
+			break;
+		}
+		
+		mainEvent.addAction(changeState);
+		this.addComponent(mainEvent);
+	}
 }

@@ -19,7 +19,8 @@ public class Breakout extends StateBasedGame implements GameParameters {
 	/**
 	 * Creates a new Breakout instance
 	 * 
-	 * @param debug if true, runs in debug mode
+	 * @param debug
+	 *            if true, runs in debug mode
 	 */
 	public Breakout(boolean debug) {
 		super("Breakout");
@@ -33,15 +34,12 @@ public class Breakout extends StateBasedGame implements GameParameters {
 	public static void main(String[] args) throws SlickException {
 		// Set the library path depending on the operating system
 		if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-			System.setProperty("org.lwjgl.librarypath",
-					System.getProperty("user.dir") + "/native/windows");
+			System.setProperty("org.lwjgl.librarypath", System.getProperty("user.dir") + "/native/windows");
 		} else if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-			System.setProperty("org.lwjgl.librarypath",
-					System.getProperty("user.dir") + "/native/macosx");
+			System.setProperty("org.lwjgl.librarypath", System.getProperty("user.dir") + "/native/macosx");
 		} else {
 			System.setProperty("org.lwjgl.librarypath",
-					System.getProperty("user.dir") + "/native/"
-							+ System.getProperty("os.name").toLowerCase());
+					System.getProperty("user.dir") + "/native/" + System.getProperty("os.name").toLowerCase());
 		}
 
 		// Add this StateBasedGame to an AppGameContainer
@@ -58,17 +56,18 @@ public class Breakout extends StateBasedGame implements GameParameters {
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
 
-	  // Add the game states (the first added state will be started initially)
-	  // This may look as follows, assuming you use the associated class names and constants:
-	  
-	      //addState(new MainMenuState(MAINMENU_STATE));
-		  addState(new GameplayState(GAMEPLAY_STATE));
-		  //addState(new HighscoreState(HIGHSCORE_STATE));
+		// Add the game states (the first added state will be started initially)
+		// This may look as follows, assuming you use the associated class names
+		// and constants:
 
-		 // Add the states to the StateBasedEntityManager
-		  //StateBasedEntityManager.getInstance().addState(MAINMENU_STATE);
-		  StateBasedEntityManager.getInstance().addState(GAMEPLAY_STATE);
-		  //StateBasedEntityManager.getInstance().addState(HIGHSCORE_STATE);
-    
+		addState(new MainMenuState(MAINMENU_STATE));
+		addState(new GameplayState(GAMEPLAY_STATE));
+		// addState(new HighscoreState(HIGHSCORE_STATE));
+
+		// Add the states to the StateBasedEntityManager
+		StateBasedEntityManager.getInstance().addState(MAINMENU_STATE);
+		StateBasedEntityManager.getInstance().addState(GAMEPLAY_STATE);
+		// StateBasedEntityManager.getInstance().addState(HIGHSCORE_STATE);
+
 	}
 }

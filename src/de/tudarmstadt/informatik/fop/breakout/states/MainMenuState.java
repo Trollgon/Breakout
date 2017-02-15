@@ -168,9 +168,9 @@ public class MainMenuState implements GameParameters, GameState {
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 
 		g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
-		entityManager.addEntity(this.stateID, new Button("Test", 218, 190, 1));
-		entityManager.addEntity(this.stateID, new Button("Test2", 218, 300, 0));
-		entityManager.addEntity(this.stateID, new Button("Test3", 218, 410, 0));
+		entityManager.addEntity(this.stateID, new Button("EnterGamePlayState", 218, 190, GAMEPLAY_STATE));
+		entityManager.addEntity(this.stateID, new Button("Test1", 218, 300, 0));
+		entityManager.addEntity(this.stateID, new Button("Test2", 218, 410, 0));
 		entityManager.renderEntities(container, game, g);
 
 		g.drawString("Neues Spiel", 110, 180);
