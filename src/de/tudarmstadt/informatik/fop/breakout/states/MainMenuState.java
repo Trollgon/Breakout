@@ -157,8 +157,6 @@ public class MainMenuState implements GameParameters, GameState {
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-	
-	
 	}
 
 	@Override
