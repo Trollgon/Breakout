@@ -20,5 +20,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/eea"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/slick"/>
+	<classpathentry kind="lib" path="translator.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
