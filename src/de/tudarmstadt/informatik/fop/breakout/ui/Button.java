@@ -28,8 +28,8 @@ public class Button extends Entity implements GameParameters{
 	 * @param yPos y-Position
 	 * @param stateID stateID of the State you want to enter by clicking
 	 */
-	public Button(String buttonID, int xPos, int yPos, int stateID) {
-		super(buttonID);
+	public Button(int xPos, int yPos, int stateID) {
+		super(BUTTON_ID);
 
 		this.setPosition(new Vector2f(xPos, yPos));
 		

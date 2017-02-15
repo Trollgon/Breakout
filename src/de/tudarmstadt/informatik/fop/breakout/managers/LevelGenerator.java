@@ -13,42 +13,62 @@ public class LevelGenerator implements GameParameters {
 	private final static int BLOCKS_PER_ROW = 15;
 	private final static int SIDE_SPACE = ((WINDOW_WIDTH - (BLOCKS_PER_ROW * BLOCK_WIDTH)) / 2);
 
+	/**
+	 * loads a level from a '.map' file and returns an ArrayList<Block> with all
+	 * blocks of the level
+	 * 
+	 * @param mapFile
+	 * @return ArrayList<Block> with all blocks of the given level-file
+	 * @throws IOException
+	 */
 	public static ArrayList<Block> parseLevelFromMap(String mapFile) throws IOException {
-		FileReader reader = new FileReader(mapFile);
+
 		ArrayList<Block> blocks = new ArrayList<Block>();
-		Block block = null;
-		StreamTokenizer st = new StreamTokenizer(reader);
 
-		int gridX = 0, gridY = 0;
-		int xPos, yPos;
+		// just start reading the file if its a .map-file
+		if (mapFile.endsWith(".map")) {
 
-		st.whitespaceChars(',', ',');
-		st.eolIsSignificant(true);
+			Block block = null;
 
-		while (st.nextToken() != StreamTokenizer.TT_EOF) {
-			if (st.ttype == StreamTokenizer.TT_NUMBER) {
+			FileReader reader = new FileReader(mapFile);
+			StreamTokenizer st = new StreamTokenizer(reader);
 
-				xPos = SIDE_SPACE + BLOCK_WIDTH * gridX;
-				yPos = BLOCK_HEIGHT / 2 + BLOCK_HEIGHT * gridY;
+			int gridX = 0, gridY = 0;
+			int xPos, yPos;
 
-				switch ((int) st.nval) {
-				case 0:
-					break;
-				default:
-				case 1:
-					block = new Block(BlockType.DEFAULT, xPos, yPos);
-					break;
-				case 2:
-					block = new Block(BlockType.DEFAULT_TWO, xPos, yPos);
-					break;
+			st.whitespaceChars(',', ',');
+			st.eolIsSignificant(true);
+
+			// start reading the given .map-file
+			while (st.nextToken() != StreamTokenizer.TT_EOF) {
+
+				if (st.ttype == StreamTokenizer.TT_NUMBER) {
+
+					xPos = SIDE_SPACE + BLOCK_WIDTH * gridX;
+					yPos = BLOCK_HEIGHT / 2 + BLOCK_HEIGHT * gridY;
+
+					switch ((int) st.nval) {
+					case 0:
+						break;
+
+					default:
+
+					case 1:
+						block = new Block(BlockType.DEFAULT, xPos, yPos);
+						break;
+
+					case 2:
+						block = new Block(BlockType.DEFAULT_TWO, xPos, yPos);
+						break;
+					}
+					gridX++;
+
+				} else if (st.ttype == StreamTokenizer.TT_EOL) {
+					gridX = 0;
+					gridY++;
 				}
-				gridX++;
+				blocks.add(block);
 			}
-			else if (st.ttype == StreamTokenizer.TT_EOL) {
-				gridX = 0;
-				gridY++;
-			}
-			blocks.add(block);
 		}
 		
 		return blocks;
