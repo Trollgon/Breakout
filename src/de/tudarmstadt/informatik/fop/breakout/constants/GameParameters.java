@@ -38,9 +38,22 @@ public interface GameParameters {
 	public static final String RIGHT_BORDER_ID = "rightBorder";
 
 	// Blocks
+	public enum BlockType {
+		DEFAULT, DEFAULT_TWO
+	}
+	
+	public static final String BLOCK_ID = "block";
 	public static final String MAP_FILE = "maps/level1.map";
-	public static final String BLOCK_1_IMAGE = "/images/block_1.png";
-	public static final String BLOCK_2_IMAGE = "/images/block_2.png";
+	
+	public static final int BLOCK_WIDTH = 50;
+	public static final int BLOCK_HEIGHT = 30;
+	
+	public static final String BLOCK_DEFAULT_IMAGE = "/images/block_1.png";
+	public static final int BLOCK_DEFAULT_HITSLEFT = 1;
+	
+	public static final String BLOCK_DEFAULT_TWO_IMAGE = "/images/block_2.png";
+	public static final int BLOCK_DEFAULT_TWO_HITSLEFT = 2;
+	
 	public static final String BLOCK_3_IMAGE = "/images/block_3.png";
 
 	// Timer
