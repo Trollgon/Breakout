@@ -11,6 +11,7 @@ import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.factories.BorderFactory;
 import de.tudarmstadt.informatik.fop.breakout.managers.LevelGenerator;
 import eea.engine.entity.StateBasedEntityManager;
 
@@ -173,6 +174,12 @@ public class GameplayState implements GameParameters, GameState {
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 	
+		// adds the games borders: LEFT, TOP and RIGHT 
+		entityManager.addEntity(getID(), new BorderFactory(BorderType.LEFT).createEntity());
+		entityManager.addEntity(getID(), new BorderFactory(BorderType.TOP).createEntity());
+		entityManager.addEntity(getID(), new BorderFactory(BorderType.RIGHT).createEntity());
+		
+		// adds the level´s blocks to the entityManager:
 		try {
 			LevelGenerator.parseLevelFromMap(level).stream().forEach(b -> entityManager.addEntity(getID(), b));
 		} catch (IOException e) {
