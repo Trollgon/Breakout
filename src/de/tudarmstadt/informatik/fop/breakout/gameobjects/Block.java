@@ -107,14 +107,14 @@ public class Block extends Entity implements IHitable, GameParameters {
 
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
-				// TODO Auto-generated method stub
-				return false;
+				return !hasHitsLeft();
 			}
 			
 		});
 		
 		destroyed.addAction(new DestroyEntityAction());
 		
+		// order of this matters!:
 		this.addComponent(collider);
 		this.addComponent(destroyed);
 		this.addComponent(hitByBall);
