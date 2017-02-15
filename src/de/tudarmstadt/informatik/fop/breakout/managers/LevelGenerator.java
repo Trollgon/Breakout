@@ -11,8 +11,8 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.Block;
 public class LevelGenerator implements GameParameters {
 
 	private final static int BLOCKS_PER_ROW = 16;
-	private final static int SIDE_SPACE = WINDOW_WIDTH / 2;
-	private final static int TOP_SPACE = WINDOW_HEIGHT / 2;
+	private final static int SIDE_SPACE = BLOCK_WIDTH / 2;
+	private final static int TOP_SPACE = BLOCK_HEIGHT / 2;
 
 	/**
 	 * loads a level from a '.map' file and returns an ArrayList<Block> with all
