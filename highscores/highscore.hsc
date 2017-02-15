@@ -1,4 +1,4 @@
-//name,blocks,time
+//name,score,time in seconds
 Guido,1337,42
 Hans,99,123
 Jürgen,99,124
