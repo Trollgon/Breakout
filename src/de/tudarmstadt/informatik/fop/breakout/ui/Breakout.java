@@ -61,7 +61,7 @@ public class Breakout extends StateBasedGame implements GameParameters {
 		// and constants:
 
 		addState(new MainMenuState(MAINMENU_STATE));
-		addState(new GameplayState(GAMEPLAY_STATE));
+		addState(new GameplayState(GAMEPLAY_STATE, MAP_FILE));
 		// addState(new HighscoreState(HIGHSCORE_STATE));
 
 		// Add the states to the StateBasedEntityManager

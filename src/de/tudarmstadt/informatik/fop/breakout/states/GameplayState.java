@@ -14,14 +14,26 @@ import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.managers.LevelGenerator;
 import eea.engine.entity.StateBasedEntityManager;
 
+/**
+ * GameplayState class
+ * @author Jonas Henry Grebe
+ *
+ */
 public class GameplayState implements GameParameters, GameState {
 	
 	private int stateID;
+	private String level;
 	StateBasedEntityManager entityManager;
 	
-	public GameplayState(int stateID) {
+	/**
+	 * constructor of a new gameplay state
+	 * @param stateID of this state
+	 * @param level to load and play
+	 */
+	public GameplayState(int stateID, String level) {
 		
 		this.stateID = stateID;
+		this.level = level;
 		entityManager = StateBasedEntityManager.getInstance();
 	}
 	
@@ -162,7 +174,7 @@ public class GameplayState implements GameParameters, GameState {
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 	
 		try {
-			LevelGenerator.parseLevelFromMap(MAP_FILE).stream().forEach(b -> entityManager.addEntity(getID(), b));
+			LevelGenerator.parseLevelFromMap(level).stream().forEach(b -> entityManager.addEntity(getID(), b));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

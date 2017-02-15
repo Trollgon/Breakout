@@ -34,7 +34,7 @@ public class Block extends Entity implements IHitable, GameParameters {
 	
 	/**
 	 * Block class constructor
-	 * @param type Blocktype of this block
+	 * @param type BlockType of this block
 	 * @param xPos x-Position
 	 * @param yPos y-Position
 	 */
@@ -46,6 +46,7 @@ public class Block extends Entity implements IHitable, GameParameters {
 		
 		try {
 			configureBlock();
+			
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -91,6 +92,7 @@ public class Block extends Entity implements IHitable, GameParameters {
 			
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
+								
 				return collider.getCollidedEntity().getID() == BALL_ID;
 			}
 		});
