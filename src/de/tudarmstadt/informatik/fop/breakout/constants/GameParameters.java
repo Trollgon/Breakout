@@ -50,9 +50,11 @@ public interface GameParameters {
 	
 	public static final String BLOCK_DEFAULT_IMAGE = "/images/block_1.png";
 	public static final int BLOCK_DEFAULT_HITSLEFT = 1;
+	public static final int BLOCK_DEFAULT_SCORE = 100;
 	
 	public static final String BLOCK_DEFAULT_TWO_IMAGE = "/images/block_2.png";
 	public static final int BLOCK_DEFAULT_TWO_HITSLEFT = 2;
+	public static final int BLOCK_DEFAULT_TWO_SCORE = 200;
 	
 	public static final String BLOCK_3_IMAGE = "/images/block_3.png";
 

@@ -17,15 +17,27 @@ import eea.engine.event.ANDEvent;
 import eea.engine.event.Event;
 import eea.engine.event.basicevents.CollisionEvent;
 
+/**
+ * Block class to represent any block in the game
+ * @author Jonas Henry Grebe
+ *
+ */
 public class Block extends Entity implements IHitable, GameParameters {
 
 	private int HitsLeft;
+	private int score;
 	private BlockType type;
 
 	private CollisionEvent collider;
 	private ANDEvent hitByBall;
 	private ANDEvent destroyed;
 	
+	/**
+	 * Block class constructor
+	 * @param type Blocktype of this block
+	 * @param xPos x-Position
+	 * @param yPos y-Position
+	 */
 	public Block(BlockType type, int xPos, int yPos) {
 		super(BLOCK_ID);
 		
@@ -54,12 +66,14 @@ public class Block extends Entity implements IHitable, GameParameters {
 		default:
 		case DEFAULT:
 			image = new Image(BLOCK_DEFAULT_IMAGE);
-			this.setHitsLeft(BLOCK_DEFAULT_HITSLEFT);
+			setHitsLeft(BLOCK_DEFAULT_HITSLEFT);
+			setScore(BLOCK_DEFAULT_SCORE);
 			break;
 		
 		case DEFAULT_TWO:
 			image = new Image(BLOCK_DEFAULT_TWO_IMAGE);
-			this.setHitsLeft(BLOCK_DEFAULT_TWO_HITSLEFT);
+			setHitsLeft(BLOCK_DEFAULT_TWO_HITSLEFT);
+			setScore(BLOCK_DEFAULT_TWO_SCORE);
 			break;
 		}
 		
@@ -132,6 +146,14 @@ public class Block extends Entity implements IHitable, GameParameters {
 
 	public void setType(BlockType type) {
 		this.type = type;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int points) {
+		this.score = points;
 	}
 
 }
