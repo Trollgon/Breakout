@@ -55,10 +55,10 @@ public class Breakout extends StateBasedGame implements GameParameters {
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
 
-		// Add the game states (the first added state will be started initially)
+	  // Add the game states (the first added state will be started initially)
 	  // This may look as follows, assuming you use the associated class names and constants:
 	  /*
-	    addState(new MainMenuState(MAINMENU_STATE));
+	      addState(new MainMenuState(MAINMENU_STATE));
 		  addState(new GameplayState(GAMEPLAY_STATE));
 		  addState(new HighscoreState(HIGHSCORE_STATE));
 
