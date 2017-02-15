@@ -100,6 +100,10 @@ public class Block extends Entity implements IHitable, GameParameters {
 		});
 		
 		destroyed.addAction(new DestroyEntityAction());
+		
+		this.addComponent(collider);
+		this.addComponent(destroyed);
+		this.addComponent(hitByBall);
 	}
 
 	@Override
