@@ -169,9 +169,9 @@ public class MainMenuState implements GameParameters, GameState {
 
 		g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
 		
-		entityManager.addEntity(this.stateID, new Button(218, 190, GAMEPLAY_STATE));
-		entityManager.addEntity(this.stateID, new Button(218, 300, 0));
-		entityManager.addEntity(this.stateID, new Button(218, 410, 0));
+		entityManager.addEntity(getID(), new Button(218, 190, GAMEPLAY_STATE));
+		entityManager.addEntity(getID(), new Button(218, 300, 0));
+		entityManager.addEntity(getID(), new Button(218, 410, 0));
 		
 		entityManager.renderEntities(container, game, g);
 
@@ -183,7 +183,7 @@ public class MainMenuState implements GameParameters, GameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 	
-		entityManager.updateEntities(container, game, stateID);
+		entityManager.updateEntities(container, game, delta);
 	}
 
 }
