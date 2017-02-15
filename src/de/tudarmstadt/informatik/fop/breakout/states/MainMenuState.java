@@ -1,5 +1,6 @@
 package de.tudarmstadt.informatik.fop.breakout.states;
 
+import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -167,9 +168,16 @@ public class MainMenuState implements GameParameters, GameState {
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-	
+
 		g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
+		entityManager.addEntity(this.stateID, new Button("Test", 218, 190, 1));
+		entityManager.addEntity(this.stateID, new Button("Test2", 218, 300, 0));
+		entityManager.addEntity(this.stateID, new Button("Test3", 218, 410, 0));
 		entityManager.renderEntities(container, game, g);
+
+		g.drawString("Neues Spiel", 110, 180);
+		g.drawString("Highscore", 110, 290);
+		g.drawString("Beenden", 110, 400);
 	}
 
 	@Override
