@@ -29,15 +29,23 @@ public class LevelGenerator implements GameParameters {
 		// just start reading the file if its a .map-file
 		if (mapFile.endsWith(".map")) {
 
+			// block that will be configured and added to blocks
 			Block block = null;
 
+			// FileReader and StreamTokenizer to parse the file
 			FileReader reader = new FileReader(mapFile);
 			StreamTokenizer st = new StreamTokenizer(reader);
 
+			// grid-positions: 	x -> 0 to 15 for each row
+			// 					y -> 0 to 9 for each column
 			int gridX = 0, gridY = 0;
+			
+			// x-/y-positions in the window
 			int xPos, yPos;
 
+			// setting ',' to seperate the different Tokens
 			st.whitespaceChars(',', ',');
+			// setting the Tokenizer to endOfLine-significant:
 			st.eolIsSignificant(true);
 
 			// start reading the given .map-file
@@ -45,6 +53,7 @@ public class LevelGenerator implements GameParameters {
 
 				if (st.ttype == StreamTokenizer.TT_NUMBER) {
 
+					// calculcating the position of the next block:
 					xPos = SIDE_SPACE + BLOCK_WIDTH * gridX;
 					yPos = TOP_SPACE + BLOCK_HEIGHT * gridY;
 
@@ -68,10 +77,12 @@ public class LevelGenerator implements GameParameters {
 					
 					gridX++;
 
+				// end of line reached:
 				} else if (st.ttype == StreamTokenizer.TT_EOL) {
 					gridX = 0;
 					gridY++;
 				}
+				// adds the configured new block to the ArrayList<Block>
 				blocks.add(block);
 			}
 		}
