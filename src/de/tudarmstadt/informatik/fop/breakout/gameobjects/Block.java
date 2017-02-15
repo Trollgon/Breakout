@@ -76,6 +76,12 @@ public class Block extends Entity implements IHitable, GameParameters {
 			setHitsLeft(BLOCK_DEFAULT_TWO_HITSLEFT);
 			setScore(BLOCK_DEFAULT_TWO_SCORE);
 			break;
+			
+		case DEFAULT_THREE:
+			image = new Image(BLOCK_DEFAULT_THREE_IMAGE);
+			setHitsLeft(BLOCK_DEFAULT_THREE_HITSLEFT);
+			setScore(BLOCK_DEFAULT_THREE_SCORE);
+			break;
 		}
 		
 		this.addComponent(new ImageRenderComponent(image));

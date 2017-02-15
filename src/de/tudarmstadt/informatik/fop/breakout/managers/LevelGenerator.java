@@ -61,7 +61,11 @@ public class LevelGenerator implements GameParameters {
 					case 2:
 						block = new Block(BlockType.DEFAULT_TWO, xPos, yPos);
 						break;
+						
+					case 3:
+						block = new Block(BlockType.DEFAULT_THREE, xPos, yPos);
 					}
+					
 					gridX++;
 
 				} else if (st.ttype == StreamTokenizer.TT_EOL) {

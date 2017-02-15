@@ -39,7 +39,7 @@ public interface GameParameters {
 
 	// Blocks
 	public enum BlockType {
-		DEFAULT, DEFAULT_TWO
+		DEFAULT, DEFAULT_TWO, DEFAULT_THREE
 	}
 	
 	public static final String BLOCK_ID = "block";
@@ -55,6 +55,10 @@ public interface GameParameters {
 	public static final String BLOCK_DEFAULT_TWO_IMAGE = "/images/block_2.png";
 	public static final int BLOCK_DEFAULT_TWO_HITSLEFT = 2;
 	public static final int BLOCK_DEFAULT_TWO_SCORE = 200;
+	
+	public static final String BLOCK_DEFAULT_THREE_IMAGE = "/images/block_3.png";
+	public static final int BLOCK_DEFAULT_THREE_HITSLEFT = 3;
+	public static final int BLOCK_DEFAULT_THREE_SCORE = 300;
 	
 	public static final String BLOCK_3_IMAGE = "/images/block_3.png";
 
