@@ -1,5 +1,7 @@
 package de.tudarmstadt.informatik.fop.breakout.states;
 
+import java.io.IOException;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -9,6 +11,7 @@ import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.managers.LevelGenerator;
 import eea.engine.entity.StateBasedEntityManager;
 
 public class GameplayState implements GameParameters, GameState {
@@ -158,6 +161,12 @@ public class GameplayState implements GameParameters, GameState {
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 	
+		try {
+			LevelGenerator.parseLevelFromMap(MAP_FILE).stream().forEach(b -> entityManager.addEntity(getID(), b));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
 	}
 

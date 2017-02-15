@@ -41,6 +41,9 @@ public interface GameParameters {
 	public static final String BLOCK_ID = "block";
 	public static final String MAP_FILE = "maps/level1.map";
 	
+	public static final int BLOCK_WIDTH = 50;
+	public static final int BLOCK_HEIGHT = 30;
+	
 	public static final String BLOCK_DEFAULT_IMAGE = "/images/block_1.png";
 	public static final int BLOCK_DEFAULT_HITSLEFT = 1;
 	
