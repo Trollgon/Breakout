@@ -23,6 +23,10 @@ public interface GameParameters {
 	public static final String BACKGROUND_ID = "background";
 	public static final String BACKGROUND_IMAGE = "/images/background.png";
 
+	// Button
+	public static final String BUTTON_ID = "button";
+	public static final String BUTTON_IMAGE = "/images/entry.png";
+
 	// Borders
 	public enum BorderType {
 		TOP, LEFT, RIGHT
