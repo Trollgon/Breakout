@@ -53,11 +53,10 @@ public class Ball extends Entity implements GameParameters {
 	public Ball(/* , Stick launcher */) {
 		super(BALL_ID);
 
-		setPosition(new Vector2f(WINDOW_WIDTH/2, WINDOW_HEIGHT-500));
-		setSpeed(2 * INITIAL_BALL_SPEED);
-		setRotation(45);
+		setPosition(new Vector2f(WINDOW_WIDTH/2, WINDOW_HEIGHT - 30));
+		setSpeed(INITIAL_BALL_SPEED);
+		setRotation(0);
 
-		setPassable(false);
 		// setPosition(getLauncher().getLaunchPos());
 		setLaunched(false);
 
@@ -68,6 +67,9 @@ public class Ball extends Entity implements GameParameters {
 			e.printStackTrace();
 		}
 
+		setVisible(true);
+		setPassable(false);
+		
 		configureEvents();
 	}
 
