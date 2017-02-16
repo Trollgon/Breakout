@@ -51,15 +51,15 @@ public interface GameParameters {
 	public static final int BLOCK_WIDTH = 50;
 	public static final int BLOCK_HEIGHT = 30;
 	
-	public static final String BLOCK_DEFAULT_IMAGE = "/images/block_1.png";
+	public static final String BLOCK_DEFAULT_IMAGE = "/images/blocks/block_1.png";
 	public static final int BLOCK_DEFAULT_HITSLEFT = 1;
 	public static final int BLOCK_DEFAULT_SCORE = 100;
 	
-	public static final String BLOCK_DEFAULT_TWO_IMAGE = "/images/block_2.png";
+	public static final String BLOCK_DEFAULT_TWO_IMAGE = "/images/blocks/block_2.png";
 	public static final int BLOCK_DEFAULT_TWO_HITSLEFT = 2;
 	public static final int BLOCK_DEFAULT_TWO_SCORE = 200;
 	
-	public static final String BLOCK_DEFAULT_THREE_IMAGE = "/images/block_3.png";
+	public static final String BLOCK_DEFAULT_THREE_IMAGE = "/images/blocks/block_3.png";
 	public static final int BLOCK_DEFAULT_THREE_HITSLEFT = 3;
 	public static final int BLOCK_DEFAULT_THREE_SCORE = 300;
 	
@@ -70,7 +70,7 @@ public interface GameParameters {
 
 	// Ball
 	public static final String BALL_ID = "ball";
-	public static final float INITIAL_BALL_SPEED = 1f;
+	public static final float INITIAL_BALL_SPEED = 2f;
 	public static final float SPEEDUP_VALUE = 0.0001f;
 	public static final String BALL_IMAGE = "/images/ball.png";
 

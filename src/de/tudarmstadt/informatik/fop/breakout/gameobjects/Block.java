@@ -55,8 +55,7 @@ public class Block extends Entity implements IHitable, GameParameters {
 	}
 	
 	/**
-	 * configures the blocks properties depending on its Blocktype
-	 * @throws SlickException
+	 * configures the blocks properties depending on its BlockType
 	 */
 	private void configureBlock() throws SlickException {
 		
