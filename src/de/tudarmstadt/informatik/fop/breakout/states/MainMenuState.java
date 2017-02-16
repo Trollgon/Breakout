@@ -170,7 +170,7 @@ public class MainMenuState implements GameParameters, GameState {
 		g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
 		
 		entityManager.addEntity(getID(), new Button(218, 190, GAMEPLAY_STATE));
-		entityManager.addEntity(getID(), new Button(218, 300, 0));
+		entityManager.addEntity(getID(), new Button(218, 300, HIGHSCORE_STATE));
 		entityManager.addEntity(getID(), new Button(218, 410, 0));
 		
 		entityManager.renderEntities(container, game, g);
