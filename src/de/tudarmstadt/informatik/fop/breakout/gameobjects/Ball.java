@@ -10,6 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.physics.Physics2D;
 import eea.engine.action.Action;
+import eea.engine.action.basicactions.DestroyEntityAction;
 import eea.engine.action.basicactions.MoveForwardAction;
 import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
@@ -19,6 +20,7 @@ import eea.engine.event.Event;
 import eea.engine.event.NOTEvent;
 import eea.engine.event.basicevents.CollisionEvent;
 import eea.engine.event.basicevents.KeyDownEvent;
+import eea.engine.event.basicevents.LeavingScreenEvent;
 
 /**
  * ball class to represent any ball in the game
@@ -33,6 +35,8 @@ public class Ball extends Entity implements GameParameters {
 	private boolean isLaunched;
 
 	// private Stick launcher;
+	
+	// entity of last collision:
 	private Entity lastCollisionEntity = null;
 
 	// ball events:
@@ -43,21 +47,26 @@ public class Ball extends Entity implements GameParameters {
 	private Event otherCollision;
 	private ANDEvent XAxisCollision;
 	private ANDEvent YAxisCollision;
+	private LeavingScreenEvent leftScreen;
 
 	/**
 	 * constructor of ball class
 	 * 
-	 * @param entityID
-	 *            of the new ball
+	 * @param entityID of the new ball
 	 */
-	public Ball(/* , Stick launcher */) {
+	public Ball(/* Stick launcher */) {
 		super(BALL_ID);
 
-		setPosition(new Vector2f(WINDOW_WIDTH/2, WINDOW_HEIGHT - 30));
+		setPosition(new Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 30));
 		setSpeed(INITIAL_BALL_SPEED);
 		setRotation(0);
-
+		
+		// when Stick class has been implemented with a method getLaunchPos()
+		// which delivers the launching position of the Stick:
+		
+		// setLauncher(launcher);
 		// setPosition(getLauncher().getLaunchPos());
+		
 		setLaunched(false);
 
 		try {
@@ -69,7 +78,7 @@ public class Ball extends Entity implements GameParameters {
 
 		setVisible(true);
 		setPassable(false);
-		
+
 		configureEvents();
 	}
 
@@ -79,7 +88,7 @@ public class Ball extends Entity implements GameParameters {
 	private void configureEvents() {
 
 		//////////////////////////////// EVENTS ////////////////////////////////
-		
+
 		// main collision event
 		collider = new CollisionEvent();
 
@@ -95,10 +104,12 @@ public class Ball extends Entity implements GameParameters {
 		// event which fires if the ball has not been launched yet
 		notLaunched = new NOTEvent(launched);
 
-		// event which fires if the ball isn't launched and the SPACE-KEY is pressed -> launch
+		// event which fires if the ball isn't launched and the SPACE-KEY is
+		// pressed -> launch
 		launch = new ANDEvent(new NOTEvent(launched), new KeyDownEvent(Input.KEY_SPACE));
 
-		// event which fires if the current collidedEntity is not the same as last collision
+		// event which fires if the current collidedEntity is not the same as
+		// last collision
 		otherCollision = new ANDEvent(collider, new Event("otherCollisionAsLastTime") {
 
 			@Override
@@ -112,8 +123,14 @@ public class Ball extends Entity implements GameParameters {
 
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
-				String id = collider.getCollidedEntity().getID();
-				return (id == BLOCK_ID || id == TOP_BORDER_ID || id == STICK_ID);
+				Entity e = collider.getCollidedEntity();
+
+				// if e is a block and has been hit on edge, return true, else false
+				if (e.getID() == BLOCK_ID) {
+					return collidedOnEdge((Block) e);
+				}
+
+				return (e.getID() == TOP_BORDER_ID || e.getID() == STICK_ID);
 			}
 
 		});
@@ -123,13 +140,22 @@ public class Ball extends Entity implements GameParameters {
 
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
-				String id = collider.getCollidedEntity().getID();
-				return (id == LEFT_BORDER_ID || id == RIGHT_BORDER_ID);
+				Entity e = collider.getCollidedEntity();
+
+				// if e is a block and has been hit on edge, return false, else true
+				if (e.getID() == BLOCK_ID) {
+					return !collidedOnEdge((Block) e);
+				}
+				
+				return (e.getID() == LEFT_BORDER_ID || e.getID() == RIGHT_BORDER_ID);
 			}
 		});
 
-		//////////////////////////////// ACTIONS ////////////////////////////////
+		// event which fires if the ball left the screen
+		leftScreen = new LeavingScreenEvent();
 		
+		//////////////////////////////// ACTIONS ////////////////////////////////
+
 		// remember the current collided entity for next collision
 		collider.addAction(new Action() {
 
@@ -142,7 +168,7 @@ public class Ball extends Entity implements GameParameters {
 		// moves the ball in its direction
 		launched.addAction(new MoveForwardAction(getSpeed()));
 
-	// places the not yet launched ball at the launch-position
+		// places the not yet launched ball at the launch-position
 		notLaunched.addAction(new Action() {
 
 			@Override
@@ -178,6 +204,9 @@ public class Ball extends Entity implements GameParameters {
 				setRotation(Physics2D.bounceYAxis(getRotation()));
 			}
 		});
+		
+		// destroys ball when it left the screen
+		leftScreen.addAction(new DestroyEntityAction());
 
 		// adds all events with their actions
 		this.addComponent(collider);
@@ -185,10 +214,22 @@ public class Ball extends Entity implements GameParameters {
 		this.addComponent(launched);
 		this.addComponent(notLaunched);
 		this.addComponent(otherCollision);
-		
+
 		this.addComponent(XAxisCollision);
 		this.addComponent(YAxisCollision);
 
+	}
+
+	/**
+	 * determines whether this ball has hit the given Block on an edge or not
+	 * 
+	 * @param block
+	 * @return TRUE if hit on EDGE, else FALSE
+	 */
+	public boolean collidedOnEdge(Block block) {
+		float offset = block.getPosition().x - this.getPosition().x;
+		System.out.println("offset:" + offset);
+		return (offset < -(block.getSize().x / 2) + 1 || (block.getSize().x / 2) - 1 > offset);
 	}
 
 	/**
@@ -226,6 +267,10 @@ public class Ball extends Entity implements GameParameters {
 	 */
 	public void setSpeed(float speed) {
 		this.speed = speed;
+	}
+
+	public void speedUp() {
+		setSpeed(getSpeed() + SPEEDUP_VALUE);
 	}
 
 	/**
