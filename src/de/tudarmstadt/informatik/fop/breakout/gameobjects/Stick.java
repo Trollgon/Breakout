@@ -31,7 +31,7 @@ public class Stick extends Entity implements GameParameters {
 	
 	private int posx = Math.floorDiv(WINDOW_WIDTH, 2);
 	private int posy = WINDOW_HEIGHT-20;
-	
+	private float speed = STICK_SPEED * 16; //0.5 speed is way too slow
 	private OREvent leftKeys;
 	private OREvent rightKeys; 
 	private Event leftBorderReached;
@@ -80,8 +80,8 @@ public class Stick extends Entity implements GameParameters {
 		
 		//Actions
 		
-		moveLeftCondition.addAction(new MoveLeftAction(STICK_SPEED * 16));
-		moveRightCondition.addAction(new MoveRightAction(STICK_SPEED * 16));
+		moveLeftCondition.addAction(new MoveLeftAction(speed));
+		moveRightCondition.addAction(new MoveRightAction(speed));
 	
 	/*	this.addComponent(leftKeys);
 		this.addComponent(rightKeys);
@@ -90,5 +90,10 @@ public class Stick extends Entity implements GameParameters {
 		this.addComponent(moveLeftCondition);
 		this.addComponent(moveRightCondition);
 	}
-
+	
+	//service for Ball
+	public Vector2f getLaunchPos(){
+		return new Vector2f(getPosition().getX(), getPosition().getY() - 25);
+	}
+	
 }
