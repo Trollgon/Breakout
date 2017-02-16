@@ -43,7 +43,7 @@ public class LevelGenerator implements GameParameters {
 			// x-/y-positions in the window
 			int xPos, yPos;
 
-			// setting ',' to seperate the different Tokens
+			// setting ',' to separate the different Tokens
 			st.whitespaceChars(',', ',');
 			// setting the Tokenizer to endOfLine-significant:
 			st.eolIsSignificant(true);
@@ -53,7 +53,7 @@ public class LevelGenerator implements GameParameters {
 
 				if (st.ttype == StreamTokenizer.TT_NUMBER) {
 
-					// calculcating the position of the next block:
+					// calculating the position of the next block:
 					xPos = SIDE_SPACE + BLOCK_WIDTH * gridX;
 					yPos = TOP_SPACE + BLOCK_HEIGHT * gridY;
 
