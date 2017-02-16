@@ -13,6 +13,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.factories.BorderFactory;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.Stick;
 import de.tudarmstadt.informatik.fop.breakout.managers.LevelGenerator;
 import eea.engine.entity.StateBasedEntityManager;
 
@@ -181,7 +182,8 @@ public class GameplayState implements GameParameters, GameState {
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.RIGHT).createEntity());
 		
 		entityManager.addEntity(getID(), new Ball());
-		
+		//add the Stick
+		entityManager.addEntity(getID(), new Stick());
 		// adds the level´s blocks to the entityManager:
 		try {
 			LevelGenerator.parseLevelFromMap(level).stream().forEach(b -> entityManager.addEntity(getID(), b));
