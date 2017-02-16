@@ -113,7 +113,7 @@ public class Ball extends Entity implements GameParameters {
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
 				String id = collider.getCollidedEntity().getID();
-				return (id == BLOCK_ID || id == TOP_BORDER_ID);
+				return (id == BLOCK_ID || id == TOP_BORDER_ID || id == STICK_ID);
 			}
 
 		});
