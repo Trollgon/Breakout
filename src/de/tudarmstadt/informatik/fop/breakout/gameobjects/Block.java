@@ -124,8 +124,8 @@ public class Block extends Entity implements IHitable, GameParameters {
 		
 		// order of this matters!:
 		this.addComponent(collider);
-		this.addComponent(destroyed);
 		this.addComponent(hitByBall);
+		this.addComponent(destroyed);
 	}
 
 	@Override

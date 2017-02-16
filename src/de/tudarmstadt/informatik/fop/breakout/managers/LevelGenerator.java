@@ -10,7 +10,7 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.Block;
 
 public class LevelGenerator implements GameParameters {
 
-	private final static int BLOCKS_PER_ROW = 16;
+	// private final static int BLOCKS_PER_ROW = 16;
 	private final static int SIDE_SPACE = BLOCK_WIDTH / 2;
 	private final static int TOP_SPACE = BLOCK_HEIGHT / 2;
 

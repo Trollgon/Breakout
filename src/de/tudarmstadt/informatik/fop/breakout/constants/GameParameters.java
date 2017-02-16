@@ -32,6 +32,9 @@ public interface GameParameters {
 		TOP, LEFT, RIGHT
 	};
 
+	// offset to avoid a perma-collision with the outer blocks
+	public static final int BORDER_OFFSET = 7;
+	
 	public static final int BORDER_WIDTH = 6;
 	public static final String TOP_BORDER_ID = "topBorder";
 	public static final String LEFT_BORDER_ID = "leftBorder";
@@ -67,7 +70,7 @@ public interface GameParameters {
 
 	// Ball
 	public static final String BALL_ID = "ball";
-	public static final float INITIAL_BALL_SPEED = 0.3f;
+	public static final float INITIAL_BALL_SPEED = 1f;
 	public static final float SPEEDUP_VALUE = 0.0001f;
 	public static final String BALL_IMAGE = "/images/ball.png";
 
