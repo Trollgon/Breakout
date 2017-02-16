@@ -26,7 +26,7 @@ public class Button extends Entity implements GameParameters{
 	 * @param buttonID
 	 * @param xPos x-Position
 	 * @param yPos y-Position
-	 * @param stateID stateID of the State you want to enter by clicking
+	 * @param stateID ID of the entered state by clicking
 	 */
 	public Button(int xPos, int yPos, int stateID) {
 		super(BUTTON_ID);
