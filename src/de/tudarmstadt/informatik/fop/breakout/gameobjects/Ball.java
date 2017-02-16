@@ -44,7 +44,7 @@ public class Ball extends Entity implements GameParameters {
 	private Event launched;
 	private NOTEvent notLaunched;
 	private ANDEvent launch;
-	private Event otherCollision;
+	private Event differentCollision;
 	private ANDEvent XAxisCollision;
 	private ANDEvent YAxisCollision;
 	private LeavingScreenEvent leftScreen;
@@ -110,7 +110,7 @@ public class Ball extends Entity implements GameParameters {
 
 		// event which fires if the current collidedEntity is not the same as
 		// last collision
-		otherCollision = new ANDEvent(collider, new Event("otherCollisionAsLastTime") {
+		differentCollision = new ANDEvent(collider, new Event("otherCollisionAsLastTime") {
 
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
@@ -119,7 +119,7 @@ public class Ball extends Entity implements GameParameters {
 		});
 
 		// event which fires if the ball should bounce at the x-axis
-		XAxisCollision = new ANDEvent(collider, otherCollision, new Event("xAxisCollision") {
+		XAxisCollision = new ANDEvent(collider, differentCollision, new Event("xAxisCollision") {
 
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
@@ -136,7 +136,7 @@ public class Ball extends Entity implements GameParameters {
 		});
 
 		// event which fires if the ball should bounce at the y-axis
-		YAxisCollision = new ANDEvent(collider, otherCollision, new Event("yAxisCollision") {
+		YAxisCollision = new ANDEvent(collider, differentCollision, new Event("yAxisCollision") {
 
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
@@ -213,7 +213,7 @@ public class Ball extends Entity implements GameParameters {
 		this.addComponent(launch);
 		this.addComponent(launched);
 		this.addComponent(notLaunched);
-		this.addComponent(otherCollision);
+		this.addComponent(differentCollision);
 
 		this.addComponent(XAxisCollision);
 		this.addComponent(YAxisCollision);
@@ -227,9 +227,10 @@ public class Ball extends Entity implements GameParameters {
 	 * @return TRUE if hit on EDGE, else FALSE
 	 */
 	public boolean collidedOnEdge(Block block) {
+		final float SENSITIVITY = 1f;
 		float offset = block.getPosition().x - this.getPosition().x;
-		System.out.println("offset:" + offset);
-		return (offset < -(block.getSize().x / 2) + 1 || (block.getSize().x / 2) - 1 > offset);
+		
+		return (offset < -(block.getSize().x / 2) + SENSITIVITY || (block.getSize().x / 2) - SENSITIVITY > offset);
 	}
 
 	/**
