@@ -126,7 +126,7 @@ public class Ball extends Entity implements GameParameters {
 				Entity e = collider.getCollidedEntity();
 
 				// if e is a block and has been hit on edge, return true, else false
-				if (e.getID() == BLOCK_ID) {
+				if (e instanceof Block) {
 					return collidedOnEdge((Block) e);
 				}
 
@@ -143,7 +143,7 @@ public class Ball extends Entity implements GameParameters {
 				Entity e = collider.getCollidedEntity();
 
 				// if e is a block and has been hit on edge, return false, else true
-				if (e.getID() == BLOCK_ID) {
+				if (e instanceof Block) {
 					return !collidedOnEdge((Block) e);
 				}
 				
