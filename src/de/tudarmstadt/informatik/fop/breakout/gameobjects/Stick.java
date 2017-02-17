@@ -132,8 +132,12 @@ public class Stick extends Entity implements GameParameters {
 	}
 	
 	//service for Ball
+	/**
+	 * Used to give a ball its launching position
+	 * @return the launching position for the ball
+	 */
 	public Vector2f getLaunchPos(){
-		return new Vector2f(getPosition().getX(), getPosition().getY() - 26); 
+		return new Vector2f(getPosition().getX(), getPosition().getY() - 26); // the launch position is 26 pixels above the stick position
 	}
 	/*//TODO: Methode nach Physics2d auslagern
 	public void updateAngleOffset(Ball b){
@@ -160,7 +164,15 @@ public class Stick extends Entity implements GameParameters {
 		lastHitEntity = e;
 	}
 	*/
-	
+	@Deprecated
+	/**
+	 * - not working anymore -
+	 * previously used to get the angle offset, not needed anymore
+	 * as the angle is automatically adjusted in the method in the Physics2D class
+	 * 
+	 * 
+	 * @return the angleOffset
+	 */
 	public float getAngleOffset(){
 		return angleOffset;
 	}
