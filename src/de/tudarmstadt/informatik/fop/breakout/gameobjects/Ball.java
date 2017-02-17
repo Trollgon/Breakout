@@ -34,7 +34,7 @@ public class Ball extends Entity implements GameParameters {
 	private float speed;
 	private boolean isLaunched;
 
-	// private Stick launcher;
+	private Stick launcher;
 	
 	// entity of last collision:
 	private Entity lastCollisionEntity = null;
@@ -54,7 +54,7 @@ public class Ball extends Entity implements GameParameters {
 	 * 
 	 * @param entityID of the new ball
 	 */
-	public Ball(/* Stick launcher */) {
+	public Ball(Stick launcher) {
 		super(BALL_ID);
 
 		setPosition(new Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 30));
@@ -64,8 +64,8 @@ public class Ball extends Entity implements GameParameters {
 		// when Stick class has been implemented with a method getLaunchPos()
 		// which delivers the launching position of the Stick:
 		
-		// setLauncher(launcher);
-		// setPosition(getLauncher().getLaunchPos());
+		setLauncher(launcher);
+		setPosition(getLauncher().getLaunchPos());
 		
 		setLaunched(false);
 
@@ -173,7 +173,7 @@ public class Ball extends Entity implements GameParameters {
 
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				// setPosition(getLauncher().getLaunchPos());
+				 setPosition(getLauncher().getLaunchPos());
 			}
 		});
 
@@ -290,6 +290,13 @@ public class Ball extends Entity implements GameParameters {
 	 */
 	public void setLastCollision(Entity lastCollision) {
 		this.lastCollisionEntity = lastCollision;
+		System.out.println(lastCollision.getID());
 	}
 
+	private void setLauncher(Stick launcher){
+		this.launcher = launcher;
+	}
+	private Stick getLauncher(){
+		return launcher;
+	}
 }
