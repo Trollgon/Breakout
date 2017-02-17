@@ -117,14 +117,7 @@ public class Stick extends Entity implements GameParameters {
 		moveLeftCondition.addAction(new MoveLeftAction(speed));
 		moveRightCondition.addAction(new MoveRightAction(speed));
 
-		
-	/*	collider.addAction(new Action(){
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3){
-				setLastHitEntity(collider.getCollidedEntity());
-			}
-		}); */
-		hitByBall.addAction(new Action(){
+		hitByBall.addAction(new Action() {
 
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
