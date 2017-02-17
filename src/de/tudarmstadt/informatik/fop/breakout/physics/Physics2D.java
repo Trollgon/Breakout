@@ -44,8 +44,8 @@ public class Physics2D {
 	 *
 	 * @param b
 	 *            the Ball hit by the Stick
-	 * @param stickPosition
-	 *            the Position of the Stick
+	 * @param s
+	 *            the Stick hitting the ball
 	 */
 	public static void updateAngleOffset(Ball b, Stick s) {
 		float diff = s.getPosition().getX() - b.getPosition().getX();
