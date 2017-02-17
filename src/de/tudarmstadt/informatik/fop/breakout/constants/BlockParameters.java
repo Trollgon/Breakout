@@ -6,6 +6,9 @@ public interface BlockParameters {
 	public enum BlockType {
 		DEFAULT, IRON, GOLD, TNT, SPEEDUP
 	}
+	
+	public static final String BLOCK_HIT_SOUND = "sounds/hitBlock.wav";
+	
 	// Block event IDS:
 	public static final String NOHITSLEFT = "noHitsLeft";
 	public static final String BALLCOLLISION = "BallCollision";

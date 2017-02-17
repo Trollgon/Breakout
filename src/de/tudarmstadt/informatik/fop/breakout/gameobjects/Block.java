@@ -11,6 +11,7 @@ import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.gameactions.BlockExplosionAction;
 import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnItemAction;
 import de.tudarmstadt.informatik.fop.breakout.interfaces.IHitable;
+import de.tudarmstadt.informatik.fop.breakout.managers.SoundManager;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.DestroyEntityAction;
 import eea.engine.component.Component;
@@ -111,12 +112,8 @@ public class Block extends Entity implements IHitable, GameParameters {
 
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				try {
-					new Sound("sounds/hitBlock.wav").play(0.8f, 1);
-				} catch (SlickException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				
+				SoundManager.playSound(BLOCK_HIT_SOUND, 0.8f, GAME_VOLUME);
 				addHitsLeft(-1);
 			}
 		});

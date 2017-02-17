@@ -8,6 +8,7 @@ import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.managers.SoundManager;
 import de.tudarmstadt.informatik.fop.breakout.physics.Physics2D;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.MoveLeftAction;
@@ -123,12 +124,7 @@ public class Stick extends Entity implements GameParameters {
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 			//	Physics2D.updateAngleOffset((Ball) collider.getCollidedEntity(), (Stick) collider.getOwnerEntity());
 			
-			try {
-				new Sound("sounds/hitStick.wav").play(0.9f, 1);;
-			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			SoundManager.playSound(STICK_HIT_SOUND, 0.9f, GAME_VOLUME);
 			}
 		});
 
