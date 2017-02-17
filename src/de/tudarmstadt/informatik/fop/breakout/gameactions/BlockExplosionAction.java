@@ -7,6 +7,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Block;
+import de.tudarmstadt.informatik.fop.breakout.managers.SoundManager;
 import eea.engine.action.Action;
 import eea.engine.component.Component;
 import eea.engine.entity.StateBasedEntityManager;
@@ -42,7 +43,8 @@ public class BlockExplosionAction implements Action, GameParameters {
 		entityManager.getEntitiesByState(GAMEPLAY_STATE).stream()
 		.filter(e -> e instanceof Block)
 		.filter(b -> b.getShape().intersects(explosion) && ((Block)b).getType() != BlockType.IRON)
-		.forEach(b -> ((Block)b).setDestroyed(true));
+		.forEach(b -> ((Block)b).setDestroyed(true)); SoundManager.playSound(BLOCK_IMPACT_SOUND, 0.3f, GAME_VOLUME);
+
 	}
 
 }
