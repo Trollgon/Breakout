@@ -27,7 +27,7 @@ public class GameplayState implements GameParameters, GameState {
 	private int stateID;
 	private String level;
 	
-	StateBasedEntityManager entityManager;
+	public StateBasedEntityManager entityManager;
 	
 	private Stick stick;
 	

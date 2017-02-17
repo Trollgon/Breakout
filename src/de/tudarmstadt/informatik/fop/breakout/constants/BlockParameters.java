@@ -4,8 +4,12 @@ public interface BlockParameters {
 
 	// Blocks
 	public enum BlockType {
-		DEFAULT, IRON, GOLD, SPEEDUP
+		DEFAULT, IRON, GOLD, TNT, SPEEDUP
 	}
+	// Block event IDS:
+	public static final String NOHITSLEFT = "noHitsLeft";
+	public static final String BALLCOLLISION = "BallCollision";
+	public static final String DESTRUCTION = "destruction";
 	
 	public static final String BLOCK_ID = "block";
 	public static final String MAP_FILE = "maps/level1.map";
@@ -24,6 +28,10 @@ public interface BlockParameters {
 	public static final String BLOCK_GOLD_IMAGE = "/images/blocks/block_gold.png";
 	public static final int BLOCK_GOLD_HITSLEFT = 3;
 	public static final int BLOCK_GOLD_SCORE = 300;
+	
+	public static final String BLOCK_TNT_IMAGE = "/images/blocks/block_tnt.png";
+	public static final int BLOCK_TNT_HITSLEFT = 1;
+	public static final int BLOCK_TNT_SCORE = 150;
 	
 	public static final String BLOCK_SPEEDUP_IMAGE = "/images/blocks/block_speedup.png";
 	public static final int BLOCK_SPEEDUP_HITSLEFT = 1;

@@ -76,7 +76,7 @@ public class LevelGenerator implements GameParameters {
 						break;
 						
 					case 4:
-						block = new Block(BlockType.SPEEDUP, xPos, yPos);
+						block = new Block(BlockType.TNT, xPos, yPos);
 						break;
 					}
 					
