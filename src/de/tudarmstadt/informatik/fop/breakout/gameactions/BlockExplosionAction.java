@@ -40,7 +40,8 @@ public class BlockExplosionAction implements Action, GameParameters {
 		Circle explosion = new Circle(center.x, center.y, radius);
 		
 		entityManager.getEntitiesByState(GAMEPLAY_STATE).stream()
-		.filter(e -> e.getID() == BLOCK_ID).filter(b -> b.getShape().intersects(explosion))
+		.filter(e -> e instanceof Block)
+		.filter(b -> b.getShape().intersects(explosion) && ((Block)b).getType() != BlockType.IRON)
 		.forEach(b -> ((Block)b).setDestroyed(true));
 	}
 
