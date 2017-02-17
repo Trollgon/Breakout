@@ -74,4 +74,7 @@ public interface GameParameters extends BlockParameters{
 
 	// Highscore
 	public static final String HIGHSCORE_FILE = "highscores/highscore.hsc";
+	
+	//Sound
+	public static final float RAND_PITCH_TRESHOLD = 0.05f;
 }
