@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.gameactions.PlaySoundAction;
 import de.tudarmstadt.informatik.fop.breakout.managers.SoundManager;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.MoveLeftAction;
@@ -40,6 +41,7 @@ public class Stick extends Entity implements GameParameters {
 	private ANDEvent moveRightCondition;
 	private Event hitByBall;
 	private CollisionEvent collider;
+	private Event hitByItem;
 
 	/**
 	 * Constructor of the Stick class
@@ -108,18 +110,23 @@ public class Stick extends Entity implements GameParameters {
 			}
 
 		});
+
+		hitByItem = new ANDEvent(collider, new Event("hitEntityIsItem") {
+			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
+				return collider.getCollidedEntity().getID().toUpperCase().contains("ITEM");
+			}
+		});
 		// Actions
 
 		moveLeftCondition.addAction(new MoveLeftAction(speed));
 		moveRightCondition.addAction(new MoveRightAction(speed));
 
-		hitByBall.addAction(new Action() {
+		hitByBall.addAction(new PlaySoundAction(STICK_HIT_SOUND, 0.9f));
 
-			@Override
+		hitByItem.addAction(new PlaySoundAction(COLLECT_ITEM_SOUND, 1f));
+		hitByItem.addAction(new Action() {
+
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				
-				SoundManager.playSound(STICK_HIT_SOUND, 1f, GAME_VOLUME);
-			
 
 			}
 		});
@@ -139,6 +146,5 @@ public class Stick extends Entity implements GameParameters {
 	public Vector2f getLaunchPos() {
 		return new Vector2f(getPosition().getX(), getPosition().getY() - 26);
 	}
-
 
 }
