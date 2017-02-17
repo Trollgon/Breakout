@@ -7,6 +7,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnItemAction;
 import de.tudarmstadt.informatik.fop.breakout.interfaces.IHitable;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.DestroyEntityAction;
@@ -59,27 +60,36 @@ public class Block extends Entity implements IHitable, GameParameters {
 	 */
 	private void configureBlock() throws SlickException {
 		
-		Image image;
+		Image image = null;
 		
 		switch(type) {
 		
-		default:
 		case DEFAULT:
 			image = new Image(BLOCK_DEFAULT_IMAGE);
 			setHitsLeft(BLOCK_DEFAULT_HITSLEFT);
 			setScore(BLOCK_DEFAULT_SCORE);
 			break;
 		
-		case DEFAULT_TWO:
-			image = new Image(BLOCK_DEFAULT_TWO_IMAGE);
-			setHitsLeft(BLOCK_DEFAULT_TWO_HITSLEFT);
-			setScore(BLOCK_DEFAULT_TWO_SCORE);
+		case IRON:
+			image = new Image(BLOCK_IRON_IMAGE);
+			setHitsLeft(BLOCK_IRON_HITSLEFT);
+			setScore(BLOCK_IRON_SCORE);
 			break;
 			
-		case DEFAULT_THREE:
-			image = new Image(BLOCK_DEFAULT_THREE_IMAGE);
-			setHitsLeft(BLOCK_DEFAULT_THREE_HITSLEFT);
-			setScore(BLOCK_DEFAULT_THREE_SCORE);
+		case GOLD:
+			image = new Image(BLOCK_GOLD_IMAGE);
+			setHitsLeft(BLOCK_GOLD_HITSLEFT);
+			setScore(BLOCK_GOLD_SCORE);
+			break;
+			
+		case SPEEDUP:
+			image = new Image(BLOCK_SPEEDUP_IMAGE);
+			setHitsLeft(BLOCK_SPEEDUP_HITSLEFT);
+			setScore(BLOCK_SPEEDUP_SCORE);
+			//this.destroyed.addAction(new SpawnItemAction(ItemType.SPEEDITEM));
+			break;
+			
+		default:
 			break;
 		}
 		
@@ -123,7 +133,6 @@ public class Block extends Entity implements IHitable, GameParameters {
 			
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				System.out.println(collider.getOwnerEntity().getID());
 				((Ball )collider.getCollidedEntity()).setLastCollision(collider.getOwnerEntity());
 			}
 		});

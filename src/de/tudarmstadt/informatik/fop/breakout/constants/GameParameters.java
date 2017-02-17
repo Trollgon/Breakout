@@ -7,7 +7,7 @@ package de.tudarmstadt.informatik.fop.breakout.constants;
  * @author Tobias Otterbein, Benedikt Wartusch
  * 
  */
-public interface GameParameters {
+public interface GameParameters extends BlockParameters{
 
 	// Window Settings
 	public static final int WINDOW_WIDTH = 800;
@@ -39,31 +39,6 @@ public interface GameParameters {
 	public static final String TOP_BORDER_ID = "topBorder";
 	public static final String LEFT_BORDER_ID = "leftBorder";
 	public static final String RIGHT_BORDER_ID = "rightBorder";
-
-	// Blocks
-	public enum BlockType {
-		DEFAULT, DEFAULT_TWO, DEFAULT_THREE
-	}
-	
-	public static final String BLOCK_ID = "block";
-	public static final String MAP_FILE = "maps/level1.map";
-	
-	public static final int BLOCK_WIDTH = 50;
-	public static final int BLOCK_HEIGHT = 30;
-	
-	public static final String BLOCK_DEFAULT_IMAGE = "/images/blocks/block_1.png";
-	public static final int BLOCK_DEFAULT_HITSLEFT = 1;
-	public static final int BLOCK_DEFAULT_SCORE = 100;
-	
-	public static final String BLOCK_DEFAULT_TWO_IMAGE = "/images/blocks/block_2.png";
-	public static final int BLOCK_DEFAULT_TWO_HITSLEFT = 2;
-	public static final int BLOCK_DEFAULT_TWO_SCORE = 200;
-	
-	public static final String BLOCK_DEFAULT_THREE_IMAGE = "/images/blocks/block_3.png";
-	public static final int BLOCK_DEFAULT_THREE_HITSLEFT = 3;
-	public static final int BLOCK_DEFAULT_THREE_SCORE = 300;
-	
-	public static final String BLOCK_3_IMAGE = "/images/block_3.png";
 
 	// Timer
 	public static final String STOP_WATCH_ID = "stopWatch";
