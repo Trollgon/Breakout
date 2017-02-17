@@ -13,6 +13,8 @@ public interface GameParameters extends BlockParameters{
 	public static final int WINDOW_WIDTH = 800;
 	public static final int WINDOW_HEIGHT = 600;
 	public static final int FRAME_RATE = 60;
+	
+	public static final float GAME_VOLUME = 0.6f;
 
 	// Game States
 	public static final int MAINMENU_STATE = 0;
@@ -50,6 +52,8 @@ public interface GameParameters extends BlockParameters{
 	public static final String BALL_IMAGE = "/images/ball.png";
 
 	// Stick
+	public static final String STICK_HIT_SOUND = "sounds/hitStick.wav";
+	
 	public static final String STICK_ID = "stick";
 	public static final float STICK_SPEED = 0.5f;
 	public static final String STICK_IMAGE = "/images/stick.png";
