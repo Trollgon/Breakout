@@ -3,6 +3,7 @@ package de.tudarmstadt.informatik.fop.breakout.gameobjects;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -106,6 +107,12 @@ public class Block extends Entity implements IHitable, GameParameters {
 			
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
+				try {
+					new Sound("sounds/hitBlock.wav").play(0.8f, 1);
+				} catch (SlickException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				addHitsLeft(-1);
 			}
 		});
@@ -123,8 +130,7 @@ public class Block extends Entity implements IHitable, GameParameters {
 			
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				System.out.println(collider.getOwnerEntity().getID());
-				((Ball )collider.getCollidedEntity()).setLastCollision(collider.getOwnerEntity());
+				((Ball) collider.getCollidedEntity()).setLastCollision(collider.getOwnerEntity());
 			}
 		});
 		destroyed.addAction(new DestroyEntityAction());
