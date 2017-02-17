@@ -95,7 +95,7 @@ public class Block extends Entity implements IHitable, GameParameters {
 
 		// event which fires if the block can be destroyed
 		// ! THIS IS JUST AN AUXILIARY EVENT, TO BE ABLE TO DESTROY A BLOCK
-		// OUTSIDE THIS CLASS !
+		// OUTSIDE THIS CLASS, by using setDestroyed(true)!
 		totalDestruction = new ANDEvent(new Event(DESTRUCTION) {
 
 			@Override
@@ -174,7 +174,7 @@ public class Block extends Entity implements IHitable, GameParameters {
 			image = new Image(BLOCK_TNT_IMAGE);
 			setHitsLeft(BLOCK_TNT_HITSLEFT);
 			setScore(BLOCK_TNT_SCORE);
-			this.totalDestruction.addAction(new BlockExplosionAction(getPosition(), 50f));
+			this.totalDestruction.addAction(new BlockExplosionAction(getPosition(), BLOCK_TNT_EXPLOSION_RADIUS));
 			break;
 			
 		case SPEEDUP:

@@ -32,6 +32,7 @@ public interface BlockParameters {
 	public static final String BLOCK_TNT_IMAGE = "/images/blocks/block_tnt.png";
 	public static final int BLOCK_TNT_HITSLEFT = 1;
 	public static final int BLOCK_TNT_SCORE = 150;
+	public static final float BLOCK_TNT_EXPLOSION_RADIUS = 100f;
 	
 	public static final String BLOCK_SPEEDUP_IMAGE = "/images/blocks/block_speedup.png";
 	public static final int BLOCK_SPEEDUP_HITSLEFT = 1;
