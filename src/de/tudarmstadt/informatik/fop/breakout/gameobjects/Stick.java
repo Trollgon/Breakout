@@ -125,14 +125,16 @@ public class Stick extends Entity implements GameParameters {
 			//	Physics2D.updateAngleOffset((Ball) collider.getCollidedEntity(), (Stick) collider.getOwnerEntity());
 			
 
-			try {
-				new Sound("sounds/hitStick.wav").play(0.9f, 1); //ersetzen durch https://www.freesound.org/people/Mrguff/sounds/369711/
-			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
 			SoundManager.playSound(STICK_HIT_SOUND, 0.9f, GAME_VOLUME);
+
+
+			 //ersetzen durch https://www.freesound.org/people/Mrguff/sounds/369711/
+		
+
+
+
+
+
 
 			}
 		});
