@@ -11,7 +11,7 @@ public class SoundManager implements GameParameters {
 		float pr = pitch + (((float) Math.random() * RAND_PITCH_TRESHOLD * 2) - RAND_PITCH_TRESHOLD); //alter the pitch by up to RAND_PITCH_TRESHOLD in each direction randomly
 		try {
 			new Sound(sound).play(pr, GAME_VOLUME);
-
+			
 		} catch (SlickException e) {
 
 			e.printStackTrace();

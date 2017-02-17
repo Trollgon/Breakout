@@ -52,8 +52,8 @@ public interface GameParameters extends BlockParameters{
 	public static final String BALL_IMAGE = "/images/ball.png";
 
 	// Stick
-	public static final String STICK_HIT_SOUND = "sounds/hitStick.wav";
-	
+	//public static final String STICK_HIT_SOUND = "sounds/hitStick.wav";
+	public static final String STICK_HIT_SOUND = "sounds/hitImpact.wav"; //credit: freesound.org - MrGuff -"Hit Impact"
 	public static final String STICK_ID = "stick";
 	public static final float STICK_SPEED = 0.5f;
 	public static final String STICK_IMAGE = "/images/stick.png";
