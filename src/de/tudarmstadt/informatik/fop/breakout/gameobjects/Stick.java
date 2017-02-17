@@ -122,15 +122,8 @@ public class Stick extends Entity implements GameParameters {
 
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-<<<<<<< HEAD
 
 				SoundManager.playSound(STICK_HIT_SOUND, 0.9f, GAME_VOLUME);
-=======
-				
-				SoundManager.playSound(STICK_HIT_SOUND, 1f, GAME_VOLUME);
-			
-
->>>>>>> refs/remotes/origin/Stick
 			}
 		});
 
