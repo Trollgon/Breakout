@@ -8,9 +8,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
-
+import de.tudarmstadt.informatik.fop.breakout.physics.Physics2D;
 import eea.engine.action.Action;
-import eea.engine.action.basicactions.DestroyEntityAction;
 import eea.engine.action.basicactions.MoveLeftAction;
 import eea.engine.action.basicactions.MoveRightAction;
 import eea.engine.component.Component;
@@ -33,7 +32,7 @@ public class Stick extends Entity implements GameParameters {
 	private final int startPosY = WINDOW_HEIGHT-20;
 	private final float speed = STICK_SPEED * 16; //0.5 speed is way too slow
 	private float angleOffset;
-	private Entity  lastHitEntity;
+	//private Entity  lastHitEntity;
 	
 	private OREvent leftKeys;
 	private OREvent rightKeys; 
@@ -62,6 +61,7 @@ public class Stick extends Entity implements GameParameters {
 		configureEvents();
 		setVisible(true);
 		setPassable(false);
+		
 	}
 	
 	/**
@@ -112,10 +112,23 @@ public class Stick extends Entity implements GameParameters {
 		moveLeftCondition.addAction(new MoveLeftAction(speed));
 		moveRightCondition.addAction(new MoveRightAction(speed));
 		
+<<<<<<< HEAD
 		hitByBall.addAction(new Action(){
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3){
 				updateAngleOffset((Ball) collider.getCollidedEntity());
+=======
+	/*	collider.addAction(new Action(){
+			@Override
+			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3){
+				setLastHitEntity(collider.getCollidedEntity());
+			}
+		}); */
+		hitByBall.addAction(new Action(){
+			@Override
+			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3){
+				Physics2D.updateAngleOffset((Ball) collider.getCollidedEntity(), getPosition());
+>>>>>>> refs/remotes/origin/Stick
 			}
 		});
 	
@@ -126,31 +139,47 @@ public class Stick extends Entity implements GameParameters {
 	}
 	
 	//service for Ball
+	/**
+	 * Used to give a ball its launching position
+	 * @return the launching position for the ball
+	 */
 	public Vector2f getLaunchPos(){
-		return new Vector2f(getPosition().getX(), getPosition().getY() - 26);
+		return new Vector2f(getPosition().getX(), getPosition().getY() - 26); // the launch position is 26 pixels above the stick position
 	}
-	//TODO: Methode nach Physics2d auslagern
+	/*//TODO: Methode nach Physics2d auslagern
 	public void updateAngleOffset(Ball b){
 		float diff = getPosition().getX() - b.getPosition().getX();
 		float o;
 		if(diff > 20){
 			o = - (diff - 20) / 3;
 		}
-		if(diff < -20){
+		else if(diff < -20){
 			o = - (diff + 20) / 3;
 		}
 		else o = 0;
+		angleOffset = o;
+		if(b.getLastCollision() != this){
+				b.setRotation(b.getRotation() + o);
+		}
 		
-		b.setRotation(b.getRotation() + o);
-		
-	}
-	public Entity getLastHitEntity(){
+	}*/
+	
+	/*public Entity getLastHitEntity(){
 		return lastHitEntity;
 	}
 	public void setLastHitEntity(Entity e){
 		lastHitEntity = e;
 	}
-	
+	*/
+	@Deprecated
+	/**
+	 * - not working anymore -
+	 * previously used to get the angle offset, not needed anymore
+	 * as the angle is automatically adjusted in the method in the Physics2D class
+	 * 
+	 * 
+	 * @return the angleOffset
+	 */
 	public float getAngleOffset(){
 		return angleOffset;
 	}
