@@ -114,7 +114,7 @@ public class Stick extends Entity implements GameParameters {
 
 		moveLeftCondition.addAction(new MoveLeftAction(speed));
 		moveRightCondition.addAction(new MoveRightAction(speed));
-<<<<<<< HEAD
+
 		
 	/*	collider.addAction(new Action(){
 			@Override
@@ -123,10 +123,7 @@ public class Stick extends Entity implements GameParameters {
 			}
 		}); */
 		hitByBall.addAction(new Action(){
-=======
 
-		hitByBall.addAction(new Action() {
->>>>>>> refs/remotes/origin/Ball
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 				Physics2D.updateAngleOffset((Ball) collider.getCollidedEntity(), getPosition());

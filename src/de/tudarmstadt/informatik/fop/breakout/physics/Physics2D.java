@@ -49,22 +49,10 @@ public class Physics2D {
 	public static void updateAngleOffset(Ball b, Vector2f stickPosition) {
 		float diff = stickPosition.getX() - b.getPosition().getX();
 		float o;
-<<<<<<< HEAD
-		if(diff > 20){
-			o = - (diff - 20) / 3; //offset angle continously gets bigger the further from the center the stick is hit
-		}
-		else if(diff < -20){
-			o = - (diff + 20) / 3; 
-		}
-		else o = 0; 			// if the stick is hit in a range of 20px around the middle, don't offset the angle
-		
-		//if(b.getLastCollision() != null && b.getLastCollision().getID() != GameParameters.STICK_ID ){ 
-				b.setRotation(b.getRotation() + o);
-	//	}
-		
-	}
-		
-=======
+
+
+
+
 		if (diff > 20) {
 			o = -(diff - 20) / 3; // offset angle continuously gets bigger the
 									// further from the center the stick is hit
@@ -76,7 +64,7 @@ public class Physics2D {
 
 		b.setRotation(b.getRotation() + o);
 
->>>>>>> refs/remotes/origin/Ball
+
 	}
 
 }
