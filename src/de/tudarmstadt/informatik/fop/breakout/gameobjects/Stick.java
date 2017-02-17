@@ -4,12 +4,10 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.managers.SoundManager;
-import de.tudarmstadt.informatik.fop.breakout.physics.Physics2D;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.MoveLeftAction;
 import eea.engine.action.basicactions.MoveRightAction;
@@ -33,9 +31,6 @@ public class Stick extends Entity implements GameParameters {
 	private final int startPosX = Math.floorDiv(WINDOW_WIDTH, 2);
 	private final int startPosY = WINDOW_HEIGHT - 20;
 	private final float speed = STICK_SPEED * 16; // 0.5 speed is way too slow
-	private float angleOffset;
-	
-	// private Entity lastHitEntity;
 
 	private OREvent leftKeys;
 	private OREvent rightKeys;
@@ -145,16 +140,5 @@ public class Stick extends Entity implements GameParameters {
 		return new Vector2f(getPosition().getX(), getPosition().getY() - 26);
 	}
 
-	@Deprecated
-	/**
-	 * - not working anymore - previously used to get the angle offset, not
-	 * needed anymore as the angle is automatically adjusted in the method in
-	 * the Physics2D class
-	 * 
-	 * 
-	 * @return the angleOffset
-	 */
-	public float getAngleOffset() {
-		return angleOffset;
-	}
+
 }
