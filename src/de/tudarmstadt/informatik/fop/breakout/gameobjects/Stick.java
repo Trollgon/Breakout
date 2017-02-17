@@ -107,18 +107,17 @@ public class Stick extends Entity implements GameParameters {
 				updateAngleOffset((Ball) getLastHitEntity());
 			}
 		});
-	/*	this.addComponent(leftKeys);
-		this.addComponent(rightKeys);
-		this.addComponent(leftBorderReached);
-		this.addComponent(rightBorderReached);*/
+	
 		this.addComponent(moveLeftCondition);
 		this.addComponent(moveRightCondition);
+		this.addComponent(hitByBall);
 	}
 	
 	//service for Ball
 	public Vector2f getLaunchPos(){
 		return new Vector2f(getPosition().getX(), getPosition().getY() - 26);
 	}
+	//TODO: Methode nach Physics2d auslagern
 	public void updateAngleOffset(Ball b){
 		float diff = getPosition().getX() - b.getPosition().getX();
 		float o;
