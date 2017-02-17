@@ -142,7 +142,7 @@ public class Stick extends Entity implements GameParameters {
 		if(diff > 20){
 			o = - (diff - 20) / 3;
 		}
-		if(diff < -20){
+		else if(diff < -20){
 			o = - (diff + 20) / 3;
 		}
 		else o = 0;
