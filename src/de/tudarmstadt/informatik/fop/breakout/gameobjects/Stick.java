@@ -135,16 +135,7 @@ public class Stick extends Entity implements GameParameters {
 	 * @return the launching position for the ball
 	 */
 	public Vector2f getLaunchPos() {
-		return new Vector2f(getPosition().getX(), getPosition().getY() - 26); // the
-																				// launch
-																				// position
-																				// is
-																				// 26
-																				// pixels
-																				// above
-																				// the
-																				// stick
-																				// position
+		return new Vector2f(getPosition().getX(), getPosition().getY() - 26);
 	}
 
 	@Deprecated

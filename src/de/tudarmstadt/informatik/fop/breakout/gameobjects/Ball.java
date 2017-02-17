@@ -195,14 +195,8 @@ public class Ball extends Entity implements GameParameters {
 
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				Entity e = collider.getCollidedEntity();
 
-				if (e.getID() == STICK_ID) {
-
-					setRotation(Physics2D.bounceXAxis(getRotation()) + ((Stick) e).getAngleOffset());
-				} else
-
-					setRotation(Physics2D.bounceXAxis(getRotation()));
+				setRotation(Physics2D.bounceXAxis(getRotation()));
 			}
 		});
 
