@@ -49,6 +49,10 @@ public class Physics2D {
 	public static void updateAngleOffset(Ball b, Vector2f stickPosition) {
 		float diff = stickPosition.getX() - b.getPosition().getX();
 		float o;
+
+
+
+
 		if (diff > 20) {
 			o = -(diff - 20) / 3; // offset angle continuously gets bigger the
 									// further from the center the stick is hit
@@ -59,6 +63,7 @@ public class Physics2D {
 					// don't offset the angle
 
 		b.setRotation(b.getRotation() + o);
+
 
 	}
 
