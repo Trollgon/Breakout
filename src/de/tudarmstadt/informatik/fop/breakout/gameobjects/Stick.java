@@ -29,21 +29,23 @@ import eea.engine.event.basicevents.KeyDownEvent;
  */
 public class Stick extends Entity implements GameParameters {
 	
-	private int posx = Math.floorDiv(WINDOW_WIDTH, 2);
-	private int posy = WINDOW_HEIGHT-20;
+	private int startPosX = Math.floorDiv(WINDOW_WIDTH, 2);
+	private int startPosY = WINDOW_HEIGHT-20;
 	private float speed = STICK_SPEED * 16; //0.5 speed is way too slow
+	private float angleOffset;
 	private OREvent leftKeys;
 	private OREvent rightKeys; 
 	private Event leftBorderReached;
 	private Event rightBorderReached;
 	private ANDEvent moveLeftCondition;
 	private ANDEvent moveRightCondition;
-	
+	private Event hitByBall;
+	private CollisionEvent collider;
+	private Entity  lastHitEntity;
 	public Stick() {
 		super(STICK_ID);
-		setPosition(new Vector2f(posx, posy));
+		setPosition(new Vector2f(startPosX, startPosY));
 		setSize(new Vector2f(130, 25));
-		setPassable(false);
 		try{
 			this.addComponent(new ImageRenderComponent(new Image(STICK_IMAGE)));
 		} catch (SlickException e) {
@@ -51,6 +53,8 @@ public class Stick extends Entity implements GameParameters {
 			e.printStackTrace();
 		}
 		configureEvents();
+		setVisible(true);
+		setPassable(false);
 	}
 	
 	private void configureEvents(){
@@ -78,11 +82,31 @@ public class Stick extends Entity implements GameParameters {
 		
 		moveRightCondition = new ANDEvent(new NOTEvent(rightBorderReached), rightKeys, new NOTEvent(leftKeys));
 		
+		collider = new CollisionEvent();
+		
+		hitByBall = new ANDEvent(collider, new Event("hitEntityIsBall"){
+			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2){
+				return getLastHitEntity() instanceof Ball;
+			}
+			 
+		});
 		//Actions
 		
 		moveLeftCondition.addAction(new MoveLeftAction(speed));
 		moveRightCondition.addAction(new MoveRightAction(speed));
-	
+		
+		collider.addAction(new Action(){
+			@Override
+			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3){
+				setLastHitEntity(collider.getCollidedEntity());
+			}
+		});
+		hitByBall.addAction(new Action(){
+			@Override
+			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3){
+				updateAngleOffset((Ball) getLastHitEntity());
+			}
+		});
 	/*	this.addComponent(leftKeys);
 		this.addComponent(rightKeys);
 		this.addComponent(leftBorderReached);
@@ -93,7 +117,30 @@ public class Stick extends Entity implements GameParameters {
 	
 	//service for Ball
 	public Vector2f getLaunchPos(){
-		return new Vector2f(getPosition().getX(), getPosition().getY() - 25);
+		return new Vector2f(getPosition().getX(), getPosition().getY() - 26);
+	}
+	public void updateAngleOffset(Ball b){
+		float diff = getPosition().getX() - b.getPosition().getX();
+		float o;
+		if(diff > 20){
+			o = - (diff - 20) / 3;
+		}
+		if(diff < -20){
+			o = - (diff + 20) / 3;
+		}
+		else o = 0;
+		
+		angleOffset = o;
+		
+	}
+	public Entity getLastHitEntity(){
+		return lastHitEntity;
+	}
+	public void setLastHitEntity(Entity e){
+		lastHitEntity = e;
 	}
 	
+	public float getAngleOffset(){
+		return angleOffset;
+	}
 }
