@@ -4,6 +4,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
@@ -32,6 +33,7 @@ public class Stick extends Entity implements GameParameters {
 	private final int startPosY = WINDOW_HEIGHT - 20;
 	private final float speed = STICK_SPEED * 16; // 0.5 speed is way too slow
 	private float angleOffset;
+	
 	// private Entity lastHitEntity;
 
 	private OREvent leftKeys;
@@ -120,6 +122,13 @@ public class Stick extends Entity implements GameParameters {
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 			//	Physics2D.updateAngleOffset((Ball) collider.getCollidedEntity(), (Stick) collider.getOwnerEntity());
+			
+			try {
+				new Sound("sounds/hitStick.wav").play(0.9f, 1);;
+			} catch (SlickException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			}
 		});
 
