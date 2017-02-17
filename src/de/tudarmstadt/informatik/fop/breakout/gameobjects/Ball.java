@@ -35,7 +35,7 @@ public class Ball extends Entity implements GameParameters {
 	private boolean isLaunched;
 
 	private Stick launcher;
-	
+
 	// entity of last collision:
 	private Entity lastCollisionEntity = null;
 
@@ -52,7 +52,8 @@ public class Ball extends Entity implements GameParameters {
 	/**
 	 * constructor of ball class
 	 * 
-	 * @param entityID of the new ball
+	 * @param entityID
+	 *            of the new ball
 	 */
 	public Ball(Stick launcher) {
 		super(BALL_ID);
@@ -60,13 +61,13 @@ public class Ball extends Entity implements GameParameters {
 		setPosition(new Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 30));
 		setSpeed(INITIAL_BALL_SPEED);
 		setRotation(0);
-		
+
 		// when Stick class has been implemented with a method getLaunchPos()
 		// which delivers the launching position of the Stick:
-		
+
 		setLauncher(launcher);
 		setPosition(getLauncher().getLaunchPos());
-		
+
 		setLaunched(false);
 
 		try {
@@ -125,7 +126,8 @@ public class Ball extends Entity implements GameParameters {
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
 				Entity e = collider.getCollidedEntity();
 
-				// if e is a block and has been hit on edge, return true, else false
+				// if e is a block and has been hit on edge, return true, else
+				// false
 				if (e instanceof Block) {
 					return collidedOnEdge((Block) e);
 				}
@@ -142,19 +144,21 @@ public class Ball extends Entity implements GameParameters {
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
 				Entity e = collider.getCollidedEntity();
 
-				// if e is a block and has been hit on edge, return false, else true
+				// if e is a block and has been hit on edge, return false, else
+				// true
 				if (e instanceof Block) {
 					return !collidedOnEdge((Block) e);
 				}
-				
+
 				return (e.getID() == LEFT_BORDER_ID || e.getID() == RIGHT_BORDER_ID);
 			}
 		});
 
 		// event which fires if the ball left the screen
 		leftScreen = new LeavingScreenEvent();
-		
-		//////////////////////////////// ACTIONS ////////////////////////////////
+
+		//////////////////////////////// ACTIONS
+		//////////////////////////////// ////////////////////////////////
 
 		// remember the current collided entity for next collision
 		collider.addAction(new Action() {
@@ -173,7 +177,7 @@ public class Ball extends Entity implements GameParameters {
 
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				 setPosition(getLauncher().getLaunchPos());
+				setPosition(getLauncher().getLaunchPos());
 			}
 		});
 
@@ -191,7 +195,14 @@ public class Ball extends Entity implements GameParameters {
 
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				setRotation(Physics2D.bounceXAxis(getRotation()));
+				Entity e = collider.getCollidedEntity();
+
+				if (e.getID() == STICK_ID) {
+
+					setRotation(Physics2D.bounceXAxis(getRotation()) + ((Stick) e).getAngleOffset());
+				} else
+
+					setRotation(Physics2D.bounceXAxis(getRotation()));
 			}
 		});
 
@@ -204,7 +215,7 @@ public class Ball extends Entity implements GameParameters {
 				setRotation(Physics2D.bounceYAxis(getRotation()));
 			}
 		});
-		
+
 		// destroys ball when it left the screen
 		leftScreen.addAction(new DestroyEntityAction());
 
@@ -229,7 +240,7 @@ public class Ball extends Entity implements GameParameters {
 	public boolean collidedOnEdge(Block block) {
 		final float SENSITIVITY = 1f;
 		float offset = block.getPosition().x - this.getPosition().x;
-		
+
 		return (offset < -(block.getSize().x / 2) + SENSITIVITY || (block.getSize().x / 2) - SENSITIVITY > offset);
 	}
 
@@ -293,10 +304,11 @@ public class Ball extends Entity implements GameParameters {
 		System.out.println(lastCollision.getID());
 	}
 
-	private void setLauncher(Stick launcher){
+	private void setLauncher(Stick launcher) {
 		this.launcher = launcher;
 	}
-	private Stick getLauncher(){
+
+	private Stick getLauncher() {
 		return launcher;
 	}
 }
