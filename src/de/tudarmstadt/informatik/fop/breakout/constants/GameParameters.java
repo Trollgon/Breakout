@@ -14,7 +14,7 @@ public interface GameParameters extends BlockParameters{
 	public static final int WINDOW_HEIGHT = 600;
 	public static final int FRAME_RATE = 60;
 	
-	public static final float GAME_VOLUME = 0.6f;
+	public static final float GAME_VOLUME = 0.5f;
 
 	// Game States
 	public static final int MAINMENU_STATE = 0;
