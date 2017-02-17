@@ -15,6 +15,11 @@ public interface GameParameters extends BlockParameters{
 	public static final int FRAME_RATE = 60;
 	
 	//Sound
+	/*
+	 * This game uses these sounds from freesound:
+	Distant Explosion by juskiddink ( http://freesound.org/people/juskiddink/ )
+	Hit Impact by MrGuff (http://freesound.org/people/mrguff )
+	 */
 	public static final float GAME_VOLUME = 0.6f;
 	public static final float RAND_PITCH_TRESHOLD = 0.05f;
 
