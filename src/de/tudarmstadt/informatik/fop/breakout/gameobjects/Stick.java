@@ -34,7 +34,7 @@ public class Stick extends Entity implements GameParameters {
 	private final int startPosY = WINDOW_HEIGHT - 20;
 	private final float speed = STICK_SPEED * 16; // 0.5 speed is way too slow
 	private float angleOffset;
-	
+
 	// private Entity lastHitEntity;
 
 	private OREvent leftKeys;
@@ -122,18 +122,11 @@ public class Stick extends Entity implements GameParameters {
 
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-			//	Physics2D.updateAngleOffset((Ball) collider.getCollidedEntity(), (Stick) collider.getOwnerEntity());
-			
-<<<<<<< HEAD
-			SoundManager.playSound(STICK_HIT_SOUND, 0.9f, GAME_VOLUME);
-=======
-			try {
-				new Sound("sounds/hitStick.wav").play(0.9f, 1); //ersetzen durch https://www.freesound.org/people/Mrguff/sounds/369711/
-			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
->>>>>>> refs/remotes/origin/Stick
+				// Physics2D.updateAngleOffset((Ball)
+				// collider.getCollidedEntity(), (Stick)
+				// collider.getOwnerEntity());
+
+				SoundManager.playSound(STICK_HIT_SOUND, 0.9f, GAME_VOLUME);
 			}
 		});
 
