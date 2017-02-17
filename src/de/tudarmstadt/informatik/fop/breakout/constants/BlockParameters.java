@@ -7,7 +7,9 @@ public interface BlockParameters {
 		DEFAULT, IRON, GOLD, TNT, SPEEDUP
 	}
 	
+	// Block - Sounds
 	public static final String BLOCK_HIT_SOUND = "sounds/hitBlock.wav";
+	public static final String BLOCK_IMPACT_SOUND = "sounds/hitImpact.wav";
 	
 	// Block event IDS:
 	public static final String NOHITSLEFT = "noHitsLeft";
