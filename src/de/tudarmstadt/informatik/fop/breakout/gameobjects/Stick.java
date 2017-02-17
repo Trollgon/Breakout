@@ -8,6 +8,7 @@ import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.gameactions.PlaySoundAction;
 import de.tudarmstadt.informatik.fop.breakout.managers.SoundManager;
 import de.tudarmstadt.informatik.fop.breakout.physics.Physics2D;
 import eea.engine.action.Action;
@@ -64,7 +65,6 @@ public class Stick extends Entity implements GameParameters {
 		configureEvents();
 		setVisible(true);
 		setPassable(false);
-
 	}
 
 	/**
@@ -118,14 +118,7 @@ public class Stick extends Entity implements GameParameters {
 		moveLeftCondition.addAction(new MoveLeftAction(speed));
 		moveRightCondition.addAction(new MoveRightAction(speed));
 
-		hitByBall.addAction(new Action() {
-
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-
-				SoundManager.playSound(STICK_HIT_SOUND, 0.9f, GAME_VOLUME);
-			}
-		});
+		hitByBall.addAction(new PlaySoundAction(STICK_HIT_SOUND, 0.9f));
 
 		this.addComponent(moveLeftCondition);
 		this.addComponent(moveRightCondition);
