@@ -38,8 +38,9 @@ public class Physics2D {
 	}
 
 	/**
-	 * @author Peter Franke Used to adjust the angle of the ball after it was
-	 *         hit by the the Stick
+	 * @author Peter Franke
+	 * 	Used to adjust the angle of the ball after it was
+	 *  hit by the the Stick
 	 *
 	 * @param b
 	 *            the Ball hit by the Stick
