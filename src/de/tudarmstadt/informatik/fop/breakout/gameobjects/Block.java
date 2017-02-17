@@ -9,6 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.gameactions.BlockExplosionAction;
+import de.tudarmstadt.informatik.fop.breakout.gameactions.PlaySoundAction;
 import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnItemAction;
 import de.tudarmstadt.informatik.fop.breakout.interfaces.IHitable;
 import de.tudarmstadt.informatik.fop.breakout.managers.SoundManager;
@@ -113,10 +114,11 @@ public class Block extends Entity implements IHitable, GameParameters {
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 				
-				SoundManager.playSound(BLOCK_HIT_SOUND, 0.8f, GAME_VOLUME);
 				addHitsLeft(-1);
 			}
 		});
+		
+		hitByBall.addAction(new PlaySoundAction(BLOCK_HIT_SOUND, 0.9f));
 
 		// action: tells the block that it can destroy itself
 		canBeDestroyed.addAction(new Action() {
