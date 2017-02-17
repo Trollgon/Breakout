@@ -17,7 +17,6 @@ public interface GameParameters extends BlockParameters{
 	//Sound
 	/*
 	 * This game uses these sounds from freesound:
-	Distant Explosion by juskiddink ( http://freesound.org/people/juskiddink/ )
 	Hit Impact by MrGuff (http://freesound.org/people/mrguff )
 	 */
 	public static final float GAME_VOLUME = 0.6f;
@@ -42,7 +41,7 @@ public interface GameParameters extends BlockParameters{
 	};
 
 	// offset to avoid a perma-collision with the outer blocks
-	public static final int BORDER_OFFSET = 7;
+	public static final int BORDER_OFFSET = 6;
 	
 	public static final int BORDER_WIDTH = 6;
 	public static final String TOP_BORDER_ID = "topBorder";
