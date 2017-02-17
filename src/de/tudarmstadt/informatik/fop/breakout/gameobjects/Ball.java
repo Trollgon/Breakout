@@ -157,16 +157,14 @@ public class Ball extends Entity implements GameParameters {
 		// event which fires if the ball left the screen
 		leftScreen = new LeavingScreenEvent();
 
-		//////////////////////////////// ACTIONS
-		//////////////////////////////// ////////////////////////////////
-
+		//////////////////////////////// ACTIONS ////////////////////////////
+		
 		// remember the current collided entity for next collision
 		collider.addAction(new Action() {
 
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 				setLastCollision(collider.getCollidedEntity());
-				System.out.println(collider.getCollidedEntity().getID());
 			}
 		});
 
@@ -196,14 +194,8 @@ public class Ball extends Entity implements GameParameters {
 
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				Entity e = collider.getCollidedEntity();
 
-				if (e.getID() == STICK_ID) {
-
-					setRotation(Physics2D.bounceXAxis(getRotation()) + ((Stick) e).getAngleOffset());
-				} else
-
-					setRotation(Physics2D.bounceXAxis(getRotation()));
+				setRotation(Physics2D.bounceXAxis(getRotation()));
 			}
 		});
 

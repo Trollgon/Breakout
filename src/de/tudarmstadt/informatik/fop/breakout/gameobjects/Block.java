@@ -123,7 +123,8 @@ public class Block extends Entity implements IHitable, GameParameters {
 			
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				((Ball )collider.getCollidedEntity()).setLastCollision(null);
+				System.out.println(collider.getOwnerEntity().getID());
+				((Ball )collider.getCollidedEntity()).setLastCollision(collider.getOwnerEntity());
 			}
 		});
 		destroyed.addAction(new DestroyEntityAction());
