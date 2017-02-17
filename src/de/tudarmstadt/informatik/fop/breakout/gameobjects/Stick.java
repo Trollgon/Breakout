@@ -121,7 +121,7 @@ public class Stick extends Entity implements GameParameters {
 		hitByBall.addAction(new Action(){
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3){
-				updateAngleOffset((Ball) getLastHitEntity());
+				updateAngleOffset((Ball) collider.getCollidedEntity());
 			}
 		});
 	
@@ -147,7 +147,9 @@ public class Stick extends Entity implements GameParameters {
 		}
 		else o = 0;
 		
-		b.setRotation(b.getRotation() + o);
+		if(b.getLastCollision() != this){
+				b.setRotation(b.getRotation() + o);
+		}
 		
 	}
 	public Entity getLastHitEntity(){
