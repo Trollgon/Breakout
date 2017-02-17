@@ -301,7 +301,6 @@ public class Ball extends Entity implements GameParameters {
 	 */
 	public void setLastCollision(Entity lastCollision) {
 		this.lastCollisionEntity = lastCollision;
-		System.out.println(lastCollision.getID());
 	}
 
 	private void setLauncher(Stick launcher) {
