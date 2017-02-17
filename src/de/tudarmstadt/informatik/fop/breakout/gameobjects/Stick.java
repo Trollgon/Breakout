@@ -127,6 +127,7 @@ public class Stick extends Entity implements GameParameters {
 			//	Physics2D.updateAngleOffset((Ball) collider.getCollidedEntity(), (Stick) collider.getOwnerEntity());
 			
 
+<<<<<<< HEAD
 			SoundManager.playSound(STICK_HIT_SOUND, 0.9f, GAME_VOLUME);
 
 
@@ -144,6 +145,10 @@ public class Stick extends Entity implements GameParameters {
 
 
 
+=======
+			SoundManager.playSound(STICK_HIT_SOUND, 1f, GAME_VOLUME);
+			
+>>>>>>> refs/remotes/origin/Stick
 
 >>>>>>> refs/remotes/origin/Stick
 			}

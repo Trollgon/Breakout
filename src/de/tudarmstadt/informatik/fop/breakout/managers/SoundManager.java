@@ -13,7 +13,7 @@ public class SoundManager implements GameParameters {
 		
 		try {
 			new Sound(sound).play(pr, GAME_VOLUME);
-
+			
 		} catch (SlickException e) {
 
 			e.printStackTrace();
