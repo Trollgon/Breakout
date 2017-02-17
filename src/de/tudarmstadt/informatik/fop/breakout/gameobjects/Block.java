@@ -119,6 +119,13 @@ public class Block extends Entity implements IHitable, GameParameters {
 			
 		});
 		
+		destroyed.addAction(new Action() {
+			
+			@Override
+			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
+				((Ball )collider.getCollidedEntity()).setLastCollision(null);
+			}
+		});
 		destroyed.addAction(new DestroyEntityAction());
 		
 		// order of this matters!:

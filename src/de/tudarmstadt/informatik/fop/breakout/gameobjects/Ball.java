@@ -115,7 +115,7 @@ public class Ball extends Entity implements GameParameters {
 
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
-				return getLastCollision() != collider.getCollidedEntity();
+				return getLastCollision() != collider.getCollidedEntity() || getLastCollision() == null;
 			}
 		});
 
@@ -166,6 +166,7 @@ public class Ball extends Entity implements GameParameters {
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 				setLastCollision(collider.getCollidedEntity());
+				System.out.println(collider.getCollidedEntity().getID());
 			}
 		});
 
