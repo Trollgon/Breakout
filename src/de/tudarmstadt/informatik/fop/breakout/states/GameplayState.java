@@ -26,7 +26,10 @@ public class GameplayState implements GameParameters, GameState {
 	
 	private int stateID;
 	private String level;
+	
 	StateBasedEntityManager entityManager;
+	
+	private Stick stick;
 	
 	/**
 	 * constructor of a new gameplay state
@@ -180,9 +183,12 @@ public class GameplayState implements GameParameters, GameState {
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.LEFT).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.TOP).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.RIGHT).createEntity());
+		
 		//add the Stick
-		entityManager.addEntity(getID(), new Stick());
-		entityManager.addEntity(getID(), new Ball((Stick) entityManager.getEntity(GAMEPLAY_STATE, STICK_ID)));
+		stick = new Stick();
+		
+		entityManager.addEntity(getID(), stick);
+		entityManager.addEntity(getID(), new Ball(stick));
 		
 		// adds the level´s blocks to the entityManager:
 		try {
