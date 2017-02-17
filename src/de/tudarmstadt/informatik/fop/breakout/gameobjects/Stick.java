@@ -126,7 +126,7 @@ public class Stick extends Entity implements GameParameters {
 
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				Physics2D.updateAngleOffset((Ball) collider.getCollidedEntity(), getPosition());
+			//	Physics2D.updateAngleOffset((Ball) collider.getCollidedEntity(), (Stick) collider.getOwnerEntity());
 			}
 		});
 

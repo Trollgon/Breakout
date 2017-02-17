@@ -4,6 +4,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.Stick;
 
 /**
  * physics 2D class to calculate everything physics-related
@@ -46,24 +47,33 @@ public class Physics2D {
 	 * @param stickPosition
 	 *            the Position of the Stick
 	 */
-	public static void updateAngleOffset(Ball b, Vector2f stickPosition) {
-		float diff = stickPosition.getX() - b.getPosition().getX();
-		float o;
-
-
-
-
-		if (diff > 20) {
-			o = -(diff - 20) / 3; // offset angle continuously gets bigger the
+	public static void updateAngleOffset(Ball b, Stick s) {
+		float diff = s.getPosition().getX() - b.getPosition().getX();
+		float o = 0;
+		if(Math.abs(diff) > (s.getSize().getX() / 2) + (b.getSize().getX() / 2)){	//detect if the ball hits the stick on the left or right border
+			b.setRotation(b.getRotation() -180);
+		}
+		else if (diff > 20) {
+			o = -(diff - 20) / 2.6f; // offset angle continuously gets bigger the
 									// further from the center the stick is hit
+			
 		} else if (diff < -20) {
-			o = -(diff + 20) / 3;
-		} else
-			o = 0; // if the stick is hit in a range of 20px around the middle,
+			o = -(diff + 20) / 2.6f;
+			
+		}
+		 // if the stick is hit in a range of 20px around the middle,
 					// don't offset the angle
-
-		b.setRotation(b.getRotation() + o);
-
+		
+		
+		float newRot = b.getRotation() + o;
+		for(;newRot < 0; newRot += 360){ //Java thinks -90 % 360 = -90 and not 270
+			}
+		
+		if(newRot % 360 < 90 || newRot % 360 > 270){	//prevent the ball falling through the stick after adding offset in many hits
+		b.setRotation(newRot);
+		}
+		
+		
 
 	}
 
