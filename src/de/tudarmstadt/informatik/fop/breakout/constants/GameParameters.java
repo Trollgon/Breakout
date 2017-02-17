@@ -14,7 +14,7 @@ public interface GameParameters extends BlockParameters{
 	public static final int WINDOW_HEIGHT = 600;
 	public static final int FRAME_RATE = 60;
 	
-	public static final float GAME_VOLUME = 0.5f;
+	public static final float GAME_VOLUME = 0.6f;
 
 	// Game States
 	public static final int MAINMENU_STATE = 0;
@@ -74,4 +74,7 @@ public interface GameParameters extends BlockParameters{
 
 	// Highscore
 	public static final String HIGHSCORE_FILE = "highscores/highscore.hsc";
+	
+	//Sound
+	public static final float RAND_PITCH_TRESHOLD = 0.05f;
 }
