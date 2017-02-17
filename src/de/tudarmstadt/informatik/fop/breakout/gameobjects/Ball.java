@@ -166,7 +166,6 @@ public class Ball extends Entity implements GameParameters {
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 				setLastCollision(collider.getCollidedEntity());
-				System.out.println(collider.getCollidedEntity().getID());
 			}
 		});
 
