@@ -197,6 +197,7 @@ public class Ball extends Entity implements GameParameters {
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 
 				setRotation(Physics2D.bounceXAxis(getRotation()));
+				
 				if(collider.getCollidedEntity().equals(launcher)){
 					Physics2D.updateAngleOffset((Ball)collider.getOwnerEntity(), launcher);
 				}
