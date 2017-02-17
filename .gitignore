@@ -58,3 +58,5 @@ Breakout.eml
 >>>>>>> origin/dev
 docs/eaa_doc.zip
 docs/slickJavaDoc.zip
+src/de/tudarmstadt/informatik/fop/breakout/gameobjects/Stick.java
+src/de/tudarmstadt/informatik/fop/breakout/constants/GameParameters.java
