@@ -157,9 +157,8 @@ public class Ball extends Entity implements GameParameters {
 		// event which fires if the ball left the screen
 		leftScreen = new LeavingScreenEvent();
 
-		//////////////////////////////// ACTIONS
-		//////////////////////////////// ////////////////////////////////
-
+		//////////////////////////////// ACTIONS ////////////////////////////
+		
 		// remember the current collided entity for next collision
 		collider.addAction(new Action() {
 

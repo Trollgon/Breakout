@@ -10,7 +10,6 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
  * 
  * @author Jonas Henry Grebe
  * 
- *         0° 315° | 45° | 270°------|--------90° | 225° | 135° 180°
  */
 public class Physics2D {
 

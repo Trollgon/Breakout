@@ -103,7 +103,7 @@ public class Stick extends Entity implements GameParameters {
 		// basic collider
 		collider = new CollisionEvent();
 
-		// fire if the ball is hit
+		// fires if the ball is hit
 		hitByBall = new ANDEvent(collider, new Event("hitEntityIsBall") {
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
 				return collider.getCollidedEntity() instanceof Ball;
