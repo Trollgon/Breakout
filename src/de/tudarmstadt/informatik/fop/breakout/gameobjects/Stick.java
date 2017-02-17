@@ -123,11 +123,7 @@ public class Stick extends Entity implements GameParameters {
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 
-				Physics2D.updateAngleOffset((Ball) collider.getCollidedEntity(), (Stick) collider.getOwnerEntity());
-
 				SoundManager.playSound(STICK_HIT_SOUND, 0.9f, GAME_VOLUME);
-				// ersetzen durch
-				// https://www.freesound.org/people/Mrguff/sounds/369711/}
 			}
 		});
 
