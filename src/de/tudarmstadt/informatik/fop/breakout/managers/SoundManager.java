@@ -10,7 +10,7 @@ public class SoundManager implements GameParameters {
 	public static void playSound(String sound, float pitch, float volume) {
 
 		try {
-			new Sound(sound).play(0.8f, GAME_VOLUME);
+			new Sound(sound).play(pitch, GAME_VOLUME);
 
 		} catch (SlickException e) {
 
