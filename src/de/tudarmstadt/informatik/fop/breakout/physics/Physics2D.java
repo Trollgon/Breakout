@@ -56,9 +56,9 @@ public class Physics2D {
 		}
 		else o = 0; 			// if the stick is hit in a range of 20px around the middle, don't offset the angle
 		
-		if(b.getLastCollision() != null && b.getLastCollision().getID() != GameParameters.STICK_ID ){
+		//if(b.getLastCollision() != null && b.getLastCollision().getID() != GameParameters.STICK_ID ){ 
 				b.setRotation(b.getRotation() + o);
-		}
+	//	}
 		
 	}
 		
