@@ -29,10 +29,12 @@ import eea.engine.event.basicevents.KeyDownEvent;
  */
 public class Stick extends Entity implements GameParameters {
 	
-	private int startPosX = Math.floorDiv(WINDOW_WIDTH, 2);
-	private int startPosY = WINDOW_HEIGHT-20;
-	private float speed = STICK_SPEED * 16; //0.5 speed is way too slow
+	private final int startPosX = Math.floorDiv(WINDOW_WIDTH, 2);
+	private final int startPosY = WINDOW_HEIGHT-20;
+	private final float speed = STICK_SPEED * 16; //0.5 speed is way too slow
 	private float angleOffset;
+	private Entity  lastHitEntity;
+	
 	private OREvent leftKeys;
 	private OREvent rightKeys; 
 	private Event leftBorderReached;
@@ -41,7 +43,12 @@ public class Stick extends Entity implements GameParameters {
 	private ANDEvent moveRightCondition;
 	private Event hitByBall;
 	private CollisionEvent collider;
-	private Entity  lastHitEntity;
+	
+	/**
+	 * Constructor of the Stick class
+	 * 
+	 * sets the initial position, size, image and configures the events
+	 */
 	public Stick() {
 		super(STICK_ID);
 		setPosition(new Vector2f(startPosX, startPosY));
@@ -49,7 +56,7 @@ public class Stick extends Entity implements GameParameters {
 		try{
 			this.addComponent(new ImageRenderComponent(new Image(STICK_IMAGE)));
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		configureEvents();
@@ -57,13 +64,19 @@ public class Stick extends Entity implements GameParameters {
 		setPassable(false);
 	}
 	
+	/**
+	 * Configures all the Events, adds their actions and adds the necessary Components
+	 */
 	private void configureEvents(){
 		//Events
 		
+		//fires if A or the left arrow key is pressed
 		leftKeys = new OREvent(new KeyDownEvent(Input.KEY_LEFT), new KeyDownEvent(Input.KEY_A));
 		
+		//fires if d or the right arrow key is pressed
 		rightKeys = new OREvent(new KeyDownEvent(Input.KEY_RIGHT), new KeyDownEvent(Input.KEY_D));
 		
+		//fires if the stick has hit the left Border
 		leftBorderReached = new Event("hitLeftBorder"){
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
@@ -71,22 +84,26 @@ public class Stick extends Entity implements GameParameters {
 			}
 		};
 		
+		//fires if the stick has hit the right border
 		rightBorderReached = new Event("hitRightBorder"){
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
 				return (getPosition().getX() + getSize().getX() / 2) >= WINDOW_WIDTH;
 			}
 		};
-		
+		//fires if the left border is not reached yet, a left key is pressed, no right key is pressed
 		moveLeftCondition = new ANDEvent(new NOTEvent(leftBorderReached), leftKeys, new NOTEvent(rightKeys));
 		
+		//fires if the right border is not reached yet, a right key is pressed, no left key is pressed
 		moveRightCondition = new ANDEvent(new NOTEvent(rightBorderReached), rightKeys, new NOTEvent(leftKeys));
 		
+		//basic collider
 		collider = new CollisionEvent();
 		
+		//fire if the ball is hit
 		hitByBall = new ANDEvent(collider, new Event("hitEntityIsBall"){
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2){
-				return getLastHitEntity() instanceof Ball;
+				return collider.getCollidedEntity() instanceof Ball;
 			}
 			 
 		});
@@ -110,6 +127,7 @@ public class Stick extends Entity implements GameParameters {
 	
 		this.addComponent(moveLeftCondition);
 		this.addComponent(moveRightCondition);
+		this.addComponent(collider);
 		this.addComponent(hitByBall);
 	}
 	
@@ -129,7 +147,7 @@ public class Stick extends Entity implements GameParameters {
 		}
 		else o = 0;
 		
-		angleOffset = o;
+		b.setRotation(b.getRotation() + o);
 		
 	}
 	public Entity getLastHitEntity(){
