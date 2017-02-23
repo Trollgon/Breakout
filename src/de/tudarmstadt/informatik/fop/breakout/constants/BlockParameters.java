@@ -32,7 +32,7 @@ public interface BlockParameters {
 	public static final int BLOCK_STANDARD_HITSLEFT = 1;
 	public static final int BLOCK_STANDARD_SCORE = 100;
 	
-	// IRON-BLOCK: 2 HITS and IMMUNE to EXPLOSIONS
+	// IRON-BLOCK: 2 HITS and SOLID
 	public static final String BLOCK_IRON_IMAGE = "/images/blocks/block_iron.png";
 	public static final int BLOCK_IRON_HITSLEFT = 2;
 	public static final int BLOCK_IRON_SCORE = 200;

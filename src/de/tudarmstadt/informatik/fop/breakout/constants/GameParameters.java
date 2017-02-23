@@ -74,7 +74,6 @@ public interface GameParameters extends BlockParameters{
 
 	// Lives
 	public static final String LIVES_ID = "lives";
-	public static final String HEART_IMAGE = "/images/heart.png";
 	public static final String HEART_3_IMAGE = "/images/heart_3.png";
 	public static final String HEART_2_IMAGE = "/images/heart_2.png";
 	public static final String HEART_1_IMAGE = "/images/heart_1.png";

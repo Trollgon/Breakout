@@ -216,6 +216,7 @@ public class Ball extends Entity implements GameParameters {
 
 				setRotation(Physics2D.bounceXAxis(getRotation()));
 
+				// manipulate the balls rotation additionally if it hits a stick
 				if (collider.getCollidedEntity().getID() == STICK_ID) {
 					Physics2D.updateAngleOffset((Ball) collider.getOwnerEntity(), launcher);
 				}
