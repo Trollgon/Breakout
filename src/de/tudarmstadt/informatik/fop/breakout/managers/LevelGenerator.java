@@ -69,6 +69,9 @@ public class LevelGenerator implements GameParameters {
 					case 2:
 						block = new IronBlock(xPos, yPos);
 						break;
+					case 3:
+						block = new GoldBlock(xPos, yPos);
+						break;
 					}
 					
 					gridX++;
@@ -78,6 +81,7 @@ public class LevelGenerator implements GameParameters {
 					gridX = 0;
 					gridY++;
 				}
+				
 				// adds the configured new block to the ArrayList<Block>
 				blocks.add(block);
 			}

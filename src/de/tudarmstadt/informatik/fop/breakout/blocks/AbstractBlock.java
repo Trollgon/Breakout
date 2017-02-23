@@ -40,6 +40,11 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 	private ANDEvent canBeDestroyed;
 	private ANDEvent totalDestruction;
 
+	/**
+	 * constructor of a AbstractBlock
+	 * @param xPos of the new block
+	 * @param yPos of the new block
+	 */
 	public AbstractBlock(int xPos, int yPos) {
 		super(BLOCK_ID);
 
