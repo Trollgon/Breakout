@@ -12,6 +12,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.factories.BorderFactory;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.Stick;
 import de.tudarmstadt.informatik.fop.breakout.managers.LevelGenerator;
 import eea.engine.entity.StateBasedEntityManager;
 
@@ -24,7 +26,10 @@ public class GameplayState implements GameParameters, GameState {
 	
 	private int stateID;
 	private String level;
-	StateBasedEntityManager entityManager;
+	
+	public StateBasedEntityManager entityManager;
+	
+	private Stick stick;
 	
 	/**
 	 * constructor of a new gameplay state
@@ -179,6 +184,12 @@ public class GameplayState implements GameParameters, GameState {
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.TOP).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.RIGHT).createEntity());
 		
+		//add the Stick
+		stick = new Stick();
+		
+		entityManager.addEntity(getID(), stick);
+		entityManager.addEntity(getID(), new Ball(stick));
+		
 		// adds the level´s blocks to the entityManager:
 		try {
 			LevelGenerator.parseLevelFromMap(level).stream().forEach(b -> entityManager.addEntity(getID(), b));
@@ -197,6 +208,7 @@ public class GameplayState implements GameParameters, GameState {
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 	
 		g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
+		
 		entityManager.renderEntities(container, game, g);
 	}
 

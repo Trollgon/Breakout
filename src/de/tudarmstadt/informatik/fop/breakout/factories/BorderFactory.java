@@ -38,17 +38,17 @@ public class BorderFactory implements IEntityFactory, GameParameters {
 
 		case TOP:
 			border = new Entity(TOP_BORDER_ID);
-			position = new Vector2f(WINDOW_WIDTH / 2, 0);
+			position = new Vector2f(WINDOW_WIDTH / 2, 0 - BORDER_OFFSET);
 			size = new Vector2f(WINDOW_WIDTH, BORDER_WIDTH);
 			break;
 		case LEFT:
 			border = new Entity(LEFT_BORDER_ID);
-			position = new Vector2f(0, WINDOW_HEIGHT / 2);
+			position = new Vector2f(0 - BORDER_OFFSET, WINDOW_HEIGHT / 2);
 			size = new Vector2f(BORDER_WIDTH, WINDOW_HEIGHT);
 			break;
 		case RIGHT:
 			border = new Entity(RIGHT_BORDER_ID);
-			position = new Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT / 2);
+			position = new Vector2f(WINDOW_WIDTH + BORDER_OFFSET, WINDOW_HEIGHT / 2);
 			size = new Vector2f(BORDER_WIDTH, WINDOW_HEIGHT);
 			break;
 		default:

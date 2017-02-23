@@ -14,7 +14,7 @@ import org.newdawn.slick.geom.Vector2f;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 
 /**
- * @author Matthias SpÃ¶rkmann
+ * @author Matthias Spörkmann
  */
 public class Button extends Entity implements GameParameters{
 

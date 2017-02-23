@@ -10,7 +10,7 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.Block;
 
 public class LevelGenerator implements GameParameters {
 
-	private final static int BLOCKS_PER_ROW = 16;
+	// private final static int BLOCKS_PER_ROW = 16;
 	private final static int SIDE_SPACE = BLOCK_WIDTH / 2;
 	private final static int TOP_SPACE = BLOCK_HEIGHT / 2;
 
@@ -68,11 +68,16 @@ public class LevelGenerator implements GameParameters {
 						break;
 
 					case 2:
-						block = new Block(BlockType.DEFAULT_TWO, xPos, yPos);
+						block = new Block(BlockType.IRON, xPos, yPos);
 						break;
 						
 					case 3:
-						block = new Block(BlockType.DEFAULT_THREE, xPos, yPos);
+						block = new Block(BlockType.GOLD, xPos, yPos);
+						break;
+						
+					case 4:
+						block = new Block(BlockType.TNT, xPos, yPos);
+						break;
 					}
 					
 					gridX++;
