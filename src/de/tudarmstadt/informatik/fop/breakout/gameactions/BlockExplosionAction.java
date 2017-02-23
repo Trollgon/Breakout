@@ -5,6 +5,7 @@ import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
+import de.tudarmstadt.informatik.fop.breakout.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Block;
 import de.tudarmstadt.informatik.fop.breakout.managers.SoundManager;
@@ -39,11 +40,11 @@ public class BlockExplosionAction implements Action, GameParameters {
 		
 		// auxiliary Circle-Shape to get Entities which intersect with it
 		Circle explosion = new Circle(center.x, center.y, radius);
-		
+
 		entityManager.getEntitiesByState(STORY_GAME_STATE).stream()
-		.filter(e -> e instanceof Block)
-		.filter(b -> b.getShape().intersects(explosion) && ((Block)b).getType() != BlockType.IRON)
-		.forEach(b -> ((Block)b).setDestroyed(true)); SoundManager.playSound(BLOCK_IMPACT_SOUND, 0.3f, GAME_VOLUME);
+		.filter(e -> e instanceof AbstractBlock)
+		.filter(b -> b.getShape().intersects(explosion) && ((AbstractBlock)b).getType() != BlockType.SOLID)
+		.forEach(b -> ((AbstractBlock)b).setDestroyed(true)); SoundManager.playSound(BLOCK_IMPACT_SOUND, 0.3f, GAME_VOLUME);
 
 	}
 

@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
+import de.tudarmstadt.informatik.fop.breakout.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.physics.Physics2D;
 import eea.engine.action.Action;
@@ -53,8 +54,7 @@ public class Ball extends Entity implements GameParameters {
 	/**
 	 * constructor of ball class
 	 * 
-	 * @param entityID
-	 *            of the new ball
+	 * @param launcher of the new ball
 	 */
 	public Ball(Stick launcher) {
 		super(BALL_ID);
@@ -129,8 +129,8 @@ public class Ball extends Entity implements GameParameters {
 
 				// if e is a block and has been hit on edge, return true, else
 				// false
-				if (e instanceof Block) {
-					return collidedOnEdge((Block) e);
+				if (e instanceof AbstractBlock) {
+					return collidedOnEdge((AbstractBlock) e);
 				}
 
 				return (e.getID() == TOP_BORDER_ID || e.getID() == STICK_ID);
@@ -147,8 +147,8 @@ public class Ball extends Entity implements GameParameters {
 
 				// if e is a block and has been hit on edge, return false, else
 				// true
-				if (e instanceof Block) {
-					return !collidedOnEdge((Block) e);
+				if (e instanceof AbstractBlock) {
+					return !collidedOnEdge((AbstractBlock) e);
 				}
 
 				return (e.getID() == LEFT_BORDER_ID || e.getID() == RIGHT_BORDER_ID);
@@ -217,15 +217,6 @@ public class Ball extends Entity implements GameParameters {
 
 		// destroys ball when it left the screen
 		leftScreen.addAction(new DestroyEntityAction());
-		leftScreen.addAction(new Action() {
-			
-			StateBasedEntityManager entityManager = StateBasedEntityManager.getInstance();
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				
-				((Lives) entityManager.getEntity(STORY_GAME_STATE, LIVES_ID)).deductLife();
-			}
-		});
 
 		// adds all events with their actions
 		this.addComponent(collider);
@@ -243,14 +234,14 @@ public class Ball extends Entity implements GameParameters {
 	/**
 	 * determines whether this ball has hit the given Block on an edge or not
 	 * 
-	 * @param block
+	 * @param e
 	 * @return TRUE if hit on EDGE, else FALSE
 	 */
-	public boolean collidedOnEdge(Block block) {
+	public boolean collidedOnEdge(AbstractBlock e) {
 		final float SENSITIVITY = 1f;
-		float offset = block.getPosition().x - this.getPosition().x;
+		float offset = e.getPosition().x - this.getPosition().x;
 
-		return (offset < -(block.getSize().x / 2) + SENSITIVITY || (block.getSize().x / 2) - SENSITIVITY > offset);
+		return (offset < -(e.getSize().x / 2) + SENSITIVITY || (e.getSize().x / 2) - SENSITIVITY > offset);
 	}
 
 	/**

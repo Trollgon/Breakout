@@ -5,7 +5,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="eea.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/Breakout/docs/eea-doc.zip!/doc"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/breakout/docs/eea-doc.zip!/doc"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="slick.jar">
@@ -22,7 +22,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/slick"/>
 	<classpathentry kind="lib" path="translator.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/Breakout/docs/translatorDocu.zip!/doc"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/breakout/docs/translatorDocu.zip!/doc"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>

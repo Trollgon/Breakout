@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.StreamTokenizer;
 import java.util.ArrayList;
 
+import de.tudarmstadt.informatik.fop.breakout.blocks.*;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Block;
 
@@ -22,15 +23,15 @@ public class LevelGenerator implements GameParameters {
 	 * @return ArrayList<Block> with all blocks of the given level-file
 	 * @throws IOException
 	 */
-	public static ArrayList<Block> parseLevelFromMap(String mapFile) throws IOException {
+	public static ArrayList<AbstractBlock> parseLevelFromMap(String mapFile) throws IOException {
 
-		ArrayList<Block> blocks = new ArrayList<Block>();
+		ArrayList<AbstractBlock> blocks = new ArrayList<AbstractBlock>();
 
 		// just start reading the file if its a .map-file
 		if (mapFile.endsWith(".map")) {
 
 			// block that will be configured and added to blocks
-			Block block = null;
+			AbstractBlock block = null;
 
 			// FileReader and StreamTokenizer to parse the file
 			FileReader reader = new FileReader(mapFile);
@@ -64,19 +65,10 @@ public class LevelGenerator implements GameParameters {
 					default:
 
 					case 1:
-						block = new Block(BlockType.DEFAULT, xPos, yPos);
+						block = new StandardBlock(xPos, yPos); 
 						break;
-
 					case 2:
-						block = new Block(BlockType.IRON, xPos, yPos);
-						break;
-						
-					case 3:
-						block = new Block(BlockType.GOLD, xPos, yPos);
-						break;
-						
-					case 4:
-						block = new Block(BlockType.TNT, xPos, yPos);
+						block = new IronBlock(xPos, yPos);
 						break;
 					}
 					
