@@ -2,6 +2,7 @@ package de.tudarmstadt.informatik.fop.breakout.states;
 
 import java.io.IOException;
 
+import de.tudarmstadt.informatik.fop.breakout.levels.Levels;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -22,25 +23,25 @@ import eea.engine.entity.StateBasedEntityManager;
  * @author Jonas Henry Grebe
  *
  */
-public class GameplayState implements GameParameters, GameState {
+public class StoryGameState implements GameParameters, GameState {
 	
 	private int stateID;
-	private String level;
+	protected int levelID = 0;
 	
 	public StateBasedEntityManager entityManager;
 	
 	private Stick stick;
 	
 	/**
-	 * constructor of a new gameplay state
-	 * @param stateID of this state
-	 * @param level to load and play
+	 * constructor of a new story game state
 	 */
-	public GameplayState(int stateID, String level) {
-		
-		this.stateID = stateID;
-		this.level = level;
+	public StoryGameState() {
+		this.stateID = STORY_GAME_STATE;
 		entityManager = StateBasedEntityManager.getInstance();
+	}
+
+	public void setLevelID(int levelID) {
+		this.levelID = levelID;
 	}
 	
 	@Override
@@ -173,7 +174,7 @@ public class GameplayState implements GameParameters, GameState {
 
 	@Override
 	public int getID() {
-		return this.stateID;
+		return STORY_GAME_STATE;
 	}
 
 	@Override
@@ -190,12 +191,14 @@ public class GameplayState implements GameParameters, GameState {
 		entityManager.addEntity(getID(), stick);
 		entityManager.addEntity(getID(), new Ball(stick));
 		
-		// adds the level´s blocks to the entityManager:
-		try {
-			LevelGenerator.parseLevelFromMap(level).stream().forEach(b -> entityManager.addEntity(getID(), b));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		// adds the levelï¿½s blocks to the entityManager:
+		if (levelID != 0) {
+			try {
+				LevelGenerator.parseLevelFromMap(Levels.getPathByID(this.levelID)).stream().forEach(b -> entityManager.addEntity(getID(), b));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	
 	}
@@ -215,7 +218,7 @@ public class GameplayState implements GameParameters, GameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 	
-		entityManager.updateEntities(container, game, stateID);
+		entityManager.updateEntities(container, game, STORY_GAME_STATE);
 	}
 
 }
