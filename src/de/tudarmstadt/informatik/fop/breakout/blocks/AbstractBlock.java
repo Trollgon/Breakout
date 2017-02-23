@@ -19,7 +19,7 @@ import eea.engine.event.basicevents.CollisionEvent;
 
 /**
  * abstract class for any block in the game
- * @author Jonas
+ * @author Jonas Henry Grebe
  *
  */
 public abstract class AbstractBlock extends Entity implements IHitable, GameParameters {
@@ -47,7 +47,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 		try {
 			configureBlock();
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 

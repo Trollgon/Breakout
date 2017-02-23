@@ -32,14 +32,15 @@ public class ZonePickerState implements GameParameters, GameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
+        entityManager.addEntity(getID(), new Button(218, 190, ZONE_STATE, 1));
+
+        
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 
         g.drawImage(new Image(DEFAULT_MENU_IMAGE), 0, 0);
-
-        entityManager.addEntity(getID(), new Button(218, 190, ZONE_STATE, 1));
 
         entityManager.renderEntities(container, game, g);
 
