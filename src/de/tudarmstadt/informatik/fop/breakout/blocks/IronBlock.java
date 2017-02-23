@@ -5,6 +5,11 @@ import org.newdawn.slick.SlickException;
 
 import eea.engine.component.render.ImageRenderComponent;
 
+/**
+ * class to represent an Iron block
+ * @author Jonas Henry Grebe
+ *
+ */
 public class IronBlock extends AbstractBlock {
 
 	public IronBlock(int xPos, int yPos) {

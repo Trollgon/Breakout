@@ -5,6 +5,11 @@ import org.newdawn.slick.SlickException;
 
 import eea.engine.component.render.ImageRenderComponent;
 
+/**
+ * class to represent a Standard block
+ * @author Jonas Henry Grebe
+ *
+ */
 public class StandardBlock extends AbstractBlock {
 
 	public StandardBlock(int xPos, int yPos) {
