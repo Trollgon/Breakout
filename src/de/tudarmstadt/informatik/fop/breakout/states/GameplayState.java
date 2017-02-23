@@ -237,13 +237,6 @@ public class GameplayState implements GameParameters, GameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 
-		// counts the summed up score of all blocks BEFORE update
-		/*
-		 * int blocksScoreBefore =
-		 * entityManager.getEntitiesByState(GAMEPLAY_STATE).stream() .filter(x
-		 * -> (x instanceof Block)).mapToInt(x -> ((Block) x).getScore()).sum();
-		 */
-
 		///////////// UPDATING ALL ENTITIES HERE //////////////
 		entityManager.updateEntities(container, game, stateID);
 		///////////////////////////////////////////////////////
@@ -255,22 +248,9 @@ public class GameplayState implements GameParameters, GameState {
 					new Ball((Stick) entityManager.getEntity(GAMEPLAY_STATE, STICK_ID)));
 		}
 
-		// counts the summed up score of all blocks AFTER update
-		/*
-		 * int blocksScoreAfter =
-		 * entityManager.getEntitiesByState(GAMEPLAY_STATE).stream() .filter(x
-		 * -> (x instanceof Block)).mapToInt(x -> ((Block) x).getScore()).sum();
-		 */
-
-		// increments score by the difference of the score before and after the
-		// update
-		// ((Score) entityManager.getEntity(GAMEPLAY_STATE,
-		// SCORE_ID)).incScoreCount(blocksScoreBefore - blocksScoreAfter);
-
 		// player loses the game (his life amount drops to 0) or wins it
 		// (destroyed all blocks)
-		
-		if (((((Lives) entityManager.getEntity(GAMEPLAY_STATE, LIVES_ID)).getLivesAmount() == 0)
+		/*if (((((Lives) entityManager.getEntity(GAMEPLAY_STATE, LIVES_ID)).getLivesAmount() == 0)
 				| (!entityManager.hasEntity(GAMEPLAY_STATE, BLOCK_ID))) & !gameFinished) {
 			gameFinished = true;
 			((StopWatch) entityManager.getEntity(GAMEPLAY_STATE, STOP_WATCH_ID)).pauseStopWatch();
@@ -295,7 +275,7 @@ public class GameplayState implements GameParameters, GameState {
 				e.printStackTrace();
 			}
 			// still needs to end the match...
-		}
+		}*/
 
 	}
 
