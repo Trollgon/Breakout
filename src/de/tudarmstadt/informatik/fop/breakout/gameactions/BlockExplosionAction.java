@@ -40,7 +40,7 @@ public class BlockExplosionAction implements Action, GameParameters {
 		// auxiliary Circle-Shape to get Entities which intersect with it
 		Circle explosion = new Circle(center.x, center.y, radius);
 		
-		entityManager.getEntitiesByState(GAMEPLAY_STATE).stream()
+		entityManager.getEntitiesByState(STORY_GAME_STATE).stream()
 		.filter(e -> e instanceof Block)
 		.filter(b -> b.getShape().intersects(explosion) && ((Block)b).getType() != BlockType.IRON)
 		.forEach(b -> ((Block)b).setDestroyed(true)); SoundManager.playSound(BLOCK_IMPACT_SOUND, 0.3f, GAME_VOLUME);
