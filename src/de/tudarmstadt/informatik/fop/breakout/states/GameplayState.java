@@ -20,6 +20,7 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Block;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Lives;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Score;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.Stick;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.StopWatch;
 import de.tudarmstadt.informatik.fop.breakout.managers.HighscoreManager;
 import de.tudarmstadt.informatik.fop.breakout.managers.LevelGenerator;
@@ -39,6 +40,7 @@ public class GameplayState implements GameParameters, GameState {
 	private String level;
 	StateBasedEntityManager entityManager;
 	static boolean gameFinished = false;
+	private Stick stick;
 
 	/**
 	 * constructor of a new gameplay state
@@ -195,8 +197,8 @@ public class GameplayState implements GameParameters, GameState {
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.LEFT).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.TOP).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.RIGHT).createEntity());
-
-		entityManager.addEntity(getID(), new Ball());
+		entityManager.addEntity(GAMEPLAY_STATE, stick);
+		entityManager.addEntity(getID(), new Ball(stick));
 		entityManager.addEntity(getID(), new Lives());
 		entityManager.addEntity(getID(), new Score());
 		entityManager.addEntity(getID(), new StopWatch());
