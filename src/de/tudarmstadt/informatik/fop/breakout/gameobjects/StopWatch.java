@@ -1,7 +1,16 @@
 package de.tudarmstadt.informatik.fop.breakout.gameobjects;
 
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.state.StateBasedGame;
+
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.gameevents.NoBallLaunchedEvent;
+import eea.engine.action.Action;
+import eea.engine.component.Component;
 import eea.engine.entity.Entity;
+import eea.engine.event.ANDEvent;
+import eea.engine.event.Event;
+import eea.engine.event.NOTEvent;
 
 /**
  * This StopWatch class, as an inheritor of Entity, offers some methods to stop time in the game
@@ -14,6 +23,10 @@ public class StopWatch extends Entity implements GameParameters {
 	private long startTime;
 	private long timePassedBeforePause;
 	private boolean running;
+	ANDEvent pauseWatchEvent;
+	ANDEvent startWatchEvent;
+	
+
 	
 	/**
 	 * The constructor calls the super constructor, sets running to false and timePassedBeforePause to 0.
@@ -22,6 +35,36 @@ public class StopWatch extends Entity implements GameParameters {
 		super(STOP_WATCH_ID);
 		this.running = false;
 		this.timePassedBeforePause = 0;
+		pauseWatchEvent = new ANDEvent( new NoBallLaunchedEvent("noBallLaunched"), new Event("watchRunningEvent") {
+			@Override
+			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
+				return isRunning();
+			}
+		});
+		
+		pauseWatchEvent.addAction(new Action() {
+			@Override
+			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
+				pauseStopWatch();
+			}
+		});
+		
+		startWatchEvent = new ANDEvent( new NOTEvent( new NoBallLaunchedEvent("noBallLaunched")), new Event("watchNotRunningEvent") {
+			@Override
+			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
+				return !isRunning();
+			}
+		});
+		
+		startWatchEvent.addAction(new Action() {
+			@Override
+			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
+				runStopWatch();
+			}
+		});
+		
+		this.addComponent(pauseWatchEvent);
+		this.addComponent(startWatchEvent);
 	}
 	
 	/**

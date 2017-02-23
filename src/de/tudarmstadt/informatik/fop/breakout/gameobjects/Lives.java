@@ -1,11 +1,16 @@
 package de.tudarmstadt.informatik.fop.breakout.gameobjects;
 
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.gameevents.NoBallLeftEvent;
+import eea.engine.action.Action;
+import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 
@@ -16,14 +21,15 @@ import eea.engine.entity.Entity;
  */
 public class Lives extends Entity implements GameParameters {
 
-	private int livesAmount;
+	private static int livesAmount;
+	//NoBallLeftEvent noBallLeft;
 	
 	/**
 	 * The constructor of the class initializes a Lives display with an image of full three hearts. 
 	 */
 	public Lives() {
 		super(LIVES_ID);
-		this.livesAmount = 3;
+		livesAmount = 3;
 		setPosition(new Vector2f(45, (WINDOW_HEIGHT - 13)));
 		setPassable(true);
 		try {
@@ -39,20 +45,20 @@ public class Lives extends Entity implements GameParameters {
 	 * @return the amount of lives as an integer
 	 */
 	public int getLivesAmount() {
-		return this.livesAmount;
+		return livesAmount;
 	}
 	
 	/**
 	 * Deduct the amount of lives left by one and change the image representation.
 	 */
 	public void deductLife() {
-		this.livesAmount--;
+		livesAmount--;
 		try {
-			if (this.livesAmount == 2)
+			if (livesAmount == 2)
 				this.addComponent(new ImageRenderComponent(new Image(HEART_2_IMAGE)));
-			if (this.livesAmount == 1)
+			if (livesAmount == 1)
 				this.addComponent(new ImageRenderComponent(new Image(HEART_1_IMAGE)));
-			if (this.livesAmount == 0)
+			if (livesAmount == 0)
 				; // missing image!
 		} catch (SlickException e) {
 			e.printStackTrace();
