@@ -23,13 +23,19 @@ public interface GameParameters extends BlockParameters{
 	public static final float RAND_PITCH_TRESHOLD = 0.05f;
 
 	// Game States
-	public static final int MAINMENU_STATE = 0;
-	public static final int GAMEPLAY_STATE = 1;
-	public static final int HIGHSCORE_STATE = 2;
+	public static final int MAINMENU_STATE = 1;
+	public static final int ZONE_PICKER_STATE = 2;
+	public static final int ZONE_STATE = 3;
+	public static final int STORY_GAME_STATE = 4;
+	public static final int ENDLESS_GAME_STATE = 5;
+	public static final int HIGHSCORE_STATE = 6;
+	public static final int ABOUT_STATE = 7;
+	public static final int QUIT_STATE = 8;
 
-	// Background
-	public static final String BACKGROUND_ID = "background";
+	// BackgroundS
 	public static final String BACKGROUND_IMAGE = "/images/background.png";
+	public static final String MAIN_MENU_IMAGE = "/images/menu.png";
+	public static final String DEFAULT_MENU_IMAGE = "/images/menu_blank.png";
 
 	// Button
 	public static final String BUTTON_ID = "button";
