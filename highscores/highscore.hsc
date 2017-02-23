@@ -1,11 +1,10 @@
-//name,score,time in seconds
-Guido,1337,42
-Hans,99,123
-Jürgen,99,124
-Günther,83,110
-Klaus,81,167
-Gerhard,76,130
-Friedrich,70,100
-Wolfgang,67,90
-Thomas,46,95
-Ute,4,20
+Jörg,23450,128,
+Jörg,19300,64,
+Jörg,15700,45,
+Jörg,15700,45,
+Jörg,15700,46,
+Jörg,11000,34,
+Jörg,10900,17,
+Jörg,8700,33,
+Jörg,7800,6,
+Jörg,7800,9,

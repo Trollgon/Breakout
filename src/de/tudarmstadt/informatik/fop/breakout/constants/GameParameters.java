@@ -70,6 +70,16 @@ public interface GameParameters extends BlockParameters{
 	public static final String STICK_ID = "stick";
 	public static final float STICK_SPEED = 0.5f;
 	public static final String STICK_IMAGE = "/images/stick.png";
+	
+	// Lives
+	public static final String LIVES_ID = "lives";
+	public static final String HEART_IMAGE = "/images/heart.png";
+	public static final String HEART_3_IMAGE = "/images/heart_3.jpg";
+	public static final String HEART_2_IMAGE = "/images/heart_2.jpg";
+	public static final String HEART_1_IMAGE = "/images/heart_1.jpg";
+	
+	// Score
+	public static final String SCORE_ID = "score";
 
 	// Player
 	public static final String PLAYER_ID = "player";
