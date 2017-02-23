@@ -17,9 +17,9 @@ public class MainMenuState implements GameParameters, GameState {
 	private int stateID;
 	StateBasedEntityManager entityManager;
 	
-	public MainMenuState(int stateID) {
-		
-		this.stateID = stateID;
+	public MainMenuState() {
+
+		this.stateID = MAIN_MENU_STATE;
 		entityManager = StateBasedEntityManager.getInstance();
 	}
 	
@@ -167,11 +167,11 @@ public class MainMenuState implements GameParameters, GameState {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 
-		g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
+		g.drawImage(new Image(MAIN_MENU_IMAGE), 0, 0);
 		
-		entityManager.addEntity(getID(), new Button(218, 190, GAMEPLAY_STATE));
-		entityManager.addEntity(getID(), new Button(218, 300, HIGHSCORE_STATE));
-		entityManager.addEntity(getID(), new Button(218, 410, 0));
+		entityManager.addEntity(getID(), new Button(218, 190, ZONE_PICKER_STATE, 0));
+		entityManager.addEntity(getID(), new Button(218, 300, HIGHSCORE_STATE, 0));
+		entityManager.addEntity(getID(), new Button(218, 410, 0, 0));
 		
 		entityManager.renderEntities(container, game, g);
 
