@@ -4,7 +4,7 @@ public interface BlockParameters {
 
 	// Blocks
 	public enum BlockType {
-		DEFAULT, IRON, GOLD, TNT, SPEEDUP
+		SOLID, UNSTABLE
 	}
 	
 	// Block - Sounds
@@ -23,9 +23,9 @@ public interface BlockParameters {
 	public static final int BLOCK_HEIGHT = 30;
 	
 	// DEFAULT-BLOCK: 1 HIT
-	public static final String BLOCK_DEFAULT_IMAGE = "/images/blocks/block_default.png";
-	public static final int BLOCK_DEFAULT_HITSLEFT = 1;
-	public static final int BLOCK_DEFAULT_SCORE = 100;
+	public static final String BLOCK_STANDARD_IMAGE = "/images/blocks/block_default.png";
+	public static final int BLOCK_STANDARD_HITSLEFT = 1;
+	public static final int BLOCK_STANDARD_SCORE = 100;
 	
 	// IRON-BLOCK: 2 HITS and IMMUNE to EXPLOSIONS
 	public static final String BLOCK_IRON_IMAGE = "/images/blocks/block_iron.png";

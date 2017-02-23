@@ -77,7 +77,6 @@ public class GameplayState implements GameParameters, GameState {
 
 	@Override
 	public boolean isAcceptingInput() {
-		// TODO
 		return true;
 	}
 
