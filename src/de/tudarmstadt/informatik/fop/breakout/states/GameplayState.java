@@ -197,7 +197,8 @@ public class GameplayState implements GameParameters, GameState {
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.LEFT).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.TOP).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.RIGHT).createEntity());
-		entityManager.addEntity(GAMEPLAY_STATE, stick);
+		stick = new Stick();
+		entityManager.addEntity(getID(), stick);
 		entityManager.addEntity(getID(), new Ball(stick));
 		entityManager.addEntity(getID(), new Lives());
 		entityManager.addEntity(getID(), new Score());
