@@ -25,7 +25,7 @@ public class TestKeyBoardInput {
 		@Test
 		public void testNewGame() {
 			adapter.initializeGame();
-			assertTrue(adapter.getStateBasedGame().getCurrentStateID()==GameParameters.MAINMENU_STATE);
+			assertTrue(adapter.getStateBasedGame().getCurrentStateID()==GameParameters.MAIN_MENU_STATE);
 			adapter.changeToGameplayState();
 			assertTrue(adapter.getStateBasedGame().getCurrentStateID()==GameParameters.STORY_GAME_STATE);
 		}

@@ -23,7 +23,7 @@ public interface GameParameters extends BlockParameters{
 	public static final float RAND_PITCH_TRESHOLD = 0.05f;
 
 	// Game States
-	public static final int MAINMENU_STATE = 1;
+	public static final int MAIN_MENU_STATE = 1;
 	public static final int ZONE_PICKER_STATE = 2;
 	public static final int ZONE_STATE = 3;
 	public static final int STORY_GAME_STATE = 4;
