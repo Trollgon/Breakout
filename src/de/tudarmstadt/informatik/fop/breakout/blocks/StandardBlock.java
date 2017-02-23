@@ -1,9 +1,6 @@
 package de.tudarmstadt.informatik.fop.breakout.blocks;
 
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-
-import eea.engine.component.render.ImageRenderComponent;
 
 /**
  * class to represent a Standard block
@@ -18,10 +15,11 @@ public class StandardBlock extends AbstractBlock {
 
 	@Override
 	void configureBlock() throws SlickException {
-
-		this.setType(BlockType.UNSTABLE);
+		//this.setHitSound(...);
 		
-		this.addComponent(new ImageRenderComponent(new Image(BLOCK_STANDARD_IMAGE)));
+		setType(BlockType.UNSTABLE);
+		setBlockImage(BLOCK_STANDARD_IMAGE);
+		
 		setHitsLeft(BLOCK_STANDARD_HITSLEFT);
 		setScore(BLOCK_STANDARD_SCORE);
 

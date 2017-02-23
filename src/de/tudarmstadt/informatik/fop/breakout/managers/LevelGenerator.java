@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import de.tudarmstadt.informatik.fop.breakout.blocks.*;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
-import de.tudarmstadt.informatik.fop.breakout.gameobjects.Block;
 
 public class LevelGenerator implements GameParameters {
 

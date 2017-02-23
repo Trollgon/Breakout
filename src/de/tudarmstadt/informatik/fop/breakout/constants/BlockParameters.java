@@ -3,12 +3,17 @@ package de.tudarmstadt.informatik.fop.breakout.constants;
 public interface BlockParameters {
 
 	// Blocks
+	
+	// Block types:
+	// solid -> blocks that can´t be destroyed by other blocks (e.g. explosions)
+	// unstable -> blocks that can be destroyed by other blocks
+	// ... -> ...
 	public enum BlockType {
 		SOLID, UNSTABLE
 	}
 	
 	// Block - Sounds
-	public static final String BLOCK_HIT_SOUND = "sounds/hitBlock.wav";
+	public static final String BLOCK_DEFAULT_HIT_SOUND = "sounds/hitBlock.wav";
 	public static final String BLOCK_IMPACT_SOUND = "sounds/hitImpact.wav";
 	
 	// Block event IDS:

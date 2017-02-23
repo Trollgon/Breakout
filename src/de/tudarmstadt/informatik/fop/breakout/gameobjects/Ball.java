@@ -16,7 +16,6 @@ import eea.engine.action.basicactions.MoveForwardAction;
 import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
-import eea.engine.entity.StateBasedEntityManager;
 import eea.engine.event.ANDEvent;
 import eea.engine.event.Event;
 import eea.engine.event.NOTEvent;
@@ -216,6 +215,13 @@ public class Ball extends Entity implements GameParameters {
 		});
 
 		// destroys ball when it left the screen
+		leftScreen.addAction(new Action() {
+			
+			@Override
+			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
+				Lives.deductLife();
+			}
+		});
 		leftScreen.addAction(new DestroyEntityAction());
 
 		// adds all events with their actions

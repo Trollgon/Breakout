@@ -2,7 +2,6 @@ package de.tudarmstadt.informatik.fop.breakout.gameobjects;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import eea.engine.entity.Entity;
-import eea.engine.entity.StateBasedEntityManager;
 
 /**
  * 
@@ -15,15 +14,19 @@ public class Score extends Entity implements GameParameters {
 	
 	public Score() {
 		super(SCORE_ID);
-		count = 0;
+		resetCount();
 	}
 	
-	public int getScoreCount() {
+	public static int getScoreCount() {
 		return count;
 	}
 	
-	public void incScoreCount (int value) {
+	public static void incScoreCount(int value) {
 		count += value;
+	}
+	
+	public static void resetCount(){
+		count = 0;
 	}
 		
 	public String toString() {
