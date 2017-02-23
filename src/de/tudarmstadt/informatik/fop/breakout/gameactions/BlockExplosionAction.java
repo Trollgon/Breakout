@@ -35,12 +35,12 @@ public class BlockExplosionAction implements Action, GameParameters {
 	}
 
 	@Override
-	public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
+	public void update(GameContainer container, StateBasedGame game, int delta, Component component) {
 		
 		// auxiliary Circle-Shape to get Entities which intersect with it
 		Circle explosion = new Circle(center.x, center.y, radius);
 
-		entityManager.getEntitiesByState(STORY_GAME_STATE).stream()
+		entityManager.getEntitiesByState(game.getCurrentState().getID()).stream()
 		.filter(e -> e instanceof AbstractBlock)
 		.filter(b -> b.getShape().intersects(explosion) && ((AbstractBlock)b).getType() != BlockType.SOLID)
 		.forEach(b -> ((AbstractBlock)b).setDestroyed(true)); SoundManager.playSound(BLOCK_IMPACT_SOUND, 0.3f, GAME_VOLUME);
