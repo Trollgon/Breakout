@@ -145,7 +145,7 @@ public class Block extends Entity implements IHitable, GameParameters {
 			
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				((Score) StateBasedEntityManager.getInstance().getEntity(GAMEPLAY_STATE, SCORE_ID)).incScoreCount(getScore());
+				((Score) StateBasedEntityManager.getInstance().getEntity(STORY_GAME_STATE, SCORE_ID)).incScoreCount(getScore());
 				
 			}
 		});

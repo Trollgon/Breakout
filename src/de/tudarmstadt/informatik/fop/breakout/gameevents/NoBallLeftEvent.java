@@ -20,7 +20,7 @@ public class NoBallLeftEvent extends Event implements GameParameters {
 
 	@Override
 	protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
-		return !entityManager.getEntitiesByState(GAMEPLAY_STATE).stream().anyMatch(e -> (e instanceof Ball));
+		return !entityManager.getEntitiesByState(STORY_GAME_STATE).stream().anyMatch(e -> (e instanceof Ball));
 	}
 
 }

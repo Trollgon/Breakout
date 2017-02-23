@@ -21,7 +21,7 @@ public class NoBallLaunchedEvent extends Event implements GameParameters {
 	@Override
 	protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
 
-		return !entityManager.getEntitiesByState(GAMEPLAY_STATE).stream().filter(e -> (e instanceof Ball)).anyMatch(b -> ((Ball) b).isLaunched());
+		return !entityManager.getEntitiesByState(STORY_GAME_STATE).stream().filter(e -> (e instanceof Ball)).anyMatch(b -> ((Ball) b).isLaunched());
 	}
 
 }

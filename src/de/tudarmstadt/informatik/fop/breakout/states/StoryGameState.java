@@ -1,60 +1,48 @@
 package de.tudarmstadt.informatik.fop.breakout.states;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.stream.Collectors;
 
+import de.tudarmstadt.informatik.fop.breakout.levels.Levels;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import java.util.LinkedList;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.factories.BorderFactory;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
-import de.tudarmstadt.informatik.fop.breakout.gameobjects.Block;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Lives;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Score;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Stick;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.StopWatch;
-import de.tudarmstadt.informatik.fop.breakout.managers.HighscoreManager;
 import de.tudarmstadt.informatik.fop.breakout.managers.LevelGenerator;
-import de.tudarmstadt.informatik.fop.breakout.managers.Player;
-import eea.engine.entity.Entity;
 import eea.engine.entity.StateBasedEntityManager;
 
 /**
- * GameplayState class
- * 
- * @author Jonas Henry Grebe
- *
+ * @author Matthias Spoerkmann
  */
-public class GameplayState implements GameParameters, GameState {
-
+public class StoryGameState implements GameParameters, GameState {
+	
 	private int stateID;
-	private String level;
-	StateBasedEntityManager entityManager;
-	static boolean gameFinished = false;
+	protected int levelID = 0;
+	
+	public StateBasedEntityManager entityManager;
+
 	private Stick stick;
 
 	/**
-	 * constructor of a new gameplay state
-	 * 
-	 * @param stateID
-	 *            of this state
-	 * @param level
-	 *            to load and play
+	 * constructor of a new story game state
 	 */
-	public GameplayState(int stateID, String level) {
-
-		this.stateID = stateID;
-		this.level = level;
+	public StoryGameState() {
+		this.stateID = STORY_GAME_STATE;
 		entityManager = StateBasedEntityManager.getInstance();
+	}
+
+	public void setLevelID(int levelID) {
+		this.levelID = levelID;
 	}
 
 	@Override
@@ -187,7 +175,7 @@ public class GameplayState implements GameParameters, GameState {
 
 	@Override
 	public int getID() {
-		return this.stateID;
+		return STORY_GAME_STATE;
 	}
 
 	@Override
@@ -203,13 +191,16 @@ public class GameplayState implements GameParameters, GameState {
 		entityManager.addEntity(getID(), new Lives());
 		entityManager.addEntity(getID(), new Score());
 		entityManager.addEntity(getID(), new StopWatch());
+		
+		// adds the level's blocks to the entityManager:
+		if (levelID != 0) {
+			try {
+				LevelGenerator.parseLevelFromMap(Levels.getPathByID(this.levelID)).stream().forEach(b -> entityManager.addEntity(getID(), b));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-		// adds the level´s blocks to the entityManager:
-		try {
-			LevelGenerator.parseLevelFromMap(level).stream().forEach(b -> entityManager.addEntity(getID(), b));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
 	}
@@ -226,10 +217,10 @@ public class GameplayState implements GameParameters, GameState {
 		entityManager.renderEntities(container, game, g);
 
 		// score display
-		g.drawString(((Score) entityManager.getEntity(GAMEPLAY_STATE, SCORE_ID)).toString(), 100, (WINDOW_HEIGHT - 20));
+		g.drawString(((Score) entityManager.getEntity(STORY_GAME_STATE, SCORE_ID)).toString(), 100, (WINDOW_HEIGHT - 20));
 
 		// stopwatch display
-		g.drawString(((StopWatch) entityManager.getEntity(GAMEPLAY_STATE, STOP_WATCH_ID)).toString(), 200,
+		g.drawString(((StopWatch) entityManager.getEntity(STORY_GAME_STATE, STOP_WATCH_ID)).toString(), 200,
 				(WINDOW_HEIGHT - 20));
 
 	}
@@ -238,14 +229,14 @@ public class GameplayState implements GameParameters, GameState {
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 
 		///////////// UPDATING ALL ENTITIES HERE //////////////
-		entityManager.updateEntities(container, game, stateID);
+		entityManager.updateEntities(container, game, STORY_GAME_STATE);
 		///////////////////////////////////////////////////////
 
 		// creates a new Ball if no ball existing and game not finished
-		if (!entityManager.hasEntity(GAMEPLAY_STATE, BALL_ID)
-				&& (((Lives) entityManager.getEntity(GAMEPLAY_STATE, LIVES_ID)).getLivesAmount() != 0)) {
-			entityManager.addEntity(GAMEPLAY_STATE,
-					new Ball((Stick) entityManager.getEntity(GAMEPLAY_STATE, STICK_ID)));
+		if (!entityManager.hasEntity(STORY_GAME_STATE, BALL_ID)
+				&& (((Lives) entityManager.getEntity(STORY_GAME_STATE, LIVES_ID)).getLivesAmount() != 0)) {
+			entityManager.addEntity(STORY_GAME_STATE,
+					new Ball((Stick) entityManager.getEntity(STORY_GAME_STATE, STICK_ID)));
 		}
 
 		// player loses the game (his life amount drops to 0) or wins it
@@ -261,7 +252,7 @@ public class GameplayState implements GameParameters, GameState {
 				// insert output box of victory here
 			}
 			// just a test name... some "Enter your name"-shit needed here
-			String playerName = "Jörg";
+			String playerName = "Jï¿½rg";
 			// adds the player to the highscore list if the score is good enough
 			try {
 				if (HighscoreManager.checkIfScoreHighEnough(
@@ -276,7 +267,6 @@ public class GameplayState implements GameParameters, GameState {
 			}
 			// still needs to end the match...
 		}*/
-
 	}
 
 }

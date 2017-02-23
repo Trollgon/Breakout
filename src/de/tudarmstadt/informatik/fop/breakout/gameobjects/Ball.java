@@ -223,7 +223,7 @@ public class Ball extends Entity implements GameParameters {
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 				
-				((Lives) entityManager.getEntity(GAMEPLAY_STATE, LIVES_ID)).deductLife();
+				((Lives) entityManager.getEntity(STORY_GAME_STATE, LIVES_ID)).deductLife();
 			}
 		});
 
