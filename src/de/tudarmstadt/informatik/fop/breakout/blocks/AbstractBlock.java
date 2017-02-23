@@ -52,10 +52,10 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 		setPosition(new Vector2f(xPos, yPos));
 		
 		setDestroyed(false);
+		setHitSound(BLOCK_DEFAULT_HIT_SOUND);
+		
 		addEvents();
 		addActions();
-
-		setHitSound(BLOCK_DEFAULT_HIT_SOUND);
 		
 		try {
 			configureBlock();

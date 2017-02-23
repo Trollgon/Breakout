@@ -14,7 +14,7 @@ public class Levels {
         levels.put(101, "maps/101.map");
         levels.put(102, "maps/102.map");
 
-        //returning path
+        // returning path
         return levels.get(levelID);
     }
 

@@ -31,8 +31,8 @@ public class Stick extends Entity implements GameParameters {
 
 	private final int startPosX = Math.floorDiv(WINDOW_WIDTH, 2);
 	private final int startPosY = WINDOW_HEIGHT - 20;
-	private final float speed = STICK_SPEED * 16; // 0.5 speed is way too slow
-
+	private final float speed = STICK_SPEED;
+	
 	private OREvent leftKeys;
 	private OREvent rightKeys;
 	private Event leftBorderReached;
