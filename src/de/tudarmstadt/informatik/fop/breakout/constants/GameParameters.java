@@ -78,7 +78,8 @@ public interface GameParameters extends BlockParameters{
 	public static final String HEART_3_IMAGE = "/images/heart_3.png";
 	public static final String HEART_2_IMAGE = "/images/heart_2.png";
 	public static final String HEART_1_IMAGE = "/images/heart_1.png";
-
+	public static final String HEART_0_IMAGE = "/images/heart_0.png";
+	
 	// Score
 	public static final String SCORE_ID = "score";
 

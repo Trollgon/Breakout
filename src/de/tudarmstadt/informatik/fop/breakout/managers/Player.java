@@ -8,7 +8,7 @@ public class Player implements Comparable<Player> {
 	
 	/**
 	 * The Player class represents a player with his name, score and the time he needed.
-	 * Primary needed to add the player entry to the highscore.hsc.
+	 * Primarly needed to add the player entry to the highscore.hsc.
 	 * 
 	 * @param name The name of the player
 	 * @param score The score of the player

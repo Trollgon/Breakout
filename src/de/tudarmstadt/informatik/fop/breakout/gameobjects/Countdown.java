@@ -10,26 +10,29 @@ import eea.engine.component.Component;
 import eea.engine.entity.Entity;
 import eea.engine.event.Event;
 
-
-
-
-
 public class Countdown extends Entity implements GameParameters {
 	private long length;
 	private long endTime;
+	
 	private boolean isRunning;
+	
 	private Event timeOver;
 	private Action startAction;
 	private Action endAction;
 	private boolean initialStart;
 	private Event startEvent;
+	
+	
 	public Countdown(long timeInms, Action startAction, Action endAction) {
-		// TODO Auto-generated constructor stub
 		super(COUNTDOWN_ID);
+		
 		length = timeInms;
 		setEndTime();
+		
 		isRunning = true;
+		
 		configureEvents();
+		
 		this.startAction = startAction;
 		this.endAction = endAction;
 		initialStart = true;
@@ -60,7 +63,9 @@ public class Countdown extends Entity implements GameParameters {
 				stop();
 			}
 		});
+		
 		timeOver.addAction(new DestroyEntityAction());
+		
 		startEvent.addAction(new Action() {
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3){

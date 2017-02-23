@@ -53,7 +53,8 @@ public class Ball extends Entity implements GameParameters {
 	/**
 	 * constructor of ball class
 	 * 
-	 * @param launcher of the new ball
+	 * @param launcher
+	 *            of the new ball
 	 */
 	public Ball(Stick launcher) {
 		super(BALL_ID);
@@ -61,13 +62,12 @@ public class Ball extends Entity implements GameParameters {
 		setPosition(new Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 30));
 		setSpeed(INITIAL_BALL_SPEED);
 		setRotation(0);
-
-		// when Stick class has been implemented with a method getLaunchPos()
-		// which delivers the launching position of the Stick:
+		
+		setVisible(true);
+		setPassable(false);
 
 		setLauncher(launcher);
 		setPosition(getLauncher().getLaunchPos());
-
 		setLaunched(false);
 
 		try {
@@ -77,16 +77,28 @@ public class Ball extends Entity implements GameParameters {
 			e.printStackTrace();
 		}
 
-		setVisible(true);
-		setPassable(false);
+		// configures events/actions
+		addEvents();
+		addActions();
+		
+		// adds all events with their actions
+		this.addComponent(collider);
+		this.addComponent(launch);
+		this.addComponent(launched);
+		this.addComponent(notLaunched);
+		this.addComponent(differentCollision);
+		this.addComponent(leftScreen);
 
-		configureEvents();
+		this.addComponent(XAxisCollision);
+		this.addComponent(YAxisCollision);
+
 	}
 
+	
 	/**
-	 * configures the balls events
+	 * adds the balls events
 	 */
-	private void configureEvents() {
+	private void addEvents() {
 
 		//////////////////////////////// EVENTS ////////////////////////////////
 
@@ -156,16 +168,22 @@ public class Ball extends Entity implements GameParameters {
 
 		// event which fires if the ball left the screen
 		leftScreen = new LeavingScreenEvent();
+	}
 
-		//////////////////////////////// ACTIONS ////////////////////////////
+	/**
+	 * adds the balls actions
+	 */
+	private void addActions() {
 		
+		//////////////////////////////// ACTIONS ////////////////////////////
+
 		// remember the current collided entity for next collision
 		collider.addAction(new Action() {
 
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 				setLastCollision(collider.getCollidedEntity());
-				
+
 			}
 		});
 
@@ -197,9 +215,9 @@ public class Ball extends Entity implements GameParameters {
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 
 				setRotation(Physics2D.bounceXAxis(getRotation()));
-				
-				if(collider.getCollidedEntity().getID() == STICK_ID){
-					Physics2D.updateAngleOffset((Ball)collider.getOwnerEntity(), launcher);
+
+				if (collider.getCollidedEntity().getID() == STICK_ID) {
+					Physics2D.updateAngleOffset((Ball) collider.getOwnerEntity(), launcher);
 				}
 			}
 		});
@@ -216,7 +234,7 @@ public class Ball extends Entity implements GameParameters {
 
 		// destroys ball when it left the screen
 		leftScreen.addAction(new Action() {
-			
+
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 				Lives.deductLife();
@@ -224,18 +242,8 @@ public class Ball extends Entity implements GameParameters {
 		});
 		leftScreen.addAction(new DestroyEntityAction());
 
-		// adds all events with their actions
-		this.addComponent(collider);
-		this.addComponent(launch);
-		this.addComponent(launched);
-		this.addComponent(notLaunched);
-		this.addComponent(differentCollision);
-		this.addComponent(leftScreen);
-
-		this.addComponent(XAxisCollision);
-		this.addComponent(YAxisCollision);
-
 	}
+
 
 	/**
 	 * determines whether this ball has hit the given Block on an edge or not
@@ -249,7 +257,7 @@ public class Ball extends Entity implements GameParameters {
 
 		return (offset < -(e.getSize().x / 2) + SENSITIVITY || (e.getSize().x / 2) - SENSITIVITY > offset);
 	}
-
+	
 	/**
 	 * returns if this ball has been launched yet
 	 * 

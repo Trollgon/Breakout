@@ -77,7 +77,7 @@ public class Lives extends Entity implements GameParameters {
 			if (livesAmount == 1)
 				this.addComponent(new ImageRenderComponent(new Image(HEART_1_IMAGE)));
 			if (livesAmount == 0)
-				; // missing image!
+				this.addComponent(new ImageRenderComponent(new Image(HEART_0_IMAGE)));
 			
 		} catch (SlickException e) {
 			e.printStackTrace();
