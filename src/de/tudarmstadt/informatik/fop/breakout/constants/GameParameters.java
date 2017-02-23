@@ -23,19 +23,13 @@ public interface GameParameters extends BlockParameters{
 	public static final float RAND_PITCH_TRESHOLD = 0.05f;
 
 	// Game States
-	public static final int MAIN_MENU_STATE = 1;
-	public static final int ZONE_PICKER_STATE = 2;
-	public static final int ZONE_STATE = 3;
-	public static final int STORY_GAME_STATE = 4;
-	public static final int ENDLESS_GAME_STATE = 5;
-	public static final int HIGHSCORE_STATE = 6;
-	public static final int ABOUT_STATE = 7;
-	public static final int QUIT_STATE = 8;
+	public static final int MAINMENU_STATE = 0;
+	public static final int GAMEPLAY_STATE = 1;
+	public static final int HIGHSCORE_STATE = 2;
 
-	// BackgroundS
+	// Background
+	public static final String BACKGROUND_ID = "background";
 	public static final String BACKGROUND_IMAGE = "/images/background.png";
-	public static final String MAIN_MENU_IMAGE = "/images/menu.png";
-	public static final String DEFAULT_MENU_IMAGE = "/images/menu_blank.png";
 
 	// Button
 	public static final String BUTTON_ID = "button";
@@ -56,12 +50,13 @@ public interface GameParameters extends BlockParameters{
 
 	// Timer
 	public static final String STOP_WATCH_ID = "stopWatch";
+	public static final String COUNTDOWN_ID = "countdown";
 
 	// Ball
 	public static final String BALL_ID = "ball";
 	public static final float INITIAL_BALL_SPEED = 7f;
 	public static final float SPEEDUP_VALUE = 0.0001f;
-	public static final String BALL_IMAGE = "/images/ball.png";
+	public static final String BALL_IMAGE = "/images/ball.png"; 
 
 	// Stick
 	//public static final String STICK_HIT_SOUND = "sounds/hitStick.wav";
@@ -74,9 +69,9 @@ public interface GameParameters extends BlockParameters{
 	// Lives
 	public static final String LIVES_ID = "lives";
 	public static final String HEART_IMAGE = "/images/heart.png";
-	public static final String HEART_3_IMAGE = "/images/heart_3.jpg";
-	public static final String HEART_2_IMAGE = "/images/heart_2.jpg";
-	public static final String HEART_1_IMAGE = "/images/heart_1.jpg";
+	public static final String HEART_3_IMAGE = "/images/heart_3.png";
+	public static final String HEART_2_IMAGE = "/images/heart_2.png";
+	public static final String HEART_1_IMAGE = "/images/heart_1.png";
 	
 	// Score
 	public static final String SCORE_ID = "score";
