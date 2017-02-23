@@ -18,6 +18,7 @@ import eea.engine.action.basicactions.DestroyEntityAction;
 import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
+import eea.engine.entity.StateBasedEntityManager;
 import eea.engine.event.ANDEvent;
 import eea.engine.event.Event;
 import eea.engine.event.basicevents.CollisionEvent;
@@ -140,6 +141,14 @@ public class Block extends Entity implements IHitable, GameParameters {
 
 		// action: destroys this blocks entity
 		totalDestruction.addAction(new DestroyEntityAction());
+		totalDestruction.addAction(new Action() {
+			
+			@Override
+			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
+				((Score) StateBasedEntityManager.getInstance().getEntity(GAMEPLAY_STATE, SCORE_ID)).incScoreCount(getScore());
+				
+			}
+		});
 
 		// order of this matters!:
 		this.addComponent(collider);

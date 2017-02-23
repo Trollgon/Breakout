@@ -237,51 +237,20 @@ public class GameplayState implements GameParameters, GameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 
-		// counts the summed up score of all blocks BEFORE update
-		int blocksScoreBefore = entityManager.getEntitiesByState(GAMEPLAY_STATE).stream()
-				.filter(x -> (x instanceof Block)).mapToInt(x -> ((Block) x).getScore()).sum();
-
 		///////////// UPDATING ALL ENTITIES HERE //////////////
 		entityManager.updateEntities(container, game, stateID);
 		///////////////////////////////////////////////////////
 
-		// counts the summed up score of all blocks AFTER update
-		int blocksScoreAfter = entityManager.getEntitiesByState(GAMEPLAY_STATE).stream()
-				.filter(x -> (x instanceof Block)).mapToInt(x -> ((Block) x).getScore()).sum();
-
-		// increments score by the difference of the score before and after the
-		// update
-		((Score) entityManager.getEntity(GAMEPLAY_STATE, SCORE_ID)).incScoreCount(blocksScoreBefore - blocksScoreAfter);
-
-		// starts running the stopwatch when the ball is launched
-		if (((Ball) entityManager.getEntity(GAMEPLAY_STATE, BALL_ID)).isLaunched()
-				& !((StopWatch) entityManager.getEntity(GAMEPLAY_STATE, STOP_WATCH_ID)).isRunning() & !gameFinished) {
-			((StopWatch) entityManager.getEntity(GAMEPLAY_STATE, STOP_WATCH_ID)).runStopWatch();
-		}
-
-		// pauses the stopwatch when the ball is not launched
-		if (!((Ball) entityManager.getEntity(GAMEPLAY_STATE, BALL_ID)).isLaunched()
-				& ((StopWatch) entityManager.getEntity(GAMEPLAY_STATE, STOP_WATCH_ID)).isRunning() & !gameFinished) {
-			((StopWatch) entityManager.getEntity(GAMEPLAY_STATE, STOP_WATCH_ID)).pauseStopWatch();
-		}
-
-		// just for testing the life deducting, has to be changed!
-		if ((entityManager.getEntity(GAMEPLAY_STATE, BALL_ID).getPosition().getY() > (WINDOW_HEIGHT + 20))
-				| (entityManager.getEntity(GAMEPLAY_STATE, BALL_ID).getPosition().getY() < -20)
-				| (entityManager.getEntity(GAMEPLAY_STATE, BALL_ID).getPosition().getX() < -20)
-				| (entityManager.getEntity(GAMEPLAY_STATE, BALL_ID).getPosition().getX() > (WINDOW_WIDTH + 20))) {
-			entityManager.getEntity(GAMEPLAY_STATE, BALL_ID)
-					.setPosition(new Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 500));
-			((Ball) entityManager.getEntity(GAMEPLAY_STATE, BALL_ID)).setSpeed(2 * INITIAL_BALL_SPEED);
-			entityManager.getEntity(GAMEPLAY_STATE, BALL_ID).setRotation(45);
-			((Ball) entityManager.getEntity(GAMEPLAY_STATE, BALL_ID)).setLaunched(false);
-			// when ball leaves the screen deduct lives by one
-			((Lives) entityManager.getEntity(GAMEPLAY_STATE, LIVES_ID)).deductLife();
+		// creates a new Ball if no ball existing and game not finished
+		if (!entityManager.hasEntity(GAMEPLAY_STATE, BALL_ID)
+				&& (((Lives) entityManager.getEntity(GAMEPLAY_STATE, LIVES_ID)).getLivesAmount() != 0)) {
+			entityManager.addEntity(GAMEPLAY_STATE,
+					new Ball((Stick) entityManager.getEntity(GAMEPLAY_STATE, STICK_ID)));
 		}
 
 		// player loses the game (his life amount drops to 0) or wins it
 		// (destroyed all blocks)
-		if (((((Lives) entityManager.getEntity(GAMEPLAY_STATE, LIVES_ID)).getLivesAmount() == 0)
+		/*if (((((Lives) entityManager.getEntity(GAMEPLAY_STATE, LIVES_ID)).getLivesAmount() == 0)
 				| (!entityManager.hasEntity(GAMEPLAY_STATE, BLOCK_ID))) & !gameFinished) {
 			gameFinished = true;
 			((StopWatch) entityManager.getEntity(GAMEPLAY_STATE, STOP_WATCH_ID)).pauseStopWatch();
@@ -306,7 +275,7 @@ public class GameplayState implements GameParameters, GameState {
 				e.printStackTrace();
 			}
 			// still needs to end the match...
-		}
+		}*/
 
 	}
 

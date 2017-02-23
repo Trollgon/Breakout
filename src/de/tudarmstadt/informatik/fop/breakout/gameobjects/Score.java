@@ -6,39 +6,39 @@ import eea.engine.entity.StateBasedEntityManager;
 
 /**
  * 
- * @author Lukas
+ * @author Lukas Lehmann
  *
  */
 public class Score extends Entity implements GameParameters {
 
-	private int count;
+	private static int count;
 	
 	public Score() {
 		super(SCORE_ID);
-		this.count = 0;
+		count = 0;
 	}
 	
 	public int getScoreCount() {
-		return this.count;
+		return count;
 	}
 	
 	public void incScoreCount (int value) {
-		this.count += value;
+		count += value;
 	}
 		
 	public String toString() {
 		StringBuilder display = new StringBuilder();
-		if (this.count < 100000)
+		if (count < 100000)
 			display.append(0);
-		if (this.count < 10000)
+		if (count < 10000)
 			display.append(0);
-		if (this.count < 1000)
+		if (count < 1000)
 			display.append(0);
-		if (this.count < 100)
+		if (count < 100)
 			display.append(0);
-		if (this.count < 10)
+		if (count < 10)
 			display.append(0);
-		display.append(this.count);
+		display.append(count);
 		return display.toString();
 	}
 
