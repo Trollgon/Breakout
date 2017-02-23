@@ -120,14 +120,14 @@ public class Stick extends Entity implements GameParameters {
 
 		moveLeftCondition.addAction(new MoveLeftAction(speed));
 		moveRightCondition.addAction(new MoveRightAction(speed));
-
+		//nach ball auslagern, hitbyball entfernen -> überlagernde collisions/events vermeiden
 		hitByBall.addAction(new PlaySoundAction(STICK_HIT_SOUND, 0.9f));
-
+		
 		hitByItem.addAction(new PlaySoundAction(COLLECT_ITEM_SOUND, 1f));
 		hitByItem.addAction(new Action() {
 
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-
+			
 			}
 		});
 

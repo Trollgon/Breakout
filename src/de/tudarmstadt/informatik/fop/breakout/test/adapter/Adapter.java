@@ -88,7 +88,7 @@ public class Adapter implements GameParameters {
 	}
 
 	public void changeToGameplayState() {
-		this.getStateBasedGame().enterState(GAMEPLAY_STATE);
+		this.getStateBasedGame().enterState(STORY_GAME_STATE);
 		try {
 			app.updateGame(1);
 		} catch (SlickException e) {

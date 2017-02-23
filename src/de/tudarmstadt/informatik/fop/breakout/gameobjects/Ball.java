@@ -16,6 +16,7 @@ import eea.engine.action.basicactions.MoveForwardAction;
 import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
+import eea.engine.entity.StateBasedEntityManager;
 import eea.engine.event.ANDEvent;
 import eea.engine.event.Event;
 import eea.engine.event.NOTEvent;
@@ -53,8 +54,7 @@ public class Ball extends Entity implements GameParameters {
 	/**
 	 * constructor of ball class
 	 * 
-	 * @param entityID
-	 *            of the new ball
+	 * @param launcher of the new ball
 	 */
 	public Ball(Stick launcher) {
 		super(BALL_ID);
@@ -217,7 +217,6 @@ public class Ball extends Entity implements GameParameters {
 
 		// destroys ball when it left the screen
 		leftScreen.addAction(new DestroyEntityAction());
-		// DEDUCT LIFE EVENT
 
 		// adds all events with their actions
 		this.addComponent(collider);
@@ -225,6 +224,7 @@ public class Ball extends Entity implements GameParameters {
 		this.addComponent(launched);
 		this.addComponent(notLaunched);
 		this.addComponent(differentCollision);
+		this.addComponent(leftScreen);
 
 		this.addComponent(XAxisCollision);
 		this.addComponent(YAxisCollision);

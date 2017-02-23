@@ -63,16 +63,27 @@ public class Physics2D {
 					// don't offset the angle
 		
 		
-		float newRot = b.getRotation() + rotationOffset;
-		for(;newRot < 0; newRot += 360){ //Java thinks -90 % 360 = -90 and not 270
-			}
+	float newRot = (float) modulo(b.getRotation() + rotationOffset, 360);
+	/*	for(;newRot < 0; newRot += 360){ //Java thinks -90 % 360 = -90 and not 270
+			} */
 		
-		if(newRot % 360 < 90 || newRot % 360 > 270){	//prevent the ball falling through the stick due to rotation pointing downwards after adding offset multiple times
+		if(newRot < 90 || newRot > 270){	//prevent the ball falling through the stick due to rotation pointing downwards after adding offset multiple times
 		b.setRotation(newRot);
 		}
 		
 		
 
+	}
+	/**
+	 * @author Peter Franke
+	 * @param x
+	 * @param modulus double: the modulus
+	 * @return x mod modulus (>= 0, <= modulus) as double
+	 */
+	public static double modulo(double x, double modulus){
+		double xmod = x % modulus;
+		if(xmod <0) xmod += modulus;
+		return xmod;
 	}
 
 }
