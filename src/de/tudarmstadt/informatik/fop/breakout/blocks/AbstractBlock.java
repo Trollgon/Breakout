@@ -17,6 +17,11 @@ import eea.engine.event.ANDEvent;
 import eea.engine.event.Event;
 import eea.engine.event.basicevents.CollisionEvent;
 
+/**
+ * abstract class for any block in the game
+ * @author Jonas
+ *
+ */
 public abstract class AbstractBlock extends Entity implements IHitable, GameParameters {
 
 	private int hitsLeft;
