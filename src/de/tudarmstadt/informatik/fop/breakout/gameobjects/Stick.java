@@ -39,9 +39,9 @@ public class Stick extends Entity implements GameParameters {
 	private Event rightBorderReached;
 	private ANDEvent moveLeftCondition;
 	private ANDEvent moveRightCondition;
-	private Event hitByBall;
 	private CollisionEvent collider;
-	private Event hitByItem;
+	private ANDEvent hitByBall;
+	private ANDEvent hitByItem;
 
 	/**
 	 * Constructor of the Stick class
