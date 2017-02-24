@@ -35,6 +35,7 @@ public class StopWatch extends Entity implements GameParameters {
 		super(STOP_WATCH_ID);
 		this.running = false;
 		this.timePassedBeforePause = 0;
+		
 		pauseWatchEvent = new ANDEvent( new NoBallLaunchedEvent("noBallLaunched"), new Event("watchRunningEvent") {
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {

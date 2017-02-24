@@ -60,7 +60,7 @@ public interface GameParameters extends BlockParameters{
 
 	// Ball
 	public static final String BALL_ID = "ball";
-	public static final float INITIAL_BALL_SPEED = 7f;
+	public static final float INITIAL_BALL_SPEED = 1f;
 	public static final float SPEEDUP_VALUE = 0.0001f;
 	public static final String BALL_IMAGE = "/images/ball.png";
 
@@ -74,11 +74,11 @@ public interface GameParameters extends BlockParameters{
 
 	// Lives
 	public static final String LIVES_ID = "lives";
-	public static final String HEART_IMAGE = "/images/heart.png";
 	public static final String HEART_3_IMAGE = "/images/heart_3.png";
 	public static final String HEART_2_IMAGE = "/images/heart_2.png";
 	public static final String HEART_1_IMAGE = "/images/heart_1.png";
-
+	public static final String HEART_0_IMAGE = "/images/heart_0.png";
+	
 	// Score
 	public static final String SCORE_ID = "score";
 

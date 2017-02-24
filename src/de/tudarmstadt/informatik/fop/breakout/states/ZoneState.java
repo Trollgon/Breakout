@@ -36,6 +36,8 @@ public class ZoneState implements GameParameters, GameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
+        entityManager.addEntity(getID(), new Button(218, 190, STORY_GAME_STATE, 101));
+
     }
 
     @Override
@@ -62,7 +64,6 @@ public class ZoneState implements GameParameters, GameState {
                 break;
         }
 
-        entityManager.addEntity(getID(), new Button(218, 190, STORY_GAME_STATE, 101));
 
         entityManager.renderEntities(container, game, g);
 

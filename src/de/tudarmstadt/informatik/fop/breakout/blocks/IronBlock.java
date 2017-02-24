@@ -1,9 +1,6 @@
 package de.tudarmstadt.informatik.fop.breakout.blocks;
 
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-
-import eea.engine.component.render.ImageRenderComponent;
 
 /**
  * class to represent an Iron block
@@ -18,10 +15,11 @@ public class IronBlock extends AbstractBlock {
 
 	@Override
 	void configureBlock() throws SlickException {
+		//this.setHitSound(...);
 		
-		this.setType(BlockType.SOLID);
+		setType(BlockType.SOLID);
+		setBlockImage(BLOCK_IRON_IMAGE);
 		
-		this.addComponent(new ImageRenderComponent(new Image(BLOCK_IRON_IMAGE)));
 		setHitsLeft(BLOCK_IRON_HITSLEFT);
 		setScore(BLOCK_IRON_SCORE);
 		

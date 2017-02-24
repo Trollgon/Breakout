@@ -3,12 +3,17 @@ package de.tudarmstadt.informatik.fop.breakout.constants;
 public interface BlockParameters {
 
 	// Blocks
+	
+	// Block types:
+	// solid -> blocks that can´t be destroyed by other blocks (e.g. explosions)
+	// unstable -> blocks that can be destroyed by other blocks
+	// ... -> ...
 	public enum BlockType {
 		SOLID, UNSTABLE
 	}
 	
 	// Block - Sounds
-	public static final String BLOCK_HIT_SOUND = "sounds/hitBlock.wav";
+	public static final String BLOCK_DEFAULT_HIT_SOUND = "sounds/hitBlock.wav";
 	public static final String BLOCK_IMPACT_SOUND = "sounds/hitImpact.wav";
 	
 	// Block event IDS:
@@ -27,7 +32,7 @@ public interface BlockParameters {
 	public static final int BLOCK_STANDARD_HITSLEFT = 1;
 	public static final int BLOCK_STANDARD_SCORE = 100;
 	
-	// IRON-BLOCK: 2 HITS and IMMUNE to EXPLOSIONS
+	// IRON-BLOCK: 2 HITS and SOLID
 	public static final String BLOCK_IRON_IMAGE = "/images/blocks/block_iron.png";
 	public static final int BLOCK_IRON_HITSLEFT = 2;
 	public static final int BLOCK_IRON_SCORE = 200;
@@ -42,11 +47,5 @@ public interface BlockParameters {
 	public static final int BLOCK_TNT_HITSLEFT = 1;
 	public static final int BLOCK_TNT_SCORE = 150;
 	public static final float BLOCK_TNT_EXPLOSION_RADIUS = 100f;
-	
-	// SPEEDUP-BLOCK: 1 HIT, drops a SPEED-ITEM
-	public static final String BLOCK_SPEEDUP_IMAGE = "/images/blocks/block_speedup.png";
-	public static final int BLOCK_SPEEDUP_HITSLEFT = 1;
-	public static final int BLOCK_SPEEDUP_SCORE = 150;
-	
 	
 }

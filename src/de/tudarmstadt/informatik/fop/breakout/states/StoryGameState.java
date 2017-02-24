@@ -31,8 +31,6 @@ public class StoryGameState implements GameParameters, GameState {
 	
 	public StateBasedEntityManager entityManager;
 
-	private Stick stick;
-
 	/**
 	 * constructor of a new story game state
 	 */
@@ -184,9 +182,8 @@ public class StoryGameState implements GameParameters, GameState {
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.LEFT).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.TOP).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.RIGHT).createEntity());
-		stick = new Stick();
-		entityManager.addEntity(getID(), stick);
-		entityManager.addEntity(getID(), new Ball(stick));
+		entityManager.addEntity(getID(), new Stick());
+		entityManager.addEntity(getID(), new Ball((Stick) entityManager.getEntity(STORY_GAME_STATE, STICK_ID)));
 		entityManager.addEntity(getID(), new Lives());
 		entityManager.addEntity(getID(), new Score());
 		entityManager.addEntity(getID(), new StopWatch());
@@ -233,7 +230,7 @@ public class StoryGameState implements GameParameters, GameState {
 
 		// creates a new Ball if no ball existing and game not finished
 		if (!entityManager.hasEntity(STORY_GAME_STATE, BALL_ID)
-				&& (((Lives) entityManager.getEntity(STORY_GAME_STATE, LIVES_ID)).getLivesAmount() != 0)) {
+				&& (Lives.getLivesAmount() != 0)) {
 			entityManager.addEntity(STORY_GAME_STATE,
 					new Ball((Stick) entityManager.getEntity(STORY_GAME_STATE, STICK_ID)));
 		}
