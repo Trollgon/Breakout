@@ -189,10 +189,16 @@ public class Ball extends Entity implements GameParameters {
 
 	public void setSpeed(float speed) {
 		this.speed = speed;
+		if (getSpeed() > MAX_BALL_SPEED) {
+			this.speed = MAX_BALL_SPEED;
+		}
 	}
 	
 	public void addSpeed(float value) {
 		setSpeed(getSpeed() + value);
+		if (getSpeed() > MAX_BALL_SPEED) {
+			this.speed = MAX_BALL_SPEED;
+		}
 	}
 
 	public boolean isLaunched() {
