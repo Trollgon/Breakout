@@ -30,7 +30,7 @@ import eea.engine.event.basicevents.KeyDownEvent;
 public class Stick extends Entity implements GameParameters {
 
 	private final int startPosX = Math.floorDiv(WINDOW_WIDTH, 2);
-	private final int startPosY = WINDOW_HEIGHT - 20;
+	private final int startPosY = WINDOW_HEIGHT - 42;
 	private final float speed = STICK_SPEED;
 	
 	private OREvent leftKeys;
@@ -51,7 +51,7 @@ public class Stick extends Entity implements GameParameters {
 	public Stick() {
 		super(STICK_ID);
 		setPosition(new Vector2f(startPosX, startPosY));
-		setSize(new Vector2f(130, 25));
+		setSize(new Vector2f(135, 30));
 		try {
 			this.addComponent(new ImageRenderComponent(new Image(STICK_IMAGE)));
 		} catch (SlickException e) {
