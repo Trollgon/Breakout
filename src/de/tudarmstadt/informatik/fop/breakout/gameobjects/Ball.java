@@ -8,7 +8,6 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
-import de.tudarmstadt.informatik.fop.breakout.gameactions.SetEntityPosAction;
 import de.tudarmstadt.informatik.fop.breakout.gameevents.IDCollisionEvent;
 import de.tudarmstadt.informatik.fop.breakout.physics.Physics2D;
 import eea.engine.action.basicactions.DestroyEntityAction;
