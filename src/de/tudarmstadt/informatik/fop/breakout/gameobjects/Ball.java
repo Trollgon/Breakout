@@ -8,7 +8,6 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
-import de.tudarmstadt.informatik.fop.breakout.gameactions.PlaySoundAction;
 import de.tudarmstadt.informatik.fop.breakout.gameevents.IDCollisionEvent;
 import de.tudarmstadt.informatik.fop.breakout.physics.Physics2D;
 import eea.engine.action.basicactions.DestroyEntityAction;
@@ -22,6 +21,12 @@ import eea.engine.event.basicevents.CollisionEvent;
 import eea.engine.event.basicevents.KeyDownEvent;
 import eea.engine.event.basicevents.LeavingScreenEvent;
 
+/**
+ * Ball class to represent every ball in the game
+ * 
+ * @author Jonas Henry Grebe
+ *
+ */
 public class Ball extends Entity implements GameParameters {
 
 	private float speed;
@@ -93,7 +98,6 @@ public class Ball extends Entity implements GameParameters {
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/**
@@ -111,7 +115,7 @@ public class Ball extends Entity implements GameParameters {
 		topBorderCollider = new IDCollisionEvent(TOP_BORDER_ID);
 		leftBorderCollider = new IDCollisionEvent(LEFT_BORDER_ID);
 		rightBorderCollider = new IDCollisionEvent(RIGHT_BORDER_ID);
-		
+
 		// stick collision event:
 		stickCollider = new IDCollisionEvent(STICK_ID);
 
@@ -121,22 +125,26 @@ public class Ball extends Entity implements GameParameters {
 				return isLaunched();
 			}
 		};
-		
+
 		hasNotLaunched = new NOTEvent(hasLaunched);
 
 		launchBall = new ANDEvent(hasNotLaunched, new KeyDownEvent(Input.KEY_SPACE));
-		
+
 		leftScreen = new LeavingScreenEvent();
 
-		/////////////////////////////////////////////////
-		/////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// collider.addAction((arg0, arg1, arg2, arg3) -> setLastCollisionEntity(collider.getCollidedEntity()));
-		
+		// collider.addAction((arg0, arg1, arg2, arg3) ->
+		// setLastCollisionEntity(collider.getCollidedEntity()));
+
 		// bounces ball when it hits block
 		blockCollider.addAction((arg0, arg1, arg2, arg3) -> setRotation(Physics2D.bounceXAxis(getRotation())));
 		// reduces the blocks hitsleft by one when hit
-		blockCollider.addAction((arg0, arg1, arg2, arg3) -> ((AbstractBlock) blockCollider.getCollidedEntity()).addHitsLeft(-1));
+		blockCollider.addAction(
+				(arg0, arg1, arg2, arg3) -> ((AbstractBlock) blockCollider.getCollidedEntity()).addHitsLeft(-1));
+		// speeds ball up on blockCollision
+		blockCollider.addAction((arg0, arg1, arg2, arg3) -> setSpeed(getSpeed() + SPEEDUP_VALUE));
 		
 		// bounces ball at borders
 		topBorderCollider.addAction((arg0, arg1, arg2, arg3) -> setRotation(Physics2D.bounceXAxis(getRotation())));
@@ -145,25 +153,27 @@ public class Ball extends Entity implements GameParameters {
 
 		// bounces ball at stick
 		stickCollider.addAction((arg0, arg1, arg2, arg3) -> {
-			setRotation(Physics2D.bounceXAxis(getRotation()));
-			Physics2D.updateAngleOffset((Ball) stickCollider.getOwnerEntity(), getLauncher());
-		});
+			setRotation(Physics2D.bounceStick(getRotation(), (Ball) stickCollider.getOwnerEntity(), getLauncher()));
+			});
 
 		// moves ball if launched
 		hasLaunched.addAction(new MoveForwardAction(getSpeed()));
+		// sets the not launched ball on the launcher's position
 		hasNotLaunched.addAction((arg0, arg1, arg2, arg3) -> setPosition(getLauncher().getLaunchPos()));
+		// launches the ball
 		launchBall.addAction((arg0, arg1, arg2, arg3) -> setLaunched(true));
-		
+
+		// deducts 1 life of the player if the ball gets lost
 		leftScreen.addAction((arg0, arg1, arg2, arg3) -> Lives.deductLife());
-		
+
 		// destroys this ball if it leaves the window
 		leftScreen.addAction(new DestroyEntityAction());
-		
+
 	}
 
 	@Override
 	public boolean collides(Entity otherEntity) {
-
+		// TODO
 		return super.collides(otherEntity);
 	}
 

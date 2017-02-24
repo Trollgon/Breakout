@@ -1,6 +1,8 @@
 package de.tudarmstadt.informatik.fop.breakout.physics;
 
 
+import org.newdawn.slick.geom.Vector2f;
+
 import de.tudarmstadt.informatik.fop.breakout.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.BallOLD;
@@ -39,6 +41,37 @@ public class Physics2D {
 		return -rotation;
 	}
 
+	/**
+	 * returns the new rotation when bounced on Stick
+	 * @author Jonas Henry Grebe
+	 * @param rotation old rotation you want to manipulate
+	 * @param b Ball 
+	 * @param s Stick
+	 * @return the newly calculated rotation of the Ball after it hit the Stick
+	 */
+	public static float bounceStick(float rotation, Ball b, Stick s) {
+		
+		rotation = bounceXAxis(rotation);
+		
+		b.setPosition(new Vector2f(b.getPosition().getX(), s.getPosition().getY() - 28));
+		
+		float offset = b.getPosition().getX() - s.getPosition().getX();
+		
+		if (offset > - 20f && offset < 20f) {
+			return rotation;
+		}
+		
+		else {
+			
+			float factor = offset / s.getSize().getX() / 2;
+			
+			rotation += (factor * 15);
+		
+			return rotation;
+		}
+		
+	}
+	
 	/**
 	 * 
 	 * 	Used to adjust the angle of the ball after it was
