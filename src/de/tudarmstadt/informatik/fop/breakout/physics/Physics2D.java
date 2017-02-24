@@ -50,24 +50,34 @@ public class Physics2D {
 	 * @return the newly calculated rotation of the Ball after it hit the Stick
 	 */
 	public static float bounceStick(float rotation, Ball b, Stick s) {
-		
-		rotation = bounceXAxis(rotation);
-		
-		b.setPosition(new Vector2f(b.getPosition().getX(), s.getPosition().getY() - 28));
-		
 		float offset = b.getPosition().getX() - s.getPosition().getX();
 		
-		if (offset > - 20f && offset < 20f) {
+		if( Math.abs(offset) >= (s.getSize().getX() / 2) + (b.getSize().getX() / (2 * Math.sqrt(2)) ) ){	//detect if the ball hit the stick on the left or right border
+			rotation = bounceYAxis(rotation);
 			return rotation;
 		}
-		
 		else {
-			
-			float factor = offset / s.getSize().getX() / 2;
-			
-			rotation += (factor * 15);
+			rotation = bounceXAxis(rotation);
+			b.setPosition(new Vector2f(b.getPosition().getX(), s.getPosition().getY() - 28));
 		
-			return rotation;
+			if (offset > - 20f && offset < 20f) {
+				return rotation;
+			}
+		
+			else {
+			
+				float factor = offset / s.getSize().getX() / 2;
+			
+				//rotation += (factor * 15);
+				float offsetRotation = (float) modulo(rotation + factor * 20, 360);
+				if(offsetRotation < 90 || offsetRotation > 270) {
+					return offsetRotation;
+				}
+				else {
+					System.out.println("illegal rotation prevented"); 
+					return rotation; 
+				}
+		}
 		}
 		
 	}
