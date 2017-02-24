@@ -12,7 +12,7 @@ public final class GoldBlock extends AbstractBlock {
 	void configureBlock() throws SlickException {
 		//this.setHitSound(...);
 		
-		setType(BlockType.UNSTABLE);
+		setType(BlockGroup.UNSTABLE);
 		setBlockImage(BLOCK_GOLD_IMAGE);
 		
 		setHitsLeft(BLOCK_GOLD_HITSLEFT);

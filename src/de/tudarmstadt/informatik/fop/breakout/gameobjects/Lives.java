@@ -71,7 +71,13 @@ public class Lives extends Entity implements GameParameters {
 	 * reduces the livesAmount by 1
 	 */
 	public static void deductLife() {
+		if (getLivesAmount() > 0) {
 		livesAmount--;
+		} else setLifeAmount(0);
+	}
+	
+	public static void setLifeAmount(int value) {
+		livesAmount = value;
 	}
 	
 	/**

@@ -13,6 +13,9 @@ public interface GameParameters extends BlockParameters{
 	public static final int WINDOW_WIDTH = 800;
 	public static final int WINDOW_HEIGHT = 600;
 	public static final int FRAME_RATE = 60;
+	
+	// Game Modes
+	public static final float ENDLESS_GAME_SPEED = 0.02f;
 
 	//Sound
 	/*

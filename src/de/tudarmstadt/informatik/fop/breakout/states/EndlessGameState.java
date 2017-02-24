@@ -13,36 +13,33 @@ import org.newdawn.slick.state.StateBasedGame;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.factories.BorderFactory;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.Lives;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.Score;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Stick;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.StopWatch;
+import de.tudarmstadt.informatik.fop.breakout.levels.Levels;
 import de.tudarmstadt.informatik.fop.breakout.managers.LevelGenerator;
 import eea.engine.entity.StateBasedEntityManager;
 
 /**
- * GameplayState class
+ * EndlessGameState GameState class
+ * 
  * @author Jonas Henry Grebe
- *
  */
-public class GameplayState implements GameParameters, GameState {
-	
+public class EndlessGameState implements GameParameters, GameState {
+
 	private int stateID;
-	private String level;
-	
+
 	public StateBasedEntityManager entityManager;
-	
-	private Stick stick;
-	
+
 	/**
-	 * constructor of a new gameplay state
-	 * @param stateID of this state
-	 * @param level to load and play
+	 * constructor of a new story game state
 	 */
-	public GameplayState(int stateID, String level) {
-		
-		this.stateID = stateID;
-		this.level = level;
+	public EndlessGameState() {
+		this.stateID = ENDLESS_GAME_STATE;
 		entityManager = StateBasedEntityManager.getInstance();
 	}
-	
+
 	@Override
 	public void mouseClicked(int button, int x, int y, int clickCount) {
 	}
@@ -177,26 +174,19 @@ public class GameplayState implements GameParameters, GameState {
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-	
-		// adds the games borders: LEFT, TOP and RIGHT 
+
+		// adds the games borders: LEFT, TOP and RIGHT
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.LEFT).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.TOP).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.RIGHT).createEntity());
-		
-		//add the Stick
-		stick = new Stick();
-		
-		entityManager.addEntity(getID(), stick);
-		entityManager.addEntity(getID(), new Ball(stick));
-		
-		// adds the level´s blocks to the entityManager:
-		try {
-			LevelGenerator.parseLevelFromMap(level).stream().forEach(b -> entityManager.addEntity(getID(), b));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
+
+		entityManager.addEntity(getID(), new Stick());
+		entityManager.addEntity(getID(), new Ball((Stick) entityManager.getEntity(ENDLESS_GAME_STATE, STICK_ID)));
+		entityManager.addEntity(getID(), new Lives());
+		entityManager.addEntity(getID(), new Score());
+		entityManager.addEntity(getID(), new StopWatch());
+
+		LevelGenerator.getEndlessGameRow().stream().forEach(b -> entityManager.addEntity(ENDLESS_GAME_STATE, b));
 	}
 
 	@Override
@@ -205,16 +195,42 @@ public class GameplayState implements GameParameters, GameState {
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-	
+
 		g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
-		
+
 		entityManager.renderEntities(container, game, g);
+
+		// score display
+		g.drawString(((Score) entityManager.getEntity(ENDLESS_GAME_STATE, SCORE_ID)).toString(), 100,
+				(WINDOW_HEIGHT - 20));
+
+		// stopwatch display
+		g.drawString(((StopWatch) entityManager.getEntity(ENDLESS_GAME_STATE, STOP_WATCH_ID)).toString(), 200,
+				(WINDOW_HEIGHT - 20));
+
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-	
-		entityManager.updateEntities(container, game, stateID);
+
+		if (LevelGenerator.topRowMissing()) {
+			LevelGenerator.getEndlessGameRow().stream().forEach(b -> entityManager.addEntity(ENDLESS_GAME_STATE, b));
+		}
+
+		///////////// UPDATING ALL ENTITIES HERE //////////////
+		entityManager.updateEntities(container, game, ENDLESS_GAME_STATE);
+		///////////////////////////////////////////////////////
+
+		// creates a new Ball if no ball existing and game not finished
+		if (!entityManager.hasEntity(ENDLESS_GAME_STATE, BALL_ID) && (Lives.getLivesAmount() != 0)) {
+			entityManager.addEntity(ENDLESS_GAME_STATE,
+					new Ball((Stick) entityManager.getEntity(ENDLESS_GAME_STATE, STICK_ID)));
+		}
+
+		// stops game if no lifes left
+		if (Lives.getLivesAmount() == 0) {
+			game.pauseUpdate();
+		}
 	}
 
 }

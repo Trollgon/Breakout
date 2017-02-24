@@ -24,7 +24,7 @@ public final class IceBlock extends AbstractBlock {
 	void configureBlock() throws SlickException {
 		// this.setHitSound(...);
 
-		setType(BlockType.UNSTABLE);
+		setType(BlockGroup.UNSTABLE);
 		setBlockImage(BLOCK_ICE_IMAGE);
 
 		setHitsLeft(BLOCK_ICE_HITSLEFT);

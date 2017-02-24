@@ -17,7 +17,7 @@ public final class IronBlock extends AbstractBlock {
 	void configureBlock() throws SlickException {
 		//this.setHitSound(...);
 		
-		setType(BlockType.SOLID);
+		setType(BlockGroup.SOLID);
 		setBlockImage(BLOCK_IRON_IMAGE);
 		
 		setHitsLeft(BLOCK_IRON_HITSLEFT);

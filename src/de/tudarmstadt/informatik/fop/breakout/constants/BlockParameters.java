@@ -8,7 +8,7 @@ public interface BlockParameters {
 	// solid -> blocks that can´t be destroyed by other blocks (e.g. explosions)
 	// unstable -> blocks that can be destroyed by other blocks
 	// ... -> ...
-	public enum BlockType {
+	public enum BlockGroup {
 		SOLID, UNSTABLE
 	}
 	
