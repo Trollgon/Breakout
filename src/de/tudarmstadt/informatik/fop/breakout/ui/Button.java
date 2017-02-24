@@ -53,7 +53,7 @@ public class Button extends Entity implements GameParameters{
 			case ZONE_STATE:
 				path = "/images/entry.png";
 				changeState = new ChangeStateInitAction(Breakout.ZONE_STATE);
-				// sets levelID only if this Button is clicked!
+				// sets zoneID only if this Button is clicked!
 				mainEvent.addAction((gameContainer, stateBasedGame, i, component) -> ((ZoneState) Breakout.breakout.getState(ZONE_STATE)).setZoneID(stateParameterID));
 				break;
 
