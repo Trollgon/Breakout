@@ -261,7 +261,6 @@ public class StoryGameState implements GameParameters, GameState {
 		if (levelID != 0) {
 
 			//entityManager.getEntitiesByState(this.getID()).stream().filter(e -> e instanceof AbstractBlock).forEach(b -> entityManager.removeEntity(this.getID(), b));
-			System.out.println("hi hallo hier");
 			try {
 				LevelGenerator.parseLevelFromMap(Levels.getPathByID(this.levelID)).stream().forEach(b -> entityManager.addEntity(getID(), b));
 			} catch (IOException e) {
