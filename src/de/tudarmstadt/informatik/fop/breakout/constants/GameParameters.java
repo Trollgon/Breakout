@@ -21,6 +21,7 @@ public interface GameParameters extends BlockParameters{
 	 */
 	public static final float GAME_VOLUME = 0.6f;
 	public static final float RAND_PITCH_TRESHOLD = 0.05f;
+	public static final float RAND_VOL_TRESHOLD = 0.08f;
 
 	// Game States
 	public static final int MAIN_MENU_STATE = 1;

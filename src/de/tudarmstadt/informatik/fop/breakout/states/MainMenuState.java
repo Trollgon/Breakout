@@ -6,8 +6,10 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.openal.SoundStore;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tests.SoundTest;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import eea.engine.entity.StateBasedEntityManager;
@@ -158,6 +160,7 @@ public class MainMenuState implements GameParameters, GameState {
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
+		SoundStore.get().init();
 	}
 
 	@Override
@@ -169,15 +172,12 @@ public class MainMenuState implements GameParameters, GameState {
 
 		g.drawImage(new Image(MAIN_MENU_IMAGE), 0, 0);
 		
-		entityManager.addEntity(getID(), new Button(218, 190, ZONE_PICKER_STATE, 0));
-		entityManager.addEntity(getID(), new Button(218, 300, HIGHSCORE_STATE, 0));
-		entityManager.addEntity(getID(), new Button(218, 410, 0, 0));
-		
-		entityManager.renderEntities(container, game, g);
+		entityManager.addEntity(getID(), new Button(128, 408, ZONE_PICKER_STATE, 0));
+		entityManager.addEntity(getID(), new Button(308, 408, ENDLESS_GAME_STATE, 0));
+		entityManager.addEntity(getID(), new Button(484, 408, HIGHSCORE_STATE, 0));
+		entityManager.addEntity(getID(), new Button(660, 408, QUIT_STATE, 0));
 
-		g.drawString("Neues Spiel", 110, 180);
-		g.drawString("Highscore", 110, 290);
-		g.drawString("Beenden", 110, 400);
+		entityManager.renderEntities(container, game, g);
 	}
 
 	@Override

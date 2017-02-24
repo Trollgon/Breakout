@@ -2,6 +2,7 @@ package de.tudarmstadt.informatik.fop.breakout.states;
 
 import java.io.IOException;
 
+import de.tudarmstadt.informatik.fop.breakout.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.levels.Levels;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -168,6 +169,7 @@ public class StoryGameState implements GameParameters, GameState {
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+		loadLevel();
 	}
 
 	@Override
@@ -187,18 +189,6 @@ public class StoryGameState implements GameParameters, GameState {
 		entityManager.addEntity(getID(), new Lives());
 		entityManager.addEntity(getID(), new Score());
 		entityManager.addEntity(getID(), new StopWatch());
-		
-		// adds the level's blocks to the entityManager:
-		if (levelID != 0) {
-			try {
-				LevelGenerator.parseLevelFromMap(Levels.getPathByID(this.levelID)).stream().forEach(b -> entityManager.addEntity(getID(), b));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
-
 	}
 
 	@Override
@@ -263,6 +253,24 @@ public class StoryGameState implements GameParameters, GameState {
 			}
 			// still needs to end the match...
 		}*/
+	}
+
+	public void loadLevel() {
+
+		// adds the level's blocks to the entityManager:
+		if (levelID != 0) {
+
+			//entityManager.getEntitiesByState(this.getID()).stream().filter(e -> e instanceof AbstractBlock).forEach(b -> entityManager.removeEntity(this.getID(), b));
+			System.out.println("hi hallo hier");
+			try {
+				LevelGenerator.parseLevelFromMap(Levels.getPathByID(this.levelID)).stream().forEach(b -> entityManager.addEntity(getID(), b));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
 	}
 
 }
