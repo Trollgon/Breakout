@@ -71,6 +71,7 @@ public class Lives extends Entity implements GameParameters {
 	 * Deduct the amount of lives left by one and change the image representation.
 	 */
 	public void updateLifeBar() {
+		
 		try {
 			if (livesAmount == 2)
 				this.addComponent(new ImageRenderComponent(new Image(HEART_2_IMAGE)));
