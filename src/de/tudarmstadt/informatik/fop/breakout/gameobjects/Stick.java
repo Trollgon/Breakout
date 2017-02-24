@@ -30,7 +30,7 @@ import eea.engine.event.basicevents.KeyDownEvent;
 public class Stick extends Entity implements GameParameters {
 
 	private final int startPosX = Math.floorDiv(WINDOW_WIDTH, 2);
-	private final int startPosY = WINDOW_HEIGHT - 40;
+	private final int startPosY = WINDOW_HEIGHT - 42;
 	private final float speed = STICK_SPEED;
 	
 	private OREvent leftKeys;
