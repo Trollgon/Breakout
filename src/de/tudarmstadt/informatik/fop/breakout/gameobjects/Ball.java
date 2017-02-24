@@ -135,9 +135,6 @@ public class Ball extends Entity implements GameParameters {
 		//////////////////////////////////////////////////////////////////////////////////////////////////
 		//////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// collider.addAction((arg0, arg1, arg2, arg3) ->
-		// setLastCollisionEntity(collider.getCollidedEntity()));
-
 		// bounces ball when it hits block
 		blockCollider.addAction((arg0, arg1, arg2, arg3) -> setRotation(Physics2D.bounceXAxis(getRotation())));
 		// reduces the blocks hitsleft by one when hit
@@ -155,6 +152,7 @@ public class Ball extends Entity implements GameParameters {
 		stickCollider.addAction((arg0, arg1, arg2, arg3) -> {
 			setRotation(Physics2D.bounceStick(getRotation(), (Ball) stickCollider.getOwnerEntity(), getLauncher()));
 			});
+		
 
 		// moves ball if launched
 		hasLaunched.addAction(new MoveForwardAction(getSpeed()));

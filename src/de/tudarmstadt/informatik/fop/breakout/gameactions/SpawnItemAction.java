@@ -15,9 +15,10 @@ public class SpawnItemAction implements Action {
 	}
 */	
 	@Override
-	public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
+	public void update(GameContainer container, StateBasedGame game, int delta, Component component) {
 		
-		//spawnItem-code
+		// component.getOwnerEntity.getPosition();
+		// spawnItem-code
 	}
 
 }
