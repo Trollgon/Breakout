@@ -51,7 +51,8 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 		setPassable(false);
 		setPosition(new Vector2f(xPos, yPos));
-
+		setSize(new Vector2f(BLOCK_WIDTH, BLOCK_HEIGHT));
+		
 		setDestroyed(false);
 
 		// to be overwritten later:
