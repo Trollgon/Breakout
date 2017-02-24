@@ -8,6 +8,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.factories.LiveHeartFactory;
 import eea.engine.action.Action;
 import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
@@ -22,6 +23,7 @@ import eea.engine.event.basicevents.LoopEvent;
 public class Lives extends Entity implements GameParameters {
 
 	private static int livesAmount;
+	private ImageRenderComponent image;
 	private LoopEvent updateBar;
 	
 	/**
@@ -31,11 +33,13 @@ public class Lives extends Entity implements GameParameters {
 		super(LIVES_ID);
 		livesAmount = 3;
 		
+		
 		setPosition(new Vector2f(45, (WINDOW_HEIGHT - 13)));
 		setPassable(true);
 		
 		try {
-			this.addComponent(new ImageRenderComponent(new Image(HEART_3_IMAGE)));
+			image = new LiveHeartFactory(getLivesAmount()).createLiveHeart();
+			
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -72,17 +76,15 @@ public class Lives extends Entity implements GameParameters {
 	 */
 	public void updateLifeBar() {
 		
+		this.removeComponent(image);
 		try {
-			if (livesAmount == 2)
-				this.addComponent(new ImageRenderComponent(new Image(HEART_2_IMAGE)));
-			if (livesAmount == 1)
-				this.addComponent(new ImageRenderComponent(new Image(HEART_1_IMAGE)));
-			if (livesAmount == 0)
-				this.addComponent(new ImageRenderComponent(new Image(HEART_0_IMAGE)));
-			
+			image = new LiveHeartFactory(getLivesAmount()).createLiveHeart();
 		} catch (SlickException e) {
+			
 			e.printStackTrace();
 		}
+		this.addComponent(image);
+		
 	}
 
 }

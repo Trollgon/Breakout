@@ -91,7 +91,6 @@ public class Ball extends Entity implements GameParameters {
 
 		this.addComponent(XAxisCollision);
 		this.addComponent(YAxisCollision);
-
 	}
 
 	
@@ -169,6 +168,9 @@ public class Ball extends Entity implements GameParameters {
 		// event which fires if the ball left the screen
 		leftScreen = new LeavingScreenEvent();
 	}
+	
+	
+	
 
 	/**
 	 * adds the balls actions
