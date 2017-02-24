@@ -40,7 +40,7 @@ public class Button extends Entity implements GameParameters{
 		
 		mainEvent = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
 		
-		// switch stateID, e.g. GAMEPLAY_STATE, MAIN_MENU_STATE, ...
+		// switch stateID, e.g. HIGHSCORE_STATE, MAIN_MENU_STATE, ...
 		switch (stateID) {
 			case ZONE_PICKER_STATE:
 				path = "/images/play_button.png";
