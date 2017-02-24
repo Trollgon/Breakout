@@ -17,7 +17,7 @@ import eea.engine.entity.Entity;
  * 
  */
 public class Physics2D {
-
+	static long lastHitStickTime;
 	/**
 	 * returns the new rotation when bounced on the XAxis
 	 * 
@@ -83,32 +83,40 @@ public class Physics2D {
 	 *            the Stick hitting the ball
 	 */
 	public static void updateAngleOffset(Ball ball, Stick s) {
+		System.out.println(ball.getPosition().getY());
+		if(System.currentTimeMillis() > lastHitStickTime + 100){
+			lastHitStickTime = System.currentTimeMillis();
 		float diff = s.getPosition().getX() - ball.getPosition().getX();
 		float rotationOffset = 0;
 		if(Math.abs(diff) >= (s.getSize().getX() / 2) + (ball.getSize().getX() / (2 * Math.sqrt(2)))){	//detect if the ball hit the stick on the left or right border
 			ball.setRotation(ball.getRotation() -180); //  send it in the opposite direction
+			System.out.println("y achse stick");
 		}
 		else if (diff > 20) {
 			rotationOffset = -(diff - 20) / 2.6f; // offset angle continuously gets bigger the
 									// further from the center the stick is hit
+			System.out.println("x achse stick links");
 			
 		} else if (diff < -20) {
 			rotationOffset = -(diff + 20) / 2.6f;
-			
+			System.out.println("x achse stick rechts");
 		}
 		 // if the stick is hit in a range of 20px around the middle,
 					// don't offset the angle
+		else System.out.println("Stick mitte");
 		
-		
-	float newRot = (float) modulo(ball.getRotation() + rotationOffset, 360);
+	float newRot = (float) /*ball.getRotation() + rotationOffset % 360;*/modulo(ball.getRotation() + rotationOffset, 360);
 	/*	for(;newRot < 0; newRot += 360){ //Java thinks -90 % 360 = -90 and not 270
 			} */
 		
 		if(newRot < 90 || newRot > 270){	//prevent the ball falling through the stick due to rotation pointing downwards after adding offset multiple times
 			ball.setRotation(newRot);
+			ball.setPosition(new Vector2f(ball.getPosition().getX(), s.getPosition().getY() - 28));
 		}
+		System.out.println(ball.getPosition().getY());
 		
-		
+		}
+		else System.out.println("can only use this every 100 ms");
 
 	}
 	/**
