@@ -72,6 +72,9 @@ public class LevelGenerator implements GameParameters {
 					case 3:
 						block = new GoldBlock(xPos, yPos);
 						break;
+					case 6:
+						block = new IceBlock(xPos, yPos);
+						break;
 					}
 					
 					gridX++;

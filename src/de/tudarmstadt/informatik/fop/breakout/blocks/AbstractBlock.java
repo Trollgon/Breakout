@@ -7,6 +7,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Score;
 import de.tudarmstadt.informatik.fop.breakout.interfaces.IHitable;
 import eea.engine.action.Action;
@@ -33,9 +34,9 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 	private String hitSound;
 	private Image blockImage;
 
-	private CollisionEvent collider;
+	protected CollisionEvent collider;
 	private Event canBeDestroyed;
-	private Event totalDestruction;
+	protected Event totalDestruction;
 
 	/**
 	 * constructor of a AbstractBlock
@@ -69,7 +70,6 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 		this.addComponent(new ImageRenderComponent(getBlockImage()));
 
 		this.addComponent(collider);
-		// this.addComponent(hitByBall);
 		this.addComponent(totalDestruction);
 		this.addComponent(canBeDestroyed);
 	}
@@ -122,13 +122,20 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 				// collider.getCollidedEntity()).setLastCollisionEntity(collider.getOwnerEntity());
 			}
 		});
-	
+
 		// adds the blocks-scorepoints to the players-score
 		totalDestruction.addAction((arg0, arg1, arg2, arg3) -> Score.incScoreCount(getScore()));
 		// action: destroys this blocks entity
 		totalDestruction.addAction(new DestroyEntityAction());
 	};
 
+	@Override
+	public boolean collides(Entity otherEntity) {
+		
+		// blocks can only be hit by a ball instance:
+		return super.collides(otherEntity) && otherEntity instanceof Ball;
+	}
+	
 	@Override
 	public void setHitsLeft(int value) {
 		this.hitsLeft = value;

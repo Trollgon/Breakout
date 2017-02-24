@@ -144,7 +144,7 @@ public class Ball extends Entity implements GameParameters {
 		blockCollider.addAction(
 				(arg0, arg1, arg2, arg3) -> ((AbstractBlock) blockCollider.getCollidedEntity()).addHitsLeft(-1));
 		// speeds ball up on blockCollision
-		blockCollider.addAction((arg0, arg1, arg2, arg3) -> setSpeed(getSpeed() + SPEEDUP_VALUE));
+		blockCollider.addAction((arg0, arg1, arg2, arg3) -> addSpeed(SPEEDUP_VALUE));
 		
 		// bounces ball at borders
 		topBorderCollider.addAction((arg0, arg1, arg2, arg3) -> setRotation(Physics2D.bounceXAxis(getRotation())));
@@ -191,6 +191,10 @@ public class Ball extends Entity implements GameParameters {
 
 	public void setSpeed(float speed) {
 		this.speed = speed;
+	}
+	
+	public void addSpeed(float value) {
+		setSpeed(getSpeed() + value);
 	}
 
 	public boolean isLaunched() {
