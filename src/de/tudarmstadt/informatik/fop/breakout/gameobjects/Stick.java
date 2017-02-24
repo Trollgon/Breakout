@@ -51,7 +51,7 @@ public class Stick extends Entity implements GameParameters {
 	public Stick() {
 		super(STICK_ID);
 		setPosition(new Vector2f(startPosX, startPosY));
-		setSize(new Vector2f(135, 30));
+		setSize(new Vector2f(130, 25));
 		try {
 			this.addComponent(new ImageRenderComponent(new Image(STICK_IMAGE)));
 		} catch (SlickException e) {
