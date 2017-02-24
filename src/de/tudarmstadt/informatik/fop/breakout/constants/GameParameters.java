@@ -70,7 +70,7 @@ public interface GameParameters extends BlockParameters{
 	public static final String STICK_HIT_SOUND = "sounds/hitImpact.wav"; //credit: freesound.org - MrGuff -"Hit Impact"
 	public static final String COLLECT_ITEM_SOUND = "sounds/itemHitStick.wav";
 	public static final String STICK_ID = "stick";
-	public static final float STICK_SPEED = 0.5f;
+	public static final float STICK_SPEED = 1.5f;
 	public static final String STICK_IMAGE = "/images/stick_round.png";
 
 	// Lives
