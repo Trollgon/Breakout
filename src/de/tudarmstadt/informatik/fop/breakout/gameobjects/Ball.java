@@ -4,16 +4,16 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.gameactions.SetEntityPosAction;
+import de.tudarmstadt.informatik.fop.breakout.gameevents.IDCollisionEvent;
 import de.tudarmstadt.informatik.fop.breakout.physics.Physics2D;
-import eea.engine.action.Action;
 import eea.engine.action.basicactions.DestroyEntityAction;
 import eea.engine.action.basicactions.MoveForwardAction;
-import eea.engine.component.Component;
+import eea.engine.action.basicactions.SetEntityPositionAction;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.event.ANDEvent;
@@ -23,308 +23,182 @@ import eea.engine.event.basicevents.CollisionEvent;
 import eea.engine.event.basicevents.KeyDownEvent;
 import eea.engine.event.basicevents.LeavingScreenEvent;
 
-/**
- * ball class to represent any ball in the game
- * 
- * @author Jonas Henry Grebe
- *
- */
 public class Ball extends Entity implements GameParameters {
 
-	// balls speed:
 	private float speed;
 	private boolean isLaunched;
 
+	// launcher of this ball
 	private Stick launcher;
 
-	// entity of last collision:
-	private Entity lastCollisionEntity = null;
+	// Entity of the last collision
+	private Entity lastCollisionEntity;
 
-	// ball events:
 	private CollisionEvent collider;
-	private Event launched;
-	private NOTEvent notLaunched;
-	private ANDEvent launch;
-	private Event differentCollision;
-	private ANDEvent XAxisCollision;
-	private ANDEvent YAxisCollision;
+	private IDCollisionEvent blockCollider;
+
+	private IDCollisionEvent topBorderCollider;
+	private IDCollisionEvent leftBorderCollider;
+	private IDCollisionEvent rightBorderCollider;
+
+	private IDCollisionEvent stickCollider;
+
+	private Event hasLaunched;
+	private NOTEvent hasNotLaunched;
+	private ANDEvent launchBall;
+
 	private LeavingScreenEvent leftScreen;
 
 	/**
-	 * constructor of ball class
+	 * Ball constructor
 	 * 
-	 * @param launcher
-	 *            of the new ball
+	 * @param xPos
+	 *            of the new Ball
+	 * @param yPos
+	 *            of the new Ball
 	 */
 	public Ball(Stick launcher) {
 		super(BALL_ID);
 
-		setPosition(new Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 30));
+		setLauncher(launcher);
+		setLaunched(false);
+		setLastCollisionEntity(getLauncher());
+
+		setPosition(getLauncher().getLaunchPos());
 		setSpeed(INITIAL_BALL_SPEED);
 		setRotation(0);
-		
+
 		setVisible(true);
 		setPassable(false);
 
-		setLauncher(launcher);
-		setPosition(getLauncher().getLaunchPos());
-		setLaunched(false);
+		configureEvents();
+
+		// adds colliders
+		this.addComponent(collider);
+		this.addComponent(blockCollider);
+		this.addComponent(topBorderCollider);
+		this.addComponent(leftBorderCollider);
+		this.addComponent(rightBorderCollider);
+		this.addComponent(stickCollider);
+
+		// adds launch events
+		this.addComponent(hasLaunched);
+		this.addComponent(hasNotLaunched);
+		this.addComponent(launchBall);
+
+		// adds leaving screen event
+		this.addComponent(leftScreen);
 
 		try {
-			addComponent(new ImageRenderComponent(new Image(BALL_IMAGE)));
+			this.addComponent(new ImageRenderComponent(new Image(BALL_IMAGE)));
 		} catch (SlickException e) {
-
 			e.printStackTrace();
 		}
 
-		// configures events/actions
-		addEvents();
-		addActions();
-		
-		// adds all events with their actions
-		this.addComponent(collider);
-		this.addComponent(launch);
-		this.addComponent(launched);
-		this.addComponent(notLaunched);
-		this.addComponent(differentCollision);
-		this.addComponent(leftScreen);
-
-		this.addComponent(XAxisCollision);
-		this.addComponent(YAxisCollision);
 	}
 
-	
 	/**
-	 * adds the balls events
+	 * configures all ball events and adds the actions
 	 */
-	private void addEvents() {
+	private void configureEvents() {
 
-		//////////////////////////////// EVENTS ////////////////////////////////
-
-		// main collision event
+		// main collision event:
 		collider = new CollisionEvent();
 
-		// event which fires if the ball has been launched
-		launched = new ANDEvent(new Event("ballIsLaunched") {
+		// block collision event:
+		blockCollider = new IDCollisionEvent(BLOCK_ID);
+
+		// border collision event:
+		topBorderCollider = new IDCollisionEvent(TOP_BORDER_ID);
+		leftBorderCollider = new IDCollisionEvent(LEFT_BORDER_ID);
+		rightBorderCollider = new IDCollisionEvent(RIGHT_BORDER_ID);
+		
+		// stick collision event:
+		stickCollider = new IDCollisionEvent(STICK_ID);
+
+		hasLaunched = new Event("hasLaunchedEvent") {
 
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
 				return isLaunched();
 			}
-		});
-
-		// event which fires if the ball has not been launched yet
-		notLaunched = new NOTEvent(launched);
-
-		// event which fires if the ball isn't launched and the SPACE-KEY is
-		// pressed -> launch
-		launch = new ANDEvent(new NOTEvent(launched), new KeyDownEvent(Input.KEY_SPACE));
-
-		// event which fires if the current collidedEntity is not the same as
-		// last collision
-		differentCollision = new ANDEvent(collider, new Event("otherCollisionAsLastTime") {
-
-			@Override
-			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
-				return getLastCollision() != collider.getCollidedEntity() || getLastCollision() == null;
-			}
-		});
-
-		// event which fires if the ball should bounce at the x-axis
-		XAxisCollision = new ANDEvent(collider, differentCollision, new Event("xAxisCollision") {
-
-			@Override
-			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
-				Entity e = collider.getCollidedEntity();
-
-				// if e is a block and has been hit on edge, return true, else
-				// false
-				if (e instanceof AbstractBlock) {
-					return collidedOnEdge((AbstractBlock) e);
-				}
-
-				return (e.getID() == TOP_BORDER_ID || e.getID() == STICK_ID);
-			}
-
-		});
-
-		// event which fires if the ball should bounce at the y-axis
-		YAxisCollision = new ANDEvent(collider, differentCollision, new Event("yAxisCollision") {
-
-			@Override
-			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
-				Entity e = collider.getCollidedEntity();
-
-				// if e is a block and has been hit on edge, return false, else
-				// true
-				if (e instanceof AbstractBlock) {
-					return !collidedOnEdge((AbstractBlock) e);
-				}
-
-				return (e.getID() == LEFT_BORDER_ID || e.getID() == RIGHT_BORDER_ID);
-			}
-		});
-
-		// event which fires if the ball left the screen
-		leftScreen = new LeavingScreenEvent();
-	}
-	
-	
-	
-
-	/**
-	 * adds the balls actions
-	 */
-	private void addActions() {
+		};
 		
-		//////////////////////////////// ACTIONS ////////////////////////////
+		hasNotLaunched = new NOTEvent(hasLaunched);
 
-		// remember the current collided entity for next collision
-		collider.addAction(new Action() {
+		launchBall = new ANDEvent(hasNotLaunched, new KeyDownEvent(Input.KEY_SPACE));
+		
+		leftScreen = new LeavingScreenEvent();
 
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				setLastCollision(collider.getCollidedEntity());
+		/////////////////////////////////////////////////
+		/////////////////////////////////////////////////
 
-			}
+		collider.addAction((arg0, arg1, arg2, arg3) -> setLastCollisionEntity(collider.getCollidedEntity()));
+		
+		// bounces ball when it hits block
+		blockCollider.addAction((arg0, arg1, arg2, arg3) -> setRotation(Physics2D.bounceXAxis(getRotation())));
+		// reduces the blocks hitsleft by one when hit
+		blockCollider.addAction((arg0, arg1, arg2, arg3) -> ((AbstractBlock) blockCollider.getCollidedEntity()).addHitsLeft(-1));
+		
+		// bounces ball at borders
+		topBorderCollider.addAction((arg0, arg1, arg2, arg3) -> setRotation(Physics2D.bounceXAxis(getRotation())));
+		leftBorderCollider.addAction((arg0, arg1, arg2, arg3) -> setRotation(Physics2D.bounceYAxis(getRotation())));
+		rightBorderCollider.addAction((arg0, arg1, arg2, arg3) -> setRotation(Physics2D.bounceYAxis(getRotation())));
+
+		// bounces ball at stick
+		stickCollider.addAction((arg0, arg1, arg2, arg3) -> {
+			setRotation(Physics2D.bounceXAxis(getRotation()));
+			Physics2D.updateAngleOffset((Ball) stickCollider.getOwnerEntity(), getLauncher());
 		});
 
-		// moves the ball in its direction
-		launched.addAction(new MoveForwardAction(getSpeed()));
-
-		// places the not yet launched ball at the launch-position
-		notLaunched.addAction(new Action() {
-
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				setPosition(getLauncher().getLaunchPos());
-			}
-		});
-
-		// launches the ball
-		launch.addAction(new Action() {
-
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				setLaunched(true);
-			}
-		});
-
-		// bounces the ball on the x-axis
-		XAxisCollision.addAction(new Action() {
-
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-
-				setRotation(Physics2D.bounceXAxis(getRotation()));
-
-				// manipulate the balls rotation additionally if it hits a stick
-				if (collider.getCollidedEntity().getID() == STICK_ID) {
-					Physics2D.updateAngleOffset((Ball) collider.getOwnerEntity(), launcher);
-				}
-			}
-		});
-
-		// bounces the ball on the y-axis
-		YAxisCollision.addAction(new Action() {
-
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-
-				setRotation(Physics2D.bounceYAxis(getRotation()));
-			}
-		});
-
-		// destroys ball when it left the screen
-		leftScreen.addAction(new Action() {
-
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				Lives.deductLife();
-			}
-		});
+		// moves ball if launched
+		hasLaunched.addAction(new MoveForwardAction(getSpeed()));
+		hasNotLaunched.addAction((arg0, arg1, arg2, arg3) -> setPosition(getLauncher().getLaunchPos()));
+		launchBall.addAction((arg0, arg1, arg2, arg3) -> setLaunched(true));
+		
+		leftScreen.addAction((arg0, arg1, arg2, arg3) -> Lives.deductLife());
+		
+		// destroys this ball if it leaves the window
 		leftScreen.addAction(new DestroyEntityAction());
-
+		
 	}
 
+	@Override
+	public boolean collides(Entity otherEntity) {
 
-	/**
-	 * determines whether this ball has hit the given Block on an edge or not
-	 * 
-	 * @param e
-	 * @return TRUE if hit on EDGE, else FALSE
-	 */
-	public boolean collidedOnEdge(AbstractBlock e) {
-		final float SENSITIVITY = 1f;
-		float offset = e.getPosition().x - this.getPosition().x;
-
-		return (offset < -(e.getSize().x / 2) + SENSITIVITY || (e.getSize().x / 2) - SENSITIVITY > offset);
-	}
-	
-	/**
-	 * returns if this ball has been launched yet
-	 * 
-	 * @return TRUE, if launched; FALSE, if not launched
-	 */
-	public boolean isLaunched() {
-		return isLaunched;
+		return super.collides(otherEntity);
 	}
 
-	/**
-	 * sets if the ball is launched or not
-	 * 
-	 * @param isLaunched
-	 */
-	public void setLaunched(boolean isLaunched) {
-		this.isLaunched = isLaunched;
+	public Stick getLauncher() {
+		return launcher;
 	}
 
-	/**
-	 * gets the current movement speed of the ball
-	 * 
-	 * @return float value f current speed
-	 */
+	public void setLauncher(Stick launcher) {
+		this.launcher = launcher;
+	}
+
 	public float getSpeed() {
 		return speed;
 	}
 
-	/**
-	 * sets the speed of this ball
-	 * 
-	 * @param speed
-	 *            float value of speed
-	 */
 	public void setSpeed(float speed) {
 		this.speed = speed;
 	}
 
-	public void speedUp() {
-		setSpeed(getSpeed() + SPEEDUP_VALUE);
+	public boolean isLaunched() {
+		return isLaunched;
 	}
 
-	/**
-	 * gets the last entity the ball has collided with
-	 * 
-	 * @return
-	 */
-	public Entity getLastCollision() {
+	public void setLaunched(boolean isLaunched) {
+		this.isLaunched = isLaunched;
+	}
+
+	public Entity getLastCollisionEntity() {
 		return lastCollisionEntity;
 	}
 
-	/**
-	 * sets the last entity the ball has been collided with
-	 * 
-	 * @param lastCollision
-	 */
-	public void setLastCollision(Entity lastCollision) {
-		this.lastCollisionEntity = lastCollision;
+	public void setLastCollisionEntity(Entity lastCollisionEntity) {
+		this.lastCollisionEntity = lastCollisionEntity;
 	}
 
-	private void setLauncher(Stick launcher) {
-		this.launcher = launcher;
-	}
-
-	private Stick getLauncher() {
-		return launcher;
-	}
 }

@@ -7,7 +7,7 @@ import org.newdawn.slick.SlickException;
  * @author Jonas Henry Grebe
  *
  */
-public class StandardBlock extends AbstractBlock {
+public final class StandardBlock extends AbstractBlock {
 
 	public StandardBlock(int xPos, int yPos) {
 		super(xPos, yPos);

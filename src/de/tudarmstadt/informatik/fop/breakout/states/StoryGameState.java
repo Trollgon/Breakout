@@ -2,8 +2,6 @@ package de.tudarmstadt.informatik.fop.breakout.states;
 
 import java.io.IOException;
 
-import de.tudarmstadt.informatik.fop.breakout.blocks.AbstractBlock;
-import de.tudarmstadt.informatik.fop.breakout.levels.Levels;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -19,6 +17,7 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.Lives;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Score;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Stick;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.StopWatch;
+import de.tudarmstadt.informatik.fop.breakout.levels.Levels;
 import de.tudarmstadt.informatik.fop.breakout.managers.LevelGenerator;
 import eea.engine.entity.StateBasedEntityManager;
 
@@ -184,6 +183,7 @@ public class StoryGameState implements GameParameters, GameState {
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.LEFT).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.TOP).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.RIGHT).createEntity());
+		
 		entityManager.addEntity(getID(), new Stick());
 		entityManager.addEntity(getID(), new Ball((Stick) entityManager.getEntity(STORY_GAME_STATE, STICK_ID)));
 		entityManager.addEntity(getID(), new Lives());

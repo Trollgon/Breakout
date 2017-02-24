@@ -8,6 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.gameactions.PlaySoundAction;
+import de.tudarmstadt.informatik.fop.breakout.gameevents.IDCollisionEvent;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Score;
 import de.tudarmstadt.informatik.fop.breakout.interfaces.IHitable;
@@ -18,7 +19,7 @@ import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.event.ANDEvent;
 import eea.engine.event.Event;
-import eea.engine.event.basicevents.CollisionEvent;
+import eea.engine.event.basicevents.*;
 
 /**
  * abstract class for any block in the game
@@ -36,9 +37,8 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 	private Image blockImage;
 
 	private CollisionEvent collider;
-	private ANDEvent hitByBall;
-	private ANDEvent canBeDestroyed;
-	private ANDEvent totalDestruction;
+	private Event canBeDestroyed;
+	private Event totalDestruction;
 
 	/**
 	 * constructor of a AbstractBlock
@@ -69,7 +69,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 		this.addComponent(new ImageRenderComponent(getBlockImage()));
 
 		this.addComponent(collider);
-		this.addComponent(hitByBall);
+		//this.addComponent(hitByBall);
 		this.addComponent(totalDestruction);
 		this.addComponent(canBeDestroyed);
 	}
@@ -83,84 +83,49 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 		// basic collision event
 		collider = new CollisionEvent();
-
-		// event which fires if this block collides with a ball
-		hitByBall = new ANDEvent(collider, new Event(BALLCOLLISION) {
-
-			@Override
-			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
-
-				return collider.getCollidedEntity().getID() == BALL_ID;
-			}
-		});
-
+			
 		// event which fires if the block is hityByBall and has no hits left
-		canBeDestroyed = new ANDEvent(hitByBall, new Event(NOHITSLEFT) {
-
+		canBeDestroyed = new Event("hasNoHitsLeft") {
+			
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
 				return !hasHitsLeft();
 			}
-
-		});
+		};
 
 		// event which fires if the block can be destroyed
 		// ! THIS IS JUST AN AUXILIARY EVENT, TO BE ABLE TO DESTROY A BLOCK
 		// OUTSIDE THIS CLASS, by using setDestroyed(true)!
-		totalDestruction = new ANDEvent(new Event(DESTRUCTION) {
-
+		totalDestruction = new Event("totalDestructionEvent") {
+			
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
 				return isDestroyed();
 			}
-			
-		});
-	};
+		};
+	}
 
 	/**
 	 * adds all block actions, for a better overview
 	 */
 	void addActions() {
 		
-		// action: decrements the blocks hitsleft
-		hitByBall.addAction(new Action() {
-
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-
-				addHitsLeft(-1);
-			}
-		});
-
-		hitByBall.addAction(new PlaySoundAction(this.getHitSound(), 0.9f));
-
 		// action: tells the block that it can destroy itself
-		canBeDestroyed.addAction(new Action() {
-
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				setDestroyed(true);
-			}
-		});
+		canBeDestroyed.addAction((arg0, arg1, arg2, arg3) -> setDestroyed(true));
 
 		// action: tells the ball which entity it has destroyed
 		canBeDestroyed.addAction(new Action() {
 
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				((Ball) collider.getCollidedEntity()).setLastCollision(collider.getOwnerEntity());
+				// ((Ball) collider.getCollidedEntity()).setLastCollisionEntity(collider.getOwnerEntity());
 			}
 		});
 
 		// action: destroys this blocks entity
 		totalDestruction.addAction(new DestroyEntityAction());
-		totalDestruction.addAction(new Action() {
-			
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				Score.incScoreCount(getScore());
-			}
-		});
+		// adds the blocks-scorepoints to the players-score
+		totalDestruction.addAction((arg0, arg1, arg2, arg3) -> Score.incScoreCount(getScore()));
 	};
 
 	@Override

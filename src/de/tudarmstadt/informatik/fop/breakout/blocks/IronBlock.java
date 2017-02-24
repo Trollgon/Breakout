@@ -7,7 +7,7 @@ import org.newdawn.slick.SlickException;
  * @author Jonas Henry Grebe
  *
  */
-public class IronBlock extends AbstractBlock {
+public final class IronBlock extends AbstractBlock {
 
 	public IronBlock(int xPos, int yPos) {
 		super(xPos, yPos);
