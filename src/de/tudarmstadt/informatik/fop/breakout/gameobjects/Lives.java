@@ -2,7 +2,6 @@ package de.tudarmstadt.informatik.fop.breakout.gameobjects;
 
 
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
@@ -44,6 +43,7 @@ public class Lives extends Entity implements GameParameters {
 			e.printStackTrace();
 		}
 		
+		// updateBar-event
 		updateBar = new LoopEvent();
 		
 		updateBar.addAction(new Action() {
@@ -67,12 +67,15 @@ public class Lives extends Entity implements GameParameters {
 		return livesAmount;
 	}
 	
+	/**
+	 * reduces the livesAmount by 1
+	 */
 	public static void deductLife() {
 		livesAmount--;
 	}
 	
 	/**
-	 * Deduct the amount of lives left by one and change the image representation.
+	 * updates the image representation of the lives left.
 	 */
 	public void updateLifeBar() {
 		
