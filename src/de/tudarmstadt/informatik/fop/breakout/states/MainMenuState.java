@@ -6,8 +6,10 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.openal.SoundStore;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tests.SoundTest;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import eea.engine.entity.StateBasedEntityManager;
@@ -158,6 +160,7 @@ public class MainMenuState implements GameParameters, GameState {
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
+		SoundStore.get().init();
 	}
 
 	@Override
