@@ -5,16 +5,19 @@ import de.tudarmstadt.informatik.fop.breakout.states.StoryGameState;
 import de.tudarmstadt.informatik.fop.breakout.states.ZoneState;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.ChangeStateInitAction;
+import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.event.ANDEvent;
 import eea.engine.event.basicevents.MouseClickedEvent;
 import eea.engine.event.basicevents.MouseEnteredEvent;
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * @author Matthias Spoerkmann
@@ -49,14 +52,16 @@ public class Button extends Entity implements GameParameters{
 
 			case ZONE_STATE:
 				path = "/images/entry.png";
-				((ZoneState) Breakout.breakout.getState(ZONE_STATE)).setZoneID(stateParameterID);
 				changeState = new ChangeStateInitAction(Breakout.ZONE_STATE);
+				// sets levelID only if this Button is clicked!
+				mainEvent.addAction((gameContainer, stateBasedGame, i, component) -> ((ZoneState) Breakout.breakout.getState(ZONE_STATE)).setZoneID(stateParameterID));
 				break;
 
 			case STORY_GAME_STATE:
 				path = "/images/entry.png";
-				((StoryGameState) Breakout.breakout.getState(STORY_GAME_STATE)).setLevelID(stateParameterID);
 				changeState = new ChangeStateInitAction(Breakout.STORY_GAME_STATE);
+				// sets levelID only if this Button is clicked!
+				mainEvent.addAction((gameContainer, stateBasedGame, i, component) -> ((StoryGameState) Breakout.breakout.getState(STORY_GAME_STATE)).setLevelID(stateParameterID));
 				break;
 
 			case ENDLESS_GAME_STATE:
@@ -91,8 +96,9 @@ public class Button extends Entity implements GameParameters{
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
-		
+
 		mainEvent.addAction(changeState);
+
 		this.addComponent(mainEvent);
 	}
 }

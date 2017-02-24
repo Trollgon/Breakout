@@ -37,6 +37,7 @@ public class ZoneState implements GameParameters, GameState {
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
         entityManager.addEntity(getID(), new Button(218, 190, STORY_GAME_STATE, 101));
+        entityManager.addEntity(getID(), new Button(218, 310, STORY_GAME_STATE, 102));
 
     }
 
