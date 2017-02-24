@@ -19,7 +19,12 @@ public class IDCollisionEvent extends CollisionEvent {
 
 		
 		if (super.performAction(gc, sb, delta)) {
-			System.out.println(getCollidedEntity().getID());
+			
+			// TODO: delete:
+			if (getCollidedEntity().getID() == collisionID){
+				System.out.println(getCollidedEntity().getID());
+			}
+				
 			return getCollidedEntity().getID() == collisionID;
 		}
 		return false;

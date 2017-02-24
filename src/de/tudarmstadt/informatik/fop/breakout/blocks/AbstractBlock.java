@@ -23,6 +23,7 @@ import eea.engine.event.basicevents.*;
 
 /**
  * abstract class for any block in the game
+ * 
  * @author Jonas Henry Grebe
  *
  */
@@ -32,7 +33,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 	private int score;
 	private BlockType type;
 	private boolean isDestroyed;
-	
+
 	private String hitSound;
 	private Image blockImage;
 
@@ -42,34 +43,37 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 	/**
 	 * constructor of a AbstractBlock
-	 * @param xPos of the new block
-	 * @param yPos of the new block
+	 * 
+	 * @param xPos
+	 *            of the new block
+	 * @param yPos
+	 *            of the new block
 	 */
 	public AbstractBlock(int xPos, int yPos) {
 		super(BLOCK_ID);
 
 		setPassable(false);
 		setPosition(new Vector2f(xPos, yPos));
-		
+
 		setDestroyed(false);
-		
+
 		// to be overwritten later:
 		setHitSound(BLOCK_DEFAULT_HIT_SOUND);
-		
+
 		addEvents();
 		addActions();
-		
+
 		try {
 			configureBlock();
 		} catch (SlickException e) {
-			
+
 			e.printStackTrace();
 		}
-		
+
 		this.addComponent(new ImageRenderComponent(getBlockImage()));
 
 		this.addComponent(collider);
-		//this.addComponent(hitByBall);
+		// this.addComponent(hitByBall);
 		this.addComponent(totalDestruction);
 		this.addComponent(canBeDestroyed);
 	}
@@ -83,10 +87,10 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 		// basic collision event
 		collider = new CollisionEvent();
-			
+
 		// event which fires if the block is hityByBall and has no hits left
 		canBeDestroyed = new Event("hasNoHitsLeft") {
-			
+
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
 				return !hasHitsLeft();
@@ -97,7 +101,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 		// ! THIS IS JUST AN AUXILIARY EVENT, TO BE ABLE TO DESTROY A BLOCK
 		// OUTSIDE THIS CLASS, by using setDestroyed(true)!
 		totalDestruction = new Event("totalDestructionEvent") {
-			
+
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
 				return isDestroyed();
@@ -109,7 +113,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 	 * adds all block actions, for a better overview
 	 */
 	void addActions() {
-		
+
 		// action: tells the block that it can destroy itself
 		canBeDestroyed.addAction((arg0, arg1, arg2, arg3) -> setDestroyed(true));
 
@@ -118,14 +122,15 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				// ((Ball) collider.getCollidedEntity()).setLastCollisionEntity(collider.getOwnerEntity());
+				// ((Ball)
+				// collider.getCollidedEntity()).setLastCollisionEntity(collider.getOwnerEntity());
 			}
 		});
-
-		// action: destroys this blocks entity
-		totalDestruction.addAction(new DestroyEntityAction());
+	
 		// adds the blocks-scorepoints to the players-score
 		totalDestruction.addAction((arg0, arg1, arg2, arg3) -> Score.incScoreCount(getScore()));
+		// action: destroys this blocks entity
+		totalDestruction.addAction(new DestroyEntityAction());
 	};
 
 	@Override
@@ -150,6 +155,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 	/**
 	 * determines whether this block is about to be destroyed or not
+	 * 
 	 * @return
 	 */
 	public boolean isDestroyed() {
@@ -158,6 +164,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 	/**
 	 * sets this block`s property 'isDestroyed'
+	 * 
 	 * @param isDestroyed
 	 */
 	public void setDestroyed(boolean isDestroyed) {
@@ -166,6 +173,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 	/**
 	 * gets this blocks scorepoints, you earn by destroying it
+	 * 
 	 * @return
 	 */
 	public int getScore() {
@@ -174,6 +182,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 	/**
 	 * sets this blocks scorepoints
+	 * 
 	 * @param score
 	 */
 	public void setScore(int score) {
@@ -182,6 +191,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 	/**
 	 * gets this blocks BlockType
+	 * 
 	 * @return
 	 */
 	public BlockType getType() {
@@ -190,6 +200,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 	/**
 	 * sets this blocks BlockType
+	 * 
 	 * @param type
 	 */
 	public void setType(BlockType type) {
@@ -198,6 +209,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 	/**
 	 * gets this blocks hitSound-path as a String
+	 * 
 	 * @return path of the hitSound as String
 	 */
 	public String getHitSound() {
@@ -206,7 +218,9 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 	/**
 	 * sets this blocks hit Sound
-	 * @param hitSound String path of the new hitSound
+	 * 
+	 * @param hitSound
+	 *            String path of the new hitSound
 	 */
 	public void setHitSound(String hitSound) {
 		this.hitSound = hitSound;
@@ -214,6 +228,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 	/**
 	 * gets this blocks blockImage
+	 * 
 	 * @return
 	 */
 	public Image getBlockImage() {
@@ -222,12 +237,13 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 	/**
 	 * sets this blocks blockImage by giving the path as a String
+	 * 
 	 * @param blockImage
 	 */
 	public void setBlockImage(String blockImage) {
 		try {
 			this.blockImage = new Image(blockImage);
-		
+
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}

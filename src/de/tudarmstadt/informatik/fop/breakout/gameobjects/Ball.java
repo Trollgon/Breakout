@@ -8,11 +8,11 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.gameactions.PlaySoundAction;
 import de.tudarmstadt.informatik.fop.breakout.gameevents.IDCollisionEvent;
 import de.tudarmstadt.informatik.fop.breakout.physics.Physics2D;
 import eea.engine.action.basicactions.DestroyEntityAction;
 import eea.engine.action.basicactions.MoveForwardAction;
-import eea.engine.action.basicactions.SetEntityPositionAction;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.event.ANDEvent;
@@ -116,7 +116,6 @@ public class Ball extends Entity implements GameParameters {
 		stickCollider = new IDCollisionEvent(STICK_ID);
 
 		hasLaunched = new Event("hasLaunchedEvent") {
-
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
 				return isLaunched();
@@ -132,7 +131,7 @@ public class Ball extends Entity implements GameParameters {
 		/////////////////////////////////////////////////
 		/////////////////////////////////////////////////
 
-		collider.addAction((arg0, arg1, arg2, arg3) -> setLastCollisionEntity(collider.getCollidedEntity()));
+		// collider.addAction((arg0, arg1, arg2, arg3) -> setLastCollisionEntity(collider.getCollidedEntity()));
 		
 		// bounces ball when it hits block
 		blockCollider.addAction((arg0, arg1, arg2, arg3) -> setRotation(Physics2D.bounceXAxis(getRotation())));
