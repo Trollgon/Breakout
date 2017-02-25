@@ -13,7 +13,6 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.Countdown;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.DestroyEntityAction;
 import eea.engine.action.basicactions.MoveDownAction;
-import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.entity.StateBasedEntityManager;
@@ -83,7 +82,6 @@ public abstract class BasicItem extends Entity implements GameParameters{
 		@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
 				return true;
-				
 			}
 		};
 		
