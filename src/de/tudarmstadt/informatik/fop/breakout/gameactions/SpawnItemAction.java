@@ -26,6 +26,7 @@ public class SpawnItemAction implements Action, GameParameters {
 		Entity i;
 		Vector2f itemPos = component.getOwnerEntity().getPosition();
 		switch(item){
+		
 		case SPEEDUP: i = new SpeedUpItem(itemPos);
 						System.out.println("speedup spawned");
 						break;
