@@ -14,23 +14,38 @@ import eea.engine.entity.StateBasedEntityManager;
 public class SpawnItemAction implements Action, GameParameters {
 
 	private ItemType item;
-	
+
 	public SpawnItemAction(ItemType item) {
 		this.item = item;
 	}
-	
+
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta, Component component) {
-		
-		
+
 		Entity i;
 		Vector2f itemPos = component.getOwnerEntity().getPosition();
-		switch(item){
-		case SPEEDUP: i = new SpeedupItem(itemPos);
-							System.out.println("speedup spawned");
-							break;
-		default: i = new SpeedupItem(itemPos);
-							
+		switch (item) {
+		case SPEEDUP:
+			i = new SpeedUpItem(itemPos);
+			break;
+		case COMPRESSSTICK:
+			i = new CompressStickItem(itemPos);
+			break;
+		case EXPANDSTICK:
+			i = new ExpandStickItem(itemPos);
+			break;
+		case MIRRORSTICK:
+			i = new MirrorStickItem(itemPos);
+			break;
+		case ONEUP:
+			i =  new OneUp(itemPos);
+			break;
+		case RANDOMREBOUND:
+			i = new RandomRebound(itemPos);
+			break;
+		default:
+			i = new SpeedUpItem(itemPos);
+			
 		}
 		StateBasedEntityManager.getInstance().addEntity(game.getCurrentStateID(), i);
 	}

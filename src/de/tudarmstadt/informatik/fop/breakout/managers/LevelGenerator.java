@@ -174,6 +174,8 @@ public class LevelGenerator implements GameParameters {
 			return new GoldBlock(xPos, yPos);
 		case 4:
 			return new IceBlock(xPos, yPos);
+		case 5:
+			return new DropperBlock(xPos, yPos);
 		}
 
 	}

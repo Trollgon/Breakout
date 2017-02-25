@@ -14,21 +14,25 @@ import eea.engine.entity.StateBasedEntityManager;
 
 /**
  * Action which destroys every other Block in a given radius around a center
+ * 
  * @author Jonas Henry Grebe
  */
 public class BlockExplosionAction implements Action, GameParameters {
-	
+
 	private Vector2f center;
 	private float radius;
 	StateBasedEntityManager entityManager;
-	
+
 	/**
 	 * constructor of BlockExplosionAction
-	 * @param center of the explosion
-	 * @param radius of the explosion
+	 * 
+	 * @param center
+	 *            of the explosion
+	 * @param radius
+	 *            of the explosion
 	 */
-	public BlockExplosionAction (Vector2f center, float radius) {
-		
+	public BlockExplosionAction(Vector2f center, float radius) {
+
 		this.center = center;
 		this.radius = radius;
 		entityManager = StateBasedEntityManager.getInstance();
@@ -36,19 +40,13 @@ public class BlockExplosionAction implements Action, GameParameters {
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta, Component component) {
-		
+
 		// auxiliary Circle-Shape to get Entities which intersect with it
 		Circle explosion = new Circle(center.x, center.y, radius);
 
 		entityManager.getEntitiesByState(game.getCurrentState().getID()).stream()
-		.filter(e -> e instanceof AbstractBlock)
-		.filter(b -> b.getShape().intersects(explosion) && ((AbstractBlock)b).getType() != BlockGroup.SOLID)
-<<<<<<< HEAD
-		.forEach(b -> ((AbstractBlock)b).setDestroyed(true));
-=======
-		.forEach(b -> ((AbstractBlock)b).setDestroyed(true)); //SoundManager.playSound(BLOCK_IMPACT_SOUND, 0.3f, GAME_VOLUME);
->>>>>>> refs/remotes/origin/Items
-
+				.filter(e -> e instanceof AbstractBlock)
+				.filter(b -> b.getShape().intersects(explosion) && ((AbstractBlock) b).getType() != BlockGroup.SOLID)
+				.forEach(b -> ((AbstractBlock) b).setDestroyed(true));
 	}
-
 }

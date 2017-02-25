@@ -52,7 +52,7 @@ public class Ball extends Entity implements GameParameters {
 	private IDCollisionEvent rightBorderCollider;
 	private OREvent borderCollider;
 
-	private IDCollisionEvent stickCollider;
+	public IDCollisionEvent stickCollider;
 
 	public Event hasLaunched;
 	private NOTEvent hasNotLaunched;
