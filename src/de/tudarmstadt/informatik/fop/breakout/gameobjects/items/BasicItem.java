@@ -8,6 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.gameevents.IDCollisionEvent;
+import de.tudarmstadt.informatik.fop.breakout.gameevents.LifeDeductionEvent;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Countdown;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.DestroyEntityAction;
@@ -46,6 +47,7 @@ public abstract class BasicItem extends Entity implements GameParameters{
 	protected Event hitStick; //Event to recognize hitting the Stick
 	protected Event leftScreen; // fires if the item left the screen
 	protected Event spawned; //always true, used for falling movement
+	protected ANDEvent despawnEvent;
 	protected String itemLogoPath; // the path to the item's logo
 	protected float fallingSpeed;	// the item's falling speed
 	//protected Event cancelCondition; //an Event that will stop the running countdown after the item has been picked up, e.g. after a Life was lost and the ball has been reset.
@@ -91,6 +93,13 @@ public abstract class BasicItem extends Entity implements GameParameters{
 					return (getPosition().getY() > WINDOW_HEIGHT + 30);
 				}
 			};
+		despawnEvent = new ANDEvent(new LifeDeductionEvent(), new Event("despawnondeath") {
+			@Override
+			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
+				return despawnOnDeath;
+				
+			}
+				});
 		
 			// Actions
 		hitStick.addAction((arg0, arg1, arg2, arg3) -> {StateBasedEntityManager.getInstance().addEntity(arg1.getCurrentStateID(), new Countdown(duration, startAction, endAction/*, cancelCondition*/));
@@ -100,10 +109,12 @@ public abstract class BasicItem extends Entity implements GameParameters{
 		spawned.addAction(new MoveDownAction(fallingSpeed));
 		
 		leftScreen.addAction(new DestroyEntityAction());
+		despawnEvent.addAction(new DestroyEntityAction());
 		
 		addComponent(hitStick);
 		addComponent(leftScreen);
 		addComponent(spawned);
+		addComponent(despawnEvent);
 	}
 	
 	public Vector2f getStartPosition() {
