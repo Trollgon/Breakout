@@ -21,7 +21,7 @@ import eea.engine.entity.StateBasedEntityManager;
  *
  * Item that will increase the ball's speed for 10 seconds 
  */
-public class SpeedupItem extends BasicItem {
+public class SpeedUpItem extends BasicItem {
 	
 	
 	final static Action start = new Action() {
@@ -46,7 +46,7 @@ public class SpeedupItem extends BasicItem {
 			System.out.println("end action");
 		}
 	} ;
-	public SpeedupItem(Vector2f startPosition
+	public SpeedUpItem(Vector2f startPosition
 			) {
 		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION, FALLING SPEED, LOGO
 		super(ITEM_SPEEDUP_ID, 10000, startPosition,true, start, end,/* new LifeDeductionEvent(),*/ 0.3f, SPEEDUP_LOGO_PATH);
