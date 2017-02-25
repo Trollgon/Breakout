@@ -229,7 +229,7 @@ public class EndlessGameState implements GameParameters, GameState {
 
 		// stops game if no lifes left
 		if (Lives.getLivesAmount() == 0) {
-			game.pauseUpdate();
+			// game.pauseUpdate();
 		}
 	}
 

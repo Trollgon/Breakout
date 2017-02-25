@@ -106,13 +106,19 @@ public class LevelGenerator implements GameParameters {
 		int xPos;
 		int blockID;
 
+		// for every column
 		for (int x = 0; x <= 16; x++) {
 
+			// set next blocks position
 			xPos = SIDE_SPACE + BLOCK_WIDTH * x;
-			blockID = (int) Math.ceil(Math.random() * 4);
+			
+			// randomly set the next blocks ID from (0 to 4)
+			blockID = (int) Math.round(Math.random() * 4);
+			
+			// generate the random block
+			block = getBlockByID(blockID, xPos, -BLOCK_HEIGHT/2);
 
-			block = getBlockByID(blockID, xPos, -10);
-
+			// adds the endlessGame specific MoveDownAction
 			if (block != null) {
 				block.always.addAction(new MoveDownAction(ENDLESS_GAME_SPEED));
 
@@ -120,21 +126,26 @@ public class LevelGenerator implements GameParameters {
 			}
 		}
 
+		// returns all generated blocks
 		return blocks;
 	}
 
 	/**
 	 * returns TRUE if top Row has moven down enough to create next random row
 	 * 
-	 * @return
+	 * @return returns if the most top row (area of auxiliary rec) is empty
 	 */
 	public static boolean topRowMissing() {
 
-		Rectangle rec = new Rectangle(0, 0, WINDOW_WIDTH, 2);
+		Rectangle rec = new Rectangle(0, -BLOCK_HEIGHT/2, WINDOW_WIDTH, BLOCK_HEIGHT/2);
 
-		return !StateBasedEntityManager.getInstance().getEntitiesByState(ENDLESS_GAME_STATE).stream()
-				.anyMatch(e -> e.getShape().intersects(rec));
-
+		// tries to find any Block in the area of rec:
+		// if no Block is found, return TRUE, if any is found, return FALSE
+		return !StateBasedEntityManager.getInstance()
+				.getEntitiesByState(ENDLESS_GAME_STATE)
+				.stream()
+				.filter(e -> e instanceof AbstractBlock)
+				.anyMatch(b -> b.getShape().intersects(rec));
 	}
 
 	/**

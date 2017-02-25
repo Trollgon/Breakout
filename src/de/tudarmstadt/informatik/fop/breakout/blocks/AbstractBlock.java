@@ -121,7 +121,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 			
 			@Override
 			protected boolean performAction(GameContainer container, StateBasedGame game, int delta) {
-				return leftScreen.getOwnerEntity().getPosition().getY() > WINDOW_WIDTH;
+				return leftScreen.getOwnerEntity().getPosition().getY() > WINDOW_HEIGHT;
 			}
 		};
 	}
