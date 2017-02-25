@@ -109,10 +109,12 @@ public interface GameParameters extends BlockParameters{
 	public static final String ITEM_SPEEDUP_ID = "item_speedup";
 	public static final String ITEM_ONEUP_ID = "item_oneup";
 	public static final String ITEM_MIRRORSTICK_ID = "item_mirrorstick";
+	public static final String ITEM_RANDOMREBOUND_ID = "item_randomrebound";
 	
 	public static final String SPEEDUP_LOGO_PATH = "images/items/faster.png";
 	public static final String ONEUP_LOGO_PATH = "images/items/oneup.png";
 	public static final String MIRRORSTICK_LOGO_PATH = "images/items/mirrorstick.png";
+	public static final String RANDOMREBOUND_LOGO_PATH = "images/items/randomrebound.png";
 	
-	public static enum ItemType {SPEEDUP, ONEUP, MIRRORSTICK};
+	public static enum ItemType {SPEEDUP, ONEUP, MIRRORSTICK, RANDOMREBOUND};
 }
