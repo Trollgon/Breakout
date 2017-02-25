@@ -8,6 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnItemAction;
 import de.tudarmstadt.informatik.fop.breakout.gameevents.IDCollisionEvent;
 import de.tudarmstadt.informatik.fop.breakout.physics.Physics2D;
 import eea.engine.action.basicactions.DestroyEntityAction;
@@ -47,7 +48,7 @@ public class Ball extends Entity implements GameParameters {
 
 	private IDCollisionEvent stickCollider;
 
-	private Event hasLaunched;
+	public Event hasLaunched;
 	private NOTEvent hasNotLaunched;
 	private ANDEvent launchBall;
 
@@ -142,6 +143,7 @@ public class Ball extends Entity implements GameParameters {
 				(arg0, arg1, arg2, arg3) -> ((AbstractBlock) blockCollider.getCollidedEntity()).addHitsLeft(-1));
 		// speeds ball up on blockCollision
 		blockCollider.addAction((arg0, arg1, arg2, arg3) -> addSpeed(SPEEDUP_VALUE));
+		blockCollider.addAction(new SpawnItemAction(ItemType.SPEEDUP));
 		
 		// bounces ball at borders
 		topBorderCollider.addAction((arg0, arg1, arg2, arg3) -> setRotation(Physics2D.bounceXAxis(getRotation())));
