@@ -22,7 +22,7 @@ public final class IceBlock extends AbstractBlock {
 
 	@Override
 	void configureBlock() throws SlickException {
-		// setHitSound(BLOCK_IMPACT_SOUND);
+		setHitSound(BLOCK_ICE_HIT_SOUND);
 
 		setType(BlockGroup.UNSTABLE);
 		setBlockImage(BLOCK_ICE_IMAGE);
