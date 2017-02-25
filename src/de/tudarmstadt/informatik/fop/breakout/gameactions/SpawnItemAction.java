@@ -5,6 +5,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.factories.ItemFactory;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.items.*;
 import eea.engine.action.Action;
 import eea.engine.component.Component;
@@ -13,10 +14,10 @@ import eea.engine.entity.StateBasedEntityManager;
 
 public class SpawnItemAction implements Action, GameParameters {
 
-	private ItemType item;
+	private ItemType type;
 	
-	public SpawnItemAction(ItemType item) {
-		this.item = item;
+	public SpawnItemAction(ItemType type) {
+		this.type = type;
 	}
 	
 	@Override
@@ -25,26 +26,9 @@ public class SpawnItemAction implements Action, GameParameters {
 		
 		Entity i;
 		Vector2f itemPos = component.getOwnerEntity().getPosition();
-		switch(item){
 		
-		case SPEEDUP: i = new SpeedUpItem(itemPos);
-						System.out.println("speedup spawned");
-						break;
-		case ONEUP: i = new OneUp(itemPos);
-					break;
-		case MIRRORSTICK: i = new MirrorStickItem(itemPos);
-						  break;
-		case RANDOMREBOUND: i = new RandomRebound(itemPos);
-							break;
-		case EXPANDSTICK: i = new ExpandStickItem(itemPos);
-							break;
-		case COMPRESSSTICK: i = new CompressStickItem(itemPos);
-							break;
-		case SHOOTPLAYER: i = new ShootPlayerItem(itemPos);
-							break;
-		default: i = new ShootPlayerItem(itemPos);
-							
-		}
+		i = new ItemFactory(type, itemPos).createEntity();
+		
 		StateBasedEntityManager.getInstance().addEntity(game.getCurrentStateID(), i);
 	}
 
