@@ -105,4 +105,8 @@ public interface GameParameters extends BlockParameters{
 	// Highscore
 	public static final String HIGHSCORE_FILE = "highscores/highscore.hsc";
 
+	//Items
+	public static final String ITEM_SPEEDUP_ID = "item_speedup";
+	
+	public static enum ItemType {SPEEDUP};
 }

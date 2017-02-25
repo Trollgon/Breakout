@@ -8,6 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnItemAction;
 import de.tudarmstadt.informatik.fop.breakout.gameevents.IDCollisionEvent;
 import de.tudarmstadt.informatik.fop.breakout.managers.SoundManager;
 import de.tudarmstadt.informatik.fop.breakout.physics.Physics2D;
@@ -50,7 +51,7 @@ public class Ball extends Entity implements GameParameters {
 
 	private IDCollisionEvent stickCollider;
 
-	private Event hasLaunched;
+	public Event hasLaunched;
 	private NOTEvent hasNotLaunched;
 	private ANDEvent launchBall;
 
@@ -140,6 +141,8 @@ public class Ball extends Entity implements GameParameters {
 		//////////////////////////////////////////////////////////////////////////////////////////////////
 
 		// bounces ball when it hits block
+
+
 		blockCollider.addAction(new Action() {
 			
 			@Override
@@ -149,13 +152,17 @@ public class Ball extends Entity implements GameParameters {
 				}else setRotation(Physics2D.bounceXAxis(getRotation()));
 			}
 		});
+
+
 		// reduces the blocks hitsleft by one when hit
 		blockCollider.addAction(
 				(arg0, arg1, arg2, arg3) -> ((AbstractBlock) blockCollider.getCollidedEntity()).addHitsLeft(-1));
 		// speeds ball up on blockCollision
 		blockCollider.addAction((arg0, arg1, arg2, arg3) -> ((Ball) blockCollider.getOwnerEntity()).addSpeed(SPEEDUP_VALUE));
+
 		// plays the hitSound, can´t be managed by PlaySoundAction because the HitSound is variable depending on the hit BlockType
 		blockCollider.addAction((arg0, arg1, arg2, arg3) -> SoundManager.playSound(((AbstractBlock) blockCollider.getCollidedEntity()).getHitSound(), GAME_VOLUME, 1f));
+
 		
 		// bounces ball at borders
 		topBorderCollider.addAction((arg0, arg1, arg2, arg3) -> setRotation(Physics2D.bounceXAxis(getRotation())));
