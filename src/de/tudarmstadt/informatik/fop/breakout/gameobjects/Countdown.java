@@ -17,25 +17,31 @@ public class Countdown extends Entity implements GameParameters {
 	private boolean isRunning;
 	
 	private Event timeOver;
+	private Event cancelCondition;
 	private Action startAction;
 	private Action endAction;
 	private boolean initialStart;
 	private Event startEvent;
 	
 	
-	public Countdown(long timeInms, Action startAction, Action endAction) {
+	public Countdown(long timeInms, Action startAction, Action endAction/*, Event cancelCondition*/) {
 		super(COUNTDOWN_ID);
 		
 		length = timeInms;
-		setEndTime();
-		
-		isRunning = true;
-		
-		configureEvents();
-		
+		this.cancelCondition = cancelCondition;
 		this.startAction = startAction;
 		this.endAction = endAction;
+		initialStart = false;
+		
+		configureEvents();
+		start();
+		System.out.println("Countdown created");
+	}
+	public void start() {
+		setEndTime();
+		isRunning = true;
 		initialStart = true;
+		System.out.println("Countdown started");
 	}
 	private void setEndTime(){
 		endTime = System.currentTimeMillis() + length;
@@ -61,6 +67,7 @@ public class Countdown extends Entity implements GameParameters {
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 				endAction.update(arg0, arg1, arg2, arg3);
 				stop();
+				System.out.println("countdown over");
 			}
 		});
 		
@@ -71,11 +78,18 @@ public class Countdown extends Entity implements GameParameters {
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3){
 				startAction.update(arg0, arg1, arg2, arg3);
 				initialStart = false;
+				System.out.println("start action executed");
 				
 			}
 		});
-		
+		//startEvent.addAction(startAction);
+		//timeOver.addAction(endAction);
+		/*if(!cancelCondition.equals(null)){
+			cancelCondition.addAction(new DestroyEntityAction());
+			this.addComponent(cancelCondition);
+		}*/
 		this.addComponent(timeOver);
+		this.addComponent(startEvent);
 	}
 	public long getEndTime(){
 		return endTime;
