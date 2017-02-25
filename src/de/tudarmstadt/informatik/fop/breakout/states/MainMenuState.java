@@ -170,10 +170,10 @@ public class MainMenuState implements GameParameters, GameState {
 
 		g.drawImage(new Image(MAIN_MENU_IMAGE), 0, 0);
 		
-		entityManager.addEntity(getID(), new Button(128, 408, ZONE_PICKER_STATE, 0));
-		entityManager.addEntity(getID(), new Button(308, 408, ENDLESS_GAME_STATE, 0));
-		entityManager.addEntity(getID(), new Button(484, 408, HIGHSCORE_STATE, 0));
-		entityManager.addEntity(getID(), new Button(660, 408, QUIT_STATE, 0));
+		entityManager.addEntity(getID(), new Button(128, 408, StateType.ZONE_PICKER_STATE));
+		entityManager.addEntity(getID(), new Button(308, 408, StateType.ENDLESS_GAME_STATE));
+		entityManager.addEntity(getID(), new Button(484, 408, StateType.HIGHSCORE_STATE));
+		entityManager.addEntity(getID(), new Button(660, 408, StateType.QUIT_STATE));
 
 		entityManager.renderEntities(container, game, g);
 	}

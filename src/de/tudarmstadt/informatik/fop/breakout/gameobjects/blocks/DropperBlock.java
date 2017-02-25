@@ -26,7 +26,6 @@ public class DropperBlock extends AbstractBlock {
 		// get random ItemType
 		ItemType[] items = ItemType.values();
 		Random random = new Random();
-		
 		ItemType iType = items[random.nextInt(items.length)];
 		
 		this.totalDestruction.addAction(new SpawnItemAction(iType));

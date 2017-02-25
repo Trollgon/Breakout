@@ -64,7 +64,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 		addActions();
 
 		try {
-			// method that gets overwritten by the specific block constructors:
+			// method that gets overwritten by the specific block's:
 			configureBlock();
 		} catch (SlickException e) {
 

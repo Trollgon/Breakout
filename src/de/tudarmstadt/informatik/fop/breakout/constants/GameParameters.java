@@ -14,19 +14,18 @@ public interface GameParameters extends BlockParameters{
 	public static final int WINDOW_HEIGHT = 600;
 	public static final int FRAME_RATE = 60;
 	
-	// Game Modes
+	// Game Mode Settings
 	public static final float ENDLESS_GAME_SPEED = 0.02f;
 
-	//Sound
-	/*
-	 * This game uses these sounds from freesound:
-	Hit Impact by MrGuff (http://freesound.org/people/mrguff )
-	 */
+	// Sound
 	public static final float GAME_VOLUME = 0.4f;
 	public static final float RAND_PITCH_TRESHOLD = 0.025f;
 	public static final float RAND_VOL_TRESHOLD = 0.05f;
 
 	// Game States
+	public enum StateType {MAIN_MENU_STATE, ZONE_PICKER_STATE, ZONE_STATE, STORY_GAME_STATE, ENDLESS_GAME_STATE
+		, HIGHSCORE_STATE, ABOUT_STATE, QUIT_STATE};
+	
 	public static final int MAIN_MENU_STATE = 1;
 	public static final int ZONE_PICKER_STATE = 2;
 	public static final int ZONE_STATE = 3;
@@ -35,8 +34,11 @@ public interface GameParameters extends BlockParameters{
 	public static final int HIGHSCORE_STATE = 6;
 	public static final int ABOUT_STATE = 7;
 	public static final int QUIT_STATE = 8;
+	
+	// Zones
+	public enum ZoneType {NORMALZONE, ICEZONE};
 
-	// BackgroundS
+	// Backgrounds
 	public static final String BACKGROUND_IMAGE = "/images/background.png";
 	public static final String MAIN_MENU_IMAGE = "/images/menu.png";
 	public static final String DEFAULT_MENU_IMAGE = "/images/menu_blank.png";
@@ -50,8 +52,9 @@ public interface GameParameters extends BlockParameters{
 		TOP, LEFT, RIGHT
 	};
 	public static final String BORDER_HIT_SOUND = "/sounds/borderHit.wav";
+	
 	// offset to avoid a perma-collision with the outer blocks
-	public static final int BORDER_OFFSET = 6;
+	public static final int BORDER_OFFSET = 0;
 
 	public static final int BORDER_WIDTH = 6;
 	public static final String TOP_BORDER_ID = "topBorder";
@@ -66,7 +69,7 @@ public interface GameParameters extends BlockParameters{
 	public static final String BALL_ID = "ball";
 	public static final float INITIAL_BALL_SPEED = 1f;
 	public static final float MAX_BALL_SPEED = 8f;
-	public static final float MIN_BALL_SPEED = 0.1f;
+	public static final float MIN_BALL_SPEED = 0.5f;
 	public static final float SPEEDUP_VALUE = 0.0001f;
 	public static final String BALL_IMAGE = "/images/guido.png";
 
