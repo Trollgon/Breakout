@@ -23,8 +23,8 @@ public interface GameParameters extends BlockParameters{
 	Hit Impact by MrGuff (http://freesound.org/people/mrguff )
 	 */
 	public static final float GAME_VOLUME = 0.4f;
-	public static final float RAND_PITCH_TRESHOLD = 0.05f;
-	public static final float RAND_VOL_TRESHOLD = 0.08f;
+	public static final float RAND_PITCH_TRESHOLD = 0.025f;
+	public static final float RAND_VOL_TRESHOLD = 0.05f;
 
 	// Game States
 	public static final int MAIN_MENU_STATE = 1;
@@ -49,6 +49,7 @@ public interface GameParameters extends BlockParameters{
 	public enum BorderType {
 		TOP, LEFT, RIGHT
 	};
+	public static final String BORDER_HIT_SOUND = "/sounds/borderHit.wav";
 
 	// offset to avoid a perma-collision with the outer blocks
 	public static final int BORDER_OFFSET = 6;

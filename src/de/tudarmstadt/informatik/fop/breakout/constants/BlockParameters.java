@@ -18,10 +18,12 @@ public interface BlockParameters {
 	public static final String DESTRUCTION = "destruction";
 	
 	public static final String BLOCK_ID = "block";
-	public static final String MAP_FILE = "maps/level2.map";
 	
 	public static final int BLOCK_WIDTH = 50;
 	public static final int BLOCK_HEIGHT = 30;
+	
+	// VOLUME
+	public static final float BLOCK_HIT_VOLUME = 0.05f;
 	
 	// STANDARD-BLOCK: 1 HIT
 	public static final String BLOCK_STANDARD_IMAGE = "/images/blocks/block_default.png";
