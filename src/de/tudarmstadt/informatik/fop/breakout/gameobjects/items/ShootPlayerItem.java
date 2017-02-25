@@ -7,7 +7,13 @@ import org.newdawn.slick.state.StateBasedGame;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Lives;
 import eea.engine.action.Action;
 import eea.engine.component.Component;
-
+/**
+ * 
+ * @author Peter Franke
+ * 
+ * Item that fires a shot and deducts a life if it hits the Stick
+ *
+ */
 public class ShootPlayerItem extends BasicItem {
 
 	

@@ -9,6 +9,13 @@ import eea.engine.action.Action;
 import eea.engine.component.Component;
 import eea.engine.entity.StateBasedEntityManager;
 
+/**
+ * 
+ * @author Peter Franke
+ * 
+ * Item that will expand the Stick
+ *
+ */
 public class ExpandStickItem extends BasicItem {
 
 public ExpandStickItem(Vector2f startPosition) {

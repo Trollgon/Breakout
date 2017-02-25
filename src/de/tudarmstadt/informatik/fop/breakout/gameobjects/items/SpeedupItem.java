@@ -10,16 +10,17 @@ package de.tudarmstadt.informatik.fop.breakout.gameobjects.items;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
-
-import de.tudarmstadt.informatik.fop.breakout.gameevents.LifeDeductionEvent;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
-import de.tudarmstadt.informatik.fop.breakout.gameobjects.Lives;
 import eea.engine.action.Action;
-import eea.engine.action.basicactions.MoveForwardAction;
 import eea.engine.component.Component;
 import eea.engine.entity.StateBasedEntityManager;
-import eea.engine.event.Event;
 
+
+/**
+ * @author Peter Franke
+ *
+ * Item that will increase the ball's speed for 10 seconds 
+ */
 public class SpeedupItem extends BasicItem {
 	
 	

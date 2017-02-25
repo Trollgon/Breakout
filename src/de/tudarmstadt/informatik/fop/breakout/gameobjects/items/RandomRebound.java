@@ -9,7 +9,13 @@ import de.tudarmstadt.informatik.fop.breakout.physics.Physics2D;
 import eea.engine.action.Action;
 import eea.engine.component.Component;
 import eea.engine.entity.StateBasedEntityManager;
-
+/**
+ * 
+ * @author Peter Franke
+ * 
+ * Item that will make the Ball bounce off the Stick in a random direction
+ *
+ */
 public class RandomRebound extends BasicItem {
 
 public RandomRebound(Vector2f startPosition) {

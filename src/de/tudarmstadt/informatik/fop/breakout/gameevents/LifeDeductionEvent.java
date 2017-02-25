@@ -5,7 +5,13 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Lives;
 import eea.engine.event.Event;
-
+/**
+ * 
+ * @author Peter Franke
+ * 
+ * event that fires if a Life is lost
+ *
+ */
 public class LifeDeductionEvent extends Event {
 	int livesCount;
 	public LifeDeductionEvent() {
@@ -18,8 +24,13 @@ public class LifeDeductionEvent extends Event {
 		if(Lives.getLivesAmount() < livesCount){	
 			livesCount--;
 			return true;
+			
 		}
-		return false;
+		if(Lives.getLivesAmount() > livesCount){
+			livesCount++;
+		}
+			return false;
+		
 
 	}	
 	

@@ -7,7 +7,13 @@ import org.newdawn.slick.state.StateBasedGame;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Lives;
 import eea.engine.action.Action;
 import eea.engine.component.Component;
-
+/**
+ * 
+ * @author Peter Franke
+ * 
+ * Item that will increase the remaining lives
+ *
+ */
 public class OneUp extends BasicItem {
 
 	public OneUp(Vector2f startPosition) {
@@ -21,7 +27,7 @@ public class OneUp extends BasicItem {
 
 		@Override
 		public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-			Lives.setLifeAmount(Lives.getLivesAmount() + 1);
+			if(Lives.getLivesAmount() < 3) Lives.setLifeAmount(Lives.getLivesAmount() + 1);
 			
 		}
 		

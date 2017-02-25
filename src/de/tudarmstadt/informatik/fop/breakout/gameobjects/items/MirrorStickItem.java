@@ -8,7 +8,13 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.Stick;
 import eea.engine.action.Action;
 import eea.engine.component.Component;
 import eea.engine.entity.StateBasedEntityManager;
-
+/**
+ * 
+ * @author Peter Franke
+ * 
+ * Item that will mirror the player's stick movement input
+ *
+ */
 public class MirrorStickItem extends BasicItem {
 
 public MirrorStickItem(Vector2f startPosition) {
