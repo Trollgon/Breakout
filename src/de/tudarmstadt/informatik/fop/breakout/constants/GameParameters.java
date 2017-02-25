@@ -23,8 +23,8 @@ public interface GameParameters extends BlockParameters{
 	Hit Impact by MrGuff (http://freesound.org/people/mrguff )
 	 */
 	public static final float GAME_VOLUME = 0.4f;
-	public static final float RAND_PITCH_TRESHOLD = 0.05f;
-	public static final float RAND_VOL_TRESHOLD = 0.08f;
+	public static final float RAND_PITCH_TRESHOLD = 0.025f;
+	public static final float RAND_VOL_TRESHOLD = 0.05f;
 
 	// Game States
 	public static final int MAIN_MENU_STATE = 1;
@@ -49,7 +49,7 @@ public interface GameParameters extends BlockParameters{
 	public enum BorderType {
 		TOP, LEFT, RIGHT
 	};
-
+	public static final String BORDER_HIT_SOUND = "/sounds/borderHit.wav";
 	// offset to avoid a perma-collision with the outer blocks
 	public static final int BORDER_OFFSET = 6;
 
@@ -68,7 +68,7 @@ public interface GameParameters extends BlockParameters{
 	public static final float MAX_BALL_SPEED = 8f;
 	public static final float MIN_BALL_SPEED = 0.1f;
 	public static final float SPEEDUP_VALUE = 0.0001f;
-	public static final String BALL_IMAGE = "/images/ball.png";
+	public static final String BALL_IMAGE = "/images/guido.png";
 
 	// Stick
 	//public static final String STICK_HIT_SOUND = "sounds/hitStick.wav";
@@ -114,12 +114,12 @@ public interface GameParameters extends BlockParameters{
 	public static final String ITEM_COMPRESSSTICK_ID = "item_compressstick";
 	public static final String ITEM_SHOOTPLAYER_ID = "item_shootplayer";
 	
-	public static final String SPEEDUP_LOGO_PATH = "images/items/faster.png";
-	public static final String ONEUP_LOGO_PATH = "images/items/oneup.png";
-	public static final String MIRRORSTICK_LOGO_PATH = "images/items/mirrorstick.png";
-	public static final String RANDOMREBOUND_LOGO_PATH = "images/items/randomrebound.png";
-	public static final String EXPANDSTICK_LOGO_PATH = "images/items/expandstick.png";
-	public static final String COMPRESSSTICK_LOGO_PATH = "images/items/compressstick.png";
+	public static final String SPEEDUP_LOGO_PATH = "images/items/item_speedup.png";
+	public static final String ONEUP_LOGO_PATH = "images/items/item_oneup.png";
+	public static final String MIRRORSTICK_LOGO_PATH = "images/items/item_mirror.png";
+	public static final String RANDOMREBOUND_LOGO_PATH = "images/items/item_randomrebound.png";
+	public static final String EXPANDSTICK_LOGO_PATH = "images/items/item_expand.png";
+	public static final String COMPRESSSTICK_LOGO_PATH = "images/items/item_compress.png";
 	public static final String SHOOTPLAYER_LOGO_PATH = "images/items/shootplayer.png";
 	
 	public static enum ItemType {SPEEDUP, ONEUP, MIRRORSTICK, RANDOMREBOUND, EXPANDSTICK, COMPRESSSTICK, SHOOTPLAYER};
