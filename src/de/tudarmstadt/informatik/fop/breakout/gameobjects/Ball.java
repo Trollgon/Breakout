@@ -10,8 +10,10 @@ import de.tudarmstadt.informatik.fop.breakout.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.gameevents.IDCollisionEvent;
 import de.tudarmstadt.informatik.fop.breakout.physics.Physics2D;
+import eea.engine.action.Action;
 import eea.engine.action.basicactions.DestroyEntityAction;
 import eea.engine.action.basicactions.MoveForwardAction;
+import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.event.ANDEvent;
@@ -141,7 +143,7 @@ public class Ball extends Entity implements GameParameters {
 		blockCollider.addAction(
 				(arg0, arg1, arg2, arg3) -> ((AbstractBlock) blockCollider.getCollidedEntity()).addHitsLeft(-1));
 		// speeds ball up on blockCollision
-		blockCollider.addAction((arg0, arg1, arg2, arg3) -> addSpeed(SPEEDUP_VALUE));
+		blockCollider.addAction((arg0, arg1, arg2, arg3) -> ((Ball) blockCollider.getOwnerEntity()).addSpeed(100* SPEEDUP_VALUE));
 		
 		// bounces ball at borders
 		topBorderCollider.addAction((arg0, arg1, arg2, arg3) -> setRotation(Physics2D.bounceXAxis(getRotation())));
@@ -191,6 +193,8 @@ public class Ball extends Entity implements GameParameters {
 		this.speed = speed;
 		if (getSpeed() > MAX_BALL_SPEED) {
 			this.speed = MAX_BALL_SPEED;
+		}else if (getSpeed() < MIN_BALL_SPEED) {
+			this.speed = MIN_BALL_SPEED;
 		}
 	}
 	
@@ -198,6 +202,8 @@ public class Ball extends Entity implements GameParameters {
 		setSpeed(getSpeed() + value);
 		if (getSpeed() > MAX_BALL_SPEED) {
 			this.speed = MAX_BALL_SPEED;
+		}else if (getSpeed() < MIN_BALL_SPEED) {
+			this.speed = MIN_BALL_SPEED;
 		}
 	}
 

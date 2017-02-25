@@ -46,7 +46,7 @@ public interface BlockParameters {
 	public static final String BLOCK_ICE_IMAGE = "/images/blocks/block_ice.png";
 	public static final int BLOCK_ICE_HITSLEFT = 1;
 	public static final int BLOCK_ICE_SCORE = 100;
-	public static final float BLOCK_ICE_SLOWDOWN = -0.001f;
+	public static final float BLOCK_ICE_SLOWDOWN = -1f;
 	
 	// TNT-BLOCK: just 1 HIT but a lot of destruction
 	public static final String BLOCK_TNT_IMAGE = "/images/blocks/block_tnt.png";

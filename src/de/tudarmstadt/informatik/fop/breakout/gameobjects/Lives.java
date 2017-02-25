@@ -1,15 +1,11 @@
 package de.tudarmstadt.informatik.fop.breakout.gameobjects;
 
 
-import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.factories.LiveHeartFactory;
-import eea.engine.action.Action;
-import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.event.basicevents.LoopEvent;
@@ -46,13 +42,7 @@ public class Lives extends Entity implements GameParameters {
 		// updateBar-event
 		updateBar = new LoopEvent();
 		
-		updateBar.addAction(new Action() {
-			
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				updateLifeBar();
-			}
-		});
+		updateBar.addAction((arg0, arg1, arg2, arg3) -> updateLifeBar());
 		
 		this.addComponent(updateBar);
 	}

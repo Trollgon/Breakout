@@ -7,6 +7,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
 import eea.engine.action.Action;
 import eea.engine.component.Component;
+import eea.engine.entity.StateBasedEntityManager;
 
 /**
  * Ice block class: has 1 hit but slows down the ball
@@ -36,7 +37,10 @@ public final class IceBlock extends AbstractBlock {
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 				if (collider.getCollidedEntity() != null) {
 
-					((Ball) collider.getCollidedEntity()).addSpeed(BLOCK_ICE_SLOWDOWN);
+					System.out.println(((Ball) collider.getCollidedEntity()).getID());
+					System.out.println(((Ball) collider.getCollidedEntity()).getSpeed());
+					((Ball) StateBasedEntityManager.getInstance().getEntity(arg1.getCurrentStateID(), BALL_ID)).addSpeed(BLOCK_ICE_SLOWDOWN);
+					System.out.println(((Ball) collider.getCollidedEntity()).getSpeed());
 				}
 			}
 		});
