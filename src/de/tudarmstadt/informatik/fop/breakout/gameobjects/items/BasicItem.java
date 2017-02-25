@@ -24,6 +24,19 @@ import eea.engine.event.Event;
  * @author Peter Franke
  *
  */
+/*
+ * Functionality:
+ * 
+ * -added using SpawnItemAction()
+ * -immediately starts falling down with the given falling speed
+ * -destroys itself when falling out
+ * - when hitting the stick, it will start a new CountDown with the given startAction and endAction and duration and destroy itself
+ * -items like e.g. 1Up with only a one-time effect can use a duration of 0 and null for the endAction
+ * - DespawnOnDeath sets if the item will destroy itself if it has not been picked up yet and a life is lost (not implemented yet)
+ * Problems: stopping the countdown after a death if wanted
+ * -> possible solution: cancelEvent, LifeDeductionEvent (also useful for despawning on death)
+ * 
+ */
 public abstract class BasicItem extends Entity implements GameParameters{
 	
 	protected Vector2f startPosition; // the position the item will spawn at
