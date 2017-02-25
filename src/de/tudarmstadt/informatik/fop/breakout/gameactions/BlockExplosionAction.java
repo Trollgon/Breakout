@@ -43,7 +43,11 @@ public class BlockExplosionAction implements Action, GameParameters {
 		entityManager.getEntitiesByState(game.getCurrentState().getID()).stream()
 		.filter(e -> e instanceof AbstractBlock)
 		.filter(b -> b.getShape().intersects(explosion) && ((AbstractBlock)b).getType() != BlockGroup.SOLID)
+<<<<<<< HEAD
 		.forEach(b -> ((AbstractBlock)b).setDestroyed(true));
+=======
+		.forEach(b -> ((AbstractBlock)b).setDestroyed(true)); //SoundManager.playSound(BLOCK_IMPACT_SOUND, 0.3f, GAME_VOLUME);
+>>>>>>> refs/remotes/origin/Items
 
 	}
 
