@@ -107,6 +107,10 @@ public interface GameParameters extends BlockParameters{
 
 	//Items
 	public static final String ITEM_SPEEDUP_ID = "item_speedup";
+	public static final String ITEM_ONEUP_ID = "item_oneup";
+	
+	public static final String SPEEDUP_LOGO_PATH = "images/items/faster.png";
+	public static final String ONEUP_LOGO_PATH = "images/items/oneup.png";
 	
 	public static enum ItemType {SPEEDUP};
 }

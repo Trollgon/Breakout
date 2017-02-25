@@ -48,7 +48,7 @@ public class SpeedupItem extends BasicItem {
 	public SpeedupItem(Vector2f startPosition
 			) {
 		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION, FALLING SPEED, LOGO
-		super(ITEM_SPEEDUP_ID, 10000, startPosition,true, start, end,/* new LifeDeductionEvent(),*/ 0.3f, "images/items/faster.png");
+		super(ITEM_SPEEDUP_ID, 10000, startPosition,true, start, end,/* new LifeDeductionEvent(),*/ 0.3f, SPEEDUP_LOGO_PATH);
 		// TODO Auto-generated constructor stub
 	}
 
