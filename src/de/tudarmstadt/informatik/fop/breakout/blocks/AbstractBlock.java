@@ -21,7 +21,7 @@ import eea.engine.event.basicevents.CollisionEvent;
 import eea.engine.event.basicevents.LoopEvent;
 
 /**
- * abstract class for any block in the game
+ * abstract class for every block in the game
  * 
  * @author Jonas Henry Grebe
  *
@@ -45,10 +45,8 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 	/**
 	 * constructor of a AbstractBlock
 	 * 
-	 * @param xPos
-	 *            of the new block
-	 * @param yPos
-	 *            of the new block
+	 * @param xPos of the new block
+	 * @param yPos of the new block
 	 */
 	public AbstractBlock(int xPos, int yPos) {
 		super(BLOCK_ID);
@@ -67,6 +65,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 		addActions();
 
 		try {
+			// method that gets overwritten by the specific block constructors:
 			configureBlock();
 		} catch (SlickException e) {
 

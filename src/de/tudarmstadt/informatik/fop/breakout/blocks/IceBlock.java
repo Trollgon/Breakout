@@ -3,9 +3,8 @@ package de.tudarmstadt.informatik.fop.breakout.blocks;
 import org.newdawn.slick.SlickException;
 
 /**
- * Ice block class: has 1 hit but slows down the ball
- * 
- * @author Jonas
+ * class to represent an ice block
+ * @author Jonas Henry Grebe
  *
  */
 public final class IceBlock extends AbstractBlock {

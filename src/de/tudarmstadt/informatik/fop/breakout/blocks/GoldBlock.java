@@ -2,6 +2,11 @@ package de.tudarmstadt.informatik.fop.breakout.blocks;
 
 import org.newdawn.slick.SlickException;
 
+/**
+ * class to represent a gold block
+ * @author Jonas Henry Grebe
+ *
+ */
 public final class GoldBlock extends AbstractBlock {
 
 	public GoldBlock(int xPos, int yPos) {
