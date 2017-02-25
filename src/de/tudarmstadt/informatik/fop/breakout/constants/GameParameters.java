@@ -13,6 +13,9 @@ public interface GameParameters extends BlockParameters{
 	public static final int WINDOW_WIDTH = 800;
 	public static final int WINDOW_HEIGHT = 600;
 	public static final int FRAME_RATE = 60;
+	
+	// Game Modes
+	public static final float ENDLESS_GAME_SPEED = 0.02f;
 
 	//Sound
 	/*
@@ -62,6 +65,8 @@ public interface GameParameters extends BlockParameters{
 	// Ball
 	public static final String BALL_ID = "ball";
 	public static final float INITIAL_BALL_SPEED = 1f;
+	public static final float MAX_BALL_SPEED = 8f;
+	public static final float MIN_BALL_SPEED = 0.1f;
 	public static final float SPEEDUP_VALUE = 0.0001f;
 	public static final String BALL_IMAGE = "/images/ball.png";
 

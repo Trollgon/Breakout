@@ -9,8 +9,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.openal.SoundStore;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.tests.SoundTest;
-
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import eea.engine.entity.StateBasedEntityManager;
 

@@ -5,7 +5,6 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.tudarmstadt.informatik.fop.breakout.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
-import de.tudarmstadt.informatik.fop.breakout.gameobjects.BallOLD;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Stick;
 import eea.engine.entity.Entity;
 

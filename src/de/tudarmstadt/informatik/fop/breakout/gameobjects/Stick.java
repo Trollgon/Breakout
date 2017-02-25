@@ -6,13 +6,10 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
+
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
-import de.tudarmstadt.informatik.fop.breakout.gameactions.PlaySoundAction;
-import de.tudarmstadt.informatik.fop.breakout.managers.SoundManager;
-import eea.engine.action.Action;
 import eea.engine.action.basicactions.MoveLeftAction;
 import eea.engine.action.basicactions.MoveRightAction;
-import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.event.ANDEvent;
@@ -40,7 +37,6 @@ public class Stick extends Entity implements GameParameters {
 	private ANDEvent moveLeftCondition;
 	private ANDEvent moveRightCondition;
 	private CollisionEvent collider;
-	private ANDEvent hitByBall;
 	private ANDEvent hitByItem;
 
 	/**
@@ -103,38 +99,19 @@ public class Stick extends Entity implements GameParameters {
 		// basic collider
 		collider = new CollisionEvent();
 
-		// fires if the ball is hit
-		hitByBall = new ANDEvent(collider, new Event("hitEntityIsBall") {
-			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
-				return collider.getCollidedEntity() instanceof BallOLD;
-			}
-
-		});
-
 		hitByItem = new ANDEvent(collider, new Event("hitEntityIsItem") {
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
 				return collider.getCollidedEntity().getID().toUpperCase().contains("ITEM");
 			}
 		});
+		
 		// Actions
-
 		moveLeftCondition.addAction(new MoveLeftAction(speed));
 		moveRightCondition.addAction(new MoveRightAction(speed));
-		//nach ball auslagern, hitbyball entfernen -> überlagernde collisions/events vermeiden
-		hitByBall.addAction(new PlaySoundAction(STICK_HIT_SOUND, 0.9f));
-		
-		hitByItem.addAction(new PlaySoundAction(COLLECT_ITEM_SOUND, 1f));
-		hitByItem.addAction(new Action() {
-
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-			
-			}
-		});
 
 		this.addComponent(moveLeftCondition);
 		this.addComponent(moveRightCondition);
 		this.addComponent(collider);
-		this.addComponent(hitByBall);
 	}
 
 	// service for Ball

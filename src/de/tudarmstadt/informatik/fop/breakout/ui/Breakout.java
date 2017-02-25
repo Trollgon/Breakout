@@ -1,16 +1,16 @@
 package de.tudarmstadt.informatik.fop.breakout.ui;
 
-import de.tudarmstadt.informatik.fop.breakout.states.StoryGameState;
-import de.tudarmstadt.informatik.fop.breakout.states.ZonePickerState;
-import de.tudarmstadt.informatik.fop.breakout.states.ZoneState;
 import org.newdawn.slick.AppGameContainer;
-
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.states.EndlessGameState;
 import de.tudarmstadt.informatik.fop.breakout.states.MainMenuState;
+import de.tudarmstadt.informatik.fop.breakout.states.StoryGameState;
+import de.tudarmstadt.informatik.fop.breakout.states.ZonePickerState;
+import de.tudarmstadt.informatik.fop.breakout.states.ZoneState;
 import eea.engine.entity.StateBasedEntityManager;
 
 public class Breakout extends StateBasedGame implements GameParameters {
@@ -47,7 +47,7 @@ public class Breakout extends StateBasedGame implements GameParameters {
 		}
 
 		AppGameContainer app = Breakout.initBreakout();
-
+		
 		// Set the display mode and frame rate
 		app.setDisplayMode(WINDOW_WIDTH, WINDOW_HEIGHT, false);
 		app.setTargetFrameRate(FRAME_RATE);
@@ -72,6 +72,7 @@ public class Breakout extends StateBasedGame implements GameParameters {
 		// and constants:
 
 		addState(new MainMenuState());
+		addState(new EndlessGameState());
 		addState(new ZonePickerState());
 		addState(new ZoneState());
 		addState(new StoryGameState());
@@ -80,6 +81,7 @@ public class Breakout extends StateBasedGame implements GameParameters {
 
 		// Add the states to the StateBasedEntityManager
 		StateBasedEntityManager.getInstance().addState(MAIN_MENU_STATE);
+		StateBasedEntityManager.getInstance().addState(ENDLESS_GAME_STATE);
 		StateBasedEntityManager.getInstance().addState(ZONE_PICKER_STATE);
 		StateBasedEntityManager.getInstance().addState(ZONE_STATE);
 		StateBasedEntityManager.getInstance().addState(STORY_GAME_STATE);

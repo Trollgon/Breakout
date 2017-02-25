@@ -10,9 +10,12 @@ import de.tudarmstadt.informatik.fop.breakout.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnItemAction;
 import de.tudarmstadt.informatik.fop.breakout.gameevents.IDCollisionEvent;
+import de.tudarmstadt.informatik.fop.breakout.managers.SoundManager;
 import de.tudarmstadt.informatik.fop.breakout.physics.Physics2D;
+import eea.engine.action.Action;
 import eea.engine.action.basicactions.DestroyEntityAction;
 import eea.engine.action.basicactions.MoveForwardAction;
+import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.event.ANDEvent;
@@ -142,8 +145,19 @@ public class Ball extends Entity implements GameParameters {
 		blockCollider.addAction(
 				(arg0, arg1, arg2, arg3) -> ((AbstractBlock) blockCollider.getCollidedEntity()).addHitsLeft(-1));
 		// speeds ball up on blockCollision
+
 		blockCollider.addAction((arg0, arg1, arg2, arg3) -> addSpeed(SPEEDUP_VALUE));
 		blockCollider.addAction(new SpawnItemAction(ItemType.SPEEDUP));
+
+		blockCollider.addAction(new Action() {
+			@Override
+			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
+				((Ball) blockCollider.getOwnerEntity()).setSpeed(0);
+			}
+		});
+		// plays the hitSound, can´t be managed by PlaySoundAction because the HitSound is variable depending on the hit BlockType
+		blockCollider.addAction((arg0, arg1, arg2, arg3) -> SoundManager.playSound(((AbstractBlock) blockCollider.getCollidedEntity()).getHitSound(), GAME_VOLUME, 1f));
+
 		
 		// bounces ball at borders
 		topBorderCollider.addAction((arg0, arg1, arg2, arg3) -> setRotation(Physics2D.bounceXAxis(getRotation())));
@@ -191,10 +205,20 @@ public class Ball extends Entity implements GameParameters {
 
 	public void setSpeed(float speed) {
 		this.speed = speed;
+		if (getSpeed() > MAX_BALL_SPEED) {
+			this.speed = MAX_BALL_SPEED;
+		}else if (getSpeed() < MIN_BALL_SPEED) {
+			this.speed = MIN_BALL_SPEED;
+		}
 	}
 	
 	public void addSpeed(float value) {
 		setSpeed(getSpeed() + value);
+		if (getSpeed() > MAX_BALL_SPEED) {
+			this.speed = MAX_BALL_SPEED;
+		}else if (getSpeed() < MIN_BALL_SPEED) {
+			this.speed = MIN_BALL_SPEED;
+		}
 	}
 
 	public boolean isLaunched() {

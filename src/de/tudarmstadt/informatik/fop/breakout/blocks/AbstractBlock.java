@@ -8,6 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.Lives;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Score;
 import de.tudarmstadt.informatik.fop.breakout.interfaces.IHitable;
 import eea.engine.action.Action;
@@ -17,9 +18,10 @@ import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.event.Event;
 import eea.engine.event.basicevents.CollisionEvent;
+import eea.engine.event.basicevents.LoopEvent;
 
 /**
- * abstract class for any block in the game
+ * abstract class for every block in the game
  * 
  * @author Jonas Henry Grebe
  *
@@ -28,7 +30,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 	private int hitsLeft;
 	private int score;
-	private BlockType type;
+	private BlockGroup type;
 	private boolean isDestroyed;
 
 	private String hitSound;
@@ -37,14 +39,14 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 	protected CollisionEvent collider;
 	private Event canBeDestroyed;
 	protected Event totalDestruction;
+	protected Event leftScreen;
+	public LoopEvent always;
 
 	/**
 	 * constructor of a AbstractBlock
 	 * 
-	 * @param xPos
-	 *            of the new block
-	 * @param yPos
-	 *            of the new block
+	 * @param xPos of the new block
+	 * @param yPos of the new block
 	 */
 	public AbstractBlock(int xPos, int yPos) {
 		super(BLOCK_ID);
@@ -52,6 +54,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 		setPassable(false);
 		setPosition(new Vector2f(xPos, yPos));
 		setSize(new Vector2f(BLOCK_WIDTH, BLOCK_HEIGHT));
+		setRotation(0);
 		
 		setDestroyed(false);
 
@@ -62,6 +65,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 		addActions();
 
 		try {
+			// method that gets overwritten by the specific block constructors:
 			configureBlock();
 		} catch (SlickException e) {
 
@@ -70,9 +74,11 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 		this.addComponent(new ImageRenderComponent(getBlockImage()));
 
+		this.addComponent(always);
 		this.addComponent(collider);
 		this.addComponent(totalDestruction);
 		this.addComponent(canBeDestroyed);
+		this.addComponent(leftScreen);
 	}
 
 	abstract void configureBlock() throws SlickException;
@@ -104,6 +110,18 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 				return isDestroyed();
 			}
 		};
+		
+		// auxiliary event for future addons
+		always = new LoopEvent();
+		
+		// leaving screen event
+		leftScreen = new Event("reachedBottomBorder") {
+			
+			@Override
+			protected boolean performAction(GameContainer container, StateBasedGame game, int delta) {
+				return leftScreen.getOwnerEntity().getPosition().getY() > WINDOW_HEIGHT;
+			}
+		};
 	}
 
 	/**
@@ -128,6 +146,12 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 		totalDestruction.addAction((arg0, arg1, arg2, arg3) -> Score.incScoreCount(getScore()));
 		// action: destroys this blocks entity
 		totalDestruction.addAction(new DestroyEntityAction());
+		
+		// destroys block when out of window
+		leftScreen.addAction(new DestroyEntityAction());
+		leftScreen.addAction((arg0, arg1, arg2, arg3) -> {
+			Lives.setLifeAmount(0);
+		});
 	};
 
 	@Override
@@ -198,7 +222,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 	 * 
 	 * @return
 	 */
-	public BlockType getType() {
+	public BlockGroup getType() {
 		return type;
 	}
 
@@ -207,7 +231,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 	 * 
 	 * @param type
 	 */
-	public void setType(BlockType type) {
+	public void setType(BlockGroup type) {
 		this.type = type;
 	}
 

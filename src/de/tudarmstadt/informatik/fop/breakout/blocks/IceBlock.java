@@ -1,17 +1,10 @@
 package de.tudarmstadt.informatik.fop.breakout.blocks;
 
-import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.state.StateBasedGame;
-
-import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
-import eea.engine.action.Action;
-import eea.engine.component.Component;
 
 /**
- * Ice block class: has 1 hit but slows down the ball
- * 
- * @author Jonas
+ * class to represent an ice block
+ * @author Jonas Henry Grebe
  *
  */
 public final class IceBlock extends AbstractBlock {
@@ -22,24 +15,13 @@ public final class IceBlock extends AbstractBlock {
 
 	@Override
 	void configureBlock() throws SlickException {
-		// this.setHitSound(...);
+		//setHitSound(BLOCK_IMPACT_SOUND);
 
-		setType(BlockType.UNSTABLE);
+		setType(BlockGroup.UNSTABLE);
 		setBlockImage(BLOCK_ICE_IMAGE);
 
 		setHitsLeft(BLOCK_ICE_HITSLEFT);
 		setScore(BLOCK_ICE_SCORE);
-
-		this.totalDestruction.addAction(new Action() {
-
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				if (collider.getCollidedEntity() != null) {
-
-					((Ball) collider.getCollidedEntity()).addSpeed(BLOCK_ICE_SLOWDOWN);
-				}
-			}
-		});
 	}
 
 }
