@@ -69,7 +69,7 @@ public interface GameParameters extends BlockParameters{
 	public static final float MAX_BALL_SPEED = 8f;
 	public static final float MIN_BALL_SPEED = 0.1f;
 	public static final float SPEEDUP_VALUE = 0.0001f;
-	public static final String BALL_IMAGE = "/images/ball.png";
+	public static final String BALL_IMAGE = "/images/guido.png";
 
 	// Stick
 	//public static final String STICK_HIT_SOUND = "sounds/hitStick.wav";
