@@ -25,12 +25,19 @@ import eea.engine.entity.StateBasedEntityManager;
 public class EndlessGameState extends BasicGameState implements GameParameters {
 
 	private StateBasedEntityManager entityManager;
-
-	public EndlessGameState() {
+	// private Sound bgMusic;
+	
+	public EndlessGameState() throws SlickException {
 
 		entityManager = StateBasedEntityManager.getInstance();
 	}
 
+	@Override
+	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+		super.enter(container, game);
+	}
+	
+	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		// adds the games borders: LEFT, TOP and RIGHT
@@ -45,7 +52,6 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 		entityManager.addEntity(getID(), new StopWatch());
 
 		LevelGenerator.getEndlessGameRow().stream().forEach(b -> entityManager.addEntity(ENDLESS_GAME_STATE, b));
-
 	}
 
 	@Override
@@ -88,6 +94,11 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 
 	}
 
+	@Override
+	public void leave(GameContainer container, StateBasedGame game) throws SlickException {
+		super.leave(container, game);
+	}
+	
 	@Override
 	public int getID() {
 		return ENDLESS_GAME_STATE;

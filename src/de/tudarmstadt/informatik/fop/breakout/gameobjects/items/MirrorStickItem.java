@@ -33,7 +33,7 @@ public MirrorStickItem(Vector2f startPosition) {
 		}
 		
 	};
-	
+
 	private final static Action end = start;
 
 }

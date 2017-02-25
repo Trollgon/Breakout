@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.gameactions.PlaySoundAction;
 import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnItemAction;
 import de.tudarmstadt.informatik.fop.breakout.gameevents.IDCollisionEvent;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.AbstractBlock;
@@ -21,6 +22,7 @@ import eea.engine.entity.Entity;
 import eea.engine.event.ANDEvent;
 import eea.engine.event.Event;
 import eea.engine.event.NOTEvent;
+import eea.engine.event.OREvent;
 import eea.engine.event.basicevents.CollisionEvent;
 import eea.engine.event.basicevents.KeyDownEvent;
 import eea.engine.event.basicevents.LeavingScreenEvent;
@@ -48,8 +50,9 @@ public class Ball extends Entity implements GameParameters {
 	private IDCollisionEvent topBorderCollider;
 	private IDCollisionEvent leftBorderCollider;
 	private IDCollisionEvent rightBorderCollider;
+	private OREvent borderCollider;
 
-	private IDCollisionEvent stickCollider;
+	public IDCollisionEvent stickCollider;
 
 	public Event hasLaunched;
 	private NOTEvent hasNotLaunched;
@@ -88,6 +91,7 @@ public class Ball extends Entity implements GameParameters {
 		this.addComponent(topBorderCollider);
 		this.addComponent(leftBorderCollider);
 		this.addComponent(rightBorderCollider);
+		this.addComponent(borderCollider);
 		this.addComponent(stickCollider);
 
 		// adds launch events
@@ -161,7 +165,7 @@ public class Ball extends Entity implements GameParameters {
 		blockCollider.addAction((arg0, arg1, arg2, arg3) -> ((Ball) blockCollider.getOwnerEntity()).addSpeed(SPEEDUP_VALUE));
 
 		// plays the hitSound, can´t be managed by PlaySoundAction because the HitSound is variable depending on the hit BlockType
-		blockCollider.addAction((arg0, arg1, arg2, arg3) -> SoundManager.playSound(((AbstractBlock) blockCollider.getCollidedEntity()).getHitSound(), GAME_VOLUME, 1f));
+		blockCollider.addAction((arg0, arg1, arg2, arg3) -> SoundManager.playSound(((AbstractBlock) blockCollider.getCollidedEntity()).getHitSound(), 1f, GAME_VOLUME));
 
 		
 		// bounces ball at borders
@@ -169,6 +173,9 @@ public class Ball extends Entity implements GameParameters {
 		leftBorderCollider.addAction((arg0, arg1, arg2, arg3) -> setRotation(Physics2D.bounceYAxis(getRotation())));
 		rightBorderCollider.addAction((arg0, arg1, arg2, arg3) -> setRotation(Physics2D.bounceYAxis(getRotation())));
 
+		borderCollider = new OREvent(topBorderCollider, leftBorderCollider, rightBorderCollider);
+		borderCollider.addAction(new PlaySoundAction(BORDER_HIT_SOUND));
+		
 		// bounces ball at stick
 		stickCollider.addAction((arg0, arg1, arg2, arg3) -> {
 			setRotation(Physics2D.bounceStick(getRotation(), (Ball) stickCollider.getOwnerEntity(), getLauncher()));
