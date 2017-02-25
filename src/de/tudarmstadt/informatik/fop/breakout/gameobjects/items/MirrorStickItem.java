@@ -30,6 +30,7 @@ public MirrorStickItem(Vector2f startPosition) {
 			// TODO Auto-generated method stub
 			Stick s = (Stick) StateBasedEntityManager.getInstance().getEntity(arg1.getCurrentStateID(), STICK_ID);
 			s.mirrorInput();
+			System.out.println("Input mirrored");
 		}
 		
 	};

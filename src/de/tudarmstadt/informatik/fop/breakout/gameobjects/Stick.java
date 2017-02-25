@@ -127,17 +127,22 @@ public class Stick extends Entity implements GameParameters {
 	}
 	
 	public void mirrorInput(){
-		moveLeftCondition.clearActions();
-		moveRightCondition.clearActions();
-		if(mirrored){
-			moveLeftCondition.addAction(new MoveLeftAction(speed));
-			moveRightCondition.addAction(new MoveRightAction(speed));
+		this.removeComponent(moveLeftCondition);
+		this.removeComponent(moveRightCondition);
+		if(!mirrored){
 			
+			moveLeftCondition = new ANDEvent(new NOTEvent(leftBorderReached), rightKeys, new NOTEvent(leftKeys));
+			moveRightCondition = new ANDEvent(new NOTEvent(rightBorderReached), leftKeys, new NOTEvent(rightKeys));
 		}
-		else {
-			moveLeftCondition.addAction(new MoveRightAction(speed));
-			moveRightCondition.addAction(new MoveLeftAction(speed));
+		else{
+			moveLeftCondition = new ANDEvent(new NOTEvent(leftBorderReached), leftKeys, new NOTEvent(rightKeys));
+			moveRightCondition = new ANDEvent(new NOTEvent(rightBorderReached), rightKeys, new NOTEvent(leftKeys));
 		}
+		
+		moveLeftCondition.addAction(new MoveLeftAction(speed));
+		moveRightCondition.addAction(new MoveRightAction(speed));
+		this.addComponent(moveLeftCondition);
+		this.addComponent(moveRightCondition);
 		mirrored = !mirrored;
 	}
 
