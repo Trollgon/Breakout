@@ -29,7 +29,7 @@ private static final Action start = new Action(){
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 		Stick s = (Stick) StateBasedEntityManager.getInstance().getEntity(arg1.getCurrentStateID(), STICK_ID);
-		s.setScale(2/3f);
+		s.setScale(2/3f * s.getScale());
 	}
 	
 };
@@ -39,7 +39,7 @@ private static final Action end = new Action(){
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 		Stick s = (Stick) StateBasedEntityManager.getInstance().getEntity(arg1.getCurrentStateID(), STICK_ID);
-		s.setScale(1.5f);
+		s.setScale(1.5f * s.getScale());
 	}
 	
 };
