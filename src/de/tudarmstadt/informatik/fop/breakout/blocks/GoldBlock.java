@@ -15,7 +15,7 @@ public final class GoldBlock extends AbstractBlock {
 
 	@Override
 	void configureBlock() throws SlickException {
-		//this.setHitSound(...);
+		setHitSound(BLOCK_GOLD_HIT_SOUND);
 		
 		setType(BlockGroup.UNSTABLE);
 		setBlockImage(BLOCK_GOLD_IMAGE);

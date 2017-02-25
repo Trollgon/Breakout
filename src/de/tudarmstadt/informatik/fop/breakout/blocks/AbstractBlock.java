@@ -58,7 +58,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 		setDestroyed(false);
 
 		// to be overwritten later:
-		setHitSound(BLOCK_DEFAULT_HIT_SOUND);
+		setHitSound(BLOCK_STANDARD_HIT_SOUND);
 
 		addEvents();
 		addActions();

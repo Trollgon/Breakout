@@ -15,7 +15,6 @@ public final class StandardBlock extends AbstractBlock {
 
 	@Override
 	void configureBlock() throws SlickException {
-		//this.setHitSound(...);
 		
 		setType(BlockGroup.UNSTABLE);
 		setBlockImage(BLOCK_STANDARD_IMAGE);

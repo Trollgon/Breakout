@@ -22,7 +22,7 @@ public interface GameParameters extends BlockParameters{
 	 * This game uses these sounds from freesound:
 	Hit Impact by MrGuff (http://freesound.org/people/mrguff )
 	 */
-	public static final float GAME_VOLUME = 0.6f;
+	public static final float GAME_VOLUME = 0.4f;
 	public static final float RAND_PITCH_TRESHOLD = 0.05f;
 	public static final float RAND_VOL_TRESHOLD = 0.08f;
 
