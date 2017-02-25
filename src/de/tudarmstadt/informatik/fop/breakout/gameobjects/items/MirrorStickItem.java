@@ -14,7 +14,7 @@ public class MirrorStickItem extends BasicItem {
 public MirrorStickItem(Vector2f startPosition) {
 		
 		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION, FALLING SPEED, LOGO
-		super(ITEM_MIRRORSTICK_ID, 0, startPosition, false, start, end, 0.3f, MIRRORSTICK_LOGO_PATH);
+		super(ITEM_MIRRORSTICK_ID, 0, startPosition, true, start, end, 0.3f, MIRRORSTICK_LOGO_PATH);
 		// TODO Auto-generated constructor stub
 	}
 	private final static Action start = new Action() {
