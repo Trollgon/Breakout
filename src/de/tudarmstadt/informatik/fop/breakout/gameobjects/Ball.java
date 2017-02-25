@@ -72,14 +72,15 @@ public class Ball extends Entity implements GameParameters {
 		setLastCollisionEntity(getLauncher());
 
 		setPosition(getLauncher().getLaunchPos());
+
+		configureEvents();
+
 		setSpeed(INITIAL_BALL_SPEED);
 		setRotation(0);
 
 		setVisible(true);
 		setPassable(false);
-
-		configureEvents();
-
+		
 		// adds colliders
 		this.addComponent(collider);
 		this.addComponent(blockCollider);
@@ -139,17 +140,20 @@ public class Ball extends Entity implements GameParameters {
 		//////////////////////////////////////////////////////////////////////////////////////////////////
 
 		// bounces ball when it hits block
-		blockCollider.addAction((arg0, arg1, arg2, arg3) -> setRotation(Physics2D.bounceXAxis(getRotation())));
+		blockCollider.addAction(new Action() {
+			
+			@Override
+			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
+				if (Physics2D.collidedOnSideEdge(blockCollider.getCollidedEntity(), arg3.getOwnerEntity())) {
+					setRotation(Physics2D.bounceYAxis(getRotation()));
+				}else setRotation(Physics2D.bounceXAxis(getRotation()));
+			}
+		});
 		// reduces the blocks hitsleft by one when hit
 		blockCollider.addAction(
 				(arg0, arg1, arg2, arg3) -> ((AbstractBlock) blockCollider.getCollidedEntity()).addHitsLeft(-1));
 		// speeds ball up on blockCollision
-		blockCollider.addAction(new Action() {
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				((Ball) blockCollider.getOwnerEntity()).setSpeed(0);
-			}
-		});;
+		blockCollider.addAction((arg0, arg1, arg2, arg3) -> ((Ball) blockCollider.getOwnerEntity()).addSpeed(SPEEDUP_VALUE));
 		// plays the hitSound, can´t be managed by PlaySoundAction because the HitSound is variable depending on the hit BlockType
 		blockCollider.addAction((arg0, arg1, arg2, arg3) -> SoundManager.playSound(((AbstractBlock) blockCollider.getCollidedEntity()).getHitSound(), GAME_VOLUME, 1f));
 		
@@ -198,21 +202,19 @@ public class Ball extends Entity implements GameParameters {
 	}
 
 	public void setSpeed(float speed) {
-		this.speed = speed;
-		if (getSpeed() > MAX_BALL_SPEED) {
-			this.speed = MAX_BALL_SPEED;
-		}else if (getSpeed() < MIN_BALL_SPEED) {
+		if (speed > MAX_BALL_SPEED) {
+			this.speed = MAX_BALL_SPEED;	
+		}else if (speed < MIN_BALL_SPEED) {
 			this.speed = MIN_BALL_SPEED;
-		}
+			
+		}else this.speed = speed;
+		
+		this.hasLaunched.clearActions();
+		this.hasLaunched.addAction(new MoveForwardAction(getSpeed()));
 	}
 	
 	public void addSpeed(float value) {
 		setSpeed(getSpeed() + value);
-		if (getSpeed() > MAX_BALL_SPEED) {
-			this.speed = MAX_BALL_SPEED;
-		}else if (getSpeed() < MIN_BALL_SPEED) {
-			this.speed = MIN_BALL_SPEED;
-		}
 	}
 
 	public boolean isLaunched() {
