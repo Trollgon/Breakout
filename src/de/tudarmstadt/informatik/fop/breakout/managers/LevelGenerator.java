@@ -113,7 +113,7 @@ public class LevelGenerator implements GameParameters {
 			xPos = SIDE_SPACE + BLOCK_WIDTH * x;
 			
 			// randomly set the next blocks ID from (0 to 4)
-			blockID = (int) Math.round(Math.random() * 4);
+			blockID = (int) Math.round(Math.random() * 5);
 			
 			// generate the random block
 			block = getBlockByID(blockID, xPos, -BLOCK_HEIGHT/2);

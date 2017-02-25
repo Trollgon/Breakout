@@ -55,24 +55,15 @@ public class Physics2D {
 	public static float bounceStick(float rotation, Ball b, Stick s) {
 		float offset = b.getPosition().getX() - s.getPosition().getX();
 
-		if (Math.abs(offset) >= (s.getSize().getX() / 2) + (b.getSize().getX() / (2 * Math.sqrt(2)))) { // detect
-																										// if
-																										// the
-																										// ball
-																										// hit
-																										// the
-																										// stick
-																										// on
-																										// the
-																										// left
-																										// or
-																										// right
-																										// border
+		if (Math.abs(offset) >= (s.getSize().getX() / 2) + (b.getSize().getX() / (2 * Math.sqrt(2)))) {
+			
 			rotation = bounceYAxis(rotation);
 			return rotation;
+		
 		} else {
+			
 			rotation = bounceXAxis(rotation);
-			b.setPosition(new Vector2f(b.getPosition().getX(), s.getPosition().getY() - 28));
+			b.setPosition(new Vector2f(b.getPosition().getX(), s.getPosition().getY() - (b.getSize().getY()/2 +s.getSize().getY()/2 +1)));
 
 			if (offset > -20f && offset < 20f) {
 				return rotation;
@@ -96,20 +87,20 @@ public class Physics2D {
 	}
 
 	/**
-	 * returns whether Entity b has hit Entity a on its edge or not 
+	 * returns whether Entity b has hit Entity a on its edge or not
+	 * 
 	 * @param a
 	 * @param b
 	 * @return
 	 */
 	public static boolean collidedOnSideEdge(Entity a, Entity b) {
-		
+
 		// absolute difference between a's x-center and b's x-center
 		float offset = Math.abs(b.getPosition().getX() - a.getPosition().getX());
-		
-		return (offset >= b.getSize().getX()/2 + a.getSize().getX()/2);
+
+		return (offset >= b.getSize().getX() / 2 + a.getSize().getX() / 2);
 	}
-	
-	
+
 	/**
 	 * @author Peter Franke
 	 * @param x

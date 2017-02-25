@@ -55,7 +55,7 @@ public interface BlockParameters {
 	public static final int BLOCK_TNT_HITSLEFT = 1;
 	public static final int BLOCK_TNT_SCORE = 150;
 	public static final float BLOCK_TNT_EXPLOSION_RADIUS = 100f;
-	public static final String BLOCK_TNT_HIT_SOUND = "/images/blocks/block_tnt.png";
+	public static final String BLOCK_TNT_HIT_SOUND = "";
 
 	// DROPPER-BLOCK drops a random Item 
 	public static final String BLOCK_DROPPER_IMAGE = "/images/blocks/block_dropper.png";

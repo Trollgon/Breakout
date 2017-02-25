@@ -27,7 +27,7 @@ public class OneUp extends BasicItem {
 
 		@Override
 		public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-			if(Lives.getLivesAmount() < 3) Lives.setLifeAmount(Lives.getLivesAmount() + 1);
+			if(Lives.getLivesAmount() < 3) Lives.incrementLife();
 			
 		}
 		

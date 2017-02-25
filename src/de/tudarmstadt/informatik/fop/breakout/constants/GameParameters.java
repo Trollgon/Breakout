@@ -120,7 +120,7 @@ public interface GameParameters extends BlockParameters{
 	public static final String RANDOMREBOUND_LOGO_PATH = "images/items/item_randomrebound.png";
 	public static final String EXPANDSTICK_LOGO_PATH = "images/items/item_expand.png";
 	public static final String COMPRESSSTICK_LOGO_PATH = "images/items/item_compress.png";
-	public static final String SHOOTPLAYER_LOGO_PATH = "images/items/shootplayer.png";
+	public static final String SHOOTPLAYER_LOGO_PATH = "images/items/item_shootplayer.png";
 	
 	public static enum ItemType {SPEEDUP, ONEUP, MIRRORSTICK, RANDOMREBOUND, EXPANDSTICK, COMPRESSSTICK, SHOOTPLAYER};
 }
