@@ -39,9 +39,9 @@ public class Countdown extends Entity implements GameParameters {
 		this.startAction = startAction;
 		this.endAction = endAction;
 		initialStart = false;
-		
-		configureEvents();
 		start();
+		configureEvents();
+		
 		System.out.println("Countdown created");
 	}
 	public void start() {
@@ -58,7 +58,7 @@ public class Countdown extends Entity implements GameParameters {
 		timeOver = new Event("timeIsOver") {
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
-				return isRunning() && (System.currentTimeMillis() > getEndTime())  ;
+				return isRunning() && !initialStart && (System.currentTimeMillis() > getEndTime())  ;
 			}
 		};
 		startEvent = new Event("start") {
