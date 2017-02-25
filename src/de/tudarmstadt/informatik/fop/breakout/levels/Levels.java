@@ -13,6 +13,7 @@ public class Levels {
         // filling HashMap
         levels.put(101, "maps/101.map");
         levels.put(102, "maps/102.map");
+        levels.put(201, "maps/201.map");
 
         // returning path
         return levels.get(levelID);

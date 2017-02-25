@@ -36,6 +36,10 @@ public class ZoneState implements GameParameters, GameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
+    	// PROBLEM:
+    	// DA DIE ZONEID NACH ERSTELLEN DER ZONESTATE INSTANZ GESETZT WIRD DURCH DEN BUTTON_KLICK,
+    	// KÖNNEN WIR HIER KEINE SPEZIFISCHEN BUTTONS FÜR DIE VERSCHIEDENEN STATES EINFÜGEN!
+    	// 
         entityManager.addEntity(getID(), new Button(218, 190, 101));
         entityManager.addEntity(getID(), new Button(218, 310, 102));
 
