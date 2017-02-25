@@ -34,7 +34,7 @@ public class RandomRebound extends BasicItem {
 			b.stickCollider.clearActions();
 			b.stickCollider.addAction(new Action() {
 				public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-					float randRot = (float) Math.random() * 178 - 89;
+					float randRot = (float) Math.random() * 100 - 50;
 					b.setRotation(randRot);
 					b.setPosition(new Vector2f(b.getPosition().getX(), b.getLauncher().getPosition().getY() - 28));
 				}
