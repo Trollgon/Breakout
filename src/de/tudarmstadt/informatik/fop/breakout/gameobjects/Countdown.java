@@ -10,6 +10,13 @@ import eea.engine.component.Component;
 import eea.engine.entity.Entity;
 import eea.engine.event.Event;
 
+/**
+ * 
+ * @author Peter Franke
+ * 
+ * a Countdown timer that executes the startACtion on startup and the endAction after the time ran out
+ *
+ */
 public class Countdown extends Entity implements GameParameters {
 	private long length;
 	private long endTime;
