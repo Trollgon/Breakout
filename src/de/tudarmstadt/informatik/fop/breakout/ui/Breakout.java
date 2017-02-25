@@ -1,10 +1,6 @@
 package de.tudarmstadt.informatik.fop.breakout.ui;
 
-import de.tudarmstadt.informatik.fop.breakout.states.StoryGameState;
-import de.tudarmstadt.informatik.fop.breakout.states.ZonePickerState;
-import de.tudarmstadt.informatik.fop.breakout.states.ZoneState;
 import org.newdawn.slick.AppGameContainer;
-
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
@@ -12,6 +8,9 @@ import org.newdawn.slick.state.StateBasedGame;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.states.EndlessGameState;
 import de.tudarmstadt.informatik.fop.breakout.states.MainMenuState;
+import de.tudarmstadt.informatik.fop.breakout.states.StoryGameState;
+import de.tudarmstadt.informatik.fop.breakout.states.ZonePickerState;
+import de.tudarmstadt.informatik.fop.breakout.states.ZoneState;
 import eea.engine.entity.StateBasedEntityManager;
 
 public class Breakout extends StateBasedGame implements GameParameters {

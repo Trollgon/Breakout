@@ -25,10 +25,10 @@ import eea.engine.entity.StateBasedEntityManager;
  * @author Matthias Spoerkmann
  */
 public class StoryGameState implements GameParameters, GameState {
-	
+
 	private int stateID;
 	protected int levelID = 0;
-	
+
 	public StateBasedEntityManager entityManager;
 
 	/**
@@ -173,7 +173,7 @@ public class StoryGameState implements GameParameters, GameState {
 
 	@Override
 	public int getID() {
-		return STORY_GAME_STATE;
+		return this.stateID;
 	}
 
 	@Override
@@ -183,7 +183,8 @@ public class StoryGameState implements GameParameters, GameState {
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.LEFT).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.TOP).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.RIGHT).createEntity());
-		
+
+		// adds the gameObjects:
 		entityManager.addEntity(getID(), new Stick());
 		entityManager.addEntity(getID(), new Ball((Stick) entityManager.getEntity(STORY_GAME_STATE, STICK_ID)));
 		entityManager.addEntity(getID(), new Lives());
@@ -203,7 +204,8 @@ public class StoryGameState implements GameParameters, GameState {
 		entityManager.renderEntities(container, game, g);
 
 		// score display
-		g.drawString(((Score) entityManager.getEntity(STORY_GAME_STATE, SCORE_ID)).toString(), 100, (WINDOW_HEIGHT - 20));
+		g.drawString(((Score) entityManager.getEntity(STORY_GAME_STATE, SCORE_ID)).toString(), 100,
+				(WINDOW_HEIGHT - 20));
 
 		// stopwatch display
 		g.drawString(((StopWatch) entityManager.getEntity(STORY_GAME_STATE, STOP_WATCH_ID)).toString(), 200,
@@ -219,40 +221,11 @@ public class StoryGameState implements GameParameters, GameState {
 		///////////////////////////////////////////////////////
 
 		// creates a new Ball if no ball existing and game not finished
-		if (!entityManager.hasEntity(STORY_GAME_STATE, BALL_ID)
-				&& (Lives.getLivesAmount() != 0)) {
+		if (!entityManager.hasEntity(STORY_GAME_STATE, BALL_ID) && (Lives.getLivesAmount() != 0)) {
 			entityManager.addEntity(STORY_GAME_STATE,
 					new Ball((Stick) entityManager.getEntity(STORY_GAME_STATE, STICK_ID)));
 		}
 
-		// player loses the game (his life amount drops to 0) or wins it
-		// (destroyed all blocks)
-		/*if (((((Lives) entityManager.getEntity(GAMEPLAY_STATE, LIVES_ID)).getLivesAmount() == 0)
-				| (!entityManager.hasEntity(GAMEPLAY_STATE, BLOCK_ID))) & !gameFinished) {
-			gameFinished = true;
-			((StopWatch) entityManager.getEntity(GAMEPLAY_STATE, STOP_WATCH_ID)).pauseStopWatch();
-			// ball has to be made unlaunchable here...
-			if (((Lives) entityManager.getEntity(GAMEPLAY_STATE, LIVES_ID)).getLivesAmount() == 0) {
-				// insert output box of shame here
-			} else {
-				// insert output box of victory here
-			}
-			// just a test name... some "Enter your name"-shit needed here
-			String playerName = "J�rg";
-			// adds the player to the highscore list if the score is good enough
-			try {
-				if (HighscoreManager.checkIfScoreHighEnough(
-						((Score) entityManager.getEntity(GAMEPLAY_STATE, SCORE_ID)).getScoreCount())) {
-					HighscoreManager.addPlayerToHighscore(new Player(playerName,
-							((Score) entityManager.getEntity(GAMEPLAY_STATE, SCORE_ID)).getScoreCount(),
-							((StopWatch) entityManager.getEntity(GAMEPLAY_STATE, STOP_WATCH_ID)).getTime()));
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			// still needs to end the match...
-		}*/
 	}
 
 	public void loadLevel() {
@@ -260,9 +233,9 @@ public class StoryGameState implements GameParameters, GameState {
 		// adds the level's blocks to the entityManager:
 		if (levelID != 0) {
 
-			//entityManager.getEntitiesByState(this.getID()).stream().filter(e -> e instanceof AbstractBlock).forEach(b -> entityManager.removeEntity(this.getID(), b));
 			try {
-				LevelGenerator.parseLevelFromMap(Levels.getPathByID(this.levelID)).stream().forEach(b -> entityManager.addEntity(getID(), b));
+				LevelGenerator.parseLevelFromMap(Levels.getPathByID(this.levelID)).stream()
+						.forEach(b -> entityManager.addEntity(getID(), b));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

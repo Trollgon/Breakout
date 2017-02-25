@@ -146,6 +146,7 @@ public class LevelGenerator implements GameParameters {
 				.stream()
 				.filter(e -> e instanceof AbstractBlock)
 				.anyMatch(b -> b.getShape().intersects(rec));
+		
 	}
 
 	/**
