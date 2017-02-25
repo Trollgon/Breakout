@@ -27,9 +27,21 @@ public class SpawnItemAction implements Action, GameParameters {
 		Vector2f itemPos = component.getOwnerEntity().getPosition();
 		switch(item){
 		case SPEEDUP: i = new SpeedupItem(itemPos);
-							System.out.println("speedup spawned");
+						System.out.println("speedup spawned");
+						break;
+		case ONEUP: i = new OneUp(itemPos);
+					break;
+		case MIRRORSTICK: i = new MirrorStickItem(itemPos);
+						  break;
+		case RANDOMREBOUND: i = new RandomRebound(itemPos);
 							break;
-		default: i = new SpeedupItem(itemPos);
+		case EXPANDSTICK: i = new ExpandStickItem(itemPos);
+							break;
+		case COMPRESSSTICK: i = new CompressStickItem(itemPos);
+							break;
+		case SHOOTPLAYER: i = new ShootPlayerItem(itemPos);
+							break;
+		default: i = new ShootPlayerItem(itemPos);
 							
 		}
 		StateBasedEntityManager.getInstance().addEntity(game.getCurrentStateID(), i);
