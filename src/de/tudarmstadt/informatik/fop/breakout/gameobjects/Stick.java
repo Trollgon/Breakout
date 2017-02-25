@@ -38,6 +38,7 @@ public class Stick extends Entity implements GameParameters {
 	private ANDEvent moveRightCondition;
 	private CollisionEvent collider;
 	private ANDEvent hitByItem;
+	private boolean mirrored;
 
 	/**
 	 * Constructor of the Stick class
@@ -48,6 +49,7 @@ public class Stick extends Entity implements GameParameters {
 		super(STICK_ID);
 		setPosition(new Vector2f(startPosX, startPosY));
 		setSize(new Vector2f(130, 25));
+		mirrored = false;
 		try {
 			this.addComponent(new ImageRenderComponent(new Image(STICK_IMAGE)));
 		} catch (SlickException e) {
@@ -122,6 +124,21 @@ public class Stick extends Entity implements GameParameters {
 	 */
 	public Vector2f getLaunchPos() {
 		return new Vector2f(getPosition().getX(), getPosition().getY() - 26);
+	}
+	
+	public void mirrorInput(){
+		moveLeftCondition.clearActions();
+		moveRightCondition.clearActions();
+		if(mirrored){
+			moveLeftCondition.addAction(new MoveLeftAction(speed));
+			moveRightCondition.addAction(new MoveRightAction(speed));
+			
+		}
+		else {
+			moveLeftCondition.addAction(new MoveRightAction(speed));
+			moveRightCondition.addAction(new MoveLeftAction(speed));
+		}
+		mirrored = !mirrored;
 	}
 
 }
