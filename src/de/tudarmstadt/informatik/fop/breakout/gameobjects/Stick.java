@@ -39,6 +39,7 @@ public class Stick extends Entity implements GameParameters {
 	private CollisionEvent collider;
 	private ANDEvent hitByItem;
 	private boolean mirrored;
+	private ImageRenderComponent stickPic;
 
 	/**
 	 * Constructor of the Stick class
@@ -50,16 +51,18 @@ public class Stick extends Entity implements GameParameters {
 		setPosition(new Vector2f(startPosX, startPosY));
 		setSize(new Vector2f(130, 25));
 		mirrored = false;
+		
 		try {
-			this.addComponent(new ImageRenderComponent(new Image(STICK_IMAGE)));
+			stickPic = new ImageRenderComponent(new Image(STICK_IMAGE));
 		} catch (SlickException e) {
 
 			e.printStackTrace();
 		}
+		this.addComponent(stickPic);
 		configureEvents();
 		setVisible(true);
 		setPassable(false);
-
+		
 	}
 
 	/**
@@ -145,5 +148,15 @@ public class Stick extends Entity implements GameParameters {
 		this.addComponent(moveRightCondition);
 		mirrored = !mirrored;
 	}
-
+	public void updateImage(){
+		this.removeComponent(stickPic);
+		int newSizeX = Math.round(this.getSize().getX());
+		int newSizeY = Math.round(this.getSize().getY());
+		try {
+			stickPic = new ImageRenderComponent(new Image(STICK_IMAGE).getScaledCopy(newSizeX, newSizeY));
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
+		this.addComponent(stickPic);
+	}
 }
