@@ -165,7 +165,7 @@ public class Ball extends Entity implements GameParameters {
 		blockCollider.addAction((arg0, arg1, arg2, arg3) -> ((Ball) blockCollider.getOwnerEntity()).addSpeed(SPEEDUP_VALUE));
 
 		// plays the hitSound, can´t be managed by PlaySoundAction because the HitSound is variable depending on the hit BlockType
-		blockCollider.addAction((arg0, arg1, arg2, arg3) -> SoundManager.playSound(((AbstractBlock) blockCollider.getCollidedEntity()).getHitSound(), 1f, GAME_VOLUME));
+		blockCollider.addAction((arg0, arg1, arg2, arg3) -> SoundManager.playSound(((AbstractBlock) blockCollider.getCollidedEntity()).getHitSound(), 1f));
 
 		
 		// bounces ball at borders

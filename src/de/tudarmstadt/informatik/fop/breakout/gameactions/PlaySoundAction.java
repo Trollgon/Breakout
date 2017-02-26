@@ -18,7 +18,7 @@ public class PlaySoundAction implements Action, GameParameters {
 	
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-		SoundManager.playSound(sound, 1f, GAME_VOLUME);
+		SoundManager.playSound(sound, 1f);
 	}
 
 }

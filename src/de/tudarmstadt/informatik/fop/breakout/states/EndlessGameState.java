@@ -41,6 +41,8 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 		
 		try {
 			SoundStore.get().getWAV("/sounds/loop_endless.wav").playAsMusic(1f, 1f, true);
+			SoundStore.get().setMusicVolume(GAME_MUSIC_VOLUME);
+			SoundStore.get().setSoundVolume(GAME_SOUND_VOLUME);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,6 +85,7 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		
+		// endless generator:
 		if (LevelGenerator.topRowMissing()) {
 			LevelGenerator.getEndlessGameRow().stream().forEach(b -> entityManager.addEntity(ENDLESS_GAME_STATE, b));
 		}
@@ -91,7 +94,7 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 		entityManager.updateEntities(container, game, ENDLESS_GAME_STATE);
 		///////////////////////////////////////////////////////
 
-		// creates a new Ball if no ball existing and game not finished
+		// creates a new Ball if no ball existing
 		if (!entityManager.hasEntity(ENDLESS_GAME_STATE, BALL_ID) && (Lives.getLivesAmount() != 0)) {
 			entityManager.addEntity(ENDLESS_GAME_STATE,
 					new Ball((Stick) entityManager.getEntity(ENDLESS_GAME_STATE, STICK_ID)));

@@ -18,7 +18,8 @@ public interface GameParameters extends BlockParameters {
 	public static final float ENDLESS_GAME_SPEED = 0.02f;
 
 	// Sound
-	public static final float GAME_VOLUME = 0.4f;
+	public static final float GAME_MUSIC_VOLUME = 0.02f;
+	public static final float GAME_SOUND_VOLUME = 0.02f;
 	public static final float RAND_PITCH_TRESHOLD = 0.025f;
 	public static final float RAND_VOL_TRESHOLD = 0.05f;
 
