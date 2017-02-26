@@ -3,6 +3,7 @@ package de.tudarmstadt.informatik.fop.breakout.ui;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.openal.SoundStore;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
@@ -52,6 +53,8 @@ public class Breakout extends StateBasedGame implements GameParameters {
 		app.setDisplayMode(WINDOW_WIDTH, WINDOW_HEIGHT, false);
 		app.setTargetFrameRate(FRAME_RATE);
 
+		// init the SoundStore
+		SoundStore.get().init();
 		// now start the game!
 		app.start();
 	}

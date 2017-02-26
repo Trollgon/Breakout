@@ -1,9 +1,12 @@
 package de.tudarmstadt.informatik.fop.breakout.states;
 
+import java.io.IOException;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.openal.SoundStore;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -35,6 +38,13 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
 		super.enter(container, game);
+		
+		try {
+			SoundStore.get().getWAV("/sounds/loop_endless.wav").playAsMusic(1f, 1f, true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -89,6 +99,7 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 
 		// stops game if no lifes left
 		if (Lives.getLivesAmount() == 0) {
+			game.enterState(MAIN_MENU_STATE);
 			// game.pauseUpdate();
 		}
 
@@ -97,6 +108,7 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 	@Override
 	public void leave(GameContainer container, StateBasedGame game) throws SlickException {
 		super.leave(container, game);
+		SoundStore.get().pauseLoop();
 	}
 	
 	@Override
