@@ -4,18 +4,13 @@ public interface BlockParameters {
 
 	// Blocks
 
-	// Block types:
+	// Block Groups:
 	// solid -> blocks that can´t be destroyed by other blocks (e.g. explosions)
 	// unstable -> blocks that can be destroyed by other blocks
 	// ... -> ...
 	public enum BlockGroup {
 		SOLID, UNSTABLE
 	}
-
-	// Block event IDS:
-	public static final String NOHITSLEFT = "noHitsLeft";
-	public static final String BALLCOLLISION = "BallCollision";
-	public static final String DESTRUCTION = "destruction";
 
 	public static final String BLOCK_ID = "block";
 
@@ -25,6 +20,10 @@ public interface BlockParameters {
 	// VOLUME
 	public static final float BLOCK_HIT_VOLUME = 0.05f;
 
+	// order of these enum elements specify their IDS:
+	// e.g. 0 is NULL, 1 is STANDARD, 2 is IRON, ...
+	public enum BlockType {NULL, STANDARD, IRON, GOLD, ICE, DROPPER};
+	
 	// STANDARD-BLOCK: 1 HIT
 	public static final String BLOCK_STANDARD_IMAGE = "/images/blocks/block_default.png";
 	public static final int BLOCK_STANDARD_HITSLEFT = 1;
@@ -63,4 +62,15 @@ public interface BlockParameters {
 	public static final int BLOCK_DROPPER_SCORE = 200;
 	public static final String BLOCK_DROPPER_HIT_SOUND = "/sounds/blockHitStandard.wav";
 
+	// in the future:
+	
+	// SNOW - BLOCK (just a STANDARD BLOCK FOR THE ICEZONE)
+	// MAGMA - BLOCK (BLOCK THAT SOMETIMES DROPS MAGMA THAT HURTS THE PLAYER)
+	// WOOD - BLOCK (just a STANDARD BLOCK FOR OTHER ZONES)
+	// JUNGLE - BLOCK 
+	// EARTH - BLOCK (just a STANDARD BLOCK)
+	// DIAMOND - BLOCK (has 5 Hits, but has a lot of Points)
+	// PLASMA - BLOCK
+	// GODZILLA - BLOCK (just or FUN)
+	// ...
 }

@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.StreamTokenizer;
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.geom.Rectangle;
@@ -30,6 +31,8 @@ public class LevelGenerator implements GameParameters {
 	// private final static int BLOCKS_PER_ROW = 16;
 	private final static int SIDE_SPACE = BLOCK_WIDTH / 2;
 	private final static int TOP_SPACE = BLOCK_HEIGHT / 2;
+
+	private static BlockType[] blockTypes = BlockType.values();
 
 	/**
 	 * loads a level from a '.map' file and returns an ArrayList<Block> with all
@@ -74,7 +77,7 @@ public class LevelGenerator implements GameParameters {
 					xPos = SIDE_SPACE + BLOCK_WIDTH * gridX;
 					yPos = TOP_SPACE + BLOCK_HEIGHT * gridY;
 
-					block = getBlockByID((int) st.nval, xPos, yPos);
+					block = getBlockByID(blockTypes[(int) st.nval], xPos, yPos);
 
 					gridX++;
 
@@ -97,28 +100,30 @@ public class LevelGenerator implements GameParameters {
 	/**
 	 * returns a new ArrayList<AbstractBlock> with random blocks in a Row
 	 * 
-	 * @return
+	 * @return ArrayList<AbstractBlock> of random blocks in the row directly 'over the window'
 	 */
 	public static ArrayList<AbstractBlock> getEndlessGameRow() {
 		ArrayList<AbstractBlock> blocks = new ArrayList<AbstractBlock>();
 		AbstractBlock block = null;
 
 		int xPos;
-		int blockID;
-
+		BlockType type;
+		Random random = new Random();
+		
 		// for every column
 		for (int x = 0; x <= 16; x++) {
 
 			// set next blocks position
 			xPos = SIDE_SPACE + BLOCK_WIDTH * x;
-			
-			// randomly set the next blocks ID from (0 to 4)
-			blockID = (int) Math.round(Math.random() * 5);
-			
+
+			// get random blockType
+			type = blockTypes[random.nextInt(blockTypes.length)];
+
 			// generate the random block
-			block = getBlockByID(blockID, xPos, -BLOCK_HEIGHT/2);
+			block = getBlockByID(type, xPos, -BLOCK_HEIGHT / 2);
 
 			// adds the endlessGame specific MoveDownAction
+			// and adds the to the list if not null
 			if (block != null) {
 				block.always.addAction(new MoveDownAction(ENDLESS_GAME_SPEED));
 
@@ -126,33 +131,32 @@ public class LevelGenerator implements GameParameters {
 			}
 		}
 
+		
+		
 		// returns all generated blocks
 		return blocks;
 	}
 
 	/**
-	 * returns TRUE if top Row has moven down enough to create next random row
+	 * returns TRUE if top Row has moven down enough to create the next random row
 	 * 
 	 * @return returns if the most top row (area of auxiliary rec) is empty
 	 */
 	public static boolean topRowMissing() {
 
-		Rectangle rec = new Rectangle(0, -BLOCK_HEIGHT/2, WINDOW_WIDTH, BLOCK_HEIGHT/2);
+		Rectangle rec = new Rectangle(0, -BLOCK_HEIGHT / 2, WINDOW_WIDTH, BLOCK_HEIGHT / 2);
 
 		// tries to find any Block in the area of rec:
 		// if no Block is found, return TRUE, if any is found, return FALSE
-		return !StateBasedEntityManager.getInstance()
-				.getEntitiesByState(ENDLESS_GAME_STATE)
-				.stream()
-				.filter(e -> e instanceof AbstractBlock)
-				.anyMatch(b -> b.getShape().intersects(rec));
-		
+		return !StateBasedEntityManager.getInstance().getEntitiesByState(ENDLESS_GAME_STATE).stream()
+				.filter(e -> e instanceof AbstractBlock).anyMatch(b -> b.getShape().intersects(rec));
+
 	}
 
 	/**
-	 * gets the Block-instance by a given ID
+	 * gets the Block-instance by a given BlockType
 	 * 
-	 * @param blockID
+	 * @param blockType
 	 *            of the needed block class
 	 * @param xPos
 	 *            of the new block
@@ -160,24 +164,23 @@ public class LevelGenerator implements GameParameters {
 	 *            of the new block
 	 * @return a block instance of the block class associated with the given ID
 	 */
-	public static AbstractBlock getBlockByID(int blockID, int xPos, int yPos) {
+	public static AbstractBlock getBlockByID(BlockType block, int xPos, int yPos) {
 
-		switch (blockID) {
-		case 0:
+		switch (block) {
+		case DROPPER:
+			return new DropperBlock(xPos, yPos);
+		case GOLD:
+			return new GoldBlock(xPos, yPos);
+		case ICE:
+			return new IceBlock(xPos, yPos);
+		case IRON:
+			return new IronBlock(xPos, yPos);
+		case STANDARD:
+			return new StandardBlock(xPos, yPos);
+		case NULL:
 			return null;
 		default:
-		case 1:
-			return new StandardBlock(xPos, yPos);
-		case 2:
-			return new IronBlock(xPos, yPos);
-		case 3:
-			return new GoldBlock(xPos, yPos);
-		case 4:
-			return new IceBlock(xPos, yPos);
-		case 5:
-			return new DropperBlock(xPos, yPos);
+			return null;
 		}
-
 	}
-
 }
