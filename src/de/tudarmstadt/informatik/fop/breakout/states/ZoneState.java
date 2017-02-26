@@ -12,7 +12,6 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class ZoneState implements GameParameters, GameState {
 
-    private int stateID;
     protected ZoneType zoneID;
     StateBasedEntityManager entityManager;
 
@@ -20,7 +19,6 @@ public class ZoneState implements GameParameters, GameState {
      * Constructor of new zone state
      */
     public ZoneState() {
-        this.stateID = ZONE_STATE;
         entityManager = StateBasedEntityManager.getInstance();
     }
 

@@ -7,13 +7,13 @@ package de.tudarmstadt.informatik.fop.breakout.constants;
  * @author Tobias Otterbein, Benedikt Wartusch
  *
  */
-public interface GameParameters extends BlockParameters{
+public interface GameParameters extends BlockParameters {
 
 	// Window Settings
 	public static final int WINDOW_WIDTH = 800;
 	public static final int WINDOW_HEIGHT = 600;
 	public static final int FRAME_RATE = 60;
-	
+
 	// Game Mode Settings
 	public static final float ENDLESS_GAME_SPEED = 0.02f;
 
@@ -23,9 +23,10 @@ public interface GameParameters extends BlockParameters{
 	public static final float RAND_VOL_TRESHOLD = 0.05f;
 
 	// Game States
-	public enum StateType {MAIN_MENU_STATE, ZONE_PICKER_STATE, ZONE_STATE, STORY_GAME_STATE, ENDLESS_GAME_STATE
-		, HIGHSCORE_STATE, ABOUT_STATE, QUIT_STATE};
-	
+	public enum StateType {
+		MAIN_MENU_STATE, ZONE_PICKER_STATE, ZONE_STATE, STORY_GAME_STATE, ENDLESS_GAME_STATE, HIGHSCORE_STATE, ABOUT_STATE, QUIT_STATE
+	};
+
 	public static final int MAIN_MENU_STATE = 1;
 	public static final int ZONE_PICKER_STATE = 2;
 	public static final int ZONE_STATE = 3;
@@ -34,9 +35,11 @@ public interface GameParameters extends BlockParameters{
 	public static final int HIGHSCORE_STATE = 6;
 	public static final int ABOUT_STATE = 7;
 	public static final int QUIT_STATE = 8;
-	
+
 	// Zones
-	public enum ZoneType {NORMALZONE, ICEZONE};
+	public enum ZoneType {
+		NORMALZONE, ICEZONE
+	};
 
 	// Backgrounds
 	public static final String BACKGROUND_IMAGE = "/images/background.png";
@@ -51,8 +54,9 @@ public interface GameParameters extends BlockParameters{
 	public enum BorderType {
 		TOP, LEFT, RIGHT
 	};
+
 	public static final String BORDER_HIT_SOUND = "/sounds/borderHit.wav";
-	
+
 	// offset to avoid a perma-collision with the outer blocks
 	public static final int BORDER_OFFSET = 0;
 
@@ -74,8 +78,6 @@ public interface GameParameters extends BlockParameters{
 	public static final String BALL_IMAGE = "/images/guido.png";
 
 	// Stick
-	//public static final String STICK_HIT_SOUND = "sounds/hitStick.wav";
-	public static final String STICK_HIT_SOUND = "sounds/hitImpact.wav"; //credit: freesound.org - MrGuff -"Hit Impact"
 	public static final String COLLECT_ITEM_SOUND = "sounds/itemHitStick.wav";
 	public static final String STICK_ID = "stick";
 	public static final float STICK_SPEED = 1.5f;
@@ -87,7 +89,7 @@ public interface GameParameters extends BlockParameters{
 	public static final String HEART_2_IMAGE = "/images/heart_2.png";
 	public static final String HEART_1_IMAGE = "/images/heart_1.png";
 	public static final String HEART_0_IMAGE = "/images/heart_0.png";
-	
+
 	// Score
 	public static final String SCORE_ID = "score";
 
@@ -108,7 +110,7 @@ public interface GameParameters extends BlockParameters{
 	// Highscore
 	public static final String HIGHSCORE_FILE = "highscores/highscore.hsc";
 
-	//Items
+	// Items
 	public static final String ITEM_SPEEDUP_ID = "item_speedup";
 	public static final String ITEM_ONEUP_ID = "item_oneup";
 	public static final String ITEM_MIRRORSTICK_ID = "item_mirrorstick";
@@ -116,7 +118,7 @@ public interface GameParameters extends BlockParameters{
 	public static final String ITEM_EXPANDSTICK_ID = "item_expandstick";
 	public static final String ITEM_COMPRESSSTICK_ID = "item_compressstick";
 	public static final String ITEM_SHOOTPLAYER_ID = "item_shootplayer";
-	
+
 	public static final String SPEEDUP_LOGO_PATH = "images/items/item_speedup.png";
 	public static final String ONEUP_LOGO_PATH = "images/items/item_oneup.png";
 	public static final String MIRRORSTICK_LOGO_PATH = "images/items/item_mirror.png";
@@ -124,6 +126,8 @@ public interface GameParameters extends BlockParameters{
 	public static final String EXPANDSTICK_LOGO_PATH = "images/items/item_expand.png";
 	public static final String COMPRESSSTICK_LOGO_PATH = "images/items/item_compress.png";
 	public static final String SHOOTPLAYER_LOGO_PATH = "images/items/item_shootplayer.png";
-	
-	public static enum ItemType {SPEEDUP, ONEUP, MIRRORSTICK, RANDOMREBOUND, EXPANDSTICK, COMPRESSSTICK, SHOOTPLAYER};
+
+	public static enum ItemType {
+		SPEEDUP, ONEUP, MIRRORSTICK, RANDOMREBOUND, EXPANDSTICK, COMPRESSSTICK, SHOOTPLAYER
+	};
 }
