@@ -102,7 +102,6 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 			game.enterState(MAIN_MENU_STATE);
 			// game.pauseUpdate();
 		}
-
 	}
 
 	@Override
