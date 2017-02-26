@@ -12,6 +12,11 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.items.ShootPlayerItem;
 import eea.engine.entity.Entity;
 import eea.engine.interfaces.IEntityFactory;
 
+/**
+ * ItemFactory class: helps to create a new Item by a ItemType
+ * @author Jonas
+ *
+ */
 public class ItemFactory implements IEntityFactory, GameParameters {
 
 	private ItemType item;

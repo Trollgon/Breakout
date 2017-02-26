@@ -100,7 +100,8 @@ public class LevelGenerator implements GameParameters {
 	/**
 	 * returns a new ArrayList<AbstractBlock> with random blocks in a Row
 	 * 
-	 * @return ArrayList<AbstractBlock> of random blocks in the row directly 'over the window'
+	 * @return ArrayList<AbstractBlock> of random blocks in the row directly
+	 *         'over the window'
 	 */
 	public static ArrayList<AbstractBlock> getEndlessGameRow() {
 		ArrayList<AbstractBlock> blocks = new ArrayList<AbstractBlock>();
@@ -109,7 +110,7 @@ public class LevelGenerator implements GameParameters {
 		int xPos;
 		BlockType type;
 		Random random = new Random();
-		
+
 		// for every column
 		for (int x = 0; x <= 16; x++) {
 
@@ -131,14 +132,13 @@ public class LevelGenerator implements GameParameters {
 			}
 		}
 
-		
-		
 		// returns all generated blocks
 		return blocks;
 	}
 
 	/**
-	 * returns TRUE if top Row has moven down enough to create the next random row
+	 * returns TRUE if top Row has moven down enough to create the next random
+	 * row
 	 * 
 	 * @return returns if the most top row (area of auxiliary rec) is empty
 	 */
@@ -177,9 +177,12 @@ public class LevelGenerator implements GameParameters {
 			return new IronBlock(xPos, yPos);
 		case STANDARD:
 			return new StandardBlock(xPos, yPos);
-		case NULL:
-			return null;
+		case DIAMOND:
+			return new DiamondBlock(xPos, yPos);
+		case SNOW:
+			return new SnowBlock(xPos, yPos);
 		default:
+		case NULL:
 			return null;
 		}
 	}
