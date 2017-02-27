@@ -10,6 +10,13 @@ import eea.engine.component.Component;
 import eea.engine.entity.Entity;
 import eea.engine.event.Event;
 
+/**
+ * 
+ * @author Peter Franke
+ * 
+ * a Countdown timer that executes the startACtion on startup and the endAction after the time ran out
+ *
+ */
 public class Countdown extends Entity implements GameParameters {
 	private long length;
 	private long endTime;
@@ -17,25 +24,31 @@ public class Countdown extends Entity implements GameParameters {
 	private boolean isRunning;
 	
 	private Event timeOver;
+	private Event cancelCondition;
 	private Action startAction;
 	private Action endAction;
 	private boolean initialStart;
 	private Event startEvent;
 	
 	
-	public Countdown(long timeInms, Action startAction, Action endAction) {
+	public Countdown(long timeInms, Action startAction, Action endAction/*, Event cancelCondition*/) {
 		super(COUNTDOWN_ID);
 		
 		length = timeInms;
-		setEndTime();
-		
-		isRunning = true;
-		
-		configureEvents();
-		
+		this.cancelCondition = cancelCondition;
 		this.startAction = startAction;
 		this.endAction = endAction;
+		initialStart = false;
+		start();
+		configureEvents();
+		
+		System.out.println("Countdown created");
+	}
+	public void start() {
+		setEndTime();
+		isRunning = true;
 		initialStart = true;
+		System.out.println("Countdown started");
 	}
 	private void setEndTime(){
 		endTime = System.currentTimeMillis() + length;
@@ -45,7 +58,7 @@ public class Countdown extends Entity implements GameParameters {
 		timeOver = new Event("timeIsOver") {
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
-				return isRunning() && (System.currentTimeMillis() > getEndTime());
+				return isRunning() && !initialStart && (System.currentTimeMillis() > getEndTime())  ;
 			}
 		};
 		startEvent = new Event("start") {
@@ -59,8 +72,9 @@ public class Countdown extends Entity implements GameParameters {
 		timeOver.addAction(new Action() {
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				endAction.update(arg0, arg1, arg2, arg3);
+				if(endAction != null) endAction.update(arg0, arg1, arg2, arg3);
 				stop();
+				System.out.println("countdown over");
 			}
 		});
 		
@@ -69,13 +83,20 @@ public class Countdown extends Entity implements GameParameters {
 		startEvent.addAction(new Action() {
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3){
-				startAction.update(arg0, arg1, arg2, arg3);
+				if(startAction!= null) startAction.update(arg0, arg1, arg2, arg3);
 				initialStart = false;
+				System.out.println("start action executed");
 				
 			}
 		});
-		
+		//startEvent.addAction(startAction);
+		//timeOver.addAction(endAction);
+		/*if(!cancelCondition.equals(null)){
+			cancelCondition.addAction(new DestroyEntityAction());
+			this.addComponent(cancelCondition);
+		}*/
 		this.addComponent(timeOver);
+		this.addComponent(startEvent);
 	}
 	public long getEndTime(){
 		return endTime;

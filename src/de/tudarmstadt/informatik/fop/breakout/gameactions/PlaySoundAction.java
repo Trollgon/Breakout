@@ -11,17 +11,14 @@ import eea.engine.component.Component;
 public class PlaySoundAction implements Action, GameParameters {
 
 	private String sound;
-	private float pitch;
 	
-	public PlaySoundAction(String sound, float pitch) {
+	public PlaySoundAction(String sound) {
 	this.sound = sound;
-	this.pitch = pitch;
-	
 	}
-
+	
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-		SoundManager.playSound(sound, pitch, GAME_VOLUME);
+		SoundManager.playSound(sound, 1f);
 	}
 
 }

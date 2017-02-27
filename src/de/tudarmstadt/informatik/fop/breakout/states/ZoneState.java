@@ -12,19 +12,17 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class ZoneState implements GameParameters, GameState {
 
-    private int stateID;
-    protected int zoneID;
+    protected ZoneType zoneID;
     StateBasedEntityManager entityManager;
 
     /**
      * Constructor of new zone state
      */
     public ZoneState() {
-        this.stateID = ZONE_STATE;
         entityManager = StateBasedEntityManager.getInstance();
     }
 
-    public void setZoneID(int zoneID) {
+    public void setZoneID(ZoneType zoneID) {
         this.zoneID = zoneID;
     }
 
@@ -36,8 +34,12 @@ public class ZoneState implements GameParameters, GameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
-        entityManager.addEntity(getID(), new Button(218, 190, STORY_GAME_STATE, 101));
-        entityManager.addEntity(getID(), new Button(218, 310, STORY_GAME_STATE, 102));
+    	// PROBLEM:
+    	// DA DIE ZONEID NACH ERSTELLEN DER ZONESTATE INSTANZ GESETZT WIRD DURCH DEN BUTTON_KLICK,
+    	// KÖNNEN WIR HIER KEINE SPEZIFISCHEN BUTTONS FÜR DIE VERSCHIEDENEN STATES EINFÜGEN!
+    	// 
+        entityManager.addEntity(getID(), new Button(218, 190, 101));
+        entityManager.addEntity(getID(), new Button(218, 310, 102));
 
     }
 
@@ -45,26 +47,15 @@ public class ZoneState implements GameParameters, GameState {
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 
         switch (this.zoneID) {
-            case 1:
-                g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
-                break;
-            case 2:
-                g.drawImage(new Image(DEFAULT_MENU_IMAGE), 0, 0);
-                break;
-            case 3:
-                g.drawImage(new Image(DEFAULT_MENU_IMAGE), 0, 0);
-                break;
-            case 4:
-                g.drawImage(new Image(DEFAULT_MENU_IMAGE), 0, 0);
-                break;
-            case 5:
-                g.drawImage(new Image(DEFAULT_MENU_IMAGE), 0, 0);
-                break;
-            default:
-                g.drawImage(new Image(DEFAULT_MENU_IMAGE), 0, 0);
-                break;
+		case NORMALZONE:
+			g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
+			break;
+		case ICEZONE:
+			g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
+			break;
+		default:
+			break;
         }
-
 
         entityManager.renderEntities(container, game, g);
 

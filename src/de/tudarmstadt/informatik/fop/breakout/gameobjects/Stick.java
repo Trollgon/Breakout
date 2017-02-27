@@ -6,13 +6,10 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
+
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
-import de.tudarmstadt.informatik.fop.breakout.gameactions.PlaySoundAction;
-import de.tudarmstadt.informatik.fop.breakout.managers.SoundManager;
-import eea.engine.action.Action;
 import eea.engine.action.basicactions.MoveLeftAction;
 import eea.engine.action.basicactions.MoveRightAction;
-import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.event.ANDEvent;
@@ -40,8 +37,9 @@ public class Stick extends Entity implements GameParameters {
 	private ANDEvent moveLeftCondition;
 	private ANDEvent moveRightCondition;
 	private CollisionEvent collider;
-	private ANDEvent hitByBall;
 	private ANDEvent hitByItem;
+	private boolean mirrored;
+	private ImageRenderComponent stickPic;
 
 	/**
 	 * Constructor of the Stick class
@@ -52,16 +50,19 @@ public class Stick extends Entity implements GameParameters {
 		super(STICK_ID);
 		setPosition(new Vector2f(startPosX, startPosY));
 		setSize(new Vector2f(130, 25));
+		mirrored = false;
+		
 		try {
-			this.addComponent(new ImageRenderComponent(new Image(STICK_IMAGE)));
+			stickPic = new ImageRenderComponent(new Image(STICK_IMAGE));
 		} catch (SlickException e) {
 
 			e.printStackTrace();
 		}
+		this.addComponent(stickPic);
 		configureEvents();
 		setVisible(true);
 		setPassable(false);
-
+		
 	}
 
 	/**
@@ -103,38 +104,19 @@ public class Stick extends Entity implements GameParameters {
 		// basic collider
 		collider = new CollisionEvent();
 
-		// fires if the ball is hit
-		hitByBall = new ANDEvent(collider, new Event("hitEntityIsBall") {
-			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
-				return collider.getCollidedEntity() instanceof Ball;
-			}
-
-		});
-
 		hitByItem = new ANDEvent(collider, new Event("hitEntityIsItem") {
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
 				return collider.getCollidedEntity().getID().toUpperCase().contains("ITEM");
 			}
 		});
+		
 		// Actions
-
 		moveLeftCondition.addAction(new MoveLeftAction(speed));
 		moveRightCondition.addAction(new MoveRightAction(speed));
-		//nach ball auslagern, hitbyball entfernen -> überlagernde collisions/events vermeiden
-		hitByBall.addAction(new PlaySoundAction(STICK_HIT_SOUND, 0.9f));
-		
-		hitByItem.addAction(new PlaySoundAction(COLLECT_ITEM_SOUND, 1f));
-		hitByItem.addAction(new Action() {
-
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-			
-			}
-		});
 
 		this.addComponent(moveLeftCondition);
 		this.addComponent(moveRightCondition);
 		this.addComponent(collider);
-		this.addComponent(hitByBall);
 	}
 
 	// service for Ball
@@ -146,5 +128,35 @@ public class Stick extends Entity implements GameParameters {
 	public Vector2f getLaunchPos() {
 		return new Vector2f(getPosition().getX(), getPosition().getY() - 26);
 	}
-
+	
+	public void mirrorInput(){
+		this.removeComponent(moveLeftCondition);
+		this.removeComponent(moveRightCondition);
+		if(!mirrored){
+			
+			moveLeftCondition = new ANDEvent(new NOTEvent(leftBorderReached), rightKeys, new NOTEvent(leftKeys));
+			moveRightCondition = new ANDEvent(new NOTEvent(rightBorderReached), leftKeys, new NOTEvent(rightKeys));
+		}
+		else{
+			moveLeftCondition = new ANDEvent(new NOTEvent(leftBorderReached), leftKeys, new NOTEvent(rightKeys));
+			moveRightCondition = new ANDEvent(new NOTEvent(rightBorderReached), rightKeys, new NOTEvent(leftKeys));
+		}
+		
+		moveLeftCondition.addAction(new MoveLeftAction(speed));
+		moveRightCondition.addAction(new MoveRightAction(speed));
+		this.addComponent(moveLeftCondition);
+		this.addComponent(moveRightCondition);
+		mirrored = !mirrored;
+	}
+	public void updateImage(){
+		this.removeComponent(stickPic);
+		int newSizeX = Math.round(this.getSize().getX());
+		int newSizeY = Math.round(this.getSize().getY());
+		try {
+			stickPic = new ImageRenderComponent(new Image(STICK_IMAGE).getScaledCopy(newSizeX, newSizeY));
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
+		this.addComponent(stickPic);
+	}
 }
