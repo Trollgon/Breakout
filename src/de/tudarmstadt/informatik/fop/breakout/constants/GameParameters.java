@@ -81,7 +81,7 @@ public interface GameParameters extends BlockParameters {
 
 	// Ball
 	public static final String BALL_ID = "ball";
-	public static final float INITIAL_BALL_SPEED = 1f;
+	public static final float INITIAL_BALL_SPEED = 2f;
 	public static final float MAX_BALL_SPEED = 8f;
 	public static final float MIN_BALL_SPEED = 0.5f;
 	public static final float SPEEDUP_VALUE = 0.0001f;

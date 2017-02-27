@@ -54,7 +54,7 @@ public interface BlockParameters {
 	public static final String BLOCK_ICE_IMAGE = "/images/blocks/block_ice.png";
 	public static final int BLOCK_ICE_HITSLEFT = 1;
 	public static final int BLOCK_ICE_SCORE = 75;
-	public static final float BLOCK_ICE_SLOWDOWN = 0.95f;
+	public static final float BLOCK_ICE_SLOWDOWN = 0.98f;
 	public static final String BLOCK_ICE_HIT_SOUND = "/sounds/blockHitIce.wav";
 	
 	// SNOW-BLOCK: just 1 Hit

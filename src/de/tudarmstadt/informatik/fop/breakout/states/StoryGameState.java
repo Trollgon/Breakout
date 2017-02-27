@@ -26,13 +26,14 @@ import eea.engine.entity.StateBasedEntityManager;
  */
 public class StoryGameState extends BasicGameState implements GameParameters, GameState {
 
-	private  int levelID = 0;
+	private  int levelID;
 	private StateBasedEntityManager entityManager;
 
 	/**
 	 * constructor of a new story game state
 	 */
 	public StoryGameState() {
+		this.levelID = 0;
 		entityManager = StateBasedEntityManager.getInstance();
 	}
 
