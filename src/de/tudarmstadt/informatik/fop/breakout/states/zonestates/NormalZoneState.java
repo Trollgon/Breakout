@@ -1,0 +1,51 @@
+package de.tudarmstadt.informatik.fop.breakout.states.zonestates;
+
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.BasicGameState;
+import org.newdawn.slick.state.StateBasedGame;
+
+import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.ui.Button;
+import eea.engine.entity.StateBasedEntityManager;
+
+public class NormalZoneState extends BasicGameState implements GameParameters {
+
+	private StateBasedEntityManager entityManager;
+	
+	public NormalZoneState() {
+		entityManager = StateBasedEntityManager.getInstance();
+	}
+	
+	@Override
+	public void init(GameContainer container, StateBasedGame game) throws SlickException {
+        entityManager.addEntity(getID(), new Button(218, 190, 101));
+        entityManager.addEntity(getID(), new Button(218, 310, 102));
+    
+	}
+
+	@Override
+	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+		g.drawImage(new Image(DEFAULT_MENU_IMAGE), 0, 0);
+
+		entityManager.renderEntities(container, game, g);
+		
+		g.drawString("Level 1", 110, 180);
+		g.drawString("Level 2", 110, 300);
+		
+
+	}
+
+	@Override
+	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+		entityManager.updateEntities(container, game, delta);
+	}
+
+	@Override
+	public int getID() {
+		return NORMAL_ZONE_STATE;
+	}
+
+}

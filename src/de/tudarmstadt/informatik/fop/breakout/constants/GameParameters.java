@@ -25,12 +25,15 @@ public interface GameParameters extends BlockParameters {
 
 	// Game States
 	public enum StateType {
-		MAIN_MENU_STATE, ZONE_PICKER_STATE, ZONE_STATE, STORY_GAME_STATE, ENDLESS_GAME_STATE, HIGHSCORE_STATE, ABOUT_STATE, QUIT_STATE
+		MAIN_MENU_STATE, ZONE_PICKER_STATE, ICE_ZONE_STATE, STORY_GAME_STATE, ENDLESS_GAME_STATE, HIGHSCORE_STATE, ABOUT_STATE, QUIT_STATE
 	};
 
-	public static final int MAIN_MENU_STATE = 1;
-	public static final int ZONE_PICKER_STATE = 2;
-	public static final int ZONE_STATE = 3;
+	// State IDS
+	public static final int MAIN_MENU_STATE = 0;
+	public static final int ZONE_PICKER_STATE = 1;
+	public static final int ZONE_STATE = 2;
+	public static final int ICE_ZONE_STATE = 21;
+	public static final int NORMAL_ZONE_STATE = 22;
 	public static final int STORY_GAME_STATE = 4;
 	public static final int ENDLESS_GAME_STATE = 5;
 	public static final int HIGHSCORE_STATE = 6;

@@ -1,4 +1,4 @@
-package de.tudarmstadt.informatik.fop.breakout.states;
+package de.tudarmstadt.informatik.fop.breakout.states.zonestates;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
