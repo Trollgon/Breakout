@@ -7,7 +7,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-/**
+/**@deprecated
  * @author Matthias Spoerkmann
  */
 public class ZoneState implements GameParameters, GameState {

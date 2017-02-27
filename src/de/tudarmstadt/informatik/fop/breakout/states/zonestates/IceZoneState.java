@@ -28,7 +28,7 @@ public class IceZoneState extends BasicGameState implements GameParameters {
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.drawImage(new Image(DEFAULT_MENU_IMAGE), 0, 0);
+		g.drawImage(new Image("images/background_1.png"), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
 		

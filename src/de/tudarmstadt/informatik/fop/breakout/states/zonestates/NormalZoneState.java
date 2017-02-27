@@ -28,7 +28,7 @@ public class NormalZoneState extends BasicGameState implements GameParameters {
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.drawImage(new Image(DEFAULT_MENU_IMAGE), 0, 0);
+		g.drawImage(new Image("images/background_3.png"), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
 		

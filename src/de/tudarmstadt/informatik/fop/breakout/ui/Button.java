@@ -26,7 +26,8 @@ public class Button extends Entity implements GameParameters {
 	String path;
 
 	/**
-	 * @ Deprecated Button-class constructor
+	 * @deprecated
+	 * Button-class constructor
 	 * 
 	 * @param buttonID
 	 * @param xPos
@@ -47,12 +48,12 @@ public class Button extends Entity implements GameParameters {
 
 		// switch stateID, e.g. HIGHSCORE_STATE, MAIN_MENU_STATE, ...
 		switch (stateID) {
-		case ZONE_PICKER_STATE:
+		case ZONEPICKER:
 			path = "/images/play_button.png";
 			changeState = new ChangeStateInitAction(Breakout.ZONE_PICKER_STATE);
 			break;
 
-		case STORY_GAME_STATE:
+		case STORYGAME:
 			path = "/images/entry.png";
 			changeState = new ChangeStateInitAction(Breakout.STORY_GAME_STATE);
 			// sets levelID only if this Button is clicked!
@@ -61,22 +62,22 @@ public class Button extends Entity implements GameParameters {
 							.setLevelID(stateParameterID));
 			break;
 
-		case ENDLESS_GAME_STATE:
+		case ENDLESS:
 			path = "/images/endless_button.png";
 			changeState = new ChangeStateInitAction(Breakout.ENDLESS_GAME_STATE);
 			break;
 
-		case HIGHSCORE_STATE:
+		case HIGHSCORE:
 			path = "/images/highscore_button.png";
 			changeState = new ChangeStateInitAction(Breakout.HIGHSCORE_STATE);
 			break;
 
-		case ABOUT_STATE:
+		case ABOUT:
 			path = "/images/about_button.png";
 			changeState = new ChangeStateInitAction(Breakout.ABOUT_STATE);
 			break;
 
-		case QUIT_STATE:
+		case QUIT:
 			path = "/images/quit_button.png";
 			changeState = new ChangeStateInitAction(Breakout.QUIT_STATE);
 			break;
@@ -156,28 +157,28 @@ public class Button extends Entity implements GameParameters {
 		mainEvent = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
 
 		switch (state) {
-		case ABOUT_STATE:
+		case ABOUT:
 			path = "/images/about_button.png";
 			changeState = new ChangeStateInitAction(ABOUT_STATE);
 			break;
-		case ENDLESS_GAME_STATE:
+		case ENDLESS:
 			changeState = new ChangeStateInitAction(ENDLESS_GAME_STATE);
 			path = "/images/endless_button.png";
 			break;
-		case HIGHSCORE_STATE:
+		case HIGHSCORE:
 			changeState = new ChangeStateInitAction(HIGHSCORE_STATE);
 			path = "/images/highscore_button.png";
 			break;
 		default:
-		case MAIN_MENU_STATE:
+		case MAINMENU:
 			path = "/images/entry.png";
 			changeState = new ChangeStateInitAction(MAIN_MENU_STATE);
 			break;
-		case QUIT_STATE:
+		case QUIT:
 			path = "/images/quit_button.png";
 			changeState = new ChangeStateInitAction(QUIT_STATE);
 			break;
-		case ZONE_PICKER_STATE:
+		case ZONEPICKER:
 			changeState = new ChangeStateInitAction(ZONE_PICKER_STATE);
 			path = "/images/play_button.png";
 			break;
