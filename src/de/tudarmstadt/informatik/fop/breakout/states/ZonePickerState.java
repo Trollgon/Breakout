@@ -34,17 +34,20 @@ public class ZonePickerState extends BasicGameState implements GameParameters, G
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
 		entityManager.addEntity(getID(), new Button(218, 190, ZoneType.NORMALZONE));
+		entityManager.addEntity(getID(), new Button(218, 310, ZoneType.ICEZONE));
 
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 
-		g.drawImage(new Image(DEFAULT_MENU_IMAGE), 0, 0);
+		g.drawImage(new Image("/images/background_2.png"), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
 
-		g.drawString("Zone 1", 110, 180);
+		g.drawString("Normal Zone", 110, 180);
+		g.drawString("Ice Zone", 110, 300);
+	
 	}
 
 	@Override

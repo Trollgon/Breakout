@@ -1,4 +1,4 @@
-package de.tudarmstadt.informatik.fop.breakout.states;
+package de.tudarmstadt.informatik.fop.breakout.states.zonestates;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
@@ -7,7 +7,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-/**
+/**@deprecated
  * @author Matthias Spoerkmann
  */
 public class ZoneState implements GameParameters, GameState {

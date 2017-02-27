@@ -25,17 +25,25 @@ public interface GameParameters extends BlockParameters {
 
 	// Game States
 	public enum StateType {
-		MAIN_MENU_STATE, ZONE_PICKER_STATE, ZONE_STATE, STORY_GAME_STATE, ENDLESS_GAME_STATE, HIGHSCORE_STATE, ABOUT_STATE, QUIT_STATE
+		MAINMENU, 
+		ZONEPICKER, 
+		STORYGAME, 
+		ENDLESS, 
+		HIGHSCORE, 
+		ABOUT, 
+		QUIT
 	};
 
-	public static final int MAIN_MENU_STATE = 1;
-	public static final int ZONE_PICKER_STATE = 2;
-	public static final int ZONE_STATE = 3;
-	public static final int STORY_GAME_STATE = 4;
-	public static final int ENDLESS_GAME_STATE = 5;
-	public static final int HIGHSCORE_STATE = 6;
-	public static final int ABOUT_STATE = 7;
-	public static final int QUIT_STATE = 8;
+	// State IDS
+	public static final int MAIN_MENU_STATE = 0;
+	public static final int ZONE_PICKER_STATE = 1;
+	public static final int NORMAL_ZONE_STATE = 20;
+	public static final int ICE_ZONE_STATE = 21;
+	public static final int STORY_GAME_STATE = 3;
+	public static final int ENDLESS_GAME_STATE = 4;
+	public static final int HIGHSCORE_STATE = 5;
+	public static final int ABOUT_STATE = 6;
+	public static final int QUIT_STATE = 7;
 
 	// Zones
 	public enum ZoneType {
@@ -46,6 +54,7 @@ public interface GameParameters extends BlockParameters {
 	public static final String BACKGROUND_IMAGE = "/images/background.png";
 	public static final String MAIN_MENU_IMAGE = "/images/menu.png";
 	public static final String DEFAULT_MENU_IMAGE = "/images/menu_blank.png";
+	public static final String ENDLESS_BACKGROUND_IMAGE = "/images/background_4.png";
 
 	// Button
 	public static final String BUTTON_ID = "button";

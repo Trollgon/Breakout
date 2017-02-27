@@ -11,7 +11,9 @@ import de.tudarmstadt.informatik.fop.breakout.states.EndlessGameState;
 import de.tudarmstadt.informatik.fop.breakout.states.MainMenuState;
 import de.tudarmstadt.informatik.fop.breakout.states.StoryGameState;
 import de.tudarmstadt.informatik.fop.breakout.states.ZonePickerState;
-import de.tudarmstadt.informatik.fop.breakout.states.ZoneState;
+import de.tudarmstadt.informatik.fop.breakout.states.zonestates.IceZoneState;
+import de.tudarmstadt.informatik.fop.breakout.states.zonestates.NormalZoneState;
+import de.tudarmstadt.informatik.fop.breakout.states.zonestates.ZoneState;
 import eea.engine.entity.StateBasedEntityManager;
 
 public class Breakout extends StateBasedGame implements GameParameters {
@@ -54,7 +56,6 @@ public class Breakout extends StateBasedGame implements GameParameters {
 		app.setTargetFrameRate(FRAME_RATE);
 
 		// init the SoundStore
-		
 		SoundStore.get().init();
 	
 		// now start the game!
@@ -79,7 +80,8 @@ public class Breakout extends StateBasedGame implements GameParameters {
 		addState(new MainMenuState());
 		addState(new EndlessGameState());
 		addState(new ZonePickerState());
-		addState(new ZoneState());
+		addState(new NormalZoneState());
+		addState(new IceZoneState());
 		addState(new StoryGameState());
 		// addState(new HighscoreState());
 		// addState(new QuitState(QUIT_STATE));
@@ -88,7 +90,8 @@ public class Breakout extends StateBasedGame implements GameParameters {
 		StateBasedEntityManager.getInstance().addState(MAIN_MENU_STATE);
 		StateBasedEntityManager.getInstance().addState(ENDLESS_GAME_STATE);
 		StateBasedEntityManager.getInstance().addState(ZONE_PICKER_STATE);
-		StateBasedEntityManager.getInstance().addState(ZONE_STATE);
+		StateBasedEntityManager.getInstance().addState(NORMAL_ZONE_STATE);
+		StateBasedEntityManager.getInstance().addState(ICE_ZONE_STATE);
 		StateBasedEntityManager.getInstance().addState(STORY_GAME_STATE);
 		// StateBasedEntityManager.getInstance().addState(HIGHSCORE_STATE);
 	}
