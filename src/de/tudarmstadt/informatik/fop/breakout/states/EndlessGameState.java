@@ -39,12 +39,7 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 		super.enter(container, game);
 		
 		// start playing the background Music
-		try {
-			SoundStore.get().getWAV("/sounds/loop_endless.wav").playAsMusic(1f, 1f, true);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 	
 	
