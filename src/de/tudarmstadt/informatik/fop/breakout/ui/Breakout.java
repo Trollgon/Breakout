@@ -54,7 +54,9 @@ public class Breakout extends StateBasedGame implements GameParameters {
 		app.setTargetFrameRate(FRAME_RATE);
 
 		// init the SoundStore
+		
 		SoundStore.get().init();
+	
 		// now start the game!
 		app.start();
 	}
@@ -79,7 +81,7 @@ public class Breakout extends StateBasedGame implements GameParameters {
 		addState(new ZonePickerState());
 		addState(new ZoneState());
 		addState(new StoryGameState());
-		// addState(new HighscoreState(HIGHSCORE_STATE));
+		// addState(new HighscoreState());
 		// addState(new QuitState(QUIT_STATE));
 
 		// Add the states to the StateBasedEntityManager

@@ -28,7 +28,6 @@ import eea.engine.entity.StateBasedEntityManager;
 public class EndlessGameState extends BasicGameState implements GameParameters {
 
 	private StateBasedEntityManager entityManager;
-	// private Sound bgMusic;
 	
 	public EndlessGameState() throws SlickException {
 
@@ -39,10 +38,9 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
 		super.enter(container, game);
 		
+		// start playing the background Music
 		try {
 			SoundStore.get().getWAV("/sounds/loop_endless.wav").playAsMusic(1f, 1f, true);
-			SoundStore.get().setMusicVolume(GAME_MUSIC_VOLUME);
-			SoundStore.get().setSoundVolume(GAME_SOUND_VOLUME);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

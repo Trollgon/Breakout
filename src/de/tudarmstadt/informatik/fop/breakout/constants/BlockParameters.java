@@ -69,14 +69,6 @@ public interface BlockParameters {
 	public static final int BLOCK_DROPPER_SCORE = 200;
 	public static final String BLOCK_DROPPER_HIT_SOUND = "/sounds/blockHitStandard.wav";
 
-	// TNT-BLOCK: just 1 HIT but a lot of destruction
-	public static final String BLOCK_TNT_IMAGE = "/images/blocks/block_tnt.png";
-	public static final int BLOCK_TNT_HITSLEFT = 1;
-	public static final int BLOCK_TNT_SCORE = 150;
-	public static final float BLOCK_TNT_EXPLOSION_RADIUS = 100f;
-	public static final String BLOCK_TNT_HIT_SOUND = "";
-
-
 	// in the future:
 
 	// SNOW - BLOCK (just a STANDARD BLOCK FOR THE ICEZONE)
