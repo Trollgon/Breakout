@@ -17,9 +17,6 @@ public interface BlockParameters {
 	public static final int BLOCK_WIDTH = 50;
 	public static final int BLOCK_HEIGHT = 30;
 
-	// VOLUME
-	public static final float BLOCK_HIT_VOLUME = 0.05f;
-
 	// order of these enum elements specify their IDS:
 	// e.g. 0 is NULL, 1 is STANDARD, 2 is IRON, ...
 	public enum BlockType {

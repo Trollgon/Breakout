@@ -20,22 +20,26 @@ public class NormalZoneState extends BasicGameState implements GameParameters {
 	}
 	
 	@Override
+	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+		super.enter(container, game);
+	}
+	
+	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        entityManager.addEntity(getID(), new Button(218, 190, 101));
-        entityManager.addEntity(getID(), new Button(218, 310, 102));
+        entityManager.addEntity(getID(), new Button(218, 190, 101, ZoneType.NORMALZONE));
+        entityManager.addEntity(getID(), new Button(218, 310, 102, ZoneType.NORMALZONE));
     
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.drawImage(new Image("images/background_3.png"), 0, 0);
+		g.drawImage(new Image("images/backgrounds/background_3.png"), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
 		
 		g.drawString("Level 1", 110, 180);
 		g.drawString("Level 2", 110, 300);
 		
-
 	}
 
 	@Override
@@ -43,6 +47,11 @@ public class NormalZoneState extends BasicGameState implements GameParameters {
 		entityManager.updateEntities(container, game, delta);
 	}
 
+	@Override
+	public void leave(GameContainer container, StateBasedGame game) throws SlickException {
+		super.leave(container, game);
+	}
+	
 	@Override
 	public int getID() {
 		return NORMAL_ZONE_STATE;
