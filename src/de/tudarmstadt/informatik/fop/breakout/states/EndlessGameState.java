@@ -61,7 +61,7 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
+		g.drawImage(new Image(ENDLESS_BACKGROUND_IMAGE), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
 
