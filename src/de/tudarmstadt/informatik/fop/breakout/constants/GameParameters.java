@@ -46,6 +46,7 @@ public interface GameParameters extends BlockParameters {
 	public static final String BACKGROUND_IMAGE = "/images/background.png";
 	public static final String MAIN_MENU_IMAGE = "/images/menu.png";
 	public static final String DEFAULT_MENU_IMAGE = "/images/menu_blank.png";
+	public static final String ENDLESS_BACKGROUND_IMAGE = "/images/background_4.png";
 
 	// Button
 	public static final String BUTTON_ID = "button";
