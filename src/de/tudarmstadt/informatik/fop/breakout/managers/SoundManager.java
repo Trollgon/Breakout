@@ -2,8 +2,6 @@ package de.tudarmstadt.informatik.fop.breakout.managers;
 
 import java.io.IOException;
 
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
 import org.newdawn.slick.openal.SoundStore;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
