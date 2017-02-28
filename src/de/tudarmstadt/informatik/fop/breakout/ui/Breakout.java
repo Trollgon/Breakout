@@ -13,7 +13,6 @@ import de.tudarmstadt.informatik.fop.breakout.states.StoryGameState;
 import de.tudarmstadt.informatik.fop.breakout.states.ZonePickerState;
 import de.tudarmstadt.informatik.fop.breakout.states.zonestates.IceZoneState;
 import de.tudarmstadt.informatik.fop.breakout.states.zonestates.NormalZoneState;
-import de.tudarmstadt.informatik.fop.breakout.states.zonestates.ZoneState;
 import eea.engine.entity.StateBasedEntityManager;
 
 public class Breakout extends StateBasedGame implements GameParameters {

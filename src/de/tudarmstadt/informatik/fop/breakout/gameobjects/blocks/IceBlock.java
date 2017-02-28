@@ -31,6 +31,9 @@ public final class IceBlock extends AbstractBlock {
 			Ball b = ((Ball) collider.getCollidedEntity());
 			b.setSpeed(BLOCK_ICE_SLOWDOWN * b.getSpeed());
 		});
+		
+		// maybe drops ice shard when destroyed, to hurt the player?
+		
 	}
 
 }

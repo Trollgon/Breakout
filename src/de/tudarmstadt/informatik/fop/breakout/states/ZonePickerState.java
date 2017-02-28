@@ -5,13 +5,12 @@ import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import eea.engine.entity.StateBasedEntityManager;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
-import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * @author Matthias Spoerkmann
  */
-public class ZonePickerState extends BasicGameState implements GameParameters, GameState {
+public class ZonePickerState extends BasicGameState implements GameParameters {
 
 	private StateBasedEntityManager entityManager;
 
