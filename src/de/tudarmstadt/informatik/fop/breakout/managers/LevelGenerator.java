@@ -6,22 +6,19 @@ import java.io.StreamTokenizer;
 import java.util.ArrayList;
 import java.util.Random;
 
-import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
-import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.*;
-import eea.engine.action.Action;
-import eea.engine.action.basicactions.DestroyEntityAction;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.AbstractBlock;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.DiamondBlock;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.DropperBlock;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.GoldBlock;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.IceBlock;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.IronBlock;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.SnowBlock;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.StandardBlock;
 import eea.engine.action.basicactions.MoveDownAction;
-import eea.engine.action.basicactions.MoveForwardAction;
-import eea.engine.action.basicactions.Movement;
-import eea.engine.action.basicactions.RotateLeftAction;
-import eea.engine.component.Component;
 import eea.engine.entity.StateBasedEntityManager;
-import eea.engine.event.basicevents.LoopEvent;
 
 /**
  * LevelGenerator class for level generation utility
