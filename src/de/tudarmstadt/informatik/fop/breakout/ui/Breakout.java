@@ -12,6 +12,7 @@ import de.tudarmstadt.informatik.fop.breakout.states.MainMenuState;
 import de.tudarmstadt.informatik.fop.breakout.states.StoryGameState;
 import de.tudarmstadt.informatik.fop.breakout.states.ZonePickerState;
 import de.tudarmstadt.informatik.fop.breakout.states.zonestates.IceZoneState;
+import de.tudarmstadt.informatik.fop.breakout.states.zonestates.JungleZoneState;
 import de.tudarmstadt.informatik.fop.breakout.states.zonestates.NormalZoneState;
 import eea.engine.entity.StateBasedEntityManager;
 
@@ -79,8 +80,11 @@ public class Breakout extends StateBasedGame implements GameParameters {
 		addState(new MainMenuState());
 		addState(new EndlessGameState());
 		addState(new ZonePickerState());
+		
 		addState(new NormalZoneState());
 		addState(new IceZoneState());
+		addState(new JungleZoneState());
+		
 		addState(new StoryGameState());
 		// addState(new HighscoreState());
 		// addState(new QuitState(QUIT_STATE));
@@ -89,8 +93,11 @@ public class Breakout extends StateBasedGame implements GameParameters {
 		StateBasedEntityManager.getInstance().addState(MAIN_MENU_STATE);
 		StateBasedEntityManager.getInstance().addState(ENDLESS_GAME_STATE);
 		StateBasedEntityManager.getInstance().addState(ZONE_PICKER_STATE);
+		
 		StateBasedEntityManager.getInstance().addState(NORMAL_ZONE_STATE);
 		StateBasedEntityManager.getInstance().addState(ICE_ZONE_STATE);
+		StateBasedEntityManager.getInstance().addState(JUNGLE_ZONE_STATE);
+				
 		StateBasedEntityManager.getInstance().addState(STORY_GAME_STATE);
 		// StateBasedEntityManager.getInstance().addState(HIGHSCORE_STATE);
 	}

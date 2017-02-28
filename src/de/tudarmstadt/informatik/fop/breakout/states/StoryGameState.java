@@ -128,11 +128,13 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 	public Image getZoneBackground(ZoneType zone) throws SlickException {
 
 		switch (zone) {
+		case JUNGLEZONE:
+			return new Image("/images/backgrounds/background_3.png");
 		case ICEZONE:
 			return new Image("/images/backgrounds/background_1.png");
 		default:
 		case NORMALZONE:
-			return new Image("/images/backgrounds/background_3.png");
+			return new Image("/images/backgrounds/background_4.png");
 		}
 	}
 }

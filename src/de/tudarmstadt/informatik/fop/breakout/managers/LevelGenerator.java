@@ -12,11 +12,15 @@ import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.DiamondBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.DropperBlock;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.EarthBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.GoldBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.IceBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.IronBlock;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.JungleBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.SnowBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.StandardBlock;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.StoneBlock;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.WoodBlock;
 import eea.engine.action.basicactions.MoveDownAction;
 import eea.engine.entity.StateBasedEntityManager;
 
@@ -178,6 +182,25 @@ public class LevelGenerator implements GameParameters {
 			return new DiamondBlock(xPos, yPos);
 		case SNOW:
 			return new SnowBlock(xPos, yPos);
+		case EARTH:
+			return new EarthBlock(xPos, yPos);
+		case FIRE:
+			return null;
+		case GLASS:
+
+		case JUNGLE:
+			return new JungleBlock(xPos, yPos);
+		case MAGMA:
+
+		case METEOR:
+
+		case OBSIDIAN:
+
+		case STONE:
+			return new StoneBlock(xPos, yPos);
+
+		case WOOD:
+			return new WoodBlock(xPos, yPos);
 		default:
 		case NULL:
 			return null;

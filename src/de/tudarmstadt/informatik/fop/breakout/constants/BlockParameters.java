@@ -95,7 +95,8 @@ public interface BlockParameters {
 	public static final String BLOCK_JUNGLE_HURT_IMAGE = "/images/blocks/block_jungle2.png";
 	public static final int BLOCK_JUNGLE_HITSLEFT = 2;
 	public static final int BLOCK_JUNGLE_SCORE = 150;
-	public static final String BLOCK_JUNGLE_HIT_SOUND = "/sounds/blockHitJungle.wav";
+	public static final long BLOCK_JUNGLE_REGSPEED = 2500;
+	public static final String BLOCK_JUNGLE_HIT_SOUND = "/sounds/blockHitWood.wav";
 	public static final String BLOCK_JUNGLE_REGENERATION_SOUND = "/sounds/jungleRegeneration.wav";
 	
 	// FIRE-BLOCK 1 HIT and lits the ball on fire
