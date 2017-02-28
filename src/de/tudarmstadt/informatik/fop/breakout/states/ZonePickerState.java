@@ -34,7 +34,8 @@ public class ZonePickerState extends BasicGameState implements GameParameters {
 
 		entityManager.addEntity(getID(), new Button(218, 190, ZoneType.NORMALZONE));
 		entityManager.addEntity(getID(), new Button(218, 310, ZoneType.ICEZONE));
-
+		entityManager.addEntity(getID(), new Button(218, 430, ZoneType.JUNGLEZONE));
+		
 	}
 
 	@Override
@@ -46,7 +47,8 @@ public class ZonePickerState extends BasicGameState implements GameParameters {
 
 		g.drawString("Normal Zone", 110, 180);
 		g.drawString("Ice Zone", 110, 300);
-	
+		g.drawString("Jungle Zone", 110, 420);
+		
 	}
 
 	@Override

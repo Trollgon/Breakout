@@ -11,11 +11,11 @@ import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import eea.engine.entity.StateBasedEntityManager;
 
-public class NormalZoneState extends BasicGameState implements GameParameters {
+public class JungleZoneState extends BasicGameState implements GameParameters{
 
 	private StateBasedEntityManager entityManager;
 	
-	public NormalZoneState() {
+	public JungleZoneState() {
 		entityManager = StateBasedEntityManager.getInstance();
 	}
 	
@@ -26,20 +26,21 @@ public class NormalZoneState extends BasicGameState implements GameParameters {
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        entityManager.addEntity(getID(), new Button(218, 190, 101, ZoneType.NORMALZONE));
-        entityManager.addEntity(getID(), new Button(218, 310, 102, ZoneType.NORMALZONE));
+        entityManager.addEntity(getID(), new Button(218, 190, 301, ZoneType.JUNGLEZONE));
+        entityManager.addEntity(getID(), new Button(218, 310, 302, ZoneType.JUNGLEZONE));
     
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.drawImage(new Image("images/backgrounds/background_4.png"), 0, 0);
+		
+		g.drawImage(new Image("images/backgrounds/background_3.png"), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
 		
 		g.drawString("Level 1", 110, 180);
 		g.drawString("Level 2", 110, 300);
-		
+
 	}
 
 	@Override
@@ -47,6 +48,7 @@ public class NormalZoneState extends BasicGameState implements GameParameters {
 		entityManager.updateEntities(container, game, delta);
 	}
 
+	
 	@Override
 	public void leave(GameContainer container, StateBasedGame game) throws SlickException {
 		super.leave(container, game);
@@ -54,7 +56,8 @@ public class NormalZoneState extends BasicGameState implements GameParameters {
 	
 	@Override
 	public int getID() {
-		return NORMAL_ZONE_STATE;
+		return JUNGLE_ZONE_STATE;
 	}
 
 }
+
