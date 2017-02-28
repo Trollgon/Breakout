@@ -20,15 +20,20 @@ public class IceZoneState extends BasicGameState implements GameParameters {
 	}
 	
 	@Override
+	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+		super.enter(container, game);
+	}
+	
+	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        entityManager.addEntity(getID(), new Button(218, 190, 201));
-        entityManager.addEntity(getID(), new Button(218, 310, 202));
+        entityManager.addEntity(getID(), new Button(218, 190, 201, ZoneType.ICEZONE));
+        entityManager.addEntity(getID(), new Button(218, 310, 202, ZoneType.ICEZONE));
     
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.drawImage(new Image("images/background_1.png"), 0, 0);
+		g.drawImage(new Image("images/backgrounds/background_1.png"), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
 		
@@ -43,6 +48,12 @@ public class IceZoneState extends BasicGameState implements GameParameters {
 		entityManager.updateEntities(container, game, delta);
 	}
 
+	
+	@Override
+	public void leave(GameContainer container, StateBasedGame game) throws SlickException {
+		super.leave(container, game);
+	}
+	
 	@Override
 	public int getID() {
 		return ICE_ZONE_STATE;

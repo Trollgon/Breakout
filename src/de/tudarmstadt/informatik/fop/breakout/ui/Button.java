@@ -6,12 +6,10 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.states.StoryGameState;
-import de.tudarmstadt.informatik.fop.breakout.states.zonestates.ZoneState;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.ChangeStateInitAction;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
-import eea.engine.entity.StateBasedEntityManager;
 import eea.engine.event.ANDEvent;
 import eea.engine.event.basicevents.MouseClickedEvent;
 import eea.engine.event.basicevents.MouseEnteredEvent;
@@ -26,8 +24,7 @@ public class Button extends Entity implements GameParameters {
 	String path;
 
 	/**
-	 * @deprecated
-	 * Button-class constructor
+	 * @deprecated Button-class constructor
 	 * 
 	 * @param buttonID
 	 * @param xPos
@@ -49,12 +46,12 @@ public class Button extends Entity implements GameParameters {
 		// switch stateID, e.g. HIGHSCORE_STATE, MAIN_MENU_STATE, ...
 		switch (stateID) {
 		case ZONEPICKER:
-			path = "/images/play_button.png";
+			path = "/images/buttons/play_button.png";
 			changeState = new ChangeStateInitAction(Breakout.ZONE_PICKER_STATE);
 			break;
 
 		case STORYGAME:
-			path = "/images/entry.png";
+			path = "/images/buttons/entry.png";
 			changeState = new ChangeStateInitAction(Breakout.STORY_GAME_STATE);
 			// sets levelID only if this Button is clicked!
 			mainEvent.addAction((gameContainer, stateBasedGame, i,
@@ -63,22 +60,22 @@ public class Button extends Entity implements GameParameters {
 			break;
 
 		case ENDLESS:
-			path = "/images/endless_button.png";
+			path = "/images/buttons/endless_button.png";
 			changeState = new ChangeStateInitAction(Breakout.ENDLESS_GAME_STATE);
 			break;
 
 		case HIGHSCORE:
-			path = "/images/highscore_button.png";
+			path = "/images/buttons/highscore_button.png";
 			changeState = new ChangeStateInitAction(Breakout.HIGHSCORE_STATE);
 			break;
 
 		case ABOUT:
-			path = "/images/about_button.png";
+			path = "/images/buttons/about_button.png";
 			changeState = new ChangeStateInitAction(Breakout.ABOUT_STATE);
 			break;
 
 		case QUIT:
-			path = "/images/quit_button.png";
+			path = "/images/buttons/quit_button.png";
 			changeState = new ChangeStateInitAction(Breakout.QUIT_STATE);
 			break;
 
@@ -118,7 +115,7 @@ public class Button extends Entity implements GameParameters {
 		mainEvent = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
 
 		switch (zone) {
-		
+
 		case ICEZONE:
 			changeState = new ChangeStateInitAction(ICE_ZONE_STATE);
 			break;
@@ -127,9 +124,9 @@ public class Button extends Entity implements GameParameters {
 			changeState = new ChangeStateInitAction(NORMAL_ZONE_STATE);
 			break;
 		}
-		
+
 		try {
-			this.addComponent(new ImageRenderComponent(new Image("/images/entry.png")));
+			this.addComponent(new ImageRenderComponent(new Image(BUTTON_IMAGE)));
 
 		} catch (SlickException e) {
 			e.printStackTrace();
@@ -158,29 +155,29 @@ public class Button extends Entity implements GameParameters {
 
 		switch (state) {
 		case ABOUT:
-			path = "/images/about_button.png";
+			path = "/images/buttons/about_button.png";
 			changeState = new ChangeStateInitAction(ABOUT_STATE);
 			break;
 		case ENDLESS:
 			changeState = new ChangeStateInitAction(ENDLESS_GAME_STATE);
-			path = "/images/endless_button.png";
+			path = "/images/buttons/endless_button.png";
 			break;
 		case HIGHSCORE:
 			changeState = new ChangeStateInitAction(HIGHSCORE_STATE);
-			path = "/images/highscore_button.png";
+			path = "/images/buttons/highscore_button.png";
 			break;
 		default:
 		case MAINMENU:
-			path = "/images/entry.png";
+			path = "/images/buttons/entry.png";
 			changeState = new ChangeStateInitAction(MAIN_MENU_STATE);
 			break;
 		case QUIT:
-			path = "/images/quit_button.png";
+			path = "/images/buttons/quit_button.png";
 			changeState = new ChangeStateInitAction(QUIT_STATE);
 			break;
 		case ZONEPICKER:
 			changeState = new ChangeStateInitAction(ZONE_PICKER_STATE);
-			path = "/images/play_button.png";
+			path = "/images/buttons/play_button.png";
 			break;
 		}
 
@@ -205,7 +202,7 @@ public class Button extends Entity implements GameParameters {
 	 * @param levelID
 	 *            of the storygame-level you want to enter by clicking
 	 */
-	public Button(int xPos, int yPos, int levelID) {
+	public Button(int xPos, int yPos, int levelID, ZoneType zone) {
 		super(BUTTON_ID);
 
 		this.setPosition(new Vector2f(xPos, yPos));
@@ -217,9 +214,12 @@ public class Button extends Entity implements GameParameters {
 		// sets levelID only if this Button is clicked!
 		mainEvent.addAction((gameContainer, stateBasedGame, i,
 				component) -> ((StoryGameState) Breakout.breakout.getState(STORY_GAME_STATE)).setLevelID(levelID));
+		
+		// tells the StoryGameState the zoneType
+		mainEvent.addAction((arg0, arg1, arg2, arg3) -> ((StoryGameState) Breakout.breakout.getState(STORY_GAME_STATE)).setZone(zone));
 
 		try {
-			this.addComponent(new ImageRenderComponent(new Image("/images/entry.png")));
+			this.addComponent(new ImageRenderComponent(new Image (BUTTON_IMAGE)));
 
 		} catch (SlickException e) {
 			e.printStackTrace();

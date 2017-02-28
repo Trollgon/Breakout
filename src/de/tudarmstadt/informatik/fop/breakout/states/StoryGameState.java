@@ -26,13 +26,16 @@ import eea.engine.entity.StateBasedEntityManager;
  */
 public class StoryGameState extends BasicGameState implements GameParameters, GameState {
 
-	private  int levelID = 0;
+	private int levelID;
+	private ZoneType zone;
 	private StateBasedEntityManager entityManager;
 
 	/**
 	 * constructor of a new story game state
 	 */
 	public StoryGameState() {
+		this.levelID = 0;
+		this.zone = ZoneType.NORMALZONE;
 		entityManager = StateBasedEntityManager.getInstance();
 	}
 
@@ -40,8 +43,13 @@ public class StoryGameState extends BasicGameState implements GameParameters, Ga
 		this.levelID = levelID;
 	}
 
+	public void setZone(ZoneType zone) {
+		this.zone = zone;
+	}
+
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+		//initZoneMusic();
 		loadLevel();
 	}
 
@@ -64,7 +72,7 @@ public class StoryGameState extends BasicGameState implements GameParameters, Ga
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 
-		g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
+		g.drawImage(getZoneBackground(this.zone), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
 
@@ -96,7 +104,7 @@ public class StoryGameState extends BasicGameState implements GameParameters, Ga
 	@Override
 	public void leave(GameContainer container, StateBasedGame game) throws SlickException {
 	}
-	
+
 	public void loadLevel() {
 
 		// adds the level's blocks to the entityManager:
@@ -118,4 +126,14 @@ public class StoryGameState extends BasicGameState implements GameParameters, Ga
 		return STORY_GAME_STATE;
 	}
 
+	public Image getZoneBackground(ZoneType zone) throws SlickException {
+
+		switch (zone) {
+		case ICEZONE:
+			return new Image("/images/backgrounds/background_1.png");
+		default:
+		case NORMALZONE:
+			return new Image("/images/backgrounds/background_3.png");
+		}
+	}
 }

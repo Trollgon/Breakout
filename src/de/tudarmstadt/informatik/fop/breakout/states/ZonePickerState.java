@@ -41,7 +41,7 @@ public class ZonePickerState extends BasicGameState implements GameParameters, G
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 
-		g.drawImage(new Image("/images/background_2.png"), 0, 0);
+		g.drawImage(new Image("/images/backgrounds/background_2.png"), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
 
