@@ -127,7 +127,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 	 * adds all block actions, for a better overview
 	 */
 	void addActions() {
-
+		
 		// action: tells the block that it can destroy itself
 		canBeDestroyed.addAction((arg0, arg1, arg2, arg3) -> setDestroyed(true));
 
@@ -146,11 +146,16 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 		// action: destroys this blocks entity
 		totalDestruction.addAction(new DestroyEntityAction());
 		
-		// destroys block when out of window
+		// destroys block when left window at the bottom
 		leftScreen.addAction(new DestroyEntityAction());
 		leftScreen.addAction((arg0, arg1, arg2, arg3) -> {
+			// sets the players lives to 0
 			Lives.setLifeAmount(0);
 		});
+		
+		// updates the ImageRenderComponent
+		
+		// always.addAction((arg0, arg1, arg2, arg3) -> addComponent(new ImageRenderComponent(getBlockImage())));
 	};
 
 	@Override
@@ -264,13 +269,13 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 
 	/**
 	 * sets this blocks blockImage by giving the path as a String
-	 * 
+	 * and updates the ImageRenderComponent
 	 * @param blockImage
 	 */
 	public void setBlockImage(String blockImage) {
 		try {
 			this.blockImage = new Image(blockImage);
-
+			this.addComponent(new ImageRenderComponent(getBlockImage()));
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
