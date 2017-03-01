@@ -17,6 +17,7 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.GoldBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.IceBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.IronBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.JungleBlock;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.MagmaBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.SnowBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.StandardBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.StoneBlock;
@@ -191,7 +192,7 @@ public class LevelGenerator implements GameParameters {
 		case JUNGLE:
 			return new JungleBlock(xPos, yPos);
 		case MAGMA:
-
+			return new MagmaBlock(xPos, yPos);
 		case METEOR:
 
 		case OBSIDIAN:

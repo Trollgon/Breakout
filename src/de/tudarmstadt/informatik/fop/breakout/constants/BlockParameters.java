@@ -109,7 +109,7 @@ public interface BlockParameters {
 	public static final String BLOCK_MAGMA_IMAGE = "/images/blocks/block_magma.png";
 	public static final int BLOCK_MAGMA_HITSLEFT = 3;
 	public static final int BLOCK_MAGMA_SCORE = 200;
-	public static final String BLOCK_MAGMA_HIT_SOUND = "/sounds/blockHitMagma.wav";
+	public static final String BLOCK_MAGMA_HIT_SOUND = "/sounds/blockHitStone.wav";
 	
 	// OBSIDIAN-BLOCK 5 HITS
 	public static final String BLOCK_OBSIDIAN_IMAGE = "/images/blocks/block_obsidian.png";
