@@ -274,8 +274,10 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 	 */
 	public void setBlockImage(String blockImage) {
 		try {
+			
 			this.blockImage = new Image(blockImage);
 			this.addComponent(new ImageRenderComponent(getBlockImage()));
+			
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
