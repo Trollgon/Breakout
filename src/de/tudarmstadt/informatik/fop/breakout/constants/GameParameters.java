@@ -52,7 +52,7 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 	public static final String COLLECT_ITEM_SOUND = "sounds/itemHitStick.wav";
 	public static final String STICK_ID = "stick";
 	public static final float STICK_SPEED = 1.5f;
-	public static final String STICK_IMAGE = "/images/stick_round.png";
+	public static final String STICK_IMAGE = "/images/stick_4.png";
 
 	// Lives
 	public static final String LIVES_ID = "lives";

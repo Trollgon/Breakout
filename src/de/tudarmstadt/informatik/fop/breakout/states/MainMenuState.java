@@ -44,17 +44,18 @@ public class MainMenuState extends BasicGameState implements GameParameters {
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
+		
+		entityManager.addEntity(getID(), new Button(128, 408, StateType.ZONEPICKER));
+		entityManager.addEntity(getID(), new Button(308, 408, StateType.ENDLESS));
+		entityManager.addEntity(getID(), new Button(484, 408, StateType.HIGHSCORE));
+		entityManager.addEntity(getID(), new Button(660, 408, StateType.QUIT));
+
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 
 		g.drawImage(new Image(MAIN_MENU_IMAGE), 0, 0);
-
-		entityManager.addEntity(getID(), new Button(128, 408, StateType.ZONEPICKER));
-		entityManager.addEntity(getID(), new Button(308, 408, StateType.ENDLESS));
-		entityManager.addEntity(getID(), new Button(484, 408, StateType.HIGHSCORE));
-		entityManager.addEntity(getID(), new Button(660, 408, StateType.QUIT));
 
 		entityManager.renderEntities(container, game, g);
 	}
