@@ -66,7 +66,7 @@ public interface BlockParameters {
 	public static final String BLOCK_SNOW_HIT_SOUND = "/sounds/blockHitEarth.wav";
 	
 	// ICE-BLOCK: 1 HIT and slows down the ball
-	public static final String BLOCK_ICE_IMAGE = "/images/blocks/block_2.png";
+	public static final String BLOCK_ICE_IMAGE = "/images/blocks/block_ice.png";
 	public static final int BLOCK_ICE_HITSLEFT = 1;
 	public static final int BLOCK_ICE_SCORE = 75;
 	public static final float BLOCK_ICE_SLOWDOWN = 0.98f;
@@ -128,7 +128,6 @@ public interface BlockParameters {
 	public static final int BLOCK_GLASS_HITSLEFT = 1;
 	public static final int BLOCK_GLASS_SCORE = 50;
 	public static final String BLOCK_GLASS_HIT_SOUND = "/sounds/blockHitGlass.wav";
-	
 	
 	// in the future:
 
