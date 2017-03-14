@@ -2,6 +2,7 @@ package de.tudarmstadt.informatik.fop.breakout.states;
 
 import java.io.IOException;
 
+import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -97,7 +98,15 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 			entityManager.addEntity(STORY_GAME_STATE,
 					new Ball((Stick) entityManager.getEntity(STORY_GAME_STATE, STICK_ID)));
 		}
-
+		// render buttons for restart or menu if number of lives is equal to 0
+		if (Lives.getLivesAmount() == 0) {
+			entityManager.addEntity(STORY_GAME_STATE,
+					new Button(218, 190, this.levelID ,this.zone)
+			);
+			entityManager.addEntity(STORY_GAME_STATE,
+					new Button(218, 310, StateType.MAINMENU)
+			);
+		}
 	}
 
 	@Override
