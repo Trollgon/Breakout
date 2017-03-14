@@ -107,6 +107,8 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 					new Button(218, 310, StateType.MAINMENU)
 			);
 		}
+		// render button for next level/zone if all blocks are destroyed
+
 	}
 
 	@Override
@@ -119,8 +121,7 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 		if (levelID != 0) {
 
 			try {
-				LevelGenerator.parseLevelFromMap(Levels.getPathByID(this.levelID)).stream()
-						.forEach(b -> entityManager.addEntity(getID(), b));
+				LevelGenerator.parseLevelFromMap(Levels.getPathByID(this.levelID)).forEach(b -> entityManager.addEntity(getID(), b));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
