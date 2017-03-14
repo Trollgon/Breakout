@@ -36,7 +36,7 @@ public class MagmaBlock extends AbstractBlock {
 	
 		// adds random magma dropping
 		random = new Random();
-		drop = new TimeEvent(1500, true);
+		drop = new TimeEvent(750, true);
 
 		StateBasedEntityManager entityManager = StateBasedEntityManager.getInstance();
 			
