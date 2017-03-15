@@ -1,5 +1,7 @@
 package de.tudarmstadt.informatik.fop.breakout.levels;
 
+import de.tudarmstadt.informatik.fop.breakout.constants.StateParameters;
+
 import java.util.HashMap;
 
 /**
@@ -23,7 +25,25 @@ public class Levels {
     	
     	
       // returning path
-        return levels.get(levelID);
+        try {
+            return levels.get(levelID);
+        }
+        catch (Exception e){
+            return null;
+        }
+
+
+    }
+
+    public static StateParameters.ZoneType getNextZone(StateParameters.ZoneType zoneType) {
+        switch (zoneType) {
+            case NORMALZONE:
+                return StateParameters.ZoneType.ICEZONE;
+            case ICEZONE:
+                return StateParameters.ZoneType.JUNGLEZONE;
+            default:
+                return StateParameters.ZoneType.ICEZONE;
+        }
     }
 
 }
