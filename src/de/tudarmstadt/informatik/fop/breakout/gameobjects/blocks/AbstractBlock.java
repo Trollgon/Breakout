@@ -29,6 +29,7 @@ import eea.engine.event.basicevents.LoopEvent;
  */
 public abstract class AbstractBlock extends Entity implements IHitable, GameParameters {
 
+	
 	private int hitsLeft;
 	private int score;
 	private BlockGroup type;
