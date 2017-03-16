@@ -1,9 +1,11 @@
 package de.tudarmstadt.informatik.fop.breakout.states;
 
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
+import de.tudarmstadt.informatik.fop.breakout.constants.StateParameters;
+import eea.engine.action.basicactions.ChangeStateAction;
+import eea.engine.action.basicactions.ChangeStateInitAction;
+import eea.engine.entity.Entity;
+import eea.engine.event.basicevents.KeyPressedEvent;
+import org.newdawn.slick.*;
 import org.newdawn.slick.openal.SoundStore;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -23,7 +25,7 @@ import eea.engine.entity.StateBasedEntityManager;
  * @author Jonas Henry Grebe
  *
  */
-public class EndlessGameState extends BasicGameState implements GameParameters {
+public class EndlessGameState extends BasicGameState implements GameParameters, StateParameters{
 
 	private StateBasedEntityManager entityManager;
 	
@@ -43,6 +45,13 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
+
+		Entity escListener = new Entity("ESC_Listener");
+		KeyPressedEvent escPressed = new KeyPressedEvent(Input.KEY_ESCAPE);
+		escPressed.addAction(new ChangeStateInitAction(MAIN_MENU_STATE));
+		escListener.addComponent(escPressed);
+		entityManager.addEntity(this.getID(), escListener);
+
 		// adds the games borders: LEFT, TOP and RIGHT
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.LEFT).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.TOP).createEntity());
@@ -91,10 +100,11 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 					new Ball((Stick) entityManager.getEntity(ENDLESS_GAME_STATE, STICK_ID)));
 		}
 
+		
+
 		// stops game if no lifes left
 		if (Lives.getLivesAmount() == 0) {
 			game.enterState(MAIN_MENU_STATE);
-			// game.pauseUpdate();
 		}
 	}
 
