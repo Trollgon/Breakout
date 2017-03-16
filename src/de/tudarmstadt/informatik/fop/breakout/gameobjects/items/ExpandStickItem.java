@@ -20,8 +20,8 @@ public class ExpandStickItem extends BasicItem {
 
 public ExpandStickItem(Vector2f startPosition) {
 		
-		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION, FALLING SPEED, LOGO
-		super(ITEM_EXPANDSTICK_ID, 10000, startPosition, true, start, end, 0.3f, EXPANDSTICK_LOGO_PATH);
+		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION,CancelCondition, FALLING SPEED, LOGO
+		super(ITEM_EXPANDSTICK_ID, 10000, startPosition, true, start, end, null, 0.3f, EXPANDSTICK_LOGO_PATH);
 		// TODO Auto-generated constructor stub
 	}
 private static final Action start = new Action(){

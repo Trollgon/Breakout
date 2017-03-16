@@ -19,7 +19,7 @@ public class OneUp extends BasicItem {
 	public OneUp(Vector2f startPosition) {
 		
 		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION, FALLING SPEED, LOGO
-		super(ITEM_ONEUP_ID, 0, startPosition, false, start, end, 0.3f, ONEUP_LOGO_PATH);
+		super(ITEM_ONEUP_ID, 0, startPosition, false, start, end, null, 0.3f, ONEUP_LOGO_PATH);
 		// TODO Auto-generated constructor stub
 	}
 	

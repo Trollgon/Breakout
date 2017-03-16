@@ -31,7 +31,7 @@ public class Countdown extends Entity implements GameParameters {
 	private Event startEvent;
 	
 	
-	public Countdown(long timeInms, Action startAction, Action endAction/*, Event cancelCondition*/) {
+	public Countdown(long timeInms, Action startAction, Action endAction, Event cancelCondition) {
 		super(COUNTDOWN_ID);
 		
 		length = timeInms;
@@ -91,10 +91,10 @@ public class Countdown extends Entity implements GameParameters {
 		});
 		//startEvent.addAction(startAction);
 		//timeOver.addAction(endAction);
-		/*if(!cancelCondition.equals(null)){
+		if(!cancelCondition.equals(null)){
 			cancelCondition.addAction(new DestroyEntityAction());
 			this.addComponent(cancelCondition);
-		}*/
+		}
 		this.addComponent(timeOver);
 		this.addComponent(startEvent);
 	}

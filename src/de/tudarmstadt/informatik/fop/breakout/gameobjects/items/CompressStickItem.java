@@ -20,8 +20,8 @@ public class CompressStickItem extends BasicItem {
 	
 public CompressStickItem(Vector2f startPosition) {
 		
-		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION, FALLING SPEED, LOGO
-		super(ITEM_COMPRESSSTICK_ID, 10000, startPosition, true, start, end, 0.3f, COMPRESSSTICK_LOGO_PATH);
+		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION, CancelCondition, FALLING SPEED, LOGO
+		super(ITEM_COMPRESSSTICK_ID, 10000, startPosition, true, start, end, null, 0.3f, COMPRESSSTICK_LOGO_PATH);
 		
 	}
 private static final Action start = new Action(){
