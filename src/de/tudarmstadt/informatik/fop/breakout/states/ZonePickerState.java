@@ -1,11 +1,22 @@
 package de.tudarmstadt.informatik.fop.breakout.states;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.managers.CheckPointManager;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import eea.engine.entity.StateBasedEntityManager;
+import org.lwjgl.Sys;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Stream;
 
 /**
  * @author Matthias Spoerkmann
@@ -13,6 +24,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class ZonePickerState extends BasicGameState implements GameParameters {
 
 	private StateBasedEntityManager entityManager;
+	private Integer checkpoint = 0;
 
 	/**
 	 * Constructor of new campaign state.
@@ -21,6 +33,7 @@ public class ZonePickerState extends BasicGameState implements GameParameters {
 	 *            of this state
 	 */
 	public ZonePickerState() {
+		checkpoint = CheckPointManager.getCheckpoint();
 		entityManager = StateBasedEntityManager.getInstance();
 	}
 
@@ -33,9 +46,13 @@ public class ZonePickerState extends BasicGameState implements GameParameters {
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
 		entityManager.addEntity(getID(), new Button(218, 190, ZoneType.NORMALZONE));
-		entityManager.addEntity(getID(), new Button(218, 310, ZoneType.ICEZONE));
-		entityManager.addEntity(getID(), new Button(218, 430, ZoneType.JUNGLEZONE));
-		
+		if (checkpoint > 199) {
+			entityManager.addEntity(getID(), new Button(218, 310, ZoneType.ICEZONE));
+		}
+		if (checkpoint > 299) {
+			entityManager.addEntity(getID(), new Button(218, 430, ZoneType.JUNGLEZONE));
+		}
+
 	}
 
 	@Override
@@ -46,8 +63,12 @@ public class ZonePickerState extends BasicGameState implements GameParameters {
 		entityManager.renderEntities(container, game, g);
 
 		g.drawString("Normal Zone", 110, 180);
-		g.drawString("Ice Zone", 110, 300);
-		g.drawString("Jungle Zone", 110, 420);
+		if (checkpoint > 199) {
+			g.drawString("Ice Zone", 110, 300);
+		}
+		if (checkpoint > 199) {
+			g.drawString("Jungle Zone", 110, 420);
+		}
 		
 	}
 

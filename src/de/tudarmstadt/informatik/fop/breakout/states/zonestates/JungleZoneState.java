@@ -1,5 +1,6 @@
 package de.tudarmstadt.informatik.fop.breakout.states.zonestates;
 
+import de.tudarmstadt.informatik.fop.breakout.managers.CheckPointManager;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -27,8 +28,9 @@ public class JungleZoneState extends BasicGameState implements GameParameters{
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
         entityManager.addEntity(getID(), new Button(218, 190, 301, ZoneType.JUNGLEZONE));
-        entityManager.addEntity(getID(), new Button(218, 310, 302, ZoneType.JUNGLEZONE));
-    
+		if (CheckPointManager.getCheckpoint() > 301) {
+			entityManager.addEntity(getID(), new Button(218, 310, 302, ZoneType.JUNGLEZONE));
+		}
 	}
 
 	@Override
@@ -39,8 +41,9 @@ public class JungleZoneState extends BasicGameState implements GameParameters{
 		entityManager.renderEntities(container, game, g);
 		
 		g.drawString("Level 1", 110, 180);
-		g.drawString("Level 2", 110, 300);
-
+		if (CheckPointManager.getCheckpoint() > 301) {
+			g.drawString("Level 2", 110, 300);
+		}
 	}
 
 	@Override

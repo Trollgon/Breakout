@@ -1,7 +1,9 @@
 package de.tudarmstadt.informatik.fop.breakout.states;
 
+import java.io.File;
 import java.io.IOException;
 
+import de.tudarmstadt.informatik.fop.breakout.managers.CheckPointManager;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -24,6 +26,11 @@ public class MainMenuState extends BasicGameState implements GameParameters {
 		this.stateID = MAIN_MENU_STATE;
 		entityManager = StateBasedEntityManager.getInstance();
 
+		//create save file on first start
+		File f = new File("save.txt");
+		if (!f.exists()) {
+			CheckPointManager.setCheckpoint(0);
+		}
 	}
 
 	@Override

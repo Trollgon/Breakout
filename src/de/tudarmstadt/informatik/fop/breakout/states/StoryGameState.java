@@ -1,8 +1,10 @@
 package de.tudarmstadt.informatik.fop.breakout.states;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.AbstractBlock;
+import de.tudarmstadt.informatik.fop.breakout.managers.CheckPointManager;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -123,15 +125,21 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 		}
 		// render button for next level/zone if all blocks are destroyed
 		if (!entityManager.getEntitiesByState(this.getID()).stream().anyMatch(e -> e instanceof AbstractBlock)) {
+			Integer checkpoint = 0;
 			if (Levels.getPathByID(this.levelID + 1) != null) {
 				entityManager.addEntity(STORY_GAME_STATE,
 						new Button(218, 190, this.zone)
 				);
+				checkpoint = this.levelID + 1;
 			} else if (Levels.getPathByID(this.levelID + 101 - this.levelID % 100) != null) {
 				entityManager.addEntity(STORY_GAME_STATE,
 						new Button(218, 190, Levels.getNextZone(this.zone))
 				);
+				checkpoint = this.levelID + 101 - this.levelID % 100;
 			}
+
+			CheckPointManager.setCheckpoint(checkpoint);
+
 			entityManager.addEntity(STORY_GAME_STATE,
 					new Button(218, 310, StateType.MAINMENU)
 			);
