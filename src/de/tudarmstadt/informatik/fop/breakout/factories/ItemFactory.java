@@ -9,6 +9,7 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.items.MirrorStickItem;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.items.OneUp;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.items.RandomRebound;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.items.ShootPlayerItem;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.items.SlowDownItem;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.items.SpeedUpItem;
 import eea.engine.entity.Entity;
 import eea.engine.interfaces.IEntityFactory;
@@ -42,6 +43,8 @@ public class ItemFactory implements IEntityFactory, GameParameters {
 			return new OneUp(pos);
 		case RANDOMREBOUND:
 			return new RandomRebound(pos);
+		case SLOWDOWN:
+			return new SlowDownItem(pos);
 		case SHOOTPLAYER:
 			return new ShootPlayerItem(pos);
 		default:
