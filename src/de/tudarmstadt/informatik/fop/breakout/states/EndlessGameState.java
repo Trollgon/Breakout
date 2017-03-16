@@ -63,7 +63,7 @@ public class EndlessGameState extends BasicGameState implements GameParameters, 
 		entityManager.addEntity(getID(), new Score());
 		entityManager.addEntity(getID(), new StopWatch());
 
-		LevelGenerator.getEndlessGameRow().stream().forEach(b -> entityManager.addEntity(ENDLESS_GAME_STATE, b));
+		LevelGenerator.getEndlessGameRow().forEach(b -> entityManager.addEntity(ENDLESS_GAME_STATE, b));
 	}
 
 	@Override
@@ -99,8 +99,6 @@ public class EndlessGameState extends BasicGameState implements GameParameters, 
 			entityManager.addEntity(ENDLESS_GAME_STATE,
 					new Ball((Stick) entityManager.getEntity(ENDLESS_GAME_STATE, STICK_ID)));
 		}
-
-		
 
 		// stops game if no lifes left
 		if (Lives.getLivesAmount() == 0) {

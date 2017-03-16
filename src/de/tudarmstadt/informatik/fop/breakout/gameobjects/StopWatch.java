@@ -43,12 +43,7 @@ public class StopWatch extends Entity implements GameParameters {
 			}
 		});
 		
-		pauseWatchEvent.addAction(new Action() {
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				pauseStopWatch();
-			}
-		});
+		pauseWatchEvent.addAction((arg0, arg1, arg2, arg3) -> pauseStopWatch());
 		
 		startWatchEvent = new ANDEvent( new NOTEvent( new NoBallLaunchedEvent("noBallLaunched")), new Event("watchNotRunningEvent") {
 			@Override
@@ -57,12 +52,7 @@ public class StopWatch extends Entity implements GameParameters {
 			}
 		});
 		
-		startWatchEvent.addAction(new Action() {
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				runStopWatch();
-			}
-		});
+		startWatchEvent.addAction((arg0, arg1, arg2, arg3) -> runStopWatch());
 		
 		this.addComponent(pauseWatchEvent);
 		this.addComponent(startWatchEvent);
