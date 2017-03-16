@@ -10,6 +10,8 @@ package de.tudarmstadt.informatik.fop.breakout.gameobjects.items;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
+
+import de.tudarmstadt.informatik.fop.breakout.gameevents.LifeDeductionEvent;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
 import eea.engine.action.Action;
 import eea.engine.component.Component;
@@ -49,7 +51,7 @@ public class SpeedUpItem extends BasicItem {
 	public SpeedUpItem(Vector2f startPosition
 			) {
 		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION, FALLING SPEED, LOGO
-		super(ITEM_SPEEDUP_ID, 10000, startPosition,true, start, end,/* new LifeDeductionEvent(),*/ 0.3f, SPEEDUP_LOGO_PATH);
+		super(ITEM_SPEEDUP_ID, 10000, startPosition,true, start, end, new LifeDeductionEvent(), 0.3f, SPEEDUP_LOGO_PATH);
 		// TODO Auto-generated constructor stub
 	}
 

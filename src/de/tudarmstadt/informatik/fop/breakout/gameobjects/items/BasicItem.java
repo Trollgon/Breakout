@@ -18,6 +18,7 @@ import eea.engine.entity.Entity;
 import eea.engine.entity.StateBasedEntityManager;
 import eea.engine.event.ANDEvent;
 import eea.engine.event.Event;
+import eea.engine.event.basicevents.TimeEvent;
 
 /**
  * 
@@ -49,10 +50,10 @@ public abstract class BasicItem extends Entity implements GameParameters{
 	protected ANDEvent despawnEvent;
 	protected String itemLogoPath; // the path to the item's logo
 	protected float fallingSpeed;	// the item's falling speed
-	//protected Event cancelCondition; //an Event that will stop the running countdown after the item has been picked up, e.g. after a Life was lost and the ball has been reset.
+	protected Event cancelCondition; //an Event that will stop the running countdown after the item has been picked up, e.g. after a Life was lost and the ball has been reset.
 	protected boolean despawnOnDeath;
 	
-	public BasicItem(String itemID, long duration, Vector2f startPosition, boolean despawnOnDeath, Action startAction, Action endAction,/* Event cancelCondition,*/ float fallingSpeed, String itemLogoPath) {
+	public BasicItem(String itemID, long duration, Vector2f startPosition, boolean despawnOnDeath, Action startAction, Action endAction, Event cancelCondition, float fallingSpeed, String itemLogoPath) {
 		super(itemID);
 		
 		setPosition(startPosition);
@@ -60,7 +61,7 @@ public abstract class BasicItem extends Entity implements GameParameters{
 		setDuration(duration);
 		this.startAction = startAction;
 		this.endAction = endAction;
-		//this.cancelCondition = cancelCondition;
+		this.cancelCondition = cancelCondition;
 		this.despawnOnDeath = despawnOnDeath;
 		configureEvents();
 		try {
@@ -100,7 +101,7 @@ public abstract class BasicItem extends Entity implements GameParameters{
 				});
 		
 			// Actions
-		hitStick.addAction((arg0, arg1, arg2, arg3) -> {StateBasedEntityManager.getInstance().addEntity(arg1.getCurrentStateID(), new Countdown(duration, startAction, endAction/*, cancelCondition*/));
+		hitStick.addAction((arg0, arg1, arg2, arg3) -> {StateBasedEntityManager.getInstance().addEntity(arg1.getCurrentStateID(), new Countdown(duration, startAction, endAction, cancelCondition));
 			
 															});
 		hitStick.addAction(new DestroyEntityAction());

@@ -20,7 +20,7 @@ public class ShootPlayerItem extends BasicItem {
 public ShootPlayerItem(Vector2f startPosition) {
 		
 		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION, FALLING SPEED, LOGO
-		super(ITEM_SHOOTPLAYER_ID, 0, startPosition, false, start, end, 1f, SHOOTPLAYER_LOGO_PATH);
+		super(ITEM_SHOOTPLAYER_ID, 0, startPosition, false, start, end,null, 1f, SHOOTPLAYER_LOGO_PATH);
 		
 	}
 
