@@ -28,7 +28,7 @@ import eea.engine.entity.StateBasedEntityManager;
 public class StoryGameState extends BasicGameState implements GameParameters {
 
 	private int levelID;
-	private ZoneType zone;
+	protected ZoneType zone;
 	private StateBasedEntityManager entityManager;
 
 	/**
@@ -46,6 +46,19 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 
 	public void setZone(ZoneType zone) {
 		this.zone = zone;
+	}
+
+	public int getZoneStateID() {
+		switch (this.zone) {
+			case NORMALZONE:
+				return NORMAL_ZONE_STATE;
+			case ICEZONE:
+				return ICE_ZONE_STATE;
+			case JUNGLEZONE:
+				return JUNGLE_ZONE_STATE;
+			default:
+				return MAIN_MENU_STATE;
+		}
 	}
 
 	@Override
@@ -112,11 +125,11 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 		if (!entityManager.getEntitiesByState(this.getID()).stream().anyMatch(e -> e instanceof AbstractBlock)) {
 			if (Levels.getPathByID(this.levelID + 1) != null) {
 				entityManager.addEntity(STORY_GAME_STATE,
-						new Button(218, 190, this.levelID + 1, this.zone)
+						new Button(218, 190, this.zone)
 				);
 			} else if (Levels.getPathByID(this.levelID + 101 - this.levelID % 100) != null) {
 				entityManager.addEntity(STORY_GAME_STATE,
-						new Button(218, 190, this.levelID + 101 - this.levelID % 100, Levels.getNextZone(this.zone))
+						new Button(218, 190, Levels.getNextZone(this.zone))
 				);
 			}
 			entityManager.addEntity(STORY_GAME_STATE,
