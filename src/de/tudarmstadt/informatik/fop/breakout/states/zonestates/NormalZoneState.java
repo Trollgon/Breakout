@@ -1,10 +1,10 @@
 package de.tudarmstadt.informatik.fop.breakout.states.zonestates;
 
 import de.tudarmstadt.informatik.fop.breakout.managers.CheckPointManager;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
+import eea.engine.action.basicactions.ChangeStateInitAction;
+import eea.engine.entity.Entity;
+import eea.engine.event.basicevents.KeyPressedEvent;
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -27,6 +27,13 @@ public class NormalZoneState extends BasicGameState implements GameParameters {
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
+
+		Entity escListener = new Entity("ESC_Listener");
+		KeyPressedEvent escPressed = new KeyPressedEvent(Input.KEY_ESCAPE);
+		escPressed.addAction(new ChangeStateInitAction(MAIN_MENU_STATE));
+		escListener.addComponent(escPressed);
+		entityManager.addEntity(this.getID(), escListener);
+
         entityManager.addEntity(getID(), new Button(218, 190, 101, ZoneType.NORMALZONE));
 		if (CheckPointManager.getCheckpoint() > 101) {
 			entityManager.addEntity(getID(), new Button(218, 310, 102, ZoneType.NORMALZONE));

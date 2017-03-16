@@ -3,7 +3,10 @@ package de.tudarmstadt.informatik.fop.breakout.states;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.managers.CheckPointManager;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
+import eea.engine.action.basicactions.ChangeStateInitAction;
+import eea.engine.entity.Entity;
 import eea.engine.entity.StateBasedEntityManager;
+import eea.engine.event.basicevents.KeyPressedEvent;
 import org.lwjgl.Sys;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
@@ -44,6 +47,12 @@ public class ZonePickerState extends BasicGameState implements GameParameters {
 
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+
+		Entity escListener = new Entity("ESC_Listener");
+		KeyPressedEvent escPressed = new KeyPressedEvent(Input.KEY_ESCAPE);
+		escPressed.addAction(new ChangeStateInitAction(MAIN_MENU_STATE));
+		escListener.addComponent(escPressed);
+		entityManager.addEntity(this.getID(), escListener);
 
 		entityManager.addEntity(getID(), new Button(218, 190, ZoneType.NORMALZONE));
 		if (checkpoint > 199) {
