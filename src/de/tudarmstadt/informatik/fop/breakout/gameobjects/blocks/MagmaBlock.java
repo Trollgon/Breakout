@@ -46,17 +46,12 @@ public class MagmaBlock extends AbstractBlock {
 				// drops by 25% chance
 				if (random.nextBoolean() && random.nextBoolean()) {
 					
-					entityManager.addEntity(arg1.getCurrentStateID(), new ItemFactory(ItemType.SHOOTPLAYER, getPosition()).createEntity());
-					
+					entityManager.addEntity(arg1.getCurrentStateID(), new ItemFactory(ItemType.SHOOTPLAYER, getPosition()).createEntity());	
 				}
 			}
 		});
 		
 		this.addComponent(drop);
-		
-	
-	
-	
 	}
 	
 

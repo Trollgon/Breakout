@@ -8,6 +8,12 @@ import eea.engine.action.Action;
 import eea.engine.component.Component;
 import eea.engine.event.basicevents.TimeEvent;
 
+/**@deprecated
+ * class to represent an regenerating jungle block
+ * 
+ * @author Jonas Henry Grebe
+ *
+ */
 public class JungleBlock extends AbstractBlock {
 
 	public JungleBlock(int xPos, int yPos) {

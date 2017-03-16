@@ -134,7 +134,7 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 			return new Image("/images/backgrounds/background_1.png");
 		default:
 		case NORMALZONE:
-			return new Image("/images/backgrounds/background_4.png");
+			return new Image("/images/backgrounds/background.png");
 		}
 	}
 }

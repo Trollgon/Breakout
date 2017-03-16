@@ -20,7 +20,7 @@ public class IDCollisionEvent extends CollisionEvent {
 		
 		if (super.performAction(gc, sb, delta)) {
 				
-			return getCollidedEntity().getID() == collisionID;
+			return getCollidedEntity().getID().contains(collisionID);
 		}
 		return false;
 	}

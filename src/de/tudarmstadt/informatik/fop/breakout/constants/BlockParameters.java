@@ -127,7 +127,7 @@ public interface BlockParameters {
 	public static final String BLOCK_GLASS_IMAGE = "/images/blocks/block_glass.png";
 	public static final int BLOCK_GLASS_HITSLEFT = 1;
 	public static final int BLOCK_GLASS_SCORE = 50;
-	public static final String BLOCK_GLASS_HIT_SOUND = "/sounds/blockHitGlass.wav";
+	public static final String BLOCK_GLASS_HIT_SOUND = "/sounds/blockHitIce.wav";
 	
 	// in the future:
 
