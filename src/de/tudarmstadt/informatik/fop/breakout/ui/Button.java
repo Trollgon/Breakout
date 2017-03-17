@@ -116,14 +116,14 @@ public class Button extends Entity implements GameParameters {
 
 		switch (zone) {
 		case JUNGLEZONE:
-			changeState = new ChangeStateInitAction(JUNGLE_ZONE_STATE);
+			changeState = new ChangeStateAction(JUNGLE_ZONE_STATE);
 			break;
 		case ICEZONE:
-			changeState = new ChangeStateInitAction(ICE_ZONE_STATE);
+			changeState = new ChangeStateAction(ICE_ZONE_STATE);
 			break;
 		default:
 		case NORMALZONE:
-			changeState = new ChangeStateInitAction(NORMAL_ZONE_STATE);
+			changeState = new ChangeStateAction(NORMAL_ZONE_STATE);
 			break;
 		}
 

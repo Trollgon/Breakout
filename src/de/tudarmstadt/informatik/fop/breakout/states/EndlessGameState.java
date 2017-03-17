@@ -1,16 +1,14 @@
 package de.tudarmstadt.informatik.fop.breakout.states;
 
-import de.tudarmstadt.informatik.fop.breakout.constants.StateParameters;
-import eea.engine.action.basicactions.ChangeStateAction;
-import eea.engine.action.basicactions.ChangeStateInitAction;
-import eea.engine.entity.Entity;
-import eea.engine.event.basicevents.KeyPressedEvent;
-import org.newdawn.slick.*;
-import org.newdawn.slick.openal.SoundStore;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.constants.StateParameters;
 import de.tudarmstadt.informatik.fop.breakout.factories.BorderFactory;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Lives;
@@ -101,7 +99,6 @@ public class EndlessGameState extends BasicGameState implements GameParameters, 
 	@Override
 	public void leave(GameContainer container, StateBasedGame game) throws SlickException {
 		super.leave(container, game);
-		SoundStore.get().pauseLoop();
 	}
 	
 	@Override

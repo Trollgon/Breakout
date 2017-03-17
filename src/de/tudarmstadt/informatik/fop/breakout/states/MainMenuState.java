@@ -39,7 +39,11 @@ public class MainMenuState extends BasicGameState implements GameParameters {
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+	}
 
+	@Override
+	public void init(GameContainer container, StateBasedGame game) throws SlickException {
+		
 		// set up volume
 		// start playing the background music
 		try {
@@ -48,26 +52,23 @@ public class MainMenuState extends BasicGameState implements GameParameters {
 			SoundStore.get().getWAV("/sounds/loop_endless.wav").playAsMusic(1f, 1f, true);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
-	}
 
-	@Override
-	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-
+		// adds the ESC-Listeners to all States
 		Entity escListener = new Entity("ESC_Listener");
 		KeyPressedEvent escPressed = new KeyPressedEvent(Input.KEY_ESCAPE);
 		escPressed.addAction(new ChangeStateAction(MAIN_MENU_STATE));
 		escListener.addComponent(escPressed);
-		
+
 		entityManager.addEntity(STORY_GAME_STATE, escListener);
 		entityManager.addEntity(ENDLESS_GAME_STATE, escListener);
 		entityManager.addEntity(ZONE_PICKER_STATE, escListener);
 		entityManager.addEntity(JUNGLE_ZONE_STATE, escListener);
 		entityManager.addEntity(ICE_ZONE_STATE, escListener);
 		entityManager.addEntity(NORMAL_ZONE_STATE, escListener);
-		//entityManager.addEntity(HIGHSCORE_STATE, escListener);
+		// entityManager.addEntity(HIGHSCORE_STATE, escListener);
 
 		entityManager.addEntity(getID(), new Button(128, 408, StateType.ZONEPICKER));
 		entityManager.addEntity(getID(), new Button(308, 408, StateType.ENDLESS));

@@ -54,14 +54,14 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 
 	public int getZoneStateID() {
 		switch (this.zone) {
-			case NORMALZONE:
-				return NORMAL_ZONE_STATE;
-			case ICEZONE:
-				return ICE_ZONE_STATE;
-			case JUNGLEZONE:
-				return JUNGLE_ZONE_STATE;
-			default:
-				return MAIN_MENU_STATE;
+		case NORMALZONE:
+			return NORMAL_ZONE_STATE;
+		case ICEZONE:
+			return ICE_ZONE_STATE;
+		case JUNGLEZONE:
+			return JUNGLE_ZONE_STATE;
+		default:
+			return MAIN_MENU_STATE;
 		}
 	}
 
@@ -69,7 +69,6 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
 		loadLevel();
 	}
-
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
@@ -118,37 +117,25 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 		}
 		// render buttons for restart or menu if number of lives is equal to 0
 		if (Lives.getLivesAmount() == 0) {
-			entityManager.addEntity(STORY_GAME_STATE,
-					new Button(218, 190, this.levelID ,this.zone)
-			);
-			entityManager.addEntity(STORY_GAME_STATE,
-					new Button(218, 310, StateType.MAINMENU)
-			);
-			
-			
+			entityManager.addEntity(STORY_GAME_STATE, new Button(218, 190, this.levelID, this.zone));
+			entityManager.addEntity(STORY_GAME_STATE, new Button(218, 310, StateType.MAINMENU));
+
 		}
 		// render button for next level/zone if all blocks are destroyed
 		if (!entityManager.getEntitiesByState(this.getID()).stream().anyMatch(e -> e instanceof AbstractBlock)) {
 			Integer checkpoint = 0;
 			if (Levels.getPathByID(this.levelID + 1) != null) {
-				entityManager.addEntity(STORY_GAME_STATE,
-						new Button(218, 190, this.zone)
-				);
+				entityManager.addEntity(STORY_GAME_STATE, new Button(218, 190, this.zone));
 				checkpoint = this.levelID + 1;
 			} else if (Levels.getPathByID(this.levelID + 101 - this.levelID % 100) != null) {
-				entityManager.addEntity(STORY_GAME_STATE,
-						new Button(218, 190, Levels.getNextZone(this.zone))
-				);
+				entityManager.addEntity(STORY_GAME_STATE, new Button(218, 190, Levels.getNextZone(this.zone)));
 				checkpoint = this.levelID + 101 - this.levelID % 100;
 			}
 
 			CheckPointManager.setCheckpoint(checkpoint);
 
-			entityManager.addEntity(STORY_GAME_STATE,
-					new Button(218, 310, StateType.MAINMENU)
-			);
+			entityManager.addEntity(STORY_GAME_STATE, new Button(218, 310, StateType.MAINMENU));
 		}
-
 
 	}
 
@@ -162,7 +149,8 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 		if (levelID != 0) {
 
 			try {
-				LevelGenerator.parseLevelFromMap(Levels.getPathByID(this.levelID)).forEach(b -> entityManager.addEntity(getID(), b));
+				LevelGenerator.parseLevelFromMap(Levels.getPathByID(this.levelID))
+						.forEach(b -> entityManager.addEntity(getID(), b));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
