@@ -5,7 +5,9 @@ import java.io.PrintWriter;
 
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.managers.CheckPointManager;
+import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
+import eea.engine.action.basicactions.ChangeStateAction;
 import eea.engine.action.basicactions.ChangeStateInitAction;
 import eea.engine.entity.Entity;
 import eea.engine.event.basicevents.KeyPressedEvent;
@@ -69,14 +71,9 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 		loadLevel();
 	}
 
+
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-
-		Entity escListener = new Entity("ESC_Listener");
-		KeyPressedEvent escPressed = new KeyPressedEvent(Input.KEY_ESCAPE);
-		escPressed.addAction(new ChangeStateInitAction(MAIN_MENU_STATE));
-		escListener.addComponent(escPressed);
-		entityManager.addEntity(this.getID(), escListener);
 
 		// adds the games borders: LEFT, TOP and RIGHT
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.LEFT).createEntity());

@@ -14,8 +14,8 @@ public class Levels {
     public static String getPathByID(int levelID) {
         
     	// filling HashMap
-        levels.put(101, "maps/zone1/101.map");
-        levels.put(102, "maps/zone1/103.map");
+        levels.put(101, "maps/zone1/test.map");
+        levels.put(102, "maps/zone1/test.map");
         levels.put(103, "maps/zone1/103.map");
         levels.put(104, "maps/zone1/104.map");
         levels.put(105, "maps/zone1/105.map");

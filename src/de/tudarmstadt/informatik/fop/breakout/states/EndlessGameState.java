@@ -46,12 +46,6 @@ public class EndlessGameState extends BasicGameState implements GameParameters, 
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 
-		Entity escListener = new Entity("ESC_Listener");
-		KeyPressedEvent escPressed = new KeyPressedEvent(Input.KEY_ESCAPE);
-		escPressed.addAction(new ChangeStateInitAction(MAIN_MENU_STATE));
-		escListener.addComponent(escPressed);
-		entityManager.addEntity(this.getID(), escListener);
-
 		// adds the games borders: LEFT, TOP and RIGHT
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.LEFT).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.TOP).createEntity());

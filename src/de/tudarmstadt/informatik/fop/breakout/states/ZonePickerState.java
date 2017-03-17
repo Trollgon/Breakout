@@ -48,13 +48,8 @@ public class ZonePickerState extends BasicGameState implements GameParameters {
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
-		Entity escListener = new Entity("ESC_Listener");
-		KeyPressedEvent escPressed = new KeyPressedEvent(Input.KEY_ESCAPE);
-		escPressed.addAction(new ChangeStateInitAction(MAIN_MENU_STATE));
-		escListener.addComponent(escPressed);
-		entityManager.addEntity(this.getID(), escListener);
-
 		entityManager.addEntity(getID(), new Button(218, 190, ZoneType.NORMALZONE));
+		
 		if (checkpoint > 199) {
 			entityManager.addEntity(getID(), new Button(218, 310, ZoneType.ICEZONE));
 		}
