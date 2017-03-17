@@ -67,7 +67,6 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
-		//initZoneMusic();
 		loadLevel();
 	}
 
@@ -125,6 +124,8 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 			entityManager.addEntity(STORY_GAME_STATE,
 					new Button(218, 310, StateType.MAINMENU)
 			);
+			
+			
 		}
 		// render button for next level/zone if all blocks are destroyed
 		if (!entityManager.getEntitiesByState(this.getID()).stream().anyMatch(e -> e instanceof AbstractBlock)) {
