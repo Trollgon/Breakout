@@ -7,6 +7,7 @@ import org.newdawn.slick.geom.Vector2f;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.states.StoryGameState;
 import eea.engine.action.Action;
+import eea.engine.action.basicactions.ChangeStateAction;
 import eea.engine.action.basicactions.ChangeStateInitAction;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
@@ -157,27 +158,27 @@ public class Button extends Entity implements GameParameters {
 		switch (state) {
 		case ABOUT:
 			path = "/images/buttons/about_button.png";
-			changeState = new ChangeStateInitAction(ABOUT_STATE);
+			changeState = new ChangeStateAction(ABOUT_STATE);
 			break;
 		case ENDLESS:
 			changeState = new ChangeStateInitAction(ENDLESS_GAME_STATE);
 			path = "/images/buttons/endless_button.png";
 			break;
 		case HIGHSCORE:
-			changeState = new ChangeStateInitAction(HIGHSCORE_STATE);
+			changeState = new ChangeStateAction(HIGHSCORE_STATE);
 			path = "/images/buttons/highscore_button.png";
 			break;
 		default:
 		case MAINMENU:
 			path = "/images/buttons/entry.png";
-			changeState = new ChangeStateInitAction(MAIN_MENU_STATE);
+			changeState = new ChangeStateAction(MAIN_MENU_STATE);
 			break;
 		case QUIT:
 			path = "/images/buttons/quit_button.png";
-			changeState = new ChangeStateInitAction(QUIT_STATE);
+			changeState = new ChangeStateAction(QUIT_STATE);
 			break;
 		case ZONEPICKER:
-			changeState = new ChangeStateInitAction(ZONE_PICKER_STATE);
+			changeState = new ChangeStateAction(ZONE_PICKER_STATE);
 			path = "/images/buttons/play_button.png";
 			break;
 		}

@@ -37,9 +37,7 @@ public class EndlessGameState extends BasicGameState implements GameParameters, 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
 		super.enter(container, game);
-		
-		// start playing the background Music
-		
+
 	}
 	
 	
