@@ -176,7 +176,7 @@ public class LevelGenerator implements GameParameters {
 		case GOLD:
 			return new GoldBlock(xPos, yPos);
 		case ICE:
-			//return new IceBlock(xPos, yPos);
+			// return new IceBlock(xPos, yPos);
 		case IRON:
 			return new IronBlock(xPos, yPos);
 		case STANDARD:
@@ -191,8 +191,6 @@ public class LevelGenerator implements GameParameters {
 			return null;
 		case GLASS:
 			return new GlassBlock(xPos, yPos);
-		case JUNGLE:
-			//return new JungleBlock(xPos, yPos);
 		case MAGMA:
 			return new MagmaBlock(xPos, yPos);
 		case METEOR:
@@ -200,6 +198,8 @@ public class LevelGenerator implements GameParameters {
 			return new ObsidianBlock(xPos, yPos);
 		case STONE:
 			return new StoneBlock(xPos, yPos);
+		case JUNGLE:
+			// return new JungleBlock(xPos, yPos);
 		case WOOD:
 			return new WoodBlock(xPos, yPos);
 		default:

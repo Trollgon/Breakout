@@ -58,7 +58,6 @@ public class Button extends Entity implements GameParameters {
 					component) -> ((StoryGameState) Breakout.breakout.getState(STORY_GAME_STATE))
 							.setLevelID(stateParameterID));
 			break;
-
 		case ENDLESS:
 			path = "/images/buttons/endless_button.png";
 			changeState = new ChangeStateInitAction(Breakout.ENDLESS_GAME_STATE);
@@ -116,14 +115,14 @@ public class Button extends Entity implements GameParameters {
 
 		switch (zone) {
 		case JUNGLEZONE:
-			changeState = new ChangeStateAction(JUNGLE_ZONE_STATE);
+			changeState = new ChangeStateInitAction(JUNGLE_ZONE_STATE);
 			break;
 		case ICEZONE:
-			changeState = new ChangeStateAction(ICE_ZONE_STATE);
+			changeState = new ChangeStateInitAction(ICE_ZONE_STATE);
 			break;
 		default:
 		case NORMALZONE:
-			changeState = new ChangeStateAction(NORMAL_ZONE_STATE);
+			changeState = new ChangeStateInitAction(NORMAL_ZONE_STATE);
 			break;
 		}
 
