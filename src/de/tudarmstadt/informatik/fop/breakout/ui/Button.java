@@ -1,8 +1,10 @@
 package de.tudarmstadt.informatik.fop.breakout.ui;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.gameactions.PlaySoundAction;
@@ -10,8 +12,10 @@ import de.tudarmstadt.informatik.fop.breakout.states.StoryGameState;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.ChangeStateAction;
 import eea.engine.action.basicactions.ChangeStateInitAction;
+import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
+import eea.engine.entity.StateBasedEntityManager;
 import eea.engine.event.ANDEvent;
 import eea.engine.event.basicevents.MouseClickedEvent;
 import eea.engine.event.basicevents.MouseEnteredEvent;
@@ -157,6 +161,7 @@ public class Button extends Entity implements GameParameters {
 
 		changeState = new ChangeStateInitAction(Breakout.STORY_GAME_STATE);
 		mainEvent.addAction(changeState);
+
 		mainEvent.addAction(new PlaySoundAction(BUTTON_CLICK_SOUND));
 		
 		this.addComponent(mainEvent);

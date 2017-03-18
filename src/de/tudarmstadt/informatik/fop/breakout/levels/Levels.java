@@ -15,7 +15,7 @@ public class Levels {
         
     	// filling HashMap
     	// zone 1:
-        levels.put(101, "maps/zone1/101.map");
+        levels.put(101, "maps/zone1/test.map");
         levels.put(102, "maps/zone1/102.map");
         levels.put(103, "maps/zone1/103.map");
         levels.put(104, "maps/zone1/104.map");
