@@ -5,6 +5,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.gameactions.PlaySoundAction;
 import de.tudarmstadt.informatik.fop.breakout.states.StoryGameState;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.ChangeStateAction;
@@ -23,78 +24,6 @@ public class Button extends Entity implements GameParameters {
 	ANDEvent mainEvent;
 	Action changeState;
 	String path;
-
-	/**
-	 * @deprecated Button-class constructor
-	 * 
-	 * @param xPos
-	 *            x-Position
-	 * @param yPos
-	 *            y-Position
-	 * @param stateID
-	 *            ID of the entered state by clicking
-	 * @param stateParameterID
-	 *            ID of a parameter needed for Zones or Levels to load.
-	 */
-	public Button(int xPos, int yPos, StateType stateID, int stateParameterID) {
-		super(BUTTON_ID);
-
-		this.setPosition(new Vector2f(xPos, yPos));
-
-		mainEvent = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
-
-		// switch stateID, e.g. HIGHSCORE_STATE, MAIN_MENU_STATE, ...
-		switch (stateID) {
-		case ZONEPICKER:
-			path = "/images/buttons/play_button.png";
-			changeState = new ChangeStateInitAction(Breakout.ZONE_PICKER_STATE);
-			break;
-
-		case STORYGAME:
-			path = "/images/buttons/entry.png";
-			changeState = new ChangeStateInitAction(Breakout.STORY_GAME_STATE);
-			// sets levelID only if this Button is clicked!
-			mainEvent.addAction((gameContainer, stateBasedGame, i,
-					component) -> ((StoryGameState) Breakout.breakout.getState(STORY_GAME_STATE))
-							.setLevelID(stateParameterID));
-			break;
-		case ENDLESS:
-			path = "/images/buttons/endless_button.png";
-			changeState = new ChangeStateInitAction(Breakout.ENDLESS_GAME_STATE);
-			break;
-
-		case HIGHSCORE:
-			path = "/images/buttons/highscore_button.png";
-			changeState = new ChangeStateInitAction(Breakout.HIGHSCORE_STATE);
-			break;
-
-		case ABOUT:
-			path = "/images/buttons/about_button.png";
-			changeState = new ChangeStateInitAction(Breakout.ABOUT_STATE);
-			break;
-
-		case QUIT:
-			path = "/images/buttons/quit_button.png";
-			changeState = new ChangeStateInitAction(Breakout.QUIT_STATE);
-			break;
-
-		default:
-			path = "/images/entry.png";
-			changeState = new ChangeStateInitAction(Breakout.MAIN_MENU_STATE);
-			break;
-		}
-
-		try {
-			this.addComponent(new ImageRenderComponent(new Image(path)));
-
-		} catch (SlickException e) {
-			e.printStackTrace();
-		}
-
-		mainEvent.addAction(changeState);
-
-		this.addComponent(mainEvent);
-	}
 
 	/**
 	 * constructor of Button
@@ -134,6 +63,7 @@ public class Button extends Entity implements GameParameters {
 		}
 
 		mainEvent.addAction(changeState);
+		mainEvent.addAction(new PlaySoundAction(BUTTON_CLICK_SOUND));
 		this.addComponent(mainEvent);
 	}
 
@@ -189,6 +119,7 @@ public class Button extends Entity implements GameParameters {
 		}
 
 		mainEvent.addAction(changeState);
+		mainEvent.addAction(new PlaySoundAction(BUTTON_CLICK_SOUND));
 		this.addComponent(mainEvent);
 
 	}
@@ -226,7 +157,8 @@ public class Button extends Entity implements GameParameters {
 
 		changeState = new ChangeStateInitAction(Breakout.STORY_GAME_STATE);
 		mainEvent.addAction(changeState);
-
+		mainEvent.addAction(new PlaySoundAction(BUTTON_CLICK_SOUND));
+		
 		this.addComponent(mainEvent);
 	}
 }

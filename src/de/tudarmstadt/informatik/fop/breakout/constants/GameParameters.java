@@ -23,6 +23,7 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 	// Button
 	public static final String BUTTON_ID = "button";
 	public static final String BUTTON_IMAGE = "/images/buttons/entry.png";
+	public static final String BUTTON_CLICK_SOUND = "/sounds/buttonClick.wav";
 
 	// Borders
 	public enum BorderType {

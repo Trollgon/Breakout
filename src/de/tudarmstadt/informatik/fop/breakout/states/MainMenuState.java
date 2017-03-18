@@ -49,7 +49,7 @@ public class MainMenuState extends BasicGameState implements GameParameters {
 		try {
 			SoundStore.get().setMusicVolume(GAME_MUSIC_VOLUME);
 			SoundStore.get().setSoundVolume(GAME_SOUND_VOLUME);
-			SoundStore.get().getWAV("/sounds/loop_endless.wav").playAsMusic(1f, 1f, true);
+			SoundStore.get().getWAV("/sounds/music/loop_endless.wav").playAsMusic(1f, 1f, true);
 
 		} catch (IOException e) {
 
