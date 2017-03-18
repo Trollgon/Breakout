@@ -34,7 +34,6 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 	public static final String TOP_BORDER_ID = "topBorder";
 	public static final String LEFT_BORDER_ID = "leftBorder";
 	public static final String RIGHT_BORDER_ID = "rightBorder";
-	
 	public static final String BORDER_HIT_SOUND = "/sounds/borderHit.wav";
 	
 	// Timer

@@ -5,7 +5,7 @@ import org.newdawn.slick.SlickException;
 import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnItemAction;
 
 /**
- * @deprecated class to represent an ice block
+ * class to represent an ice block
  * 
  * @author Jonas Henry Grebe
  *
