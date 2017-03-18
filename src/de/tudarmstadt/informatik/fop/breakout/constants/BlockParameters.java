@@ -95,7 +95,7 @@ public interface BlockParameters {
 	public static final String BLOCK_JUNGLE_HURT_IMAGE = "/images/blocks/block_jungle2.png";
 	public static final int BLOCK_JUNGLE_HITSLEFT = 2;
 	public static final int BLOCK_JUNGLE_SCORE = 150;
-	public static final long BLOCK_JUNGLE_REGSPEED = 2500;
+	public static final long BLOCK_JUNGLE_REGSPEED = 2000;
 	public static final String BLOCK_JUNGLE_HIT_SOUND = "/sounds/blockHitWood.wav";
 	public static final String BLOCK_JUNGLE_REGENERATION_SOUND = "/sounds/jungleRegeneration.wav";
 	
@@ -109,7 +109,7 @@ public interface BlockParameters {
 	public static final String BLOCK_MAGMA_IMAGE = "/images/blocks/block_magma.png";
 	public static final int BLOCK_MAGMA_HITSLEFT = 3;
 	public static final int BLOCK_MAGMA_SCORE = 200;
-	public static final String BLOCK_MAGMA_HIT_SOUND = "/sounds/blockHitMagma.wav";
+	public static final String BLOCK_MAGMA_HIT_SOUND = "/sounds/blockHitStone.wav";
 	
 	// OBSIDIAN-BLOCK 5 HITS
 	public static final String BLOCK_OBSIDIAN_IMAGE = "/images/blocks/block_obsidian.png";
@@ -127,8 +127,7 @@ public interface BlockParameters {
 	public static final String BLOCK_GLASS_IMAGE = "/images/blocks/block_glass.png";
 	public static final int BLOCK_GLASS_HITSLEFT = 1;
 	public static final int BLOCK_GLASS_SCORE = 50;
-	public static final String BLOCK_GLASS_HIT_SOUND = "/sounds/blockHitGlass.wav";
-	
+	public static final String BLOCK_GLASS_HIT_SOUND = "/sounds/blockHitIce.wav";
 	
 	// in the future:
 

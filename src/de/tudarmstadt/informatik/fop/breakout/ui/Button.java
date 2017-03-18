@@ -26,7 +26,6 @@ public class Button extends Entity implements GameParameters {
 	/**
 	 * @deprecated Button-class constructor
 	 * 
-	 * @param buttonID
 	 * @param xPos
 	 *            x-Position
 	 * @param yPos
@@ -211,12 +210,10 @@ public class Button extends Entity implements GameParameters {
 
 		mainEvent = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
 
-		changeState = new ChangeStateInitAction(Breakout.STORY_GAME_STATE);
-
 		// sets levelID only if this Button is clicked!
 		mainEvent.addAction((gameContainer, stateBasedGame, i,
-				component) -> ((StoryGameState) Breakout.breakout.getState(STORY_GAME_STATE)).setLevelID(levelID));
-		
+							 component) -> ((StoryGameState) Breakout.breakout.getState(STORY_GAME_STATE)).setLevelID(levelID));
+
 		// tells the StoryGameState the zoneType
 		mainEvent.addAction((arg0, arg1, arg2, arg3) -> ((StoryGameState) Breakout.breakout.getState(STORY_GAME_STATE)).setZone(zone));
 
@@ -227,6 +224,7 @@ public class Button extends Entity implements GameParameters {
 			e.printStackTrace();
 		}
 
+		changeState = new ChangeStateInitAction(Breakout.STORY_GAME_STATE);
 		mainEvent.addAction(changeState);
 
 		this.addComponent(mainEvent);

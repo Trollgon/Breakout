@@ -1,11 +1,17 @@
 package de.tudarmstadt.informatik.fop.breakout.states;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.AbstractBlock;
+import de.tudarmstadt.informatik.fop.breakout.managers.CheckPointManager;
+import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
+import de.tudarmstadt.informatik.fop.breakout.ui.Button;
+import eea.engine.action.basicactions.ChangeStateAction;
+import eea.engine.action.basicactions.ChangeStateInitAction;
+import eea.engine.entity.Entity;
+import eea.engine.event.basicevents.KeyPressedEvent;
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -26,7 +32,7 @@ import eea.engine.entity.StateBasedEntityManager;
 public class StoryGameState extends BasicGameState implements GameParameters {
 
 	private int levelID;
-	private ZoneType zone;
+	protected ZoneType zone;
 	private StateBasedEntityManager entityManager;
 
 	/**
@@ -46,11 +52,24 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 		this.zone = zone;
 	}
 
+	public int getZoneStateID() {
+		switch (this.zone) {
+			case NORMALZONE:
+				return NORMAL_ZONE_STATE;
+			case ICEZONE:
+				return ICE_ZONE_STATE;
+			case JUNGLEZONE:
+				return JUNGLE_ZONE_STATE;
+			default:
+				return MAIN_MENU_STATE;
+		}
+	}
+
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
-		//initZoneMusic();
 		loadLevel();
 	}
+
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
@@ -97,6 +116,39 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 			entityManager.addEntity(STORY_GAME_STATE,
 					new Ball((Stick) entityManager.getEntity(STORY_GAME_STATE, STICK_ID)));
 		}
+		// render buttons for restart or menu if number of lives is equal to 0
+		if (Lives.getLivesAmount() == 0) {
+			entityManager.addEntity(STORY_GAME_STATE,
+					new Button(218, 190, this.levelID ,this.zone)
+			);
+			entityManager.addEntity(STORY_GAME_STATE,
+					new Button(218, 310, StateType.MAINMENU)
+			);
+			
+			
+		}
+		// render button for next level/zone if all blocks are destroyed
+		if (!entityManager.getEntitiesByState(this.getID()).stream().anyMatch(e -> e instanceof AbstractBlock)) {
+			Integer checkpoint = 0;
+			if (Levels.getPathByID(this.levelID + 1) != null) {
+				entityManager.addEntity(STORY_GAME_STATE,
+						new Button(218, 190, this.zone)
+				);
+				checkpoint = this.levelID + 1;
+			} else if (Levels.getPathByID(this.levelID + 101 - this.levelID % 100) != null) {
+				entityManager.addEntity(STORY_GAME_STATE,
+						new Button(218, 190, Levels.getNextZone(this.zone))
+				);
+				checkpoint = this.levelID + 101 - this.levelID % 100;
+			}
+
+			CheckPointManager.setCheckpoint(checkpoint);
+
+			entityManager.addEntity(STORY_GAME_STATE,
+					new Button(218, 310, StateType.MAINMENU)
+			);
+		}
+
 
 	}
 
@@ -110,8 +162,7 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 		if (levelID != 0) {
 
 			try {
-				LevelGenerator.parseLevelFromMap(Levels.getPathByID(this.levelID)).stream()
-						.forEach(b -> entityManager.addEntity(getID(), b));
+				LevelGenerator.parseLevelFromMap(Levels.getPathByID(this.levelID)).forEach(b -> entityManager.addEntity(getID(), b));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -134,7 +185,7 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 			return new Image("/images/backgrounds/background_1.png");
 		default:
 		case NORMALZONE:
-			return new Image("/images/backgrounds/background_4.png");
+			return new Image("/images/backgrounds/background.png");
 		}
 	}
 }
