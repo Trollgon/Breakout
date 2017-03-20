@@ -119,6 +119,7 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 
 		// if game is over:
 		if (!gameOver) {
+			
 			// render buttons for restart or menu if number of lives is equal to 0
 			if (Lives.getLivesAmount() == 0) {
 				
@@ -126,6 +127,7 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 				entityManager.addEntity(STORY_GAME_STATE, new Button(218, 310, StateType.MAINMENU));
 				gameOver = true;
 			}
+			
 			// render button for next level/zone if all blocks are destroyed
 			if (!entityManager.getEntitiesByState(this.getID()).stream().anyMatch(e -> e instanceof AbstractBlock)) {
 				Integer checkpoint = 0;
