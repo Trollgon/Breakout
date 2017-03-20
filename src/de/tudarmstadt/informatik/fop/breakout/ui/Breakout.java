@@ -8,6 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.states.EndlessGameState;
+import de.tudarmstadt.informatik.fop.breakout.states.HighScoreState;
 import de.tudarmstadt.informatik.fop.breakout.states.MainMenuState;
 import de.tudarmstadt.informatik.fop.breakout.states.StoryGameState;
 import de.tudarmstadt.informatik.fop.breakout.states.ZonePickerState;
@@ -86,7 +87,7 @@ public class Breakout extends StateBasedGame implements GameParameters {
 		addState(new JungleZoneState());
 		
 		addState(new StoryGameState());
-		// addState(new HighscoreState());
+		addState(new HighScoreState());
 		// addState(new QuitState(QUIT_STATE));
 
 		// Add the states to the StateBasedEntityManager
@@ -99,6 +100,6 @@ public class Breakout extends StateBasedGame implements GameParameters {
 		StateBasedEntityManager.getInstance().addState(JUNGLE_ZONE_STATE);
 				
 		StateBasedEntityManager.getInstance().addState(STORY_GAME_STATE);
-		// StateBasedEntityManager.getInstance().addState(HIGHSCORE_STATE);
+		StateBasedEntityManager.getInstance().addState(HIGHSCORE_STATE);
 	}
 }

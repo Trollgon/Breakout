@@ -57,13 +57,7 @@ public class HighscoreManager implements GameParameters {
 		return false;
 	}
 	
-	/**
-	 * Adds a player with his name, his score and the time he needed to the highscore.hsc-file.
-	 * 
-	 * @param player a given player
-	 * @throws IOException
-	 */
-	public static void addPlayerToHighscore (Player player) throws IOException {
+	public static LinkedList<Player> getHisghscoreAsList() throws IOException {
 		FileReader highscore = new FileReader(HIGHSCORE_FILE);
 		StreamTokenizer st = new StreamTokenizer(highscore);
 		st.whitespaceChars(',', ',');
@@ -92,6 +86,17 @@ public class HighscoreManager implements GameParameters {
 		
 		highscore.close();
 		
+		return playerList;
+	}
+	
+	/**
+	 * Adds a player with his name, his score and the time he needed to the highscore.hsc-file.
+	 * 
+	 * @param player a given player
+	 * @throws IOException
+	 */
+	public static void addPlayerToHighscore (Player player) throws IOException {
+		LinkedList<Player> playerList = getHisghscoreAsList();
 		playerList.add(player);
 		
 		playerList.sort(new PlayerComparator());
@@ -117,6 +122,74 @@ public class HighscoreManager implements GameParameters {
 	public static void clearHighscore() throws IOException {
 		FileWriter emptyHighscore = new FileWriter(HIGHSCORE_FILE);
 		emptyHighscore.close();
+	}
+	
+	public static String[] displayHighscore() throws IOException {
+		FileReader highscore = new FileReader(HIGHSCORE_FILE);
+		StreamTokenizer st = new StreamTokenizer(highscore);
+		st.whitespaceChars(',', ',');
+		st.eolIsSignificant(false);
+		
+		//StringBuilder display = new StringBuilder();
+		//String lineSeparator = System.getProperty("line.separator");
+		
+		String[] display = new String[11];
+		
+		int place = 1;
+		int i = 1;
+		String name = null;
+		int score = 0;
+		int time = 0;
+		
+		StringBuilder nameBuilder = new StringBuilder();
+		StringBuilder scoreBuilder = new StringBuilder();
+		StringBuilder timeBuilder = new StringBuilder();
+		
+		display[0] = "    Name                      Score       Time";
+		
+		//display.append("    Name                      Score       Time" + lineSeparator + lineSeparator);
+		
+		while (st.nextToken() != StreamTokenizer.TT_EOF) {
+			if (i == 1)
+				name = (String) st.sval;
+			if (i == 2)
+				score = (int) st.nval;
+			if (i == 3)
+				time = (int) st.nval;
+			i++;
+			if (i > 3) {
+				nameBuilder.append(name);
+				while (nameBuilder.length() < 20)
+					nameBuilder.append(" ");
+				
+				for (int k = 1; k < (10 - (String.valueOf(score)).length()); k++)
+					scoreBuilder.append(" ");
+				scoreBuilder.append(score);
+				
+				for (int k = 1; k < (10 - (String.valueOf(time)).length()); k++)
+					timeBuilder.append(" ");
+				timeBuilder.append(time);
+				
+				if (place < 10)
+					display[place] = (" " + place + ". " + nameBuilder.toString() + "  " + scoreBuilder.toString() + "  " + timeBuilder.toString());
+				else
+					display[place] = (place + ". " + nameBuilder.toString() + "  " + scoreBuilder.toString() + "  " + timeBuilder.toString());
+				
+				/*if(place < 10)
+					display.append(" ");
+				display.append(place + ". " + nameBuilder.toString() + "  " + scoreBuilder.toString() + "  " + timeBuilder.toString() + lineSeparator);
+				*/
+				i = 1;
+				place++;
+				nameBuilder.delete(0, nameBuilder.length());
+				scoreBuilder.delete(0, scoreBuilder.length());
+				timeBuilder.delete(0, timeBuilder.length());
+			}
+		}
+		
+		highscore.close();
+
+		return display;
 	}
 
 }
