@@ -154,9 +154,7 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
 		}
-
 	}
 
 	@Override

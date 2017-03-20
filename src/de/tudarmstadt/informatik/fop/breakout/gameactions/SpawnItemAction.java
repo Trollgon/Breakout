@@ -11,6 +11,12 @@ import eea.engine.component.Component;
 import eea.engine.entity.Entity;
 import eea.engine.entity.StateBasedEntityManager;
 
+/**
+ * class of SpawnItemAction
+ * @author Peter Franke
+ * @author Jonas Henry Grebe
+ *
+ */
 public class SpawnItemAction implements Action, GameParameters {
 
 	private ItemType type;
@@ -21,7 +27,6 @@ public class SpawnItemAction implements Action, GameParameters {
 	
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta, Component component) {
-		
 		
 		Entity i;
 		Vector2f itemPos = component.getOwnerEntity().getPosition();
