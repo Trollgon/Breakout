@@ -8,10 +8,19 @@ import de.tudarmstadt.informatik.fop.breakout.managers.SoundManager;
 import eea.engine.action.Action;
 import eea.engine.component.Component;
 
+/**
+ * class of PlaySoundAction
+ * @author Jonas Henry Grebe
+ *
+ */
 public class PlaySoundAction implements Action, GameParameters {
 
 	private String sound;
 	
+	/**
+	 * constructor of PlaySoundAction
+	 * @param sound this action is going to play
+	 */
 	public PlaySoundAction(String sound) {
 	this.sound = sound;
 	}

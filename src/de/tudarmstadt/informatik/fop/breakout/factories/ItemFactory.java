@@ -24,6 +24,11 @@ public class ItemFactory implements IEntityFactory, GameParameters {
 	private ItemType item;
 	private Vector2f pos;
 	
+	/**
+	 * constructor of ItemFactory
+	 * @param item ItemType of the item this factory is going to create
+	 * @param pos of the item(s) this factory is going to create
+	 */
 	public ItemFactory(ItemType item, Vector2f pos) {
 		this.item = item;
 		this.pos = pos;

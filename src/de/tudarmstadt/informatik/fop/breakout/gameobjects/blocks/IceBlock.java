@@ -2,10 +2,9 @@ package de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks;
 
 import org.newdawn.slick.SlickException;
 
-import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
+import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnItemAction;
 
-
-/**@deprecated
+/**
  * class to represent an ice block
  * 
  * @author Jonas Henry Grebe
@@ -27,14 +26,6 @@ public final class IceBlock extends AbstractBlock {
 		setHitsLeft(BLOCK_ICE_HITSLEFT);
 		setScore(BLOCK_ICE_SCORE);
 
-		// adds the slowDown
-		this.totalDestruction.addAction((arg0, arg1, arg2, arg3) -> {
-			//Ball b = ((Ball) collider.getCollidedEntity());
-			//b.setSpeed(BLOCK_ICE_SLOWDOWN * b.getSpeed());
-		});
-		
-		// maybe drops ice shard when destroyed, to hurt the player?
-		
+		this.totalDestruction.addAction(new SpawnItemAction(ItemType.SLOWDOWN));
 	}
-
 }

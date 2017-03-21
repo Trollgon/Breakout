@@ -28,12 +28,6 @@ public class JungleZoneState extends BasicGameState implements GameParameters{
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 
-		Entity escListener = new Entity("ESC_Listener");
-		KeyPressedEvent escPressed = new KeyPressedEvent(Input.KEY_ESCAPE);
-		escPressed.addAction(new ChangeStateInitAction(MAIN_MENU_STATE));
-		escListener.addComponent(escPressed);
-		entityManager.addEntity(this.getID(), escListener);
-
         entityManager.addEntity(getID(), new Button(218, 190, 301, ZoneType.JUNGLEZONE));
 		if (CheckPointManager.getCheckpoint() > 301) {
 			entityManager.addEntity(getID(), new Button(218, 310, 302, ZoneType.JUNGLEZONE));

@@ -23,6 +23,7 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 	// Button
 	public static final String BUTTON_ID = "button";
 	public static final String BUTTON_IMAGE = "/images/buttons/entry.png";
+	public static final String BUTTON_CLICK_SOUND = "/sounds/buttonClick.wav";
 
 	// Borders
 	public enum BorderType {
@@ -33,7 +34,6 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 	public static final String TOP_BORDER_ID = "topBorder";
 	public static final String LEFT_BORDER_ID = "leftBorder";
 	public static final String RIGHT_BORDER_ID = "rightBorder";
-	
 	public static final String BORDER_HIT_SOUND = "/sounds/borderHit.wav";
 	
 	// Timer
@@ -43,7 +43,7 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 	// Ball
 	public static final String BALL_ID = "ball";
 	public static final float INITIAL_BALL_SPEED = 2f;
-	public static final float MAX_BALL_SPEED = 8f;
+	public static final float MAX_BALL_SPEED = 15f;
 	public static final float MIN_BALL_SPEED = 0.5f;
 	public static final float SPEEDUP_VALUE = 0.0001f;
 	public static final String BALL_IMAGE = "/images/guido.png";

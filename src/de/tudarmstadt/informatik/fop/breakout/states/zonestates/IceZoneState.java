@@ -28,12 +28,6 @@ public class IceZoneState extends BasicGameState implements GameParameters {
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 
-		Entity escListener = new Entity("ESC_Listener");
-		KeyPressedEvent escPressed = new KeyPressedEvent(Input.KEY_ESCAPE);
-		escPressed.addAction(new ChangeStateInitAction(MAIN_MENU_STATE));
-		escListener.addComponent(escPressed);
-		entityManager.addEntity(this.getID(), escListener);
-
         entityManager.addEntity(getID(), new Button(218, 190, 201, ZoneType.ICEZONE));
 		if (CheckPointManager.getCheckpoint() > 201) {
 			entityManager.addEntity(getID(), new Button(218, 310, 202, ZoneType.ICEZONE));

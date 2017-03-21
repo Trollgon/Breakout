@@ -34,6 +34,7 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 	private int levelID;
 	protected ZoneType zone;
 	private StateBasedEntityManager entityManager;
+	private boolean gameOver = false;
 
 	/**
 	 * constructor of a new story game state
@@ -54,14 +55,14 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 
 	public int getZoneStateID() {
 		switch (this.zone) {
-			case NORMALZONE:
-				return NORMAL_ZONE_STATE;
-			case ICEZONE:
-				return ICE_ZONE_STATE;
-			case JUNGLEZONE:
-				return JUNGLE_ZONE_STATE;
-			default:
-				return MAIN_MENU_STATE;
+		case NORMALZONE:
+			return NORMAL_ZONE_STATE;
+		case ICEZONE:
+			return ICE_ZONE_STATE;
+		case JUNGLEZONE:
+			return JUNGLE_ZONE_STATE;
+		default:
+			return MAIN_MENU_STATE;
 		}
 	}
 
@@ -69,7 +70,6 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
 		loadLevel();
 	}
-
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
@@ -116,40 +116,37 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 			entityManager.addEntity(STORY_GAME_STATE,
 					new Ball((Stick) entityManager.getEntity(STORY_GAME_STATE, STICK_ID)));
 		}
-		// render buttons for restart or menu if number of lives is equal to 0
-		if (Lives.getLivesAmount() == 0) {
-			entityManager.addEntity(STORY_GAME_STATE,
-					new Button(218, 190, this.levelID ,this.zone)
-			);
-			entityManager.addEntity(STORY_GAME_STATE,
-					new Button(218, 310, StateType.MAINMENU)
-			);
+
+		// if game is over:
+		if (!gameOver) {
 			
-			
-		}
-		// render button for next level/zone if all blocks are destroyed
-		if (!entityManager.getEntitiesByState(this.getID()).stream().anyMatch(e -> e instanceof AbstractBlock)) {
-			Integer checkpoint = 0;
-			if (Levels.getPathByID(this.levelID + 1) != null) {
-				entityManager.addEntity(STORY_GAME_STATE,
-						new Button(218, 190, this.zone)
-				);
-				checkpoint = this.levelID + 1;
-			} else if (Levels.getPathByID(this.levelID + 101 - this.levelID % 100) != null) {
-				entityManager.addEntity(STORY_GAME_STATE,
-						new Button(218, 190, Levels.getNextZone(this.zone))
-				);
-				checkpoint = this.levelID + 101 - this.levelID % 100;
+			// render buttons for restart or menu if number of lives is equal to 0
+			if (Lives.getLivesAmount() == 0) {
+				
+				entityManager.addEntity(STORY_GAME_STATE, new Button(218, 190, this.levelID, this.zone));
+				entityManager.addEntity(STORY_GAME_STATE, new Button(218, 310, StateType.MAINMENU));
+				gameOver = true;
 			}
+			
+			// render button for next level/zone if all blocks are destroyed
+			if (!entityManager.getEntitiesByState(this.getID()).stream().anyMatch(e -> e instanceof AbstractBlock)) {
+				Integer checkpoint = 0;
+				
+				if (Levels.getPathByID(this.levelID + 1) != null) {
+					entityManager.addEntity(STORY_GAME_STATE, new Button(218, 190, this.zone));
+					checkpoint = this.levelID + 1;
+					
+				} else if (Levels.getPathByID(this.levelID + 101 - this.levelID % 100) != null) {
+					entityManager.addEntity(STORY_GAME_STATE, new Button(218, 190, Levels.getNextZone(this.zone)));
+					checkpoint = this.levelID + 101 - this.levelID % 100;
+				}
 
-			CheckPointManager.setCheckpoint(checkpoint);
-
-			entityManager.addEntity(STORY_GAME_STATE,
-					new Button(218, 310, StateType.MAINMENU)
-			);
+				CheckPointManager.setCheckpoint(checkpoint);
+				entityManager.addEntity(STORY_GAME_STATE, new Button(218, 310, StateType.MAINMENU));
+				
+				gameOver = true;
+			}
 		}
-
-
 	}
 
 	@Override
@@ -162,13 +159,12 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 		if (levelID != 0) {
 
 			try {
-				LevelGenerator.parseLevelFromMap(Levels.getPathByID(this.levelID)).forEach(b -> entityManager.addEntity(getID(), b));
+				LevelGenerator.parseLevelFromMap(Levels.getPathByID(this.levelID))
+						.forEach(b -> entityManager.addEntity(getID(), b));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
 		}
-
 	}
 
 	@Override
