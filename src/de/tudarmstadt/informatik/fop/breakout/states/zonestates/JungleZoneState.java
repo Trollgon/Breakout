@@ -9,19 +9,15 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
-<<<<<<< HEAD
-import de.tudarmstadt.informatik.fop.breakout.constants.StateParameters.ZoneType;
-=======
 import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
->>>>>>> refs/remotes/origin/LastWeekLukas
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import eea.engine.entity.StateBasedEntityManager;
 
-public class IceZoneState extends BasicGameState implements GameParameters {
+public class JungleZoneState extends BasicGameState implements GameParameters{
 
 	private StateBasedEntityManager entityManager;
 	
-	public IceZoneState() {
+	public JungleZoneState() {
 		entityManager = StateBasedEntityManager.getInstance();
 	}
 	
@@ -35,20 +31,11 @@ public class IceZoneState extends BasicGameState implements GameParameters {
 
 		if (!Breakout.getDebug()) {
 		
-        entityManager.addEntity(getID(), new Button(218, 190, 201, ZoneType.ICEZONE));
-        
-		if (CheckPointManager.getCheckpoint() > 201) {
-			entityManager.addEntity(getID(), new Button(218, 310, 202, ZoneType.ICEZONE));
+        entityManager.addEntity(getID(), new Button(218, 190, 301, ZoneType.JUNGLEZONE));
+		if (CheckPointManager.getCheckpoint() > 301) {
+			entityManager.addEntity(getID(), new Button(218, 310, 302, ZoneType.JUNGLEZONE));
 		}
-<<<<<<< HEAD
-		if (CheckPointManager.getCheckpoint() > 202) {
-			entityManager.addEntity(getID(), new Button(218, 430, 203, ZoneType.ICEZONE));
-		}
-		if (CheckPointManager.getCheckpoint() > 203) {
-			entityManager.addEntity(getID(), new Button(218, 550, 204, ZoneType.ICEZONE));
-=======
 		
->>>>>>> refs/remotes/origin/LastWeekLukas
 		}
 	}
 
@@ -57,27 +44,16 @@ public class IceZoneState extends BasicGameState implements GameParameters {
 		
 		if (!Breakout.getDebug()) {
 		
-		g.drawImage(new Image("images/backgrounds/background_1.png"), 0, 0);
+		g.drawImage(new Image("images/backgrounds/background_3.png"), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
 		
 		g.drawString("Level 1", 110, 180);
-		
-		if (CheckPointManager.getCheckpoint() > 201) {
+		if (CheckPointManager.getCheckpoint() > 301) {
 			g.drawString("Level 2", 110, 300);
 		}
-<<<<<<< HEAD
-		if (CheckPointManager.getCheckpoint() > 202) {
-			g.drawString("Level 3", 110, 420);
-		}
-		if (CheckPointManager.getCheckpoint() > 203) {
-			g.drawString("Level 4", 110, 540);
-		}
-
-=======
 		
 		}
->>>>>>> refs/remotes/origin/LastWeekLukas
 	}
 
 	@Override
@@ -93,7 +69,8 @@ public class IceZoneState extends BasicGameState implements GameParameters {
 	
 	@Override
 	public int getID() {
-		return ICE_ZONE_STATE;
+		return JUNGLE_ZONE_STATE;
 	}
 
 }
+

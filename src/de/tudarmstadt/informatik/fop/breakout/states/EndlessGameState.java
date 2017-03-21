@@ -56,11 +56,19 @@ public class EndlessGameState extends BasicGameState implements GameParameters, 
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 
 		if (!Breakout.getDebug()) {
+<<<<<<< HEAD
 
 			// adds the games borders: LEFT, TOP and RIGHT
 			entityManager.addEntity(getID(), new BorderFactory(BorderType.LEFT).createEntity());
 			entityManager.addEntity(getID(), new BorderFactory(BorderType.TOP).createEntity());
 			entityManager.addEntity(getID(), new BorderFactory(BorderType.RIGHT).createEntity());
+=======
+		
+		// adds the games borders: LEFT, TOP and RIGHT
+		entityManager.addEntity(getID(), new BorderFactory(BorderType.LEFT).createEntity());
+		entityManager.addEntity(getID(), new BorderFactory(BorderType.TOP).createEntity());
+		entityManager.addEntity(getID(), new BorderFactory(BorderType.RIGHT).createEntity());
+>>>>>>> refs/remotes/origin/LastWeekLukas
 
 			entityManager.addEntity(getID(), new Stick());
 			entityManager.addEntity(getID(), new Ball((Stick) entityManager.getEntity(ENDLESS_GAME_STATE, STICK_ID)));
@@ -68,12 +76,20 @@ public class EndlessGameState extends BasicGameState implements GameParameters, 
 			entityManager.addEntity(getID(), new Score());
 			entityManager.addEntity(getID(), new StopWatch());
 
+<<<<<<< HEAD
 			LevelGenerator.getEndlessGameRow().forEach(b -> entityManager.addEntity(ENDLESS_GAME_STATE, b));
+=======
+		LevelGenerator.getEndlessGameRow().forEach(b -> entityManager.addEntity(ENDLESS_GAME_STATE, b));
+		
+>>>>>>> refs/remotes/origin/LastWeekLukas
 		}
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+		
+		if (!Breakout.getDebug()) {
+		
 		g.drawImage(new Image(ENDLESS_BACKGROUND_IMAGE), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
@@ -92,6 +108,8 @@ public class EndlessGameState extends BasicGameState implements GameParameters, 
 			thirdRow.render(container, g);
 			fourthRow.render(container, g);
 			enterName.render(container, g);
+		}
+		
 		}
 
 	}

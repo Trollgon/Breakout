@@ -206,4 +206,48 @@ public class LevelGenerator implements GameParameters {
 			return null;
 		}
 	}
+	
+	
+	
+	
+	// ALTERNATIVE METHOD (TEST ONLY)
+	public static AbstractBlock getBlockByID(BlockType block, int xPos, int yPos, int dontcare) {
+
+		switch (block) {
+		case DROPPER:
+			return new DropperBlock(xPos, yPos);
+		case GOLD:
+			return new GoldBlock(xPos, yPos);
+		case ICE:
+			return new IceBlock(xPos, yPos);
+		case IRON:
+			return new IronBlock(xPos, yPos, dontcare);
+		case STANDARD:
+			return new StandardBlock(xPos, yPos);
+		case DIAMOND:
+			return new DiamondBlock(xPos, yPos);
+		case SNOW:
+			return new SnowBlock(xPos, yPos);
+		case EARTH:
+			return new EarthBlock(xPos, yPos);
+		case FIRE:
+			return null;
+		case GLASS:
+			return new GlassBlock(xPos, yPos);
+		case MAGMA:
+			return new MagmaBlock(xPos, yPos);
+		case METEOR:
+		case OBSIDIAN:
+			return new ObsidianBlock(xPos, yPos);
+		case STONE:
+			return new StoneBlock(xPos, yPos);
+		case JUNGLE:
+			// return new JungleBlock(xPos, yPos);
+		case WOOD:
+			return new WoodBlock(xPos, yPos);
+		default:
+		case NULL:
+			return null;
+		}
+	}
 }

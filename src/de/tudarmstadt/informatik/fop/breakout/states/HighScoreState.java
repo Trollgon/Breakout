@@ -19,6 +19,7 @@ import de.tudarmstadt.informatik.fop.breakout.constants.StateParameters.StateTyp
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.ClearHighscoreButton;
 //import de.tudarmstadt.informatik.fop.breakout.gameobjects.ClearHighscoreButton;
 import de.tudarmstadt.informatik.fop.breakout.managers.HighscoreManager;
+import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import eea.engine.entity.StateBasedEntityManager;
 
@@ -41,15 +42,28 @@ public class HighScoreState extends BasicGameState implements GameParameters {
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 
+		if (!Breakout.getDebug()) {
+		
 		font = new Font("Monospaced", Font.BOLD, 25);
 		tFont = new TrueTypeFont(font, true);
 
 		entityManager.addEntity(getID(), new ClearHighscoreButton(300, 500));
+<<<<<<< HEAD
 
 	}
 
+=======
+		
+		}
+		
+}
+	
+>>>>>>> refs/remotes/origin/LastWeekLukas
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+		
+		if (!Breakout.getDebug()) {
+		
 		g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
 
 		try {
@@ -66,6 +80,8 @@ public class HighScoreState extends BasicGameState implements GameParameters {
 			e.printStackTrace();
 		}
 		entityManager.renderEntities(container, game, g);
+		
+		}
 	}
 
 	@Override

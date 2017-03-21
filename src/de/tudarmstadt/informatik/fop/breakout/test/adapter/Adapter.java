@@ -133,7 +133,7 @@ public class Adapter implements GameParameters {
 	 */
 	public Entity createBallInstance(String ballID) {
 
-		return new Ball(stick);
+		return new Ball(stick, 0);
 	}
 
 	/**
@@ -153,7 +153,7 @@ public class Adapter implements GameParameters {
 		BlockType[] types = BlockType.values();
 		BlockType type = types[hitsUntilDestroyed];
 
-		return LevelGenerator.getBlockByID(type, 0, 0);
+		return LevelGenerator.getBlockByID(type, 0, 0, 0);
 	}
 
 	/**

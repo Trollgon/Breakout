@@ -9,6 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.managers.CheckPointManager;
+import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import eea.engine.entity.StateBasedEntityManager;
 
@@ -39,6 +40,8 @@ public class ZonePickerState extends BasicGameState implements GameParameters {
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
+		if (!Breakout.getDebug()) {
+		
 		entityManager.addEntity(getID(), new Button(218, 190, ZoneType.NORMALZONE));
 		
 		if (checkpoint > 199) {
@@ -47,12 +50,16 @@ public class ZonePickerState extends BasicGameState implements GameParameters {
 		if (checkpoint > 299) {
 			entityManager.addEntity(getID(), new Button(218, 430, ZoneType.MAGMAZONE));
 		}
+		
+		}
 
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 
+		{
+		
 		g.drawImage(new Image("/images/backgrounds/background_2.png"), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
@@ -63,6 +70,8 @@ public class ZonePickerState extends BasicGameState implements GameParameters {
 		}
 		if (checkpoint > 199) {
 			g.drawString("Magma Zone", 110, 420);
+		}
+		
 		}
 		
 	}

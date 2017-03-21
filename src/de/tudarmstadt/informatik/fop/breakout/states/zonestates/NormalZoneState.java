@@ -13,7 +13,11 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+<<<<<<< HEAD
 import de.tudarmstadt.informatik.fop.breakout.constants.StateParameters.ZoneType;
+=======
+import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
+>>>>>>> refs/remotes/origin/LastWeekLukas
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import eea.engine.entity.StateBasedEntityManager;
 
@@ -33,21 +37,30 @@ public class NormalZoneState extends BasicGameState implements GameParameters {
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 
+		if (!Breakout.getDebug()) {
+		
 		entityManager.addEntity(getID(), new Button(218, 190, 101, ZoneType.NORMALZONE));
 		
 		if (CheckPointManager.getCheckpoint() > 101) {
 			entityManager.addEntity(getID(), new Button(218, 310, 102, ZoneType.NORMALZONE));
 		}
+<<<<<<< HEAD
 		if (CheckPointManager.getCheckpoint() > 102) {
 			entityManager.addEntity(getID(), new Button(218, 430, 103, ZoneType.NORMALZONE));
 		}
 		if (CheckPointManager.getCheckpoint() > 103) {
 			entityManager.addEntity(getID(), new Button(218, 550, 104, ZoneType.NORMALZONE));
+=======
+		
+>>>>>>> refs/remotes/origin/LastWeekLukas
 		}
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+		
+		if (!Breakout.getDebug()) {
+		
 		g.drawImage(new Image("images/backgrounds/background_4.png"), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
@@ -56,11 +69,15 @@ public class NormalZoneState extends BasicGameState implements GameParameters {
 		if (CheckPointManager.getCheckpoint() > 101) {
 			g.drawString("Level 2", 110, 300);
 		}
+<<<<<<< HEAD
 		if (CheckPointManager.getCheckpoint() > 102) {
 			g.drawString("Level 3", 110, 420);
 		}
 		if (CheckPointManager.getCheckpoint() > 103) {
 			g.drawString("Level 4", 110, 540);
+=======
+		
+>>>>>>> refs/remotes/origin/LastWeekLukas
 		}
 
 	}
