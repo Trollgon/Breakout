@@ -17,7 +17,6 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.GlassBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.GoldBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.IceBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.IronBlock;
-import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.JungleBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.MagmaBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.ObsidianBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.SnowBlock;

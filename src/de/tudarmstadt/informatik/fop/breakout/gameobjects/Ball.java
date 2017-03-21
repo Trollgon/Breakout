@@ -107,6 +107,47 @@ public class Ball extends Entity implements GameParameters {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Alternative constructor only for adapter!!!
+	 * @param launcher
+	 * @param dontcare
+	 */
+	public Ball(Stick launcher, int dontcare) {
+		super(BALL_ID);
+
+		setLauncher(launcher);
+		setLaunched(false);
+		setLastCollisionEntity(getLauncher());
+
+		setPosition(getLauncher().getLaunchPos());
+
+		configureEvents();
+
+		setSpeed(INITIAL_BALL_SPEED);
+		setRotation(0);
+
+		setVisible(true);
+		setPassable(false);
+		
+		// adds colliders
+		this.addComponent(collider);
+		this.addComponent(blockCollider);
+		this.addComponent(topBorderCollider);
+		this.addComponent(leftBorderCollider);
+		this.addComponent(rightBorderCollider);
+		this.addComponent(borderCollider);
+		this.addComponent(stickCollider);
+
+		// adds launch events
+		this.addComponent(hasLaunched);
+		this.addComponent(hasNotLaunched);
+		this.addComponent(launchBall);
+
+		// adds leaving screen event
+		this.addComponent(leftScreen);
+
+	}
 
 	/**
 	 * configures all ball events and adds the actions
