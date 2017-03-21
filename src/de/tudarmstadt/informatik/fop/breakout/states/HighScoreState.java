@@ -41,13 +41,13 @@ public class HighScoreState extends BasicGameState implements GameParameters {
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		font = new Font("Monospaced", Font.BOLD, 25);
 		tFont = new TrueTypeFont(font, true);
+		entityManager.addEntity(getID(), new ClearHighscoreButton(150, 500));
 	}
 	
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
-		
-		entityManager.addEntity(getID(), new ClearHighscoreButton(300, 500));
+		g.drawString("Löschen", 120, 490);		
 		
 		try {
 			tFont.drawString(50, 50, HighscoreManager.displayHighscore()[0]);

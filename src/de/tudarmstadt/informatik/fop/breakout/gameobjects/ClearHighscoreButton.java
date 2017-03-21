@@ -27,7 +27,7 @@ public class ClearHighscoreButton extends Entity implements GameParameters {
 		this.setPosition(new Vector2f(xPos, yPos));
 		
 		try {
-			this.addComponent(new ImageRenderComponent(new Image(BUTTON_IMAGE)));
+			this.addComponent(new ImageRenderComponent(new Image(CLEAR_HIGHSCORE_BUTTON_IMAGE)));
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
