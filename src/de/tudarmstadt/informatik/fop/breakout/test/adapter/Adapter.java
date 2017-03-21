@@ -39,8 +39,8 @@ public class Adapter implements GameParameters {
 	public Adapter() {
 		breakout = null;
 
-		stick = new Stick();
-		ball = new Ball(stick);
+		stick = new Stick(0);
+		ball = new Ball(stick, 0);
 		entityManager = StateBasedEntityManager.getInstance();
 	}
 

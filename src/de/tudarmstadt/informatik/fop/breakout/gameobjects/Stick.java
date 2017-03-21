@@ -64,6 +64,24 @@ public class Stick extends Entity implements GameParameters {
 		setPassable(false);
 		
 	}
+	
+	/**
+	 * Alternative constructor only for adapter!!!
+	 * @param dontcare
+	 */
+	public Stick(int dontcare) {
+		super(STICK_ID);
+		setPosition(new Vector2f(startPosX, startPosY));
+		setSize(new Vector2f(130, 25));
+		mirrored = false;
+		configureEvents();
+		setVisible(true);
+		setPassable(false);
+	}
+	
+	public void initStick() {
+		
+	}
 
 	/**
 	 * Configures all the Events, adds their actions and adds the necessary
