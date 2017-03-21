@@ -20,6 +20,7 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.levels.Levels;
 import de.tudarmstadt.informatik.fop.breakout.managers.CheckPointManager;
 import de.tudarmstadt.informatik.fop.breakout.managers.LevelGenerator;
+import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import eea.engine.entity.StateBasedEntityManager;
 
@@ -71,6 +72,8 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 
+		if (!Breakout.getDebug()) {
+		
 		// adds the games borders: LEFT, TOP and RIGHT
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.LEFT).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.TOP).createEntity());
@@ -82,11 +85,15 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 		entityManager.addEntity(getID(), new Lives());
 		entityManager.addEntity(getID(), new Score());
 		entityManager.addEntity(getID(), new StopWatch());
+		
+		}
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 
+		if (!Breakout.getDebug()) {
+		
 		g.drawImage(getZoneBackground(this.zone), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
@@ -98,12 +105,16 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 		// stopwatch display
 		g.drawString(((StopWatch) entityManager.getEntity(STORY_GAME_STATE, STOP_WATCH_ID)).toString(), 200,
 				(WINDOW_HEIGHT - 20));
+		
+		}
 
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 
+		if (!Breakout.getDebug()) {
+		
 		///////////// UPDATING ALL ENTITIES HERE //////////////
 		entityManager.updateEntities(container, game, STORY_GAME_STATE);
 		///////////////////////////////////////////////////////
@@ -149,6 +160,8 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 			if (gameOver) {
 				this.inputEnded();
 			}
+		}
+		
 		}
 	}
 

@@ -13,6 +13,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import eea.engine.entity.StateBasedEntityManager;
 
@@ -32,14 +33,21 @@ public class NormalZoneState extends BasicGameState implements GameParameters {
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 
+		if (!Breakout.getDebug()) {
+		
 		entityManager.addEntity(getID(), new Button(218, 190, 101, ZoneType.NORMALZONE));
 		if (CheckPointManager.getCheckpoint() > 101) {
 			entityManager.addEntity(getID(), new Button(218, 310, 102, ZoneType.NORMALZONE));
+		}
+		
 		}
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+		
+		if (!Breakout.getDebug()) {
+		
 		g.drawImage(new Image("images/backgrounds/background_4.png"), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
@@ -47,6 +55,8 @@ public class NormalZoneState extends BasicGameState implements GameParameters {
 		g.drawString("Level 1", 110, 180);
 		if (CheckPointManager.getCheckpoint() > 101) {
 			g.drawString("Level 2", 110, 300);
+		}
+		
 		}
 
 	}

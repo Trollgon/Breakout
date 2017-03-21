@@ -260,5 +260,31 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
+	// ALTERNATIVE CONSTRUCTOR (TEST ONLY)
+	public AbstractBlock(int xPos, int yPos, int dontcare) {
+		super(BLOCK_ID + id);
+		// inc id counter
+		id++;
+
+		setPassable(false);
+		setPosition(new Vector2f(xPos, yPos));
+		setSize(new Vector2f(BLOCK_WIDTH, BLOCK_HEIGHT));
+
+		// to be overwritten later:
+		setHitSound(BLOCK_STANDARD_HIT_SOUND);
+
+		addEvents();
+		addActions();
+
+		this.addComponent(new ImageRenderComponent(getBlockImage()));
+
+		this.addComponent(always);
+		this.addComponent(totalDestruction);
+		this.addComponent(leftScreen);
+	}
 
 }

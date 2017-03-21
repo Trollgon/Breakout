@@ -23,6 +23,7 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.StopWatch;
 import de.tudarmstadt.informatik.fop.breakout.managers.HighscoreManager;
 import de.tudarmstadt.informatik.fop.breakout.managers.LevelGenerator;
 import de.tudarmstadt.informatik.fop.breakout.managers.Player;
+import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
 import eea.engine.entity.StateBasedEntityManager;
 
 /**
@@ -54,6 +55,8 @@ public class EndlessGameState extends BasicGameState implements GameParameters, 
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 
+		if (!Breakout.getDebug()) {
+		
 		// adds the games borders: LEFT, TOP and RIGHT
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.LEFT).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.TOP).createEntity());
@@ -66,10 +69,15 @@ public class EndlessGameState extends BasicGameState implements GameParameters, 
 		entityManager.addEntity(getID(), new StopWatch());
 
 		LevelGenerator.getEndlessGameRow().forEach(b -> entityManager.addEntity(ENDLESS_GAME_STATE, b));
+		
+		}
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+		
+		if (!Breakout.getDebug()) {
+		
 		g.drawImage(new Image(ENDLESS_BACKGROUND_IMAGE), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
@@ -88,6 +96,8 @@ public class EndlessGameState extends BasicGameState implements GameParameters, 
 			thirdRow.render(container, g);
 			fourthRow.render(container, g);
 			enterName.render(container, g);
+		}
+		
 		}
 
 	}

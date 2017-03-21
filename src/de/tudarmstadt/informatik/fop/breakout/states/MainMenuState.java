@@ -14,6 +14,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import eea.engine.action.basicactions.ChangeStateAction;
 import eea.engine.entity.Entity;
@@ -43,6 +44,8 @@ public class MainMenuState extends BasicGameState implements GameParameters {
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
+		
+		if (!Breakout.getDebug()) {
 		
 		// set up volume
 		// start playing the background music
@@ -75,14 +78,19 @@ public class MainMenuState extends BasicGameState implements GameParameters {
 		entityManager.addEntity(getID(), new Button(484, 408, StateType.HIGHSCORE));
 		entityManager.addEntity(getID(), new Button(660, 408, StateType.QUIT));
 
+		}
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 
+		if (!Breakout.getDebug()) {
+		
 		g.drawImage(new Image(MAIN_MENU_IMAGE), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
+		
+		}
 	}
 
 	@Override
