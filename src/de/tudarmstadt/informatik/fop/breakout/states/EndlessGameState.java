@@ -104,6 +104,7 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		
+		// all those updating stuff will only be done when the game didn't already end
 		if (!gameEnded) {
 
 			// endless generator:
@@ -122,18 +123,21 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 						new Ball((Stick) entityManager.getEntity(ENDLESS_GAME_STATE, STICK_ID)));
 			}
 
-			// stops game if no lifes left
+			// stops game if no lives left, sets gameEnded true
 			if (Lives.getLivesAmount() == 0) {
 
 				gameEnded = true;
 				
+				// one last update of all entities (primary needed to update lives display)
 				entityManager.updateEntities(container, game, ENDLESS_GAME_STATE);
 				((StopWatch) entityManager.getEntity(ENDLESS_GAME_STATE, STOP_WATCH_ID)).pauseStopWatch();
 				
+				// creates three rows of the textfield display
 				firstRow = new AfterMatchDisplayTextField(container, 300, 200, 1, ((Score) entityManager.getEntity(ENDLESS_GAME_STATE, SCORE_ID)).getScoreCount());
 				secondRow = new AfterMatchDisplayTextField(container, 300, 225, 2, ((StopWatch) entityManager.getEntity(ENDLESS_GAME_STATE, STOP_WATCH_ID)).getTime());
 				thirdRow = new AfterMatchDisplayTextField(container, 300, 250, 0, 0);
 				
+				// creates the following two rows, dependent on whether the score is high enough or not
 				try {
 					if (HighscoreManager.checkIfScoreHighEnough(((Score) entityManager.getEntity(ENDLESS_GAME_STATE, SCORE_ID)).getScoreCount())) {
 						fourthRow = new AfterMatchDisplayTextField(container, 300, 275, 3, 0);
@@ -153,6 +157,7 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 
 		}
 		
+		// this part will only be used after the match ended, in each update sequence it checks if the player pressed enter
 		if (gameEnded) {
 			if ((enterName instanceof EnterNameTextField) && (((EnterNameTextField) enterName).getPressedEnter())) {
 				try {

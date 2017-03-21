@@ -6,12 +6,26 @@ import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.gui.GUIContext;
 import org.newdawn.slick.gui.TextField;
 
+/**
+ * An inheritor of TextField that will appear after each match in EndlessGameState, usually not accepting input.
+ * 
+ * @author Lukas Lehmann
+ */
 public class AfterMatchDisplayTextField extends TextField {
 
 	static TrueTypeFont tFont = new TrueTypeFont(new Font("Monospaced", Font.BOLD, 15), true);
 
 	private boolean pressedEnter;
 	
+	/**
+	 * The constructor of the TextField, uses switch-case to determine the content of the field
+	 * 
+	 * @param container period.
+	 * @param x x-pos
+	 * @param y y-pos
+	 * @param kindOfDisplay shows score display if 1, time display if 2, "Name eingeben:" if 3, empty field else
+	 * @param scoreOrTime handed value of score/time (whichever needed)
+	 */
 	public AfterMatchDisplayTextField(GUIContext container, int x, int y, int kindOfDisplay, int scoreOrTime) {
 		super(container, tFont, x, y, 200, 25);
 		this.setBackgroundColor(Color.black);
@@ -37,10 +51,17 @@ public class AfterMatchDisplayTextField extends TextField {
 		}
 	}
 	
+	/**
+	 * true if enter pressed.
+	 * @return
+	 */
 	public boolean getPressedEnter() {
 		return this.pressedEnter;
 	}
 	
+	/**
+	 * only reacts if enter is pressed, sets pressedEnter true
+	 */
 	@Override
 	public void keyPressed (int key, char c) { 
 		if (key == 28) {
