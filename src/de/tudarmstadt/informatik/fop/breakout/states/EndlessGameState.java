@@ -1,25 +1,12 @@
 package de.tudarmstadt.informatik.fop.breakout.states;
 
-import java.awt.Font;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-<<<<<<< HEAD
-=======
-import org.newdawn.slick.TrueTypeFont;
-import org.newdawn.slick.gui.AbstractComponent;
-import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.TextField;
-import org.newdawn.slick.openal.SoundStore;
->>>>>>> refs/remotes/origin/HighscoreStuff
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -156,13 +143,7 @@ public class EndlessGameState extends BasicGameState implements GameParameters, 
 			}
 
 		}
-<<<<<<< HEAD
 
-		// stops game if no lifes left
-		if (Lives.getLivesAmount() == 0) {
-			game.enterState(MAIN_MENU_STATE);
-=======
-		
 		if (gameEnded) {
 			if ((enterName instanceof EnterNameTextField) && (((EnterNameTextField) enterName).getPressedEnter())) {
 				try {
@@ -173,15 +154,14 @@ public class EndlessGameState extends BasicGameState implements GameParameters, 
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				game.pauseUpdate();
+				//game.pauseUpdate();
 				game.enterState(MAIN_MENU_STATE);
 			}
 			if ((enterName instanceof AfterMatchDisplayTextField) && (((AfterMatchDisplayTextField) enterName).getPressedEnter())) {
-				game.pauseUpdate();
+				//game.pauseUpdate();
 				game.enterState(MAIN_MENU_STATE);
 			}
->>>>>>> refs/remotes/origin/HighscoreStuff
-		}
+	}
 		
 	}
 

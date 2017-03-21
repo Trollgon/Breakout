@@ -189,12 +189,12 @@ public class LevelGenerator implements GameParameters {
 		case FIRE:
 			return null;
 		case GLASS:
-			//return new GlassBlock(xPos, yPos);
+			return new GlassBlock(xPos, yPos);
 		case MAGMA:
 			return new MagmaBlock(xPos, yPos);
 		case METEOR:
 		case OBSIDIAN:
-			//return new ObsidianBlock(xPos, yPos);
+			return new ObsidianBlock(xPos, yPos);
 		case STONE:
 			return new StoneBlock(xPos, yPos);
 		case JUNGLE:
