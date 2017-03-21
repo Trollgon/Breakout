@@ -10,7 +10,6 @@ import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.states.EndlessGameState;
 import de.tudarmstadt.informatik.fop.breakout.states.HighScoreState;
 import de.tudarmstadt.informatik.fop.breakout.states.MainMenuState;
-import de.tudarmstadt.informatik.fop.breakout.states.QuitState;
 import de.tudarmstadt.informatik.fop.breakout.states.StoryGameState;
 import de.tudarmstadt.informatik.fop.breakout.states.ZonePickerState;
 import de.tudarmstadt.informatik.fop.breakout.states.zonestates.IceZoneState;
@@ -89,7 +88,11 @@ public class Breakout extends StateBasedGame implements GameParameters {
 		
 		addState(new StoryGameState());
 		addState(new HighScoreState());
+<<<<<<< HEAD
 		//addState(new QuitState());
+=======
+		// addState(new QuitState(QUIT_STATE));
+>>>>>>> parent of 8825ae1... pulled from lukas/ fixed bugs
 
 		// Add the states to the StateBasedEntityManager
 		StateBasedEntityManager.getInstance().addState(MAIN_MENU_STATE);
@@ -102,6 +105,9 @@ public class Breakout extends StateBasedGame implements GameParameters {
 				
 		StateBasedEntityManager.getInstance().addState(STORY_GAME_STATE);
 		StateBasedEntityManager.getInstance().addState(HIGHSCORE_STATE);
+<<<<<<< HEAD
 		//StateBasedEntityManager.getInstance().addState(QUIT_STATE);
+=======
+>>>>>>> parent of 8825ae1... pulled from lukas/ fixed bugs
 	}
 }

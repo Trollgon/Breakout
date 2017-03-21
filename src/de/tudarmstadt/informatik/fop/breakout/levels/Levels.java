@@ -25,9 +25,7 @@ public class Levels {
         // zone 2:
         levels.put(201, "maps/zone2/201.map");
         levels.put(202, "maps/zone2/202.map");
-        levels.put(203, "maps/zone2/203.map");
-        levels.put(204, "maps/zone2/204.map");
-        // ... 5 ... 6
+        // ... 3 ... 4 ... 5 ... 6
         
         // zone 3:
         levels.put(301, "maps/zone3/301.map");
