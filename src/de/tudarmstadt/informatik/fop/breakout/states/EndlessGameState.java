@@ -4,11 +4,11 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.openal.SoundStore;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.constants.StateParameters;
 import de.tudarmstadt.informatik.fop.breakout.factories.BorderFactory;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Lives;
@@ -23,7 +23,7 @@ import eea.engine.entity.StateBasedEntityManager;
  * @author Jonas Henry Grebe
  *
  */
-public class EndlessGameState extends BasicGameState implements GameParameters {
+public class EndlessGameState extends BasicGameState implements GameParameters, StateParameters{
 
 	private StateBasedEntityManager entityManager;
 	
@@ -35,14 +35,13 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
 		super.enter(container, game);
-		
-		// start playing the background Music
-		
+
 	}
 	
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
+
 		// adds the games borders: LEFT, TOP and RIGHT
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.LEFT).createEntity());
 		entityManager.addEntity(getID(), new BorderFactory(BorderType.TOP).createEntity());
@@ -54,7 +53,7 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 		entityManager.addEntity(getID(), new Score());
 		entityManager.addEntity(getID(), new StopWatch());
 
-		LevelGenerator.getEndlessGameRow().stream().forEach(b -> entityManager.addEntity(ENDLESS_GAME_STATE, b));
+		LevelGenerator.getEndlessGameRow().forEach(b -> entityManager.addEntity(ENDLESS_GAME_STATE, b));
 	}
 
 	@Override
@@ -94,14 +93,12 @@ public class EndlessGameState extends BasicGameState implements GameParameters {
 		// stops game if no lifes left
 		if (Lives.getLivesAmount() == 0) {
 			game.enterState(MAIN_MENU_STATE);
-			// game.pauseUpdate();
 		}
 	}
 
 	@Override
 	public void leave(GameContainer container, StateBasedGame game) throws SlickException {
 		super.leave(container, game);
-		SoundStore.get().pauseLoop();
 	}
 	
 	@Override

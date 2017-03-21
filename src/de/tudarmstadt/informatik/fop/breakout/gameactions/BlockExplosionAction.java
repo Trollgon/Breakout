@@ -11,7 +11,7 @@ import eea.engine.action.Action;
 import eea.engine.component.Component;
 import eea.engine.entity.StateBasedEntityManager;
 
-/**
+/**@deprecated (not used)
  * Action which destroys every other Block in a given radius around a center
  * 
  * @author Jonas Henry Grebe
