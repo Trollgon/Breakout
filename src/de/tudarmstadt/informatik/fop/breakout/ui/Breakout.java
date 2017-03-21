@@ -89,7 +89,7 @@ public class Breakout extends StateBasedGame implements GameParameters {
 		
 		addState(new StoryGameState());
 		addState(new HighScoreState());
-		addState(new QuitState());
+		//addState(new QuitState());
 
 		// Add the states to the StateBasedEntityManager
 		StateBasedEntityManager.getInstance().addState(MAIN_MENU_STATE);
@@ -102,6 +102,6 @@ public class Breakout extends StateBasedGame implements GameParameters {
 				
 		StateBasedEntityManager.getInstance().addState(STORY_GAME_STATE);
 		StateBasedEntityManager.getInstance().addState(HIGHSCORE_STATE);
-		StateBasedEntityManager.getInstance().addState(QUIT_STATE);
+		//StateBasedEntityManager.getInstance().addState(QUIT_STATE);
 	}
 }
