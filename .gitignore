@@ -68,3 +68,4 @@ save.txt
 src/de/tudarmstadt/informatik/fop/breakout/constants/GameParameters.java
 *.png
 src/de/tudarmstadt/informatik/fop/breakout/constants/GameParameters.java
+*.class
