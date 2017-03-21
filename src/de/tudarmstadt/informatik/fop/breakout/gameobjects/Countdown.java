@@ -8,7 +8,9 @@ import eea.engine.action.Action;
 import eea.engine.action.basicactions.DestroyEntityAction;
 import eea.engine.component.Component;
 import eea.engine.entity.Entity;
+import eea.engine.event.ANDEvent;
 import eea.engine.event.Event;
+import eea.engine.event.basicevents.TimeEvent;
 
 /**
  * 
@@ -29,7 +31,7 @@ public class Countdown extends Entity implements GameParameters {
 	private Action endAction;
 	private boolean initialStart;
 	private Event startEvent;
-	
+	private TimeEvent end;
 	
 	public Countdown(long timeInms, Action startAction, Action endAction, Event cancelCondition) {
 		super(COUNTDOWN_ID);
@@ -55,12 +57,13 @@ public class Countdown extends Entity implements GameParameters {
 	}
 	
 	private void configureEvents(){
-		timeOver = new Event("timeIsOver") {
+		end = new TimeEvent(Math.round(length / 5.56), false); //really weird timescale of the TimeEvent
+		timeOver = new ANDEvent(end, new Event("timeIsOver") {
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
-				return isRunning() && !initialStart && (System.currentTimeMillis() > getEndTime())  ;
+				return isRunning() && !initialStart /*&& (System.currentTimeMillis() > getEndTime()) */ ;
 			}
-		};
+		});
 		startEvent = new Event("start") {
 			
 			@Override
@@ -75,6 +78,7 @@ public class Countdown extends Entity implements GameParameters {
 				if(endAction != null) endAction.update(arg0, arg1, arg2, arg3);
 				stop();
 				System.out.println("countdown over");
+				System.out.println(System.currentTimeMillis() - (endTime - length));
 			}
 		});
 		
