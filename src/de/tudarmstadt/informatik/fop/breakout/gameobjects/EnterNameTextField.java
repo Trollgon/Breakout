@@ -45,7 +45,7 @@ public class EnterNameTextField extends TextField {
 	
 	/**
 	 * handles actions for different keys pressed, sets pressedEnter true when enter pressed, 
-	 * ignores ',' and uses the inherited method for anything else
+	 * ignores ',' and space and uses the inherited method for anything else
 	 */
 	@Override
 	public void keyPressed (int key, char c) { 
@@ -54,11 +54,12 @@ public class EnterNameTextField extends TextField {
 			this.pressedEnter = true;
 			this.setAcceptingInput(false);
 		}
-		// -> ','
-		else if (key == 51);
+		// -> ',' or SPACE
+		else if (key == 51 || key == 57);
 		else {
 			super.keyPressed(key, c);
 		}
+		
 	}
 
 }
