@@ -116,23 +116,24 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 
 		// if game is over:
 		if (!gameOver) {
-			
-			// render buttons for restart or menu if number of lives is equal to 0
+
+			// render buttons for restart or menu if number of lives is equal to
+			// 0
 			if (Lives.getLivesAmount() == 0) {
-				
+
 				entityManager.addEntity(STORY_GAME_STATE, new Button(218, 190, this.levelID, this.zone));
 				entityManager.addEntity(STORY_GAME_STATE, new Button(218, 310, StateType.MAINMENU));
 				gameOver = true;
 			}
-			
+
 			// render button for next level/zone if all blocks are destroyed
 			if (!entityManager.getEntitiesByState(this.getID()).stream().anyMatch(e -> e instanceof AbstractBlock)) {
 				Integer checkpoint = 0;
-				
+
 				if (Levels.getPathByID(this.levelID + 1) != null) {
 					entityManager.addEntity(STORY_GAME_STATE, new Button(218, 190, this.zone));
 					checkpoint = this.levelID + 1;
-					
+
 				} else if (Levels.getPathByID(this.levelID + 101 - this.levelID % 100) != null) {
 					entityManager.addEntity(STORY_GAME_STATE, new Button(218, 190, Levels.getNextZone(this.zone)));
 					checkpoint = this.levelID + 101 - this.levelID % 100;
@@ -140,8 +141,13 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 
 				CheckPointManager.setCheckpoint(checkpoint);
 				entityManager.addEntity(STORY_GAME_STATE, new Button(218, 310, StateType.MAINMENU));
-				
+
 				gameOver = true;
+			}
+
+			// stops user-interaction when game is over
+			if (gameOver) {
+				this.inputEnded();
 			}
 		}
 	}
