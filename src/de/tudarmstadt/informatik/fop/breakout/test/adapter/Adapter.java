@@ -75,9 +75,6 @@ public class Adapter implements GameParameters {
 					System.getProperty("user.dir") + "/native/" + System.getProperty("os.name").toLowerCase());
 		}
 
-
-		System.err.println(System.getProperty("org.lwjgl.librarypath"));
-		
 		// Initialize the game in debug mode (no GUI output)
 		breakout = new Breakout(true);
 

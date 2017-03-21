@@ -20,6 +20,7 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.levels.Levels;
 import de.tudarmstadt.informatik.fop.breakout.managers.CheckPointManager;
 import de.tudarmstadt.informatik.fop.breakout.managers.LevelGenerator;
+import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import eea.engine.entity.StateBasedEntityManager;
 
@@ -56,8 +57,8 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 			return NORMAL_ZONE_STATE;
 		case ICEZONE:
 			return ICE_ZONE_STATE;
-		case JUNGLEZONE:
-			return JUNGLE_ZONE_STATE;
+		case MAGMAZONE:
+			return MAGMA_ZONE_STATE;
 		default:
 			return MAIN_MENU_STATE;
 		}
@@ -120,9 +121,9 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 			// render buttons for restart or menu if number of lives is equal to
 			// 0
 			if (Lives.getLivesAmount() == 0) {
-
-				entityManager.addEntity(STORY_GAME_STATE, new Button(218, 190, this.levelID, this.zone));
-				entityManager.addEntity(STORY_GAME_STATE, new Button(218, 310, StateType.MAINMENU));
+				
+				//entityManager.addEntity(STORY_GAME_STATE, new Button(218, 190, this.levelID, this.zone));
+				entityManager.addEntity(STORY_GAME_STATE, new Button(218, 190, StateType.MAINMENU));
 				gameOver = true;
 			}
 
@@ -178,7 +179,7 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 	public Image getZoneBackground(ZoneType zone) throws SlickException {
 
 		switch (zone) {
-		case JUNGLEZONE:
+		case MAGMAZONE:
 			return new Image("/images/backgrounds/background_3.png");
 		case ICEZONE:
 			return new Image("/images/backgrounds/background_1.png");

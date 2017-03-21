@@ -9,6 +9,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.constants.StateParameters.ZoneType;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import eea.engine.entity.StateBasedEntityManager;
 
@@ -29,8 +30,15 @@ public class IceZoneState extends BasicGameState implements GameParameters {
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 
         entityManager.addEntity(getID(), new Button(218, 190, 201, ZoneType.ICEZONE));
+        
 		if (CheckPointManager.getCheckpoint() > 201) {
 			entityManager.addEntity(getID(), new Button(218, 310, 202, ZoneType.ICEZONE));
+		}
+		if (CheckPointManager.getCheckpoint() > 202) {
+			entityManager.addEntity(getID(), new Button(218, 430, 203, ZoneType.ICEZONE));
+		}
+		if (CheckPointManager.getCheckpoint() > 203) {
+			entityManager.addEntity(getID(), new Button(218, 550, 204, ZoneType.ICEZONE));
 		}
 	}
 
@@ -41,9 +49,17 @@ public class IceZoneState extends BasicGameState implements GameParameters {
 		entityManager.renderEntities(container, game, g);
 		
 		g.drawString("Level 1", 110, 180);
+		
 		if (CheckPointManager.getCheckpoint() > 201) {
 			g.drawString("Level 2", 110, 300);
 		}
+		if (CheckPointManager.getCheckpoint() > 202) {
+			g.drawString("Level 3", 110, 420);
+		}
+		if (CheckPointManager.getCheckpoint() > 203) {
+			g.drawString("Level 4", 110, 540);
+		}
+
 	}
 
 	@Override

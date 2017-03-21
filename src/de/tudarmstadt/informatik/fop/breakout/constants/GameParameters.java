@@ -15,8 +15,8 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 	public static final int FRAME_RATE = 60;
 
 	// Sound
-	public static final float GAME_MUSIC_VOLUME = 0.2f;
-	public static final float GAME_SOUND_VOLUME = 0.2f;
+	public static final float GAME_MUSIC_VOLUME = 0.05f;
+	public static final float GAME_SOUND_VOLUME = 0.05f;
 	public static final float RAND_PITCH_TRESHOLD = 0.025f;
 	public static final float RAND_VOL_TRESHOLD = 0.05f;
 	

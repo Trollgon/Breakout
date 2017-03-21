@@ -65,7 +65,7 @@ public class MainMenuState extends BasicGameState implements GameParameters {
 		entityManager.addEntity(STORY_GAME_STATE, escListener);
 		entityManager.addEntity(ENDLESS_GAME_STATE, escListener);
 		entityManager.addEntity(ZONE_PICKER_STATE, escListener);
-		entityManager.addEntity(JUNGLE_ZONE_STATE, escListener);
+		entityManager.addEntity(MAGMA_ZONE_STATE, escListener);
 		entityManager.addEntity(ICE_ZONE_STATE, escListener);
 		entityManager.addEntity(NORMAL_ZONE_STATE, escListener);
 		entityManager.addEntity(HIGHSCORE_STATE, escListener);
