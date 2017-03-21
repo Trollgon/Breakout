@@ -221,9 +221,10 @@ public class LevelGenerator implements GameParameters {
 		case ICE:
 			return new IceBlock(xPos, yPos);
 		case IRON:
-			return new IronBlock(xPos, yPos, dontcare);
+			return new IronBlock(xPos, yPos);
+		// JUST FOR THE TEST_ADAPTER
 		case STANDARD:
-			return new StandardBlock(xPos, yPos);
+			return new StandardBlock(xPos, yPos, dontcare);
 		case DIAMOND:
 			return new DiamondBlock(xPos, yPos);
 		case SNOW:

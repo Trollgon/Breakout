@@ -43,44 +43,36 @@ public class HighScoreState extends BasicGameState implements GameParameters {
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 
 		if (!Breakout.getDebug()) {
-		
-		font = new Font("Monospaced", Font.BOLD, 25);
-		tFont = new TrueTypeFont(font, true);
 
-		entityManager.addEntity(getID(), new ClearHighscoreButton(300, 500));
-<<<<<<< HEAD
+			font = new Font("Monospaced", Font.BOLD, 25);
+			tFont = new TrueTypeFont(font, true);
 
+			entityManager.addEntity(getID(), new ClearHighscoreButton(300, 500));
+		}
 	}
 
-=======
-		
-		}
-		
-}
-	
->>>>>>> refs/remotes/origin/LastWeekLukas
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		
-		if (!Breakout.getDebug()) {
-		
-		g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
 
-		try {
-			tFont.drawString(50, 50, HighscoreManager.displayHighscore()[0]);
-			int lineNumber = 90;
-			for (int i = 1; i <= 10; i++) {
-				if (HighscoreManager.displayHighscore()[i] == null)
-					break;
-				tFont.drawString(50, lineNumber, HighscoreManager.displayHighscore()[i]);
-				lineNumber += 30;
+		if (!Breakout.getDebug()) {
+
+			g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
+
+			try {
+				tFont.drawString(50, 50, HighscoreManager.displayHighscore()[0]);
+				int lineNumber = 90;
+				for (int i = 1; i <= 10; i++) {
+					if (HighscoreManager.displayHighscore()[i] == null)
+						break;
+					tFont.drawString(50, lineNumber, HighscoreManager.displayHighscore()[i]);
+					lineNumber += 30;
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		entityManager.renderEntities(container, game, g);
-		
+			entityManager.renderEntities(container, game, g);
+
 		}
 	}
 

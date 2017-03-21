@@ -5,7 +5,6 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
-import de.tudarmstadt.informatik.fop.breakout.constants.BlockParameters.BlockType;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Lives;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Stick;
@@ -150,10 +149,9 @@ public class Adapter implements GameParameters {
 	 */
 	public IHitable createBlockInstance(String blockID, int hitsUntilDestroyed) {
 
-		BlockType[] types = BlockType.values();
-		BlockType type = types[hitsUntilDestroyed];
-
-		return LevelGenerator.getBlockByID(type, 0, 0, 0);
+		AbstractBlock block =  LevelGenerator.getBlockByID(BlockType.STANDARD, 0, 0, 0);
+		block.setHitsLeft(hitsUntilDestroyed);
+		return block;
 	}
 
 	/**
@@ -260,7 +258,7 @@ public class Adapter implements GameParameters {
 	 *            the number of additional balls/lives to be added.
 	 */
 	public void addLives(int value) {
-		Lives.setLifeAmount(getLivesLeft() + value);
+		Lives.setLifeAmount(Lives.getLivesAmount(). + value);
 	}
 
 	/**
