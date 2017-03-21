@@ -13,13 +13,12 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.AbstractBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.DiamondBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.DropperBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.EarthBlock;
-//import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.GlassBlock;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.GlassBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.GoldBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.IceBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.IronBlock;
-import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.JungleBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.MagmaBlock;
-//import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.ObsidianBlock;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.ObsidianBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.SnowBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.StandardBlock;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks.StoneBlock;
@@ -189,13 +188,13 @@ public class LevelGenerator implements GameParameters {
 			return new EarthBlock(xPos, yPos);
 		case FIRE:
 			return null;
-		/*case GLASS:
-			return new GlassBlock(xPos, yPos);*/
+		case GLASS:
+			//return new GlassBlock(xPos, yPos);
 		case MAGMA:
 			return new MagmaBlock(xPos, yPos);
 		case METEOR:
-		/*case OBSIDIAN:
-			return new ObsidianBlock(xPos, yPos);*/
+		case OBSIDIAN:
+			//return new ObsidianBlock(xPos, yPos);
 		case STONE:
 			return new StoneBlock(xPos, yPos);
 		case JUNGLE:
