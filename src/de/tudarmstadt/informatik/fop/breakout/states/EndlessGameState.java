@@ -29,6 +29,7 @@ import eea.engine.entity.StateBasedEntityManager;
  * EndlessGameState BasicGameState class
  * 
  * @author Jonas Henry Grebe
+ * @author Lukas Lehmann
  *
  */
 public class EndlessGameState extends BasicGameState implements GameParameters, StateParameters {

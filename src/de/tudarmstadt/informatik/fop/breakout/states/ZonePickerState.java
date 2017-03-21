@@ -1,25 +1,16 @@
 package de.tudarmstadt.informatik.fop.breakout.states;
 
-import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
-import de.tudarmstadt.informatik.fop.breakout.managers.CheckPointManager;
-import de.tudarmstadt.informatik.fop.breakout.ui.Button;
-import eea.engine.action.basicactions.ChangeStateInitAction;
-import eea.engine.entity.Entity;
-import eea.engine.entity.StateBasedEntityManager;
-import eea.engine.event.basicevents.KeyPressedEvent;
-import org.lwjgl.Sys;
-import org.newdawn.slick.*;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Stream;
+import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.managers.CheckPointManager;
+import de.tudarmstadt.informatik.fop.breakout.ui.Button;
+import eea.engine.entity.StateBasedEntityManager;
 
 /**
  * @author Matthias Spoerkmann
