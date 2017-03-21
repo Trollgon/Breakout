@@ -10,6 +10,7 @@ public interface ItemParameters {
 	public static final String ITEM_EXPANDSTICK_ID = "item_expandstick";
 	public static final String ITEM_COMPRESSSTICK_ID = "item_compressstick";
 	public static final String ITEM_SHOOTPLAYER_ID = "item_shootplayer";
+	public static final String ITEM_SLOWDOWN_ID = "item_slowdown";
 
 	public static final String SPEEDUP_LOGO_PATH = "images/items/item_speedup.png";
 	public static final String ONEUP_LOGO_PATH = "images/items/item_oneup.png";
@@ -18,9 +19,19 @@ public interface ItemParameters {
 	public static final String EXPANDSTICK_LOGO_PATH = "images/items/item_expand.png";
 	public static final String COMPRESSSTICK_LOGO_PATH = "images/items/item_compress.png";
 	public static final String SHOOTPLAYER_LOGO_PATH = "images/items/item_shootplayer.png";
+	public static final String SLOWDOWN_LOGO_PATH = "images/items/item_speedup.png";
+	
+	public static final String SPEEDUP_SOUND = "";
+	public static final String ONEUP_SOUND = "";
+	public static final String MIRROR_SOUND = "";
+	public static final String RANDOMREBOUND_SOUND = "";
+	public static final String EXPANDSTICK_SOUND = "";
+	public static final String COMPRESSSTICK_SOUND = "";
+	public static final String SHOOTPLAYER_SOUND = "";
+	public static final String SLOWDOWN_SOUND = "";
 
 	public static enum ItemType {
-		SPEEDUP, ONEUP, MIRRORSTICK, RANDOMREBOUND, EXPANDSTICK, COMPRESSSTICK, SHOOTPLAYER
+		SPEEDUP, ONEUP, MIRRORSTICK, RANDOMREBOUND, EXPANDSTICK, COMPRESSSTICK, SLOWDOWN, SHOOTPLAYER
 	};
 
 }

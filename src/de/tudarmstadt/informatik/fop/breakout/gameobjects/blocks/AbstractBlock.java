@@ -11,13 +11,10 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Lives;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Score;
 import de.tudarmstadt.informatik.fop.breakout.interfaces.IHitable;
-import eea.engine.action.Action;
 import eea.engine.action.basicactions.DestroyEntityAction;
-import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.event.Event;
-import eea.engine.event.basicevents.CollisionEvent;
 import eea.engine.event.basicevents.LoopEvent;
 
 /**
@@ -28,6 +25,7 @@ import eea.engine.event.basicevents.LoopEvent;
  */
 public abstract class AbstractBlock extends Entity implements IHitable, GameParameters {
 
+	
 	private int hitsLeft;
 	private int score;
 	private BlockGroup type;
@@ -36,26 +34,29 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 	private String hitSound;
 	private Image blockImage;
 
-	protected CollisionEvent collider;
-	private Event canBeDestroyed;
 	protected Event totalDestruction;
 	protected Event leftScreen;
 	public LoopEvent always;
 
+	// id-counter for the different block instaces: e.g. block1, block2 ...
+	static int id = 1;
+
 	/**
 	 * constructor of a AbstractBlock
 	 * 
-	 * @param xPos of the new block
-	 * @param yPos of the new block
+	 * @param xPos
+	 *            of the new block
+	 * @param yPos
+	 *            of the new block
 	 */
 	public AbstractBlock(int xPos, int yPos) {
-		super(BLOCK_ID);
+		super(BLOCK_ID + id);
+		// inc id counter
+		id++;
 
 		setPassable(false);
 		setPosition(new Vector2f(xPos, yPos));
 		setSize(new Vector2f(BLOCK_WIDTH, BLOCK_HEIGHT));
-		
-		setDestroyed(false);
 
 		// to be overwritten later:
 		setHitSound(BLOCK_STANDARD_HIT_SOUND);
@@ -74,9 +75,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 		this.addComponent(new ImageRenderComponent(getBlockImage()));
 
 		this.addComponent(always);
-		this.addComponent(collider);
 		this.addComponent(totalDestruction);
-		this.addComponent(canBeDestroyed);
 		this.addComponent(leftScreen);
 	}
 
@@ -87,11 +86,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 	 */
 	void addEvents() {
 
-		// basic collision event
-		collider = new CollisionEvent();
-
-		// event which fires if the block is hityByBall and has no hits left
-		canBeDestroyed = new Event("hasNoHitsLeft") {
+		totalDestruction = new Event("totalDestructionEvent") {
 
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
@@ -99,23 +94,12 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 			}
 		};
 
-		// event which fires if the block can be destroyed
-		// ! THIS IS JUST AN AUXILIARY EVENT, TO BE ABLE TO DESTROY A BLOCK
-		// OUTSIDE THIS CLASS, by using setDestroyed(true)!
-		totalDestruction = new Event("totalDestructionEvent") {
-
-			@Override
-			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
-				return isDestroyed();
-			}
-		};
-		
 		// auxiliary event for future addons
 		always = new LoopEvent();
-		
+
 		// leaving screen event
 		leftScreen = new Event("reachedBottomBorder") {
-			
+
 			@Override
 			protected boolean performAction(GameContainer container, StateBasedGame game, int delta) {
 				return leftScreen.getOwnerEntity().getPosition().getY() > WINDOW_HEIGHT;
@@ -128,38 +112,36 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 	 */
 	void addActions() {
 
-		// action: tells the block that it can destroy itself
-		canBeDestroyed.addAction((arg0, arg1, arg2, arg3) -> setDestroyed(true));
-
-		// action: tells the ball which entity it has destroyed
-		canBeDestroyed.addAction(new Action() {
-
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-				// ((Ball)
-				// collider.getCollidedEntity()).setLastCollisionEntity(collider.getOwnerEntity());
-			}
-		});
-
 		// adds the blocks-scorepoints to the players-score
 		totalDestruction.addAction((arg0, arg1, arg2, arg3) -> Score.incScoreCount(getScore()));
 		// action: destroys this blocks entity
 		totalDestruction.addAction(new DestroyEntityAction());
-		
-		// destroys block when out of window
+
+		// destroys block when left window at the bottom
 		leftScreen.addAction(new DestroyEntityAction());
 		leftScreen.addAction((arg0, arg1, arg2, arg3) -> {
+			// sets the players lives to 0
 			Lives.setLifeAmount(0);
 		});
+
+
 	};
 
 	@Override
 	public boolean collides(Entity otherEntity) {
-		
+
 		// blocks can only be hit by a ball instance:
 		return super.collides(otherEntity) && otherEntity instanceof Ball;
 	}
-	
+
+	@Override
+	public void update(GameContainer gc, StateBasedGame sb, int delta) {
+
+			super.update(gc, sb, delta);
+	}
+
+	// IHitable-methods
+
 	@Override
 	public void setHitsLeft(int value) {
 		this.hitsLeft = value;
@@ -263,13 +245,16 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 	}
 
 	/**
-	 * sets this blocks blockImage by giving the path as a String
+	 * sets this blocks blockImage by giving the path as a String and updates
+	 * the ImageRenderComponent
 	 * 
 	 * @param blockImage
 	 */
 	public void setBlockImage(String blockImage) {
 		try {
+
 			this.blockImage = new Image(blockImage);
+			this.addComponent(new ImageRenderComponent(getBlockImage()));
 
 		} catch (SlickException e) {
 			e.printStackTrace();

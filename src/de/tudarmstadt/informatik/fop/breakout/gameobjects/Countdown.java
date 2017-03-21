@@ -91,7 +91,7 @@ public class Countdown extends Entity implements GameParameters {
 		});
 		//startEvent.addAction(startAction);
 		//timeOver.addAction(endAction);
-		if(!cancelCondition.equals(null)){
+		if(cancelCondition != null){
 			cancelCondition.addAction(new DestroyEntityAction());
 			this.addComponent(cancelCondition);
 		}

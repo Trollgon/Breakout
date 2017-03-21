@@ -18,7 +18,7 @@ import de.tudarmstadt.informatik.fop.breakout.states.zonestates.NormalZoneState;
 import eea.engine.entity.StateBasedEntityManager;
 
 public class Breakout extends StateBasedGame implements GameParameters {
-
+	
 	// Remember if the game runs in debug mode
 	private static boolean debug = false;
 
