@@ -31,16 +31,16 @@ public class IceZoneState extends BasicGameState implements GameParameters {
 
 		if (!Breakout.getDebug()) {
 
-			entityManager.addEntity(getID(), new Button(218, 190, 201, ZoneType.ICEZONE));
+			entityManager.addEntity(getID(), new Button(208, 190, 201, ZoneType.ICEZONE));
 
 			if (CheckPointManager.getCheckpoint() > 201) {
-				entityManager.addEntity(getID(), new Button(218, 310, 202, ZoneType.ICEZONE));
+				entityManager.addEntity(getID(), new Button(208, 310, 202, ZoneType.ICEZONE));
 			}
 			if (CheckPointManager.getCheckpoint() > 202) {
-				entityManager.addEntity(getID(), new Button(218, 430, 203, ZoneType.ICEZONE));
+				entityManager.addEntity(getID(), new Button(598, 190, 203, ZoneType.ICEZONE));
 			}
 			if (CheckPointManager.getCheckpoint() > 203) {
-				entityManager.addEntity(getID(), new Button(218, 550, 204, ZoneType.ICEZONE));
+				entityManager.addEntity(getID(), new Button(598, 310, 204, ZoneType.ICEZONE));
 			}
 		}
 	}
@@ -50,21 +50,21 @@ public class IceZoneState extends BasicGameState implements GameParameters {
 
 		if (!Breakout.getDebug()) {
 
-			g.drawImage(new Image("images/backgrounds/background_1.png"), 0, 0);
+			g.drawImage(new Image("images/backgrounds/background_ice.png"), 0, 0);
 
 			entityManager.renderEntities(container, game, g);
 
-			g.drawString("Level 1", 110, 180);
+			g.drawString("Level 1", 100, 180);
 
 			if (CheckPointManager.getCheckpoint() > 201) {
-				g.drawString("Level 2", 110, 300);
+				g.drawString("Level 2", 100, 300);
 			}
 
 			if (CheckPointManager.getCheckpoint() > 202) {
-				g.drawString("Level 3", 110, 420);
+				g.drawString("Level 3", 490, 180);
 			}
 			if (CheckPointManager.getCheckpoint() > 203) {
-				g.drawString("Level 4", 110, 540);
+				g.drawString("Level 4", 490, 300);
 			}
 		}
 	}

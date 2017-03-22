@@ -192,9 +192,9 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 
 		switch (zone) {
 		case MAGMAZONE:
-			return new Image("/images/backgrounds/background_3.png");
+			return new Image("/images/backgrounds/background_magma.png");
 		case ICEZONE:
-			return new Image("/images/backgrounds/background_1.png");
+			return new Image("/images/backgrounds/background_ice.png");
 		default:
 		case NORMALZONE:
 			return new Image("/images/backgrounds/background.png");

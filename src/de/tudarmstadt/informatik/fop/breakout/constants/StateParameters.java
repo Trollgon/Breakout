@@ -39,7 +39,7 @@ public interface StateParameters {
 	public static final String BACKGROUND_IMAGE = "/images/backgrounds/background.png";
 	public static final String MAIN_MENU_IMAGE = "/images/backgrounds/menu.png";
 	public static final String DEFAULT_MENU_IMAGE = "/images/backgrounds/menu_blank.png";
-	public static final String ENDLESS_BACKGROUND_IMAGE = "/images/backgrounds/background_4.png";
+	public static final String ENDLESS_BACKGROUND_IMAGE = "/images/backgrounds/background.png";
 
 
 }

@@ -8,6 +8,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.constants.StateParameters.ZoneType;
 import de.tudarmstadt.informatik.fop.breakout.managers.CheckPointManager;
 import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
@@ -31,17 +32,16 @@ public class NormalZoneState extends BasicGameState implements GameParameters {
 
 		if (!Breakout.getDebug()) {
 
-			entityManager.addEntity(getID(), new Button(218, 190, 101, ZoneType.NORMALZONE));
+			entityManager.addEntity(getID(), new Button(208, 190, 101, ZoneType.NORMALZONE));
 
-			if (CheckPointManager.getCheckpoint() > 101) {
-				entityManager.addEntity(getID(), new Button(218, 310, 102, ZoneType.NORMALZONE));
+			if (CheckPointManager.getCheckpoint() > 301) {
+				entityManager.addEntity(getID(), new Button(208, 310, 102, ZoneType.NORMALZONE));
 			}
-
-			if (CheckPointManager.getCheckpoint() > 102) {
-				entityManager.addEntity(getID(), new Button(218, 430, 103, ZoneType.NORMALZONE));
+			if (CheckPointManager.getCheckpoint() > 202) {
+				entityManager.addEntity(getID(), new Button(598, 190, 103, ZoneType.NORMALZONE));
 			}
-			if (CheckPointManager.getCheckpoint() > 103) {
-				entityManager.addEntity(getID(), new Button(218, 550, 104, ZoneType.NORMALZONE));
+			if (CheckPointManager.getCheckpoint() > 203) {
+				entityManager.addEntity(getID(), new Button(598, 310, 104, ZoneType.NORMALZONE));
 			}
 		}
 	}
@@ -51,19 +51,22 @@ public class NormalZoneState extends BasicGameState implements GameParameters {
 
 		if (!Breakout.getDebug()) {
 
-			g.drawImage(new Image("images/backgrounds/background_4.png"), 0, 0);
+			g.drawImage(new Image("images/backgrounds/background.png"), 0, 0);
 
 			entityManager.renderEntities(container, game, g);
 
 			g.drawString("Level 1", 110, 180);
+
 			if (CheckPointManager.getCheckpoint() > 101) {
-				g.drawString("Level 2", 110, 300);
+				g.drawString("Level 2", 100, 300);
 			}
+
 			if (CheckPointManager.getCheckpoint() > 102) {
-				g.drawString("Level 3", 110, 420);
+				g.drawString("Level 3", 490, 180);
 			}
+			
 			if (CheckPointManager.getCheckpoint() > 103) {
-				g.drawString("Level 4", 110, 540);
+				g.drawString("Level 4", 490, 300);
 			}
 		}
 	}
