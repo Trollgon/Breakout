@@ -25,17 +25,25 @@ import eea.engine.event.basicevents.LoopEvent;
  */
 public abstract class AbstractBlock extends Entity implements IHitable, GameParameters {
 
-	
 	private int hitsLeft;
 	private int score;
+	
+	// not really used property of AbstractBlock
+	// might be useful later
 	private BlockGroup type;
-	private boolean isDestroyed;
 
+	// path of the AbstractBlocks HitSound
 	private String hitSound;
+	// image of the AbstractsBlock ImageRenderComponent
 	private Image blockImage;
 
+	// fires if AbstractBlock is destroyed
 	protected Event totalDestruction;
+	
+	// fire if AbstractBlock left the Window (used only in EndlessGameMode)
 	protected Event leftScreen;
+	
+	// auxiliary event for possible future block types
 	public LoopEvent always;
 
 	// id-counter for the different block instaces: e.g. block1, block2 ...
@@ -51,6 +59,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 	 */
 	public AbstractBlock(int xPos, int yPos) {
 		super(BLOCK_ID + id);
+		
 		// inc id counter
 		id++;
 
@@ -72,13 +81,20 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 			e.printStackTrace();
 		}
 
+		// adds the AbstractBlocks Components:
 		this.addComponent(new ImageRenderComponent(getBlockImage()));
-
+		
 		this.addComponent(always);
 		this.addComponent(totalDestruction);
 		this.addComponent(leftScreen);
 	}
 
+	/**
+	 * abstract method which gets specified by the different BlockTypes.
+	 * Used to set the type specific properties!
+	 * (e.g. Block-Images, Block-Hit-Sounds ...)
+	 * @throws SlickException
+	 */
 	abstract void configureBlock() throws SlickException;
 
 	/**
@@ -94,7 +110,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 			}
 		};
 
-		// auxiliary event for future addons
+		// auxiliary event for possible future features
 		always = new LoopEvent();
 
 		// leaving screen event
@@ -140,7 +156,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 			super.update(gc, sb, delta);
 	}
 
-	// IHitable-methods
+	///////////////// IHitable-METHODS /////////////////////
 
 	@Override
 	public void setHitsLeft(int value) {
@@ -162,24 +178,8 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 		return this.getHitsLeft() > 0;
 	}
 
-	/**
-	 * determines whether this block is about to be destroyed or not
-	 * 
-	 * @return
-	 */
-	public boolean isDestroyed() {
-		return isDestroyed;
-	}
-
-	/**
-	 * sets this block`s property 'isDestroyed'
-	 * 
-	 * @param isDestroyed
-	 */
-	public void setDestroyed(boolean isDestroyed) {
-		this.isDestroyed = isDestroyed;
-	}
-
+	///////////////////////////////////////////////////////
+	
 	/**
 	 * gets this blocks scorepoints, you earn by destroying it
 	 * 
@@ -248,7 +248,7 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 	 * sets this blocks blockImage by giving the path as a String and updates
 	 * the ImageRenderComponent
 	 * 
-	 * @param blockImage
+	 * @param blockImage String path of the image
 	 */
 	public void setBlockImage(String blockImage) {
 		try {
@@ -261,10 +261,12 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 		}
 	}
 	
-	
-	
-	
-	// ALTERNATIVE CONSTRUCTOR (TEST ONLY)
+	/**
+	 * alternative constructor of AbstractBlock which does not load any Graphics for TESTS ONLY
+	 * @param xPos of the Block
+	 * @param yPos of the Block
+	 * @param dontcare
+	 */
 	public AbstractBlock(int xPos, int yPos, int dontcare) {
 		super(BLOCK_ID + id);
 		// inc id counter
