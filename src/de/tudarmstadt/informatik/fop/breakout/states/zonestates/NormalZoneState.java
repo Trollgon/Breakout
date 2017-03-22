@@ -34,7 +34,7 @@ public class NormalZoneState extends BasicGameState implements GameParameters {
 
 			entityManager.addEntity(getID(), new Button(208, 190, 101, ZoneType.NORMALZONE));
 
-			if (CheckPointManager.getCheckpoint() > 301) {
+			if (CheckPointManager.getCheckpoint() > 201) {
 				entityManager.addEntity(getID(), new Button(208, 310, 102, ZoneType.NORMALZONE));
 			}
 			if (CheckPointManager.getCheckpoint() > 202) {

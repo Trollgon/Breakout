@@ -39,7 +39,9 @@ public class Adapter implements GameParameters {
 		breakout = null;
 
 		stick = new Stick(0);
-		ball = new Ball(stick, 0);
+		// stick.setSize(new Vector2f(130, 25));
+		
+		ball = (Ball) createBallInstance(BALL_ID);  
 		entityManager = StateBasedEntityManager.getInstance();
 	}
 
@@ -132,7 +134,10 @@ public class Adapter implements GameParameters {
 	 */
 	public Entity createBallInstance(String ballID) {
 
-		return new Ball(stick, 0);
+		Ball b = new Ball(stick, 0);
+		b.setSize(new Vector2f(25,25));
+		
+		return b;
 	}
 
 	/**
@@ -238,9 +243,6 @@ public class Adapter implements GameParameters {
 	 */
 	public boolean collides(Entity otherEntity) {
 
-		if (otherEntity instanceof Ball) {
-			return false;
-		}
 		return ball.collides(otherEntity);
 	}
 
@@ -258,7 +260,7 @@ public class Adapter implements GameParameters {
 	 *            the number of additional balls/lives to be added.
 	 */
 	public void addLives(int value) {
-		Lives.setLifeAmount(Lives.getLivesAmount(). + value);
+		Lives.setLifeAmount(Lives.getLivesAmount() + value);
 	}
 
 	/**
@@ -374,6 +376,7 @@ public class Adapter implements GameParameters {
 	public void handleKeyDown(int updatetime, Integer input) {
 		// TODO write code that handles a "key pressed" event
 		// note: do not forget to call app.updateGame(updatetime);
+		
 	}
 
 	/**

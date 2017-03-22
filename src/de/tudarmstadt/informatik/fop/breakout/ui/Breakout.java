@@ -7,6 +7,7 @@ import org.newdawn.slick.openal.SoundStore;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.states.AboutState;
 import de.tudarmstadt.informatik.fop.breakout.states.EndlessGameState;
 import de.tudarmstadt.informatik.fop.breakout.states.HighScoreState;
 import de.tudarmstadt.informatik.fop.breakout.states.MainMenuState;
@@ -90,6 +91,7 @@ public class Breakout extends StateBasedGame implements GameParameters {
 		addState(new StoryGameState());
 		addState(new HighScoreState());
 
+		addState(new AboutState());
 		addState(new QuitState());
 
 		// Add the states to the StateBasedEntityManager
@@ -105,5 +107,6 @@ public class Breakout extends StateBasedGame implements GameParameters {
 		StateBasedEntityManager.getInstance().addState(HIGHSCORE_STATE);
 
 		StateBasedEntityManager.getInstance().addState(QUIT_STATE);
+		StateBasedEntityManager.getInstance().addState(ABOUT_STATE);
 	}
 }
