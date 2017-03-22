@@ -12,7 +12,7 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 	// Window Settings
 	public static final int WINDOW_WIDTH = 800;
 	public static final int WINDOW_HEIGHT = 600;
-	public static final int FRAME_RATE = 60;
+	public static final int FRAME_RATE = 100;
 
 	// Sound
 	public static final float GAME_MUSIC_VOLUME = 0.05f;
