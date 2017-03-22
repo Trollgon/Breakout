@@ -26,7 +26,7 @@ public class MagmaBlock extends AbstractBlock {
 	@Override
 	void configureBlock() throws SlickException {
 		
-		// setHitSound(BLOCK_MAGMA_HIT_SOUND);
+		setHitSound(BLOCK_MAGMA_HIT_SOUND);
 
 		setType(BlockGroup.UNSTABLE);
 		setBlockImage(BLOCK_MAGMA_IMAGE);

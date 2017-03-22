@@ -193,12 +193,13 @@ public class LevelGenerator implements GameParameters {
 		case MAGMA:
 			return new MagmaBlock(xPos, yPos);
 		case METEOR:
+			return null;
 		case OBSIDIAN:
 			return new ObsidianBlock(xPos, yPos);
 		case STONE:
 			return new StoneBlock(xPos, yPos);
 		case JUNGLE:
-			// return new JungleBlock(xPos, yPos);
+			return null;
 		case WOOD:
 			return new WoodBlock(xPos, yPos);
 		default:
@@ -243,7 +244,7 @@ public class LevelGenerator implements GameParameters {
 		case STONE:
 			return new StoneBlock(xPos, yPos);
 		case JUNGLE:
-			// return new JungleBlock(xPos, yPos);
+			return null;
 		case WOOD:
 			return new WoodBlock(xPos, yPos);
 		default:

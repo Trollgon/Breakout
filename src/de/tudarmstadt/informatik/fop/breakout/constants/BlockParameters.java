@@ -39,7 +39,7 @@ public interface BlockParameters {
 	public static final String BLOCK_STONE_IMAGE = "/images/blocks/block_stone.png";
 	public static final int BLOCK_STONE_HITSLEFT = 2;
 	public static final int BLOCK_STONE_SCORE = 100;
-	public static final String BLOCK_STONE_HIT_SOUND = "/sounds/blockSounds/blockHitStandard.wav";
+	public static final String BLOCK_STONE_HIT_SOUND = "/sounds/blockSounds/blockHitStone.wav";
 
 	// IRON-BLOCK: 3 HITS and SOLID
 	public static final String BLOCK_IRON_IMAGE = "/images/blocks/block_iron.png";
@@ -115,7 +115,7 @@ public interface BlockParameters {
 	public static final String BLOCK_OBSIDIAN_IMAGE = "/images/blocks/block_obsidian.png";
 	public static final int BLOCK_OBSIDIAN_HITSLEFT = 5;
 	public static final int BLOCK_OBSIDIAN_SCORE = 500;
-	public static final String BLOCK_OBSIDIAN_HIT_SOUND = "/sounds/blockSounds/blockHitStandard.wav";
+	public static final String BLOCK_OBSIDIAN_HIT_SOUND = "/sounds/blockSounds/blockHitStone.wav";
 	
 	// METEOR-BLOCK 2 HITS and ...
 	public static final String BLOCK_METEOR_IMAGE = "/images/blocks/block_meteor.png";

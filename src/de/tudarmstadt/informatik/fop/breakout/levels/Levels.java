@@ -29,8 +29,8 @@ public class Levels {
         // zone 3:
         levels.put(301, "maps/zone3/301.map");
         levels.put(302, "maps/zone3/302.map");
-        levels.put(303, "maps/zone3/301.map");
-        levels.put(304, "maps/zone3/302.map");
+        levels.put(303, "maps/zone3/303.map");
+        levels.put(304, "maps/zone3/304.map");
     	
     	
       // returning path
