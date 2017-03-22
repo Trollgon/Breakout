@@ -141,8 +141,6 @@ public abstract class BasicItem extends Entity implements GameParameters{
 	
 	public void setFallingSpeed(float s) {
 		fallingSpeed = s;
-		spawned.clearActions();
-		spawned.addAction(new MoveDownAction(fallingSpeed));
 	}
 
 	
