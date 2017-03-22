@@ -8,6 +8,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
 import eea.engine.action.basicactions.MoveLeftAction;
 import eea.engine.action.basicactions.MoveRightAction;
 import eea.engine.component.render.ImageRenderComponent;
@@ -37,7 +38,6 @@ public class Stick extends Entity implements GameParameters {
 	private ANDEvent moveLeftCondition;
 	private ANDEvent moveRightCondition;
 	private CollisionEvent collider;
-	private ANDEvent hitByItem;
 	private boolean mirrored;
 	private ImageRenderComponent stickPic;
 
@@ -51,7 +51,7 @@ public class Stick extends Entity implements GameParameters {
 		setPosition(new Vector2f(startPosX, startPosY));
 		setSize(new Vector2f(130, 25));
 		mirrored = false;
-		
+		if(!Breakout.getDebug()){
 		try {
 			stickPic = new ImageRenderComponent(new Image(STICK_IMAGE));
 		} catch (SlickException e) {
@@ -59,6 +59,7 @@ public class Stick extends Entity implements GameParameters {
 			e.printStackTrace();
 		}
 		this.addComponent(stickPic);
+		}
 		configureEvents();
 		setVisible(true);
 		setPassable(false);
@@ -93,7 +94,7 @@ public class Stick extends Entity implements GameParameters {
 		// fires if A or the left arrow key is pressed
 		leftKeys = new OREvent(new KeyDownEvent(Input.KEY_LEFT), new KeyDownEvent(Input.KEY_A));
 
-		// fires if d or the right arrow key is pressed
+		// fires if D or the right arrow key is pressed
 		rightKeys = new OREvent(new KeyDownEvent(Input.KEY_RIGHT), new KeyDownEvent(Input.KEY_D));
 
 		// fires if the stick has hit the left Border
@@ -119,15 +120,6 @@ public class Stick extends Entity implements GameParameters {
 		// no left key is pressed
 		moveRightCondition = new ANDEvent(new NOTEvent(rightBorderReached), rightKeys, new NOTEvent(leftKeys));
 
-		// basic collider
-		collider = new CollisionEvent();
-
-		hitByItem = new ANDEvent(collider, new Event("hitEntityIsItem") {
-			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
-				return collider.getCollidedEntity().getID().toUpperCase().contains("ITEM");
-			}
-		});
-		
 		// Actions
 		moveLeftCondition.addAction(new MoveLeftAction(speed));
 		moveRightCondition.addAction(new MoveRightAction(speed));
@@ -147,15 +139,19 @@ public class Stick extends Entity implements GameParameters {
 		return new Vector2f(getPosition().getX(), getPosition().getY() - 26);
 	}
 	
+	/**
+	 * Used to mirror the movement direction of the Stick (will move left if a right key is pressed and vice versa)
+	 */
 	public void mirrorInput(){
 		this.removeComponent(moveLeftCondition);
 		this.removeComponent(moveRightCondition);
 		if(!mirrored){
-			
-			moveLeftCondition = new ANDEvent(new NOTEvent(leftBorderReached), rightKeys, new NOTEvent(leftKeys));
+			// normal Events
+			moveLeftCondition = new ANDEvent(new NOTEvent(leftBorderReached), rightKeys, new NOTEvent(leftKeys)); 
 			moveRightCondition = new ANDEvent(new NOTEvent(rightBorderReached), leftKeys, new NOTEvent(rightKeys));
 		}
 		else{
+			// mirrored Events
 			moveLeftCondition = new ANDEvent(new NOTEvent(leftBorderReached), leftKeys, new NOTEvent(rightKeys));
 			moveRightCondition = new ANDEvent(new NOTEvent(rightBorderReached), rightKeys, new NOTEvent(leftKeys));
 		}
@@ -166,15 +162,21 @@ public class Stick extends Entity implements GameParameters {
 		this.addComponent(moveRightCondition);
 		mirrored = !mirrored;
 	}
+	
+	/**
+	 * Used to update the Stick's image after changing the size of the Stick
+	 */
 	public void updateImage(){
-		this.removeComponent(stickPic);
-		int newSizeX = Math.round(this.getSize().getX());
-		int newSizeY = Math.round(this.getSize().getY());
-		try {
-			stickPic = new ImageRenderComponent(new Image(STICK_IMAGE).getScaledCopy(newSizeX, newSizeY));
-		} catch (SlickException e) {
-			e.printStackTrace();
+		if(!Breakout.getDebug()){
+			this.removeComponent(stickPic);
+			int newSizeX = Math.round(this.getSize().getX());
+			int newSizeY = Math.round(this.getSize().getY());
+			try {
+				stickPic = new ImageRenderComponent(new Image(STICK_IMAGE).getScaledCopy(newSizeX, newSizeY));
+			} catch (SlickException e) {
+				e.printStackTrace();
+			}
+			this.addComponent(stickPic);
 		}
-		this.addComponent(stickPic);
 	}
 }
