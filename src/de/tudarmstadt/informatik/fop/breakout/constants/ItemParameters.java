@@ -5,10 +5,10 @@ public interface ItemParameters {
 	// Items
 	public static final String ITEM_SPEEDUP_ID = "item_speedup";
 	public static final String ITEM_ONEUP_ID = "item_oneup";
-	public static final String ITEM_MIRRORSTICK_ID = "item_mirrorstick";
+	public static final String ITEM_MIRRORSTICK_ID = "item_mirror";
 	public static final String ITEM_RANDOMREBOUND_ID = "item_randomrebound";
-	public static final String ITEM_EXPANDSTICK_ID = "item_expandstick";
-	public static final String ITEM_COMPRESSSTICK_ID = "item_compressstick";
+	public static final String ITEM_EXPANDSTICK_ID = "item_expand";
+	public static final String ITEM_COMPRESSSTICK_ID = "item_compress";
 	public static final String ITEM_SHOOTPLAYER_ID = "item_shootplayer";
 	public static final String ITEM_SLOWDOWN_ID = "item_slowdown";
 
