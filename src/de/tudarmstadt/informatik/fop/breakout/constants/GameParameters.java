@@ -12,11 +12,11 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 	// Window Settings
 	public static final int WINDOW_WIDTH = 800;
 	public static final int WINDOW_HEIGHT = 600;
-	public static final int FRAME_RATE = 60;
+	public static final int FRAME_RATE = 100;
 
 	// Sound
-	public static final float GAME_MUSIC_VOLUME = 0.02f;
-	public static final float GAME_SOUND_VOLUME = 0.02f;
+	public static final float GAME_MUSIC_VOLUME = 0.05f;
+	public static final float GAME_SOUND_VOLUME = 0.05f;
 	public static final float RAND_PITCH_TRESHOLD = 0.025f;
 	public static final float RAND_VOL_TRESHOLD = 0.05f;
 	
@@ -80,4 +80,7 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 
 	// Highscore
 	public static final String HIGHSCORE_FILE = "highscores/highscore.hsc";
+	public static final String CLEAR_HIGHSCORE_BUTTON_ID = "clearHighscoreButton";
+	//public static final String CLEAR_HIGHSCORE_BUTTON_IMAGE = "/images/buttons/clearhighscorebutton.png";
+
 }

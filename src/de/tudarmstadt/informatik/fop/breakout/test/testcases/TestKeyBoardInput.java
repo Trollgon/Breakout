@@ -34,7 +34,7 @@ public class TestKeyBoardInput {
 		public void testSitckMoveLeft() {
 			adapter.initializeGame();
 			adapter.changeToGameplayState();
-			adapter. handleKeyDownLeftArrow();
+			adapter.handleKeyDownLeftArrow();
 			assertTrue("Your stick should move left when pressing left arrow", adapter.getStickPosition().getX() < 200);
 		}
 		
@@ -42,7 +42,7 @@ public class TestKeyBoardInput {
 		public void testSitckMoveRight() {
 			adapter.initializeGame();
 			adapter.changeToGameplayState();
-			adapter. handleKeyDownRightArrow();
+			adapter.handleKeyDownRightArrow();
 			assertTrue("Your stick should move right when pressing right arrow", adapter.getStickPosition().getX() > 600);
 		}
 		

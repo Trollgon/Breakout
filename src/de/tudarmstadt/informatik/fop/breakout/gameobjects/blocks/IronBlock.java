@@ -12,6 +12,7 @@ public final class IronBlock extends AbstractBlock {
 	public IronBlock(int xPos, int yPos) {
 		super(xPos, yPos);
 	}
+	
 
 	@Override
 	void configureBlock() throws SlickException {

@@ -79,7 +79,7 @@ public class TestBall {
     assertFalse("no collision at right border with angle 180", adapter.collides(rightBorder));
     adapter.setRotation(0);
     assertFalse("no collision at right border with angle 0", adapter.collides(rightBorder));
-
+    
     // angle between 179 and 1
     adapter.setRotation(179);
     // ball do not collide

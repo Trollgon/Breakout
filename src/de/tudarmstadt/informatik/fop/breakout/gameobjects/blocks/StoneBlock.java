@@ -11,6 +11,8 @@ public class StoneBlock extends AbstractBlock {
 	@Override
 	void configureBlock() throws SlickException {
 		
+		setHitSound(BLOCK_STONE_HIT_SOUND);
+		
 		setType(BlockGroup.UNSTABLE);
 		setBlockImage(BLOCK_STONE_IMAGE);
 		

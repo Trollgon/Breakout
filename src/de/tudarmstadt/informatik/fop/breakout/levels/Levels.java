@@ -15,22 +15,22 @@ public class Levels {
         
     	// filling HashMap
     	// zone 1:
-        levels.put(101, "maps/zone1/test.map");
+        levels.put(101, "maps/zone1/101.map");
         levels.put(102, "maps/zone1/102.map");
         levels.put(103, "maps/zone1/103.map");
         levels.put(104, "maps/zone1/104.map");
-        levels.put(105, "maps/zone1/105.map");
-        levels.put(106, "maps/zone1/106.map");
 
         // zone 2:
         levels.put(201, "maps/zone2/201.map");
         levels.put(202, "maps/zone2/202.map");
-        // ... 3 ... 4 ... 5 ... 6
+        levels.put(203, "maps/zone2/203.map");
+        levels.put(204, "maps/zone2/204.map");
         
         // zone 3:
         levels.put(301, "maps/zone3/301.map");
         levels.put(302, "maps/zone3/302.map");
-        // ... 3 ... 4 ... 5 ... 6
+        levels.put(303, "maps/zone3/303.map");
+        levels.put(304, "maps/zone3/304.map");
     	
     	
       // returning path
@@ -49,7 +49,7 @@ public class Levels {
             case NORMALZONE:
                 return StateParameters.ZoneType.ICEZONE;
             case ICEZONE:
-                return StateParameters.ZoneType.JUNGLEZONE;
+                return StateParameters.ZoneType.MAGMAZONE;
             default:
                 return StateParameters.ZoneType.ICEZONE;
         }

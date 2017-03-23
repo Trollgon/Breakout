@@ -22,7 +22,7 @@ public interface StateParameters {
 	
 	public static final int NORMAL_ZONE_STATE = 20;
 	public static final int ICE_ZONE_STATE = 21;
-	public static final int JUNGLE_ZONE_STATE = 22;
+	public static final int MAGMA_ZONE_STATE = 22;
 	
 	public static final int STORY_GAME_STATE = 3;
 	public static final int ENDLESS_GAME_STATE = 4;
@@ -32,14 +32,14 @@ public interface StateParameters {
 
 	// Zones
 	public enum ZoneType {
-		NORMALZONE, ICEZONE, JUNGLEZONE
+		NORMALZONE, ICEZONE, MAGMAZONE
 	};
 
 	// Backgrounds
 	public static final String BACKGROUND_IMAGE = "/images/backgrounds/background.png";
 	public static final String MAIN_MENU_IMAGE = "/images/backgrounds/menu.png";
 	public static final String DEFAULT_MENU_IMAGE = "/images/backgrounds/menu_blank.png";
-	public static final String ENDLESS_BACKGROUND_IMAGE = "/images/backgrounds/background_4.png";
+	public static final String ENDLESS_BACKGROUND_IMAGE = "/images/backgrounds/background.png";
 
 
 }

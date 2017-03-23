@@ -1,25 +1,17 @@
 package de.tudarmstadt.informatik.fop.breakout.states;
 
-import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
-import de.tudarmstadt.informatik.fop.breakout.managers.CheckPointManager;
-import de.tudarmstadt.informatik.fop.breakout.ui.Button;
-import eea.engine.action.basicactions.ChangeStateInitAction;
-import eea.engine.entity.Entity;
-import eea.engine.entity.StateBasedEntityManager;
-import eea.engine.event.basicevents.KeyPressedEvent;
-import org.lwjgl.Sys;
-import org.newdawn.slick.*;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Stream;
+import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.managers.CheckPointManager;
+import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
+import de.tudarmstadt.informatik.fop.breakout.ui.Button;
+import eea.engine.entity.StateBasedEntityManager;
 
 /**
  * @author Matthias Spoerkmann
@@ -48,13 +40,17 @@ public class ZonePickerState extends BasicGameState implements GameParameters {
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
+		if (!Breakout.getDebug()) {
+		
 		entityManager.addEntity(getID(), new Button(218, 190, ZoneType.NORMALZONE));
 		
 		if (checkpoint > 199) {
 			entityManager.addEntity(getID(), new Button(218, 310, ZoneType.ICEZONE));
 		}
 		if (checkpoint > 299) {
-			entityManager.addEntity(getID(), new Button(218, 430, ZoneType.JUNGLEZONE));
+			entityManager.addEntity(getID(), new Button(218, 430, ZoneType.MAGMAZONE));
+		}
+		
 		}
 
 	}
@@ -62,6 +58,8 @@ public class ZonePickerState extends BasicGameState implements GameParameters {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 
+		{
+		
 		g.drawImage(new Image("/images/backgrounds/background_2.png"), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
@@ -71,7 +69,9 @@ public class ZonePickerState extends BasicGameState implements GameParameters {
 			g.drawString("Ice Zone", 110, 300);
 		}
 		if (checkpoint > 199) {
-			g.drawString("Jungle Zone", 110, 420);
+			g.drawString("Magma Zone", 110, 420);
+		}
+		
 		}
 		
 	}

@@ -121,7 +121,7 @@ public interface BlockParameters {
 	public static final String BLOCK_METEOR_IMAGE = "/images/blocks/block_meteor.png";
 	public static final int BLOCK_METEOR_HITSLEFT = 2;
 	public static final int BLOCK_METEOR_SCORE = 150;
-	public static final String BLOCK_METEOR_HIT_SOUND = "/sounds/blockSounds/blockHitStone.wav";
+	public static final String BLOCK_METEOR_HIT_SOUND = "/sounds/blockSounds/blockHitStandard.wav";
 	
 	// GLASS-BLOCK 1 HIT
 	public static final String BLOCK_GLASS_IMAGE = "/images/blocks/block_glass.png";

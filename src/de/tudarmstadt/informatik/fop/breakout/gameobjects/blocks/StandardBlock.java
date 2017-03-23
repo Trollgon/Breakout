@@ -12,6 +12,10 @@ public final class StandardBlock extends AbstractBlock {
 	public StandardBlock(int xPos, int yPos) {
 		super(xPos, yPos);
 	}
+	
+	public StandardBlock(int xPos, int yPos, int dontcare) {
+		super(xPos, yPos, dontcare);
+	}
 
 	@Override
 	void configureBlock() throws SlickException {

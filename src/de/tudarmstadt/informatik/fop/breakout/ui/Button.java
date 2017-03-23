@@ -1,10 +1,8 @@
 package de.tudarmstadt.informatik.fop.breakout.ui;
 
-import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.gameactions.PlaySoundAction;
@@ -12,10 +10,8 @@ import de.tudarmstadt.informatik.fop.breakout.states.StoryGameState;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.ChangeStateAction;
 import eea.engine.action.basicactions.ChangeStateInitAction;
-import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
-import eea.engine.entity.StateBasedEntityManager;
 import eea.engine.event.ANDEvent;
 import eea.engine.event.basicevents.MouseClickedEvent;
 import eea.engine.event.basicevents.MouseEnteredEvent;
@@ -47,8 +43,8 @@ public class Button extends Entity implements GameParameters {
 		mainEvent = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
 
 		switch (zone) {
-		case JUNGLEZONE:
-			changeState = new ChangeStateInitAction(JUNGLE_ZONE_STATE);
+		case MAGMAZONE:
+			changeState = new ChangeStateInitAction(MAGMA_ZONE_STATE);
 			break;
 		case ICEZONE:
 			changeState = new ChangeStateInitAction(ICE_ZONE_STATE);

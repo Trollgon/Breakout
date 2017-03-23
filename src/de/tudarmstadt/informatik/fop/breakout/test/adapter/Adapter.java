@@ -5,7 +5,6 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
-import de.tudarmstadt.informatik.fop.breakout.constants.BlockParameters.BlockType;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Lives;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Stick;
@@ -39,8 +38,10 @@ public class Adapter implements GameParameters {
 	public Adapter() {
 		breakout = null;
 
-		stick = new Stick();
-		ball = new Ball(stick);
+		stick = new Stick(0);
+		// stick.setSize(new Vector2f(130, 25));
+		
+		ball = (Ball) createBallInstance(BALL_ID);  
 		entityManager = StateBasedEntityManager.getInstance();
 	}
 
@@ -64,6 +65,7 @@ public class Adapter implements GameParameters {
 	 */
 	public void initializeGame() {
 
+		
 		// Set the library path depending on the operating system
 		if (System.getProperty("os.name").toLowerCase().contains("windows")) {
 			System.setProperty("org.lwjgl.librarypath", System.getProperty("user.dir") + "/native/windows");
@@ -132,7 +134,10 @@ public class Adapter implements GameParameters {
 	 */
 	public Entity createBallInstance(String ballID) {
 
-		return new Ball(stick);
+		Ball b = new Ball(stick, 0);
+		b.setSize(new Vector2f(25,25));
+		
+		return b;
 	}
 
 	/**
@@ -149,10 +154,9 @@ public class Adapter implements GameParameters {
 	 */
 	public IHitable createBlockInstance(String blockID, int hitsUntilDestroyed) {
 
-		BlockType[] types = BlockType.values();
-		BlockType type = types[hitsUntilDestroyed];
-
-		return LevelGenerator.getBlockByID(type, 0, 0);
+		AbstractBlock block =  LevelGenerator.getBlockByID(BlockType.STANDARD, 0, 0, 0);
+		block.setHitsLeft(hitsUntilDestroyed);
+		return block;
 	}
 
 	/**
@@ -239,9 +243,6 @@ public class Adapter implements GameParameters {
 	 */
 	public boolean collides(Entity otherEntity) {
 
-		if (otherEntity instanceof Ball) {
-			return false;
-		}
 		return ball.collides(otherEntity);
 	}
 
@@ -259,7 +260,7 @@ public class Adapter implements GameParameters {
 	 *            the number of additional balls/lives to be added.
 	 */
 	public void addLives(int value) {
-		Lives.setLifeAmount(getLivesLeft() + value);
+		Lives.setLifeAmount(Lives.getLivesAmount() + value);
 	}
 
 	/**
@@ -375,6 +376,7 @@ public class Adapter implements GameParameters {
 	public void handleKeyDown(int updatetime, Integer input) {
 		// TODO write code that handles a "key pressed" event
 		// note: do not forget to call app.updateGame(updatetime);
+		
 	}
 
 	/**

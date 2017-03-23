@@ -14,6 +14,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import eea.engine.action.basicactions.ChangeStateAction;
 import eea.engine.entity.Entity;
@@ -44,6 +45,8 @@ public class MainMenuState extends BasicGameState implements GameParameters {
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		
+		if (!Breakout.getDebug()) {
+		
 		// set up volume
 		// start playing the background music
 		try {
@@ -65,24 +68,31 @@ public class MainMenuState extends BasicGameState implements GameParameters {
 		entityManager.addEntity(STORY_GAME_STATE, escListener);
 		entityManager.addEntity(ENDLESS_GAME_STATE, escListener);
 		entityManager.addEntity(ZONE_PICKER_STATE, escListener);
-		entityManager.addEntity(JUNGLE_ZONE_STATE, escListener);
+		entityManager.addEntity(MAGMA_ZONE_STATE, escListener);
 		entityManager.addEntity(ICE_ZONE_STATE, escListener);
 		entityManager.addEntity(NORMAL_ZONE_STATE, escListener);
-		// entityManager.addEntity(HIGHSCORE_STATE, escListener);
+		entityManager.addEntity(HIGHSCORE_STATE, escListener);
+		entityManager.addEntity(ABOUT_STATE, escListener);
 
 		entityManager.addEntity(getID(), new Button(128, 408, StateType.ZONEPICKER));
 		entityManager.addEntity(getID(), new Button(308, 408, StateType.ENDLESS));
 		entityManager.addEntity(getID(), new Button(484, 408, StateType.HIGHSCORE));
 		entityManager.addEntity(getID(), new Button(660, 408, StateType.QUIT));
-
+		entityManager.addEntity(getID(), new Button(765, 550, StateType.ABOUT));
+		
+		}
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 
+		if (!Breakout.getDebug()) {
+		
 		g.drawImage(new Image(MAIN_MENU_IMAGE), 0, 0);
 
 		entityManager.renderEntities(container, game, g);
+		
+		}
 	}
 
 	@Override
