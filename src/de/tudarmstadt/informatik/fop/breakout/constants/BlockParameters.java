@@ -20,6 +20,7 @@ public interface BlockParameters {
 	// order of these enum elements specify their IDS:
 	// e.g. 0 is NULL, 1 is STANDARD, 2 is IRON, ...
 
+	// not all implemented
 	public enum BlockType {
 		// 0 	 1 		  2 	3 	   4	  5		  6    7	 8
 		NULL, STANDARD, STONE, IRON, GOLD, DIAMOND, SNOW, ICE, DROPPER,
@@ -99,12 +100,6 @@ public interface BlockParameters {
 	public static final String BLOCK_JUNGLE_HIT_SOUND = "/sounds/blockSounds/blockHitWood.wav";
 	public static final String BLOCK_JUNGLE_REGENERATION_SOUND = "/sounds/blockSounds/jungleRegeneration.wav";
 	
-	// FIRE-BLOCK 1 HIT and lits the ball on fire
-	public static final String BLOCK_FIRE_IMAGE = "/images/blocks/block_fire.png";
-	public static final int BLOCK_FIRE_HITSLEFT = 1;
-	public static final int BLOCK_FIRE_SCORE = 75;
-	public static final String BLOCK_FIRE_HIT_SOUND = "/sounds/blockSounds/blockHitFire.wav";
-	
 	// MAGMA-BLOCK 3 HITS and can hurt player by dropping
 	public static final String BLOCK_MAGMA_IMAGE = "/images/blocks/block_magma.png";
 	public static final int BLOCK_MAGMA_HITSLEFT = 3;
@@ -116,12 +111,6 @@ public interface BlockParameters {
 	public static final int BLOCK_OBSIDIAN_HITSLEFT = 5;
 	public static final int BLOCK_OBSIDIAN_SCORE = 500;
 	public static final String BLOCK_OBSIDIAN_HIT_SOUND = "/sounds/blockSounds/blockHitStone.wav";
-	
-	// METEOR-BLOCK 2 HITS and ...
-	public static final String BLOCK_METEOR_IMAGE = "/images/blocks/block_meteor.png";
-	public static final int BLOCK_METEOR_HITSLEFT = 2;
-	public static final int BLOCK_METEOR_SCORE = 150;
-	public static final String BLOCK_METEOR_HIT_SOUND = "/sounds/blockSounds/blockHitStandard.wav";
 	
 	// GLASS-BLOCK 1 HIT
 	public static final String BLOCK_GLASS_IMAGE = "/images/blocks/block_glass.png";

@@ -13,6 +13,9 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 	public static final int WINDOW_WIDTH = 800;
 	public static final int WINDOW_HEIGHT = 600;
 	public static final int FRAME_RATE = 100;
+	
+	// Icon
+	public static final String GAME_ICON = "/images/icon.png";
 
 	// Sound
 	public static final float GAME_MUSIC_VOLUME = 0.05f;

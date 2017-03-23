@@ -68,8 +68,12 @@ public class Breakout extends StateBasedGame implements GameParameters {
 	private static AppGameContainer initBreakout() throws SlickException {
 		// Add this StateBasedGame to an AppGameContainer
 		breakout = new Breakout(false);
+		
 		AppGameContainer app;
 		app = new AppGameContainer(breakout);
+		
+		app.setIcon(GAME_ICON);
+		
 		return app;
 	}
 
