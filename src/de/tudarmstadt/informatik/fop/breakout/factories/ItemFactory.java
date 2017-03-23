@@ -5,6 +5,7 @@ import org.newdawn.slick.geom.Vector2f;
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.items.CompressStickItem;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.items.ExpandStickItem;
+import de.tudarmstadt.informatik.fop.breakout.gameobjects.items.MagmaDrop;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.items.MirrorStickItem;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.items.OneUp;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.items.RandomRebound;
@@ -55,6 +56,8 @@ public class ItemFactory implements IEntityFactory, GameParameters {
 		default:
 		case SPEEDUP:
 			return new SpeedUpItem(pos);
+		case MAGMADROP:
+			return new MagmaDrop(pos);
 		}
 	}
 

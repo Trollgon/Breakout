@@ -20,6 +20,7 @@ public interface ItemParameters {
 	public static final String COMPRESSSTICK_LOGO_PATH = "images/items/item_compress.png";
 	public static final String SHOOTPLAYER_LOGO_PATH = "images/items/item_shootplayer.png";
 	public static final String SLOWDOWN_LOGO_PATH = "images/items/item_speedup.png";
+	public static final String MAGMADROP_LOGO_PATH = "images/items/item_magmadrop.png";
 	
 	public static final String SPEEDUP_SOUND = "";
 	public static final String ONEUP_SOUND = "";
@@ -29,9 +30,10 @@ public interface ItemParameters {
 	public static final String COMPRESSSTICK_SOUND = "";
 	public static final String SHOOTPLAYER_SOUND = "";
 	public static final String SLOWDOWN_SOUND = "";
+	public static final String MAGMADROP_SOUND = "";
 
 	public static enum ItemType {
-		SPEEDUP, ONEUP, MIRRORSTICK, RANDOMREBOUND, EXPANDSTICK, COMPRESSSTICK, SLOWDOWN, SHOOTPLAYER
+		SPEEDUP, ONEUP, MIRRORSTICK, RANDOMREBOUND, EXPANDSTICK, COMPRESSSTICK, SLOWDOWN, SHOOTPLAYER, MAGMADROP
 	};
 
 }
