@@ -40,7 +40,6 @@ import eea.engine.event.basicevents.TimeEvent;
  */
 public abstract class BasicItem extends Entity implements GameParameters{
 	
-	protected Vector2f startPosition; // the position the item will spawn at
 	protected long duration; // the length of whatever the item does in ms
 	protected Action startAction; // this Action will be executed as soon as the item is collected
 	protected Action endAction; // this Action will be executed when the duration is over
@@ -59,8 +58,8 @@ public abstract class BasicItem extends Entity implements GameParameters{
 		super(itemID + itemNumber);
 		itemNumber++;
 		setPosition(startPosition);
-		setFallingSpeed(fallingSpeed);
-		setDuration(duration);
+		this.fallingSpeed = fallingSpeed;
+		this.duration = duration;
 		this.startAction = startAction;
 		this.endAction = endAction;
 		this.cancelCondition = cancelCondition;
@@ -119,29 +118,7 @@ public abstract class BasicItem extends Entity implements GameParameters{
 		addComponent(spawned);
 		addComponent(despawnEvent);
 	}
-	
-	public Vector2f getStartPosition() {
-		return startPosition;
-	}
-	public void setStartPosition(Vector2f p) {
-		startPosition = p;
-	}
-	
-	public long getDuration() {
-		return duration;
-	}
-	
-	public void setDuration(long d) {
-		duration = d;
-	}
-	
-	public float getFallingSpeed() {
-		return fallingSpeed;
-	}
-	
-	public void setFallingSpeed(float s) {
-		fallingSpeed = s;
-	}
+
 
 	
 }
