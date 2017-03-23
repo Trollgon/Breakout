@@ -13,10 +13,6 @@ public final class StandardBlock extends AbstractBlock {
 		super(xPos, yPos);
 	}
 	
-	public StandardBlock(int xPos, int yPos, int dontcare) {
-		super(xPos, yPos, dontcare);
-	}
-
 	@Override
 	void configureBlock() throws SlickException {
 		
@@ -26,6 +22,14 @@ public final class StandardBlock extends AbstractBlock {
 		setHitsLeft(BLOCK_STANDARD_HITSLEFT);
 		setScore(BLOCK_STANDARD_SCORE);
 
+	}
+	
+	// Alt. Cons.
+	public StandardBlock(int xPos, int yPos, int dontcare) {
+		super(xPos, yPos, dontcare);
+		setType(BlockGroup.UNSTABLE);
+		setHitsLeft(BLOCK_STANDARD_HITSLEFT);
+		setScore(BLOCK_STANDARD_SCORE);
 	}
 
 }

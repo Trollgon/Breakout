@@ -47,7 +47,7 @@ public class HighScoreState extends BasicGameState implements GameParameters {
 			font = new Font("Monospaced", Font.BOLD, 25);
 			tFont = new TrueTypeFont(font, true);
 
-			entityManager.addEntity(getID(), new ClearHighscoreButton(300, 500));
+			entityManager.addEntity(getID(), new ClearHighscoreButton(190, 480));
 		}
 	}
 
@@ -58,6 +58,8 @@ public class HighScoreState extends BasicGameState implements GameParameters {
 
 			g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
 
+			tFont.drawString(145, 462, "Löschen");
+			
 			try {
 				tFont.drawString(50, 50, HighscoreManager.displayHighscore()[0]);
 				int lineNumber = 90;
