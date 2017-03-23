@@ -63,7 +63,7 @@ public class Adapter implements GameParameters {
 	 * Diese Methode initialisiert das Spiel im Debug-Modus, d.h. es wird ein
 	 * AppGameContainer gestartet, der keine Fenster erzeugt und aktualisiert.
 	 * 
-	 * Sie müssen diese Methode erweitern
+	 * Sie mï¿½ssen diese Methode erweitern
 	 */
 	public void initializeGame() {
 
@@ -243,7 +243,7 @@ public class Adapter implements GameParameters {
 	 */
 	public boolean collides(Entity otherEntity) {
 
-		System.out.println(ball.collides(otherEntity));
+		
 		
 		if (otherEntity instanceof Stick) {
 			return (90 < ball.getRotation() && ball.getRotation() < 270)
