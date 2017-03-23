@@ -37,6 +37,7 @@ public class AfterMatchDisplayTextField extends TextField {
 			break;
 		case 6:
 			this.setText("Level fehlgeschlagen!");
+			break;
 		default:
 			break;	
 		}
