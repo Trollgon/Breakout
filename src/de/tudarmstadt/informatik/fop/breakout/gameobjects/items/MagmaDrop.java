@@ -9,9 +9,9 @@ import eea.engine.action.Action;
 import eea.engine.component.Component;
 /**
  * 
- * @author Peter Franke
+ * @author Jonas Grebe
  * 
- * Item that fires a shot and deducts a life if it hits the Stick
+ * Item that drops a Magma Drop on the Player (same effect as the ShootPlayerItem
  *
  */
 public class MagmaDrop extends BasicItem {
