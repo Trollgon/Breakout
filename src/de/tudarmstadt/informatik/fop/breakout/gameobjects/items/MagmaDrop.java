@@ -19,8 +19,8 @@ public class MagmaDrop extends BasicItem {
 	
 public MagmaDrop(Vector2f startPosition) {
 		
-		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION, FALLING SPEED, LOGO
-		super(ITEM_SHOOTPLAYER_ID, 0, startPosition, false, start, end,null, 1f, MAGMADROP_LOGO_PATH);
+		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION,CancelCondtition, FALLING SPEED, LOGO
+		super(ITEM_SHOOTPLAYER_ID, 0, startPosition, false, start, end, null, 1f, MAGMADROP_LOGO_PATH);
 		
 	}
 

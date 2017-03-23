@@ -1,12 +1,4 @@
 package de.tudarmstadt.informatik.fop.breakout.gameobjects.items;
-/*
- * Exemplary Speedup item class
- * 
- * NOT complete
- * Problems: Countdown will continue after loss of life -> may slow down below normal
- * 
- * 
- */
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
@@ -50,9 +42,9 @@ public class SpeedUpItem extends BasicItem {
 	} ;
 	public SpeedUpItem(Vector2f startPosition
 			) {
-		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION, FALLING SPEED, LOGO
+		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION, CancelCondition, FALLING SPEED, LOGO
 		super(ITEM_SPEEDUP_ID, 10000, startPosition,true, start, end, new LifeDeductionEvent(), 0.3f, SPEEDUP_LOGO_PATH);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 }

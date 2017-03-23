@@ -21,10 +21,9 @@ public class RandomRebound extends BasicItem {
 
 	public RandomRebound(Vector2f startPosition) {
 
-		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION,
-		// ENDACTION, FALLING SPEED, LOGO
+		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION, CancelCondition, FALLING SPEED, LOGO
 		super(ITEM_RANDOMREBOUND_ID, 10000, startPosition, true, start, end, new LifeDeductionEvent(), 0.3f, RANDOMREBOUND_LOGO_PATH);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	private static final Action start = new Action() {
@@ -35,7 +34,7 @@ public class RandomRebound extends BasicItem {
 			b.stickCollider.clearActions();
 			b.stickCollider.addAction(new Action() {
 				public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-					float randRot = (float) Math.random() * 100 - 50;
+					float randRot = (float) Math.random() * 100 - 50; //set the ball's rotation to a random value between -50 and +50
 					b.setRotation(randRot);
 					b.setPosition(new Vector2f(b.getPosition().getX(), b.getLauncher().getPosition().getY() - 28));
 				}
