@@ -28,6 +28,7 @@ import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import eea.engine.entity.StateBasedEntityManager;
 
 /**
+ * StoryGameState-class, state for the storygamebased gameplay
  * @author Matthias Spoerkmann
  */
 public class StoryGameState extends BasicGameState implements GameParameters {

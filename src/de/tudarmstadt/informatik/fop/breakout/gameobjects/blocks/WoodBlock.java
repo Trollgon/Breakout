@@ -4,6 +4,11 @@ import org.newdawn.slick.SlickException;
 
 import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnRandomItemAction;
 
+/**
+ * class to represent a wood block
+ * @author Jonas Henry Grebe
+ *
+ */
 public class WoodBlock extends AbstractBlock {
 
 	public WoodBlock(int xPos, int yPos) {

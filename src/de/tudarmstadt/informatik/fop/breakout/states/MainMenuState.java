@@ -21,6 +21,10 @@ import eea.engine.entity.Entity;
 import eea.engine.entity.StateBasedEntityManager;
 import eea.engine.event.basicevents.KeyPressedEvent;
 
+/**
+ * MainMenuState-class
+ *
+ */
 public class MainMenuState extends BasicGameState implements GameParameters {
 
 	private int stateID;

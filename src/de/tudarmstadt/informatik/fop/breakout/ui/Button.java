@@ -170,6 +170,7 @@ public class Button extends Entity implements GameParameters {
 
 		mainEvent = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
 		mainEvent.addAction(click);
+		mainEvent.addAction(new PlaySoundAction(BUTTON_CLICK_SOUND));
 
 		this.addComponent(new ImageRenderComponent(image));
 

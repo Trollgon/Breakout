@@ -7,6 +7,12 @@ import org.newdawn.slick.SlickException;
 import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnItemAction;
 import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnRandomItemAction;
 
+/**
+ * class to represent a dropper block,
+ * which drops a random Item when destroyed
+ * @author Jonas Henry Grebe
+ *
+ */
 public class DropperBlock extends AbstractBlock {
 
 	public DropperBlock(int xPos, int yPos) {

@@ -13,6 +13,12 @@ import eea.engine.component.Component;
 import eea.engine.entity.StateBasedEntityManager;
 import eea.engine.event.basicevents.TimeEvent;
 
+/**
+ * class to represent a magma block,
+ * which drops a hurting a magma drop at random
+ * @author Jonas Henry Grebe
+ *
+ */
 public class MagmaBlock extends AbstractBlock {
 
 

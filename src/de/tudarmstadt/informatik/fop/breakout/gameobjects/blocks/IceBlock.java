@@ -6,7 +6,6 @@ import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnItemAction;
 
 /**
  * class to represent an ice block
- * 
  * @author Jonas Henry Grebe
  *
  */

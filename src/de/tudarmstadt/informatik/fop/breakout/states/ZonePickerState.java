@@ -11,9 +11,11 @@ import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.managers.CheckPointManager;
 import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
+import eea.engine.action.basicactions.ChangeStateInitAction;
 import eea.engine.entity.StateBasedEntityManager;
 
 /**
+ * ZonePickerState-class, GUI for choosing a levelZone
  * @author Matthias Spoerkmann
  */
 public class ZonePickerState extends BasicGameState implements GameParameters {
@@ -50,6 +52,13 @@ public class ZonePickerState extends BasicGameState implements GameParameters {
 		if (checkpoint > 299) {
 			entityManager.addEntity(getID(), new Button(518, 190, ZoneType.MAGMAZONE));
 		}
+		
+		ChangeStateInitAction back = new ChangeStateInitAction(MAIN_MENU_STATE);
+		Image image = new Image("/images/buttons/back_button.png");
+		Button b = new Button(750, 550, back, image);
+		
+		entityManager.addEntity(getID(), b);
+		
 		
 		}
 

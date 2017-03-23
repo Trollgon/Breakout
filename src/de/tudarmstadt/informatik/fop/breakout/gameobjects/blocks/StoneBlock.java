@@ -4,6 +4,11 @@ import org.newdawn.slick.SlickException;
 
 import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnRandomItemAction;
 
+/**
+ * class to represent a stone block
+ * @author Jonas Henry Grebe
+ *
+ */
 public class StoneBlock extends AbstractBlock {
 
 	public StoneBlock(int xPos, int yPos) {

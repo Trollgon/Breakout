@@ -4,7 +4,7 @@ import de.tudarmstadt.informatik.fop.breakout.constants.StateParameters;
 
 import java.util.HashMap;
 
-/**
+/** Levels-class to manage the existing levels of the game
  * @author Matthias Spoerkmann
  */
 public class Levels {

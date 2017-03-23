@@ -37,9 +37,10 @@ public class LevelGenerator implements GameParameters {
 
 	private static BlockType[] blockTypes = BlockType.values();
 
-	/**
+	/** 
 	 * loads a level from a '.map' file and returns an ArrayList<Block> with all
 	 * blocks of the level
+	 * @author Jonas Henry Grebe
 	 * 
 	 * @param mapFile
 	 * @return ArrayList<Block> with all blocks of the given level-file
@@ -103,6 +104,7 @@ public class LevelGenerator implements GameParameters {
 	/**
 	 * returns a new ArrayList<AbstractBlock> with random blocks in a Row
 	 * 
+	 * @author Jonas Henry Grebe
 	 * @return ArrayList<AbstractBlock> of random blocks in the row directly
 	 *         'over the window'
 	 */
@@ -143,6 +145,7 @@ public class LevelGenerator implements GameParameters {
 	 * returns TRUE if top Row has moven down enough to create the next random
 	 * row
 	 * 
+	 * @author Jonas Henry Grebe
 	 * @return returns if the most top row (area of auxiliary rec) is empty
 	 */
 	public static boolean topRowMissing() {

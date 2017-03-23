@@ -6,7 +6,7 @@ import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnRandomItemAction;
 
 /**
  * class to represent a Earth block
- * @author Jonas
+ * @author Jonas Henry Grebe
  *
  */
 public class EarthBlock extends AbstractBlock {

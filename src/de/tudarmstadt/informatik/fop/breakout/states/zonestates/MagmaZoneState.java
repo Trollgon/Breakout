@@ -14,6 +14,10 @@ import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
 import eea.engine.entity.StateBasedEntityManager;
 
+/**
+ * magmaZoneState-class, GUI for picking the levels of the MagmaZone
+ *
+ */
 public class MagmaZoneState extends BasicGameState implements GameParameters {
 
 	private StateBasedEntityManager entityManager;
@@ -43,6 +47,12 @@ public class MagmaZoneState extends BasicGameState implements GameParameters {
 			if (CheckPointManager.getCheckpoint() > 303) {
 				entityManager.addEntity(getID(), new Button(598, 310, 304, ZoneType.MAGMAZONE));
 			}
+			
+			ChangeStateInitAction back = new ChangeStateInitAction(MAIN_MENU_STATE);
+			Image image = new Image("/images/buttons/back_button.png");
+			Button b = new Button(750, 550, back, image);
+			
+			entityManager.addEntity(getID(), b);
 		}
 	}
 

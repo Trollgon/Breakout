@@ -3,7 +3,7 @@ package de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks;
 import org.newdawn.slick.SlickException;
 
 /**
- * class to represent a snow block
+ * class to represent a Glass block
  * @author Jonas Henry Grebe
  *
  */

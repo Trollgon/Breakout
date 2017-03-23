@@ -5,7 +5,7 @@ import org.newdawn.slick.SlickException;
 import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnRandomItemAction;
 
 /**
- * class to represent a snow block
+ * class to represent a obsidian block
  * @author Jonas Henry Grebe
  *
  */

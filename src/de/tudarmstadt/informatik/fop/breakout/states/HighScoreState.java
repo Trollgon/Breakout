@@ -21,8 +21,14 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.ClearHighscoreButton;
 import de.tudarmstadt.informatik.fop.breakout.managers.HighscoreManager;
 import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
 import de.tudarmstadt.informatik.fop.breakout.ui.Button;
+import eea.engine.action.basicactions.ChangeStateInitAction;
 import eea.engine.entity.StateBasedEntityManager;
 
+/**
+ * HighscoreState-class, GUI for the highscores of the game
+ * @author Lukas Lehmann
+ *
+ */
 public class HighScoreState extends BasicGameState implements GameParameters {
 
 	private int stateID;
@@ -47,7 +53,13 @@ public class HighScoreState extends BasicGameState implements GameParameters {
 			font = new Font("Monospaced", Font.BOLD, 25);
 			tFont = new TrueTypeFont(font, true);
 
-			entityManager.addEntity(getID(), new ClearHighscoreButton(190, 480));
+			entityManager.addEntity(getID(), new ClearHighscoreButton(600, 550));
+			
+			ChangeStateInitAction back = new ChangeStateInitAction(MAIN_MENU_STATE);
+			Image image = new Image("/images/buttons/back_button.png");
+			Button b = new Button(750, 550, back, image);
+			
+			entityManager.addEntity(getID(), b);
 		}
 	}
 
@@ -58,7 +70,9 @@ public class HighScoreState extends BasicGameState implements GameParameters {
 
 			g.drawImage(new Image(BACKGROUND_IMAGE), 0, 0);
 
-			tFont.drawString(145, 462, "Löschen");
+			entityManager.renderEntities(container, game, g);
+			
+			tFont.drawString(555, 530, "Löschen");
 			
 			try {
 				tFont.drawString(50, 50, HighscoreManager.displayHighscore()[0]);
@@ -73,7 +87,7 @@ public class HighScoreState extends BasicGameState implements GameParameters {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			entityManager.renderEntities(container, game, g);
+			
 
 		}
 	}

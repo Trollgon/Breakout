@@ -14,6 +14,11 @@ import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.ui.Breakout;
 import eea.engine.entity.StateBasedEntityManager;
 
+/**
+ * about state - class to give information about the FoP-Project 2017
+ * @author Jonas Henry Grebe
+ *
+ */
 public class AboutState extends BasicGameState implements GameParameters {
 
 	private int stateID;
