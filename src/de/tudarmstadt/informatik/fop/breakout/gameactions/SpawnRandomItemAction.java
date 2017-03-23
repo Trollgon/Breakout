@@ -15,7 +15,7 @@ import eea.engine.entity.Entity;
 import eea.engine.entity.StateBasedEntityManager;
 /**
  * SpawnRandomItemAction class, used to spawn random items
- * @author Peter
+ * @author Peter Franke
  *
  */
 public class SpawnRandomItemAction implements GameParameters, Action {

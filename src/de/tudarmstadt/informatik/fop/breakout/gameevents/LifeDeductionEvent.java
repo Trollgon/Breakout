@@ -6,7 +6,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Lives;
 import eea.engine.event.Event;
 /**
- * 
+ * class of LifeDeduction Event
  * @author Peter Franke
  * 
  * event that fires if a Life is lost

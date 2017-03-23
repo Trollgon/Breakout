@@ -17,7 +17,8 @@ import eea.engine.interfaces.IEntityFactory;
 
 /**
  * ItemFactory class: helps to create a new Item by a ItemType
- * @author Jonas
+ * @author Jonas Henry Grebe
+ * @author Peter Franke
  *
  */
 public class ItemFactory implements IEntityFactory, GameParameters {

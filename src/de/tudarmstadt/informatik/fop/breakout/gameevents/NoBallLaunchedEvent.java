@@ -8,6 +8,12 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
 import eea.engine.entity.StateBasedEntityManager;
 import eea.engine.event.Event;
 
+/**
+ * Event which fires if no ball in the current state is launched.
+ * (used in StoryGameState or EndlessGameState)
+ * @author Jonas Henry Grebe
+ *
+ */
 public class NoBallLaunchedEvent extends Event implements GameParameters {
 
 	StateBasedEntityManager entityManager;

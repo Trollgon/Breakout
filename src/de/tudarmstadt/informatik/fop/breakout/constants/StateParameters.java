@@ -1,5 +1,9 @@
 package de.tudarmstadt.informatik.fop.breakout.constants;
 
+/**
+ * Class or holding all the state parameters and constants
+ *
+ */
 public interface StateParameters {
 
 	// Game Mode Settings

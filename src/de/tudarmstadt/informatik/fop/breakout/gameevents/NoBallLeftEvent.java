@@ -8,6 +8,11 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
 import eea.engine.entity.StateBasedEntityManager;
 import eea.engine.event.Event;
 
+/**
+ * Event which fires if no ball-entity exists
+ * @author Jonas Henry Grebe
+ *
+ */
 public class NoBallLeftEvent extends Event implements GameParameters {
 	
 	StateBasedEntityManager entityManager;
