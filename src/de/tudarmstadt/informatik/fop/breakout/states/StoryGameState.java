@@ -66,7 +66,9 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
-		loadLevel();
+		if (!Breakout.getDebug()) {
+			loadLevel();
+		}
 	}
 
 	@Override
@@ -86,7 +88,14 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 		entityManager.addEntity(getID(), new Score());
 		entityManager.addEntity(getID(), new StopWatch());
 		
-		}
+		} else
+			try {
+				LevelGenerator.parseLevelFromMap("maps/default.map").stream()
+				.forEach(b -> entityManager.addEntity(getID(), b));
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
 	}
 
 	@Override
