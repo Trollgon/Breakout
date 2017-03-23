@@ -143,13 +143,14 @@ public class Button extends Entity implements GameParameters {
 
 		// sets levelID only if this Button is clicked!
 		mainEvent.addAction((gameContainer, stateBasedGame, i,
-							 component) -> ((StoryGameState) Breakout.breakout.getState(STORY_GAME_STATE)).setLevelID(levelID));
+				component) -> ((StoryGameState) Breakout.breakout.getState(STORY_GAME_STATE)).setLevelID(levelID));
 
 		// tells the StoryGameState the zoneType
-		mainEvent.addAction((arg0, arg1, arg2, arg3) -> ((StoryGameState) Breakout.breakout.getState(STORY_GAME_STATE)).setZone(zone));
+		mainEvent.addAction((arg0, arg1, arg2, arg3) -> ((StoryGameState) Breakout.breakout.getState(STORY_GAME_STATE))
+				.setZone(zone));
 
 		try {
-			this.addComponent(new ImageRenderComponent(new Image (BUTTON_IMAGE)));
+			this.addComponent(new ImageRenderComponent(new Image(BUTTON_IMAGE)));
 
 		} catch (SlickException e) {
 			e.printStackTrace();
@@ -159,7 +160,20 @@ public class Button extends Entity implements GameParameters {
 		mainEvent.addAction(changeState);
 
 		mainEvent.addAction(new PlaySoundAction(BUTTON_CLICK_SOUND));
-		
+
 		this.addComponent(mainEvent);
 	}
+
+	public Button(int xPos, int yPos, Action click, Image image) {
+		super(BUTTON_ID);
+		this.setPosition(new Vector2f(xPos, yPos));
+
+		mainEvent = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
+		mainEvent.addAction(click);
+
+		this.addComponent(new ImageRenderComponent(image));
+
+		this.addComponent(mainEvent);
+	}
+
 }

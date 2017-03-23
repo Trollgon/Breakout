@@ -55,18 +55,18 @@ public class NormalZoneState extends BasicGameState implements GameParameters {
 
 			entityManager.renderEntities(container, game, g);
 
-			g.drawString("Level 1", 110, 180);
+			g.drawString("Level 1", 160, 180);
 
 			if (CheckPointManager.getCheckpoint() > 101) {
-				g.drawString("Level 2", 100, 300);
+				g.drawString("Level 2", 160, 300);
 			}
 
 			if (CheckPointManager.getCheckpoint() > 102) {
-				g.drawString("Level 3", 490, 180);
+				g.drawString("Level 3", 550, 180);
 			}
 			
 			if (CheckPointManager.getCheckpoint() > 103) {
-				g.drawString("Level 4", 490, 300);
+				g.drawString("Level 4", 550, 300);
 			}
 		}
 	}

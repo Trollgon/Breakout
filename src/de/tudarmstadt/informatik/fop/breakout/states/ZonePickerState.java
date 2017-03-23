@@ -48,7 +48,7 @@ public class ZonePickerState extends BasicGameState implements GameParameters {
 			entityManager.addEntity(getID(), new Button(218, 310, ZoneType.ICEZONE));
 		}
 		if (checkpoint > 299) {
-			entityManager.addEntity(getID(), new Button(218, 430, ZoneType.MAGMAZONE));
+			entityManager.addEntity(getID(), new Button(518, 190, ZoneType.MAGMAZONE));
 		}
 		
 		}
@@ -64,12 +64,13 @@ public class ZonePickerState extends BasicGameState implements GameParameters {
 
 		entityManager.renderEntities(container, game, g);
 
-		g.drawString("Normal Zone", 110, 180);
+		g.drawString("Normal Zone", 150, 180);
+		
 		if (checkpoint > 199) {
-			g.drawString("Ice Zone", 110, 300);
+			g.drawString("Ice Zone", 150, 300);
 		}
 		if (checkpoint > 199) {
-			g.drawString("Magma Zone", 110, 420);
+			g.drawString("Magma Zone", 450, 180);
 		}
 		
 		}

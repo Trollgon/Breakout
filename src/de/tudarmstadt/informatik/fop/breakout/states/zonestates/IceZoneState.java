@@ -54,17 +54,17 @@ public class IceZoneState extends BasicGameState implements GameParameters {
 
 			entityManager.renderEntities(container, game, g);
 
-			g.drawString("Level 1", 100, 180);
+			g.drawString("Level 1", 160, 180);
 
 			if (CheckPointManager.getCheckpoint() > 201) {
-				g.drawString("Level 2", 100, 300);
+				g.drawString("Level 2", 160, 300);
 			}
 
 			if (CheckPointManager.getCheckpoint() > 202) {
-				g.drawString("Level 3", 490, 180);
+				g.drawString("Level 3", 550, 180);
 			}
 			if (CheckPointManager.getCheckpoint() > 203) {
-				g.drawString("Level 4", 490, 300);
+				g.drawString("Level 4", 550, 300);
 			}
 		}
 	}
