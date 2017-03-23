@@ -90,7 +90,7 @@ public class StoryGameState extends BasicGameState implements GameParameters {
 		
 		} else
 			try {
-				LevelGenerator.parseLevelFromMap("maps/default.map").stream()
+				LevelGenerator.parseLevelFromMap("maps/default.map", 0).stream()
 				.forEach(b -> entityManager.addEntity(getID(), b));
 			} catch (IOException e) {
 

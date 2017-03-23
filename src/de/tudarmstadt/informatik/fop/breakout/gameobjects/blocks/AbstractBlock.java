@@ -277,12 +277,8 @@ public abstract class AbstractBlock extends Entity implements IHitable, GamePara
 		setSize(new Vector2f(BLOCK_WIDTH, BLOCK_HEIGHT));
 
 		// to be overwritten later:
-		setHitSound(BLOCK_STANDARD_HIT_SOUND);
-
 		addEvents();
 		addActions();
-
-		this.addComponent(new ImageRenderComponent(getBlockImage()));
 
 		this.addComponent(always);
 		this.addComponent(totalDestruction);

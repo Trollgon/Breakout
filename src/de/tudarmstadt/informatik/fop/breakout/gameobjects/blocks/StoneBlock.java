@@ -20,5 +20,13 @@ public class StoneBlock extends AbstractBlock {
 		setScore(BLOCK_STONE_SCORE);
 
 	}
+	
+	//Alternative Cons.
+	public StoneBlock(int xPos, int yPos, int dontcare) {
+		super(xPos, yPos, dontcare);
+		setType(BlockGroup.UNSTABLE);
+		setHitsLeft(BLOCK_STONE_HITSLEFT);
+		setScore(BLOCK_STONE_SCORE);
+	}
 
 }

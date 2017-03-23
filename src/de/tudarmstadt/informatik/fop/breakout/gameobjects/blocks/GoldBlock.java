@@ -23,5 +23,14 @@ public final class GoldBlock extends AbstractBlock {
 		setHitsLeft(BLOCK_GOLD_HITSLEFT);
 		setScore(BLOCK_GOLD_SCORE);
 	}
+	
+	// Alternative Constructor
+	public GoldBlock(int xPos, int yPos, int dontcare) {
+		super(xPos, yPos, dontcare);
+		setType(BlockGroup.UNSTABLE);
+		setHitsLeft(BLOCK_GOLD_HITSLEFT);
+		setScore(BLOCK_GOLD_SCORE);
+	}
+	
 
 }

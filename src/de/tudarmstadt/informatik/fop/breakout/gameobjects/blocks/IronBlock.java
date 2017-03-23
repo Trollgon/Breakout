@@ -25,5 +25,14 @@ public final class IronBlock extends AbstractBlock {
 		setScore(BLOCK_IRON_SCORE);
 		
 	}
+	
+
+	// Alternative Constructor
+	public IronBlock(int xPos, int yPos, int dontcare) {
+		super(xPos, yPos, dontcare);
+		setType(BlockGroup.SOLID);
+		setHitsLeft(BLOCK_IRON_HITSLEFT);
+		setScore(BLOCK_IRON_SCORE);
+	}
 
 }

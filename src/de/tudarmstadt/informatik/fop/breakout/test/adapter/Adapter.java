@@ -1,10 +1,12 @@
 package de.tudarmstadt.informatik.fop.breakout.test.adapter;
 
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.constants.BlockParameters.BlockType;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Lives;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Stick;
@@ -39,10 +41,8 @@ public class Adapter implements GameParameters {
 		breakout = null;
 
 		stick = new Stick(0);
-		// stick.setSize(new Vector2f(130, 25));
-		setLives(3);
-		
-		ball = (Ball) createBallInstance(BALL_ID);  
+		ball = new Ball(stick, 0);
+		this.setLives(3);
 		entityManager = StateBasedEntityManager.getInstance();
 	}
 
@@ -62,7 +62,7 @@ public class Adapter implements GameParameters {
 	 * Diese Methode initialisiert das Spiel im Debug-Modus, d.h. es wird ein
 	 * AppGameContainer gestartet, der keine Fenster erzeugt und aktualisiert.
 	 * 
-	 * Sie mÃ¼ssen diese Methode erweitern
+	 * Sie müssen diese Methode erweitern
 	 */
 	public void initializeGame() {
 
@@ -77,6 +77,9 @@ public class Adapter implements GameParameters {
 					System.getProperty("user.dir") + "/native/" + System.getProperty("os.name").toLowerCase());
 		}
 
+
+		System.err.println(System.getProperty("org.lwjgl.librarypath"));
+		
 		// Initialize the game in debug mode (no GUI output)
 		breakout = new Breakout(true);
 
@@ -135,10 +138,7 @@ public class Adapter implements GameParameters {
 	 */
 	public Entity createBallInstance(String ballID) {
 
-		Ball b = new Ball(stick, 0);
-		b.setSize(new Vector2f(25,25));
-		
-		return b;
+		return new Ball(stick, 0);
 	}
 
 	/**
@@ -155,9 +155,10 @@ public class Adapter implements GameParameters {
 	 */
 	public IHitable createBlockInstance(String blockID, int hitsUntilDestroyed) {
 
-		AbstractBlock block =  LevelGenerator.getBlockByID(BlockType.STANDARD, 0, 0, 0);
-		block.setHitsLeft(hitsUntilDestroyed);
-		return block;
+		BlockType[] types = BlockType.values();
+		BlockType type = types[hitsUntilDestroyed];
+
+		return LevelGenerator.getBlockByID(type, 0, 0, 0);
 	}
 
 	/**
@@ -244,6 +245,9 @@ public class Adapter implements GameParameters {
 	 */
 	public boolean collides(Entity otherEntity) {
 
+		if (otherEntity instanceof Ball) {
+			return false;
+		}
 		return ball.collides(otherEntity);
 	}
 
@@ -261,7 +265,7 @@ public class Adapter implements GameParameters {
 	 *            the number of additional balls/lives to be added.
 	 */
 	public void addLives(int value) {
-		Lives.setLifeAmount(Lives.getLivesAmount() + value);
+		Lives.setLifeAmount(getLivesLeft() + value);
 	}
 
 	/**
@@ -298,7 +302,7 @@ public class Adapter implements GameParameters {
 	 * ********************** Block **********************
 	 * ***************************************************
 	 */
-
+	
 	/**
 	 * Sets a number of necessary hits for degrading this block
 	 * 
@@ -308,7 +312,27 @@ public class Adapter implements GameParameters {
 	 *            blockID ID of the chosen block
 	 */
 	public void setHitsLeft(int hitsLeft, String blockID) {
-		((AbstractBlock) entityManager.getEntity(STORY_GAME_STATE, blockID)).setHitsLeft(hitsLeft);
+		int yNum, xNum;
+		if (blockID.length() == 8) {
+			yNum = Integer.parseInt(blockID.substring(7, 8));
+			xNum = Integer.parseInt(blockID.substring(5, 6));
+		}
+		else {
+			yNum = Integer.parseInt(blockID.substring(8, 9));
+			xNum = Integer.parseInt(blockID.substring(5, 7));
+		}
+		int xPos = BLOCK_WIDTH / 2 + xNum * BLOCK_WIDTH;
+		int yPos = BLOCK_HEIGHT / 2 + yNum * BLOCK_HEIGHT;
+		Object[] blockAtPos = new Object[1];
+		Object[] blockAtPos2 = entityManager.getEntitiesByState(STORY_GAME_STATE).stream()
+				.filter(x -> (x instanceof AbstractBlock))
+				.filter(x -> ((x.getPosition().getX() == xPos) && (x.getPosition().getY() == yPos)))
+				.toArray();
+		if (blockAtPos2.length == 0)
+			blockAtPos[0] = null;
+		else
+			blockAtPos[0] = blockAtPos2[0];
+		((AbstractBlock) blockAtPos[0]).setHitsLeft(hitsLeft);
 	}
 
 	/**
@@ -319,7 +343,27 @@ public class Adapter implements GameParameters {
 	 * @return number of hits
 	 */
 	public int getHitsLeft(String blockID) {
-		return ((AbstractBlock) entityManager.getEntity(STORY_GAME_STATE, blockID)).getHitsLeft();
+		int yNum, xNum;
+		if (blockID.length() == 8) {
+			yNum = Integer.parseInt(blockID.substring(7, 8));
+			xNum = Integer.parseInt(blockID.substring(5, 6));
+		}
+		else {
+			yNum = Integer.parseInt(blockID.substring(8, 9));
+			xNum = Integer.parseInt(blockID.substring(5, 7));
+		}
+		int xPos = BLOCK_WIDTH / 2 + xNum * BLOCK_WIDTH;
+		int yPos = BLOCK_HEIGHT / 2 + yNum * BLOCK_HEIGHT;
+		Object[] blockAtPos = new Object[1];
+		Object[] blockAtPos2 = entityManager.getEntitiesByState(STORY_GAME_STATE).stream()
+				.filter(x -> (x instanceof AbstractBlock))
+				.filter(x -> ((x.getPosition().getX() == xPos) && (x.getPosition().getY() == yPos)))
+				.toArray();
+		if (blockAtPos2.length == 0)
+			blockAtPos[0] = null;
+		else
+			blockAtPos[0] = blockAtPos2[0];
+		return ((AbstractBlock) blockAtPos[0]).getHitsLeft();
 	}
 
 	/**
@@ -331,7 +375,27 @@ public class Adapter implements GameParameters {
 	 *            blockID ID of the chosen block
 	 */
 	public void addHitsLeft(int hitsLeft, String blockID) {
-		((AbstractBlock) entityManager.getEntity(STORY_GAME_STATE, blockID)).addHitsLeft(hitsLeft);
+		int yNum, xNum;
+		if (blockID.length() == 8) {
+			yNum = Integer.parseInt(blockID.substring(7, 8));
+			xNum = Integer.parseInt(blockID.substring(5, 6));
+		}
+		else {
+			yNum = Integer.parseInt(blockID.substring(8, 9));
+			xNum = Integer.parseInt(blockID.substring(5, 7));
+		}
+		int xPos = BLOCK_WIDTH / 2 + xNum * BLOCK_WIDTH;
+		int yPos = BLOCK_HEIGHT / 2 + yNum * BLOCK_HEIGHT;
+		Object[] blockAtPos = new Object[1];
+		Object[] blockAtPos2 = entityManager.getEntitiesByState(STORY_GAME_STATE).stream()
+				.filter(x -> (x instanceof AbstractBlock))
+				.filter(x -> ((x.getPosition().getX() == xPos) && (x.getPosition().getY() == yPos)))
+				.toArray();
+		if (blockAtPos2.length == 0)
+			blockAtPos[0] = null;
+		else
+			blockAtPos[0] = blockAtPos2[0];
+		((AbstractBlock) blockAtPos[0]).addHitsLeft(hitsLeft);
 	}
 
 	/**
@@ -342,8 +406,27 @@ public class Adapter implements GameParameters {
 	 * @return true, if block has hits left, else false
 	 */
 	public boolean hasHitsLeft(String blockID) {
-		return ((AbstractBlock) entityManager.getEntity(STORY_GAME_STATE, blockID)).hasHitsLeft();
-	}
+		int yNum, xNum;
+		if (blockID.length() == 8) {
+			yNum = Integer.parseInt(blockID.substring(7, 8));
+			xNum = Integer.parseInt(blockID.substring(5, 6));
+		}
+		else {
+			yNum = Integer.parseInt(blockID.substring(8, 9));
+			xNum = Integer.parseInt(blockID.substring(5, 7));
+		}
+		int xPos = BLOCK_WIDTH / 2 + xNum * BLOCK_WIDTH;
+		int yPos = BLOCK_HEIGHT / 2 + yNum * BLOCK_HEIGHT;
+		Object[] blockAtPos = new Object[1];
+		Object[] blockAtPos2 = entityManager.getEntitiesByState(STORY_GAME_STATE).stream()
+				.filter(x -> (x instanceof AbstractBlock))
+				.filter(x -> ((x.getPosition().getX() == xPos) && (x.getPosition().getY() == yPos)))
+				.toArray();
+		if (blockAtPos2.length == 0)
+			blockAtPos[0] = null;
+		else
+			blockAtPos[0] = blockAtPos2[0];
+		return ((AbstractBlock) blockAtPos[0]).hasHitsLeft();	}
 
 	/*
 	 * ***************************************************
@@ -377,7 +460,15 @@ public class Adapter implements GameParameters {
 	public void handleKeyDown(int updatetime, Integer input) {
 		// TODO write code that handles a "key pressed" event
 		// note: do not forget to call app.updateGame(updatetime);
-		
+		app.getTestInput().setKeyDown(input);
+		System.out.println(stick.getSize());
+		stick.update(app, breakout, updatetime);
+		try {
+			app.updateGame(updatetime);
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -386,6 +477,8 @@ public class Adapter implements GameParameters {
 	public void handleKeyDownRightArrow() {
 		// TODO write code for handling a "right arrow" key press
 		// hint: you may use the above method.
+		handleKeyDown(200, 205);
+		System.out.println(this.stick.getPosition().getX());
 	}
 
 	/**
@@ -394,5 +487,8 @@ public class Adapter implements GameParameters {
 	public void handleKeyDownLeftArrow() {
 		// TODO write code for handling a "left arrow" key press
 		// hint: you may use the above method.
+		handleKeyDown(200, 203);
+		System.out.println(this.stick.getPosition().getX());
+
 	}
 }

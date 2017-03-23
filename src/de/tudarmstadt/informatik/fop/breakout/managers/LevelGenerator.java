@@ -218,12 +218,11 @@ public class LevelGenerator implements GameParameters {
 		case DROPPER:
 			return new DropperBlock(xPos, yPos);
 		case GOLD:
-			return new GoldBlock(xPos, yPos);
+			return new GoldBlock(xPos, yPos, dontcare);
 		case ICE:
 			return new IceBlock(xPos, yPos);
 		case IRON:
-			return new IronBlock(xPos, yPos);
-		// JUST FOR THE TEST_ADAPTER
+			return new IronBlock(xPos, yPos, dontcare);
 		case STANDARD:
 			return new StandardBlock(xPos, yPos, dontcare);
 		case DIAMOND:
@@ -242,14 +241,70 @@ public class LevelGenerator implements GameParameters {
 		case OBSIDIAN:
 			return new ObsidianBlock(xPos, yPos);
 		case STONE:
-			return new StoneBlock(xPos, yPos);
+			return new StoneBlock(xPos, yPos, dontcare);
 		case JUNGLE:
-			return null;
+			// return new JungleBlock(xPos, yPos);
 		case WOOD:
 			return new WoodBlock(xPos, yPos);
 		default:
 		case NULL:
 			return null;
 		}
+	}
+	
+	// ALTERNATIVE METHOD (TEST ONLY) //
+	public static ArrayList<AbstractBlock> parseLevelFromMap(String mapFile, int dontcare) throws IOException {
+
+		ArrayList<AbstractBlock> blocks = new ArrayList<AbstractBlock>();
+
+		// just start reading the file if its a .map-file
+		if (mapFile.endsWith(".map")) {
+
+			// block that will be configured and added to blocks
+			AbstractBlock block = null;
+
+			// FileReader and StreamTokenizer to parse the file
+			FileReader reader = new FileReader(mapFile);
+			StreamTokenizer st = new StreamTokenizer(reader);
+
+			// grid-positions: x -> 0 to 15 for each row
+			// y -> 0 to 9 for each column
+			int gridX = 0, gridY = 0;
+
+			// x-/y-positions in the window
+			int xPos, yPos;
+
+			// setting ',' to separate the different Tokens
+			st.whitespaceChars(',', ',');
+			// setting the Tokenizer to endOfLine-significant:
+			st.eolIsSignificant(true);
+
+			// start reading the given .map-file
+			while (st.nextToken() != StreamTokenizer.TT_EOF) {
+
+				if (st.ttype == StreamTokenizer.TT_NUMBER) {
+
+					// calculating the position of the next block:
+					xPos = SIDE_SPACE + BLOCK_WIDTH * gridX;
+					yPos = TOP_SPACE + BLOCK_HEIGHT * gridY;
+
+					block = getBlockByID(blockTypes[(int) st.nval], xPos, yPos, dontcare);
+
+					gridX++;
+
+					// end of line reached:
+				} else if (st.ttype == StreamTokenizer.TT_EOL) {
+					gridX = 0;
+					gridY++;
+				}
+
+				// adds the configured new block to the ArrayList<Block>
+				if (block != null) {
+					blocks.add(block);
+				}
+			}
+		}
+
+		return blocks;
 	}
 }
