@@ -2,6 +2,8 @@ package de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks;
 
 import org.newdawn.slick.SlickException;
 
+import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnRandomItemAction;
+
 /**
  * class to represent a snow block
  * @author Jonas Henry Grebe
@@ -22,7 +24,7 @@ public class ObsidianBlock extends AbstractBlock {
 
 		setHitsLeft(BLOCK_OBSIDIAN_HITSLEFT);
 		setScore(BLOCK_OBSIDIAN_SCORE);
-
+		totalDestruction.addAction(new SpawnRandomItemAction(0.15));
 	}
 
 }

@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.factories.ItemFactory;
+import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnItemAction;
 import eea.engine.action.Action;
 import eea.engine.component.Component;
 import eea.engine.entity.StateBasedEntityManager;
@@ -52,6 +53,7 @@ public class MagmaBlock extends AbstractBlock {
 		});
 		
 		this.addComponent(drop);
+		totalDestruction.addAction(new SpawnItemAction(ItemType.MAGMADROP, 0.5));
 	}
 	
 

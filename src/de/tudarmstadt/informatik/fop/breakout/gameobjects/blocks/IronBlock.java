@@ -2,6 +2,8 @@ package de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks;
 
 import org.newdawn.slick.SlickException;
 
+import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnRandomItemAction;
+
 /**
  * class to represent an Iron block
  * @author Jonas Henry Grebe
@@ -23,7 +25,7 @@ public final class IronBlock extends AbstractBlock {
 		
 		setHitsLeft(BLOCK_IRON_HITSLEFT);
 		setScore(BLOCK_IRON_SCORE);
-		
+		totalDestruction.addAction(new SpawnRandomItemAction(0.2));
 	}
 	
 

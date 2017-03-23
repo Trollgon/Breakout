@@ -2,6 +2,8 @@ package de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks;
 
 import org.newdawn.slick.SlickException;
 
+import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnRandomItemAction;
+
 /**
  * class to represent a Standard block
  * @author Jonas Henry Grebe
@@ -21,7 +23,7 @@ public final class StandardBlock extends AbstractBlock {
 		
 		setHitsLeft(BLOCK_STANDARD_HITSLEFT);
 		setScore(BLOCK_STANDARD_SCORE);
-
+		totalDestruction.addAction(new SpawnRandomItemAction(0.15));
 	}
 	
 	// Alt. Cons.
