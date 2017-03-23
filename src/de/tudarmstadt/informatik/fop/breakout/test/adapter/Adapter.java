@@ -41,6 +41,7 @@ public class Adapter implements GameParameters {
 
 		stick = new Stick(0);
 		// stick.setSize(new Vector2f(130, 25));
+		setLives(3);
 		
 		ball = (Ball) createBallInstance(BALL_ID);  
 		entityManager = StateBasedEntityManager.getInstance();
