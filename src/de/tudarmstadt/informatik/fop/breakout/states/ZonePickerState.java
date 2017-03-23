@@ -53,6 +53,7 @@ public class ZonePickerState extends BasicGameState implements GameParameters {
 			entityManager.addEntity(getID(), new Button(518, 190, ZoneType.MAGMAZONE));
 		}
 		
+		// back-to-main-menu button
 		ChangeStateInitAction back = new ChangeStateInitAction(MAIN_MENU_STATE);
 		Image image = new Image("/images/buttons/back_button.png");
 		Button b = new Button(750, 550, back, image);

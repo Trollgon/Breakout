@@ -9,6 +9,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
+import de.tudarmstadt.informatik.fop.breakout.gameactions.PlaySoundAction;
 import de.tudarmstadt.informatik.fop.breakout.managers.HighscoreManager;
 import eea.engine.action.Action;
 import eea.engine.component.Component;
@@ -37,7 +38,7 @@ public class ClearHighscoreButton extends Entity implements GameParameters {
 		this.setPosition(new Vector2f(xPos, yPos));
 		
 		try {
-			this.addComponent(new ImageRenderComponent(new Image(CLEAR_HIGHSCORE_BUTTON_IMAGE)));
+			this.addComponent(new ImageRenderComponent(new Image(BUTTON_IMAGE)));
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -55,6 +56,8 @@ public class ClearHighscoreButton extends Entity implements GameParameters {
 				}
 			}
 		});
+		
+		mainEvent.addAction(new PlaySoundAction(BUTTON_CLICK_SOUND));
 		
 		this.addComponent(mainEvent);
 		

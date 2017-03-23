@@ -218,11 +218,11 @@ public class Ball extends Entity implements GameParameters {
 		borderCollider.addAction(new PlaySoundAction(BORDER_HIT_SOUND));
 		
 		// bounces ball at stick
+		stickCollider.addAction(new PlaySoundAction(STICK_HIT_SOUND));
 		stickCollider.addAction((arg0, arg1, arg2, arg3) -> {
 			setRotation(Physics2D.bounceStick(getRotation(), (Ball) stickCollider.getOwnerEntity(), getLauncher()));
 			});
 		
-
 		// moves ball if launched
 		hasLaunched.addAction(new MoveForwardAction(getSpeed()));
 		// sets the not launched ball on the launcher's position

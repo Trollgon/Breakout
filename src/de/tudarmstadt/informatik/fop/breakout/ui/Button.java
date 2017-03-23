@@ -164,6 +164,13 @@ public class Button extends Entity implements GameParameters {
 		this.addComponent(mainEvent);
 	}
 
+	/**
+	 * general button constructor
+	 * @param xPos of the new button
+	 * @param yPos of the new button
+	 * @param click Action the button activates if clicked
+	 * @param image representation of the button
+	 */
 	public Button(int xPos, int yPos, Action click, Image image) {
 		super(BUTTON_ID);
 		this.setPosition(new Vector2f(xPos, yPos));

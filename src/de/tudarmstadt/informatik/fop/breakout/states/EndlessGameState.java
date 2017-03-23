@@ -159,9 +159,14 @@ public class EndlessGameState extends BasicGameState implements GameParameters, 
 		if (gameEnded) {
 			if ((enterName instanceof EnterNameTextField) && (((EnterNameTextField) enterName).getPressedEnter())) {
 				try {
-					HighscoreManager.addPlayerToHighscore(new Player(enterName.getText(),
-							((Score) entityManager.getEntity(ENDLESS_GAME_STATE, SCORE_ID)).getScoreCount(),
-							((StopWatch) entityManager.getEntity(ENDLESS_GAME_STATE, STOP_WATCH_ID)).getTime()));
+					if (enterName.getText() == "")
+						HighscoreManager.addPlayerToHighscore(new Player("Guido",
+								((Score) entityManager.getEntity(ENDLESS_GAME_STATE, SCORE_ID)).getScoreCount(),
+								((StopWatch) entityManager.getEntity(ENDLESS_GAME_STATE, STOP_WATCH_ID)).getTime()));
+					else
+						HighscoreManager.addPlayerToHighscore(new Player(enterName.getText(),
+								((Score) entityManager.getEntity(ENDLESS_GAME_STATE, SCORE_ID)).getScoreCount(),
+								((StopWatch) entityManager.getEntity(ENDLESS_GAME_STATE, STOP_WATCH_ID)).getTime()));
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

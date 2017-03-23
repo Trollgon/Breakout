@@ -53,8 +53,9 @@ public class HighScoreState extends BasicGameState implements GameParameters {
 			font = new Font("Monospaced", Font.BOLD, 25);
 			tFont = new TrueTypeFont(font, true);
 
-			entityManager.addEntity(getID(), new ClearHighscoreButton(600, 550));
+			entityManager.addEntity(getID(), new ClearHighscoreButton(550, 550));
 			
+			// back-to-main-menu button
 			ChangeStateInitAction back = new ChangeStateInitAction(MAIN_MENU_STATE);
 			Image image = new Image("/images/buttons/back_button.png");
 			Button b = new Button(750, 550, back, image);
@@ -72,7 +73,7 @@ public class HighScoreState extends BasicGameState implements GameParameters {
 
 			entityManager.renderEntities(container, game, g);
 			
-			tFont.drawString(555, 530, "Löschen");
+			tFont.drawString(490, 530, "Löschen");
 			
 			try {
 				tFont.drawString(50, 50, HighscoreManager.displayHighscore()[0]);

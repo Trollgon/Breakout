@@ -56,6 +56,8 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 	public static final String STICK_ID = "stick";
 	public static final float STICK_SPEED = 1.5f;
 	public static final String STICK_IMAGE = "/images/stick.png";
+	public static final String STICK_HIT_SOUND = "/sounds/hitStick.wav";
+
 
 	// Lives
 	public static final String LIVES_ID = "lives";
@@ -84,6 +86,5 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 	// Highscore
 	public static final String HIGHSCORE_FILE = "highscores/highscore.hsc";
 	public static final String CLEAR_HIGHSCORE_BUTTON_ID = "clearHighscoreButton";
-	public static final String CLEAR_HIGHSCORE_BUTTON_IMAGE = "/images/buttons/clear_highscore_button.png";
 
 }
