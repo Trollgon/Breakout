@@ -18,10 +18,20 @@ import eea.engine.event.ANDEvent;
 import eea.engine.event.basicevents.MouseClickedEvent;
 import eea.engine.event.basicevents.MouseEnteredEvent;
 
+/**
+ * This class represents a button that clears the highscore file.
+ * @author Lukas
+ *
+ */
 public class ClearHighscoreButton extends Entity implements GameParameters {
 
 	ANDEvent mainEvent;
 	
+	/**
+	 * Constructor.
+	 * @param xPos .
+	 * @param yPos .
+	 */
 	public ClearHighscoreButton(int xPos, int yPos) {
 		super(CLEAR_HIGHSCORE_BUTTON_ID);
 		this.setPosition(new Vector2f(xPos, yPos));

@@ -56,6 +56,11 @@ public class HighscoreManager implements GameParameters {
 		return false;
 	}
 	
+	/**
+	 * Returns the content of the highscore file as a list of player.
+	 * @return
+	 * @throws IOException
+	 */
 	public static LinkedList<Player> getHisghscoreAsList() throws IOException {
 		FileReader highscore = new FileReader(HIGHSCORE_FILE);
 		StreamTokenizer st = new StreamTokenizer(highscore);
@@ -129,9 +134,6 @@ public class HighscoreManager implements GameParameters {
 		st.whitespaceChars(',', ',');
 		st.eolIsSignificant(false);
 		
-		//StringBuilder display = new StringBuilder();
-		//String lineSeparator = System.getProperty("line.separator");
-		
 		String[] display = new String[11];
 		
 		int place = 1;
@@ -145,9 +147,7 @@ public class HighscoreManager implements GameParameters {
 		StringBuilder timeBuilder = new StringBuilder();
 		
 		display[0] = "    Name                      Score       Time";
-		
-		//display.append("    Name                      Score       Time" + lineSeparator + lineSeparator);
-		
+				
 		while (st.nextToken() != StreamTokenizer.TT_EOF) {
 			if (i == 1)
 				name = (String) st.sval;
@@ -174,10 +174,6 @@ public class HighscoreManager implements GameParameters {
 				else
 					display[place] = (place + ". " + nameBuilder.toString() + "  " + scoreBuilder.toString() + "  " + timeBuilder.toString());
 				
-				/*if(place < 10)
-					display.append(" ");
-				display.append(place + ". " + nameBuilder.toString() + "  " + scoreBuilder.toString() + "  " + timeBuilder.toString() + lineSeparator);
-				*/
 				i = 1;
 				place++;
 				nameBuilder.delete(0, nameBuilder.length());

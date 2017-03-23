@@ -13,6 +13,13 @@ public class EnterNameTextField extends TextField {
 	
 	static TrueTypeFont tFont = new TrueTypeFont(new Font("Monospaced", Font.BOLD, 15), true);
 	
+	/**
+	 * This textfield will appear after a match in EndlessGameState when the score is good enough.
+	 * User will be able to enter his name here. Then his stats will be saved in the highscore file.
+	 * @param container .
+	 * @param x .
+	 * @param y .
+	 */
 	public EnterNameTextField(GUIContext container, int x, int y) {
 		super(container, tFont, x, y, 200, 25);
 		this.setBackgroundColor(Color.black);
@@ -24,18 +31,25 @@ public class EnterNameTextField extends TextField {
 		this.setCursorPos(0);
 	}
 	
+	/**
+	 * true if enter pressed.
+	 * @return
+	 */
 	public boolean getPressedEnter() {
 		return this.pressedEnter;
 	}
 	
 	@Override
 	public void keyPressed (int key, char c) { 
+		// Enter -> sets pressedEnter true;
 		if (key == 28) {
 			this.pressedEnter = true;
 			this.setAcceptingInput(false);
 		}
+		// ',' or Space -> ignores input
 		else if (key == 51);
 		else if (key == Input.KEY_SPACE);
+		// else uses super-method
 		else {
 			super.keyPressed(key, c);
 		}

@@ -2,6 +2,8 @@ package de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks;
 
 import org.newdawn.slick.SlickException;
 
+import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnRandomItemAction;
+
 public class StoneBlock extends AbstractBlock {
 
 	public StoneBlock(int xPos, int yPos) {
@@ -18,7 +20,7 @@ public class StoneBlock extends AbstractBlock {
 		
 		setHitsLeft(BLOCK_STONE_HITSLEFT);
 		setScore(BLOCK_STONE_SCORE);
-
+		totalDestruction.addAction(new SpawnRandomItemAction(0.2));
 	}
 	
 	//Alternative Cons.
