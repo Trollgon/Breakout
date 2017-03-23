@@ -19,7 +19,7 @@ public interface ItemParameters {
 	public static final String EXPANDSTICK_LOGO_PATH = "images/items/item_expand.png";
 	public static final String COMPRESSSTICK_LOGO_PATH = "images/items/item_compress.png";
 	public static final String SHOOTPLAYER_LOGO_PATH = "images/items/item_shootplayer.png";
-	public static final String SLOWDOWN_LOGO_PATH = "images/items/item_speedup.png";
+	public static final String SLOWDOWN_LOGO_PATH = "images/items/item_slowdown.png";
 	public static final String MAGMADROP_LOGO_PATH = "images/items/item_magmadrop.png";
 	
 	public static final String SPEEDUP_SOUND = "";
