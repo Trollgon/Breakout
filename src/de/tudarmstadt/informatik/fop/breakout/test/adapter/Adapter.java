@@ -461,7 +461,6 @@ public class Adapter implements GameParameters {
 		// TODO write code that handles a "key pressed" event
 		// note: do not forget to call app.updateGame(updatetime);
 		app.getTestInput().setKeyDown(input);
-		System.out.println(stick.getSize());
 		stick.update(app, breakout, updatetime);
 		try {
 			app.updateGame(updatetime);
