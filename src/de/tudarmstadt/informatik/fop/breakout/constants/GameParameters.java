@@ -84,6 +84,5 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 	// Highscore
 	public static final String HIGHSCORE_FILE = "highscores/highscore.hsc";
 	public static final String CLEAR_HIGHSCORE_BUTTON_ID = "clearHighscoreButton";
-	public static final String CLEAR_HIGHSCORE_BUTTON_IMAGE = "/images/buttons/clear_highscore_button.png";
 
 }
