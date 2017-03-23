@@ -2,6 +2,7 @@ package de.tudarmstadt.informatik.fop.breakout.gameobjects;
 
 import java.awt.Font;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.gui.GUIContext;
 import org.newdawn.slick.gui.TextField;
@@ -34,6 +35,7 @@ public class EnterNameTextField extends TextField {
 			this.setAcceptingInput(false);
 		}
 		else if (key == 51);
+		else if (key == Input.KEY_SPACE);
 		else {
 			super.keyPressed(key, c);
 		}

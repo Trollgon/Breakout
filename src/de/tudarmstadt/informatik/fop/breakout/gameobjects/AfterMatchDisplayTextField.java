@@ -32,6 +32,10 @@ public class AfterMatchDisplayTextField extends TextField {
 		case 4:
 			this.setText("Highscore verfehlt!");
 			break;
+		case 5:
+			this.setText("Level erfolgreich!");
+		case 6:
+			this.setText("Level fehlgeschlagen!");
 		default:
 			break;	
 		}
