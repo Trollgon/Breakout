@@ -8,10 +8,19 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
 import eea.engine.entity.StateBasedEntityManager;
 import eea.engine.event.Event;
 
+/**
+ * Event that fires if no ball is launched.
+ * @author Lukas
+ *
+ */
 public class NoBallLaunchedEvent extends Event implements GameParameters {
 
 	StateBasedEntityManager entityManager;
 
+	/**
+	 * Constructor of the event.
+	 * @param id
+	 */
 	public NoBallLaunchedEvent(String id) {
 		super(id);
 

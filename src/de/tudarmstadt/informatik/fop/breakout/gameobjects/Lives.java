@@ -69,6 +69,9 @@ public class Lives extends Entity implements GameParameters {
 			setLifeAmount(0);
 	}
 
+	/**
+	 * increments the livesAmount by 1
+	 */
 	public static void incrementLife() {
 		if (getLivesAmount() < 3) {
 			// playSound
@@ -78,6 +81,10 @@ public class Lives extends Entity implements GameParameters {
 
 	}
 
+	/**
+	 * sets the lives amount at value
+	 * @param value
+	 */
 	public static void setLifeAmount(int value) {
 		livesAmount = value;
 	}

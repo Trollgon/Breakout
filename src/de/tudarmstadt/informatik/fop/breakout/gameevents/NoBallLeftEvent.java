@@ -8,10 +8,19 @@ import de.tudarmstadt.informatik.fop.breakout.gameobjects.Ball;
 import eea.engine.entity.StateBasedEntityManager;
 import eea.engine.event.Event;
 
+/**
+ * Event that fires if no ball is left in the entity manager.
+ * @author Lukas
+ *
+ */
 public class NoBallLeftEvent extends Event implements GameParameters {
 	
 	StateBasedEntityManager entityManager;
 
+	/**
+	 * Constructor of the event.
+	 * @param id
+	 */
 	public NoBallLeftEvent(String id) {
 		super(id);
 	

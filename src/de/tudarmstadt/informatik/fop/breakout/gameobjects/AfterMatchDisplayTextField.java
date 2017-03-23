@@ -6,12 +6,32 @@ import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.gui.GUIContext;
 import org.newdawn.slick.gui.TextField;
 
+/**
+ * This Textfields will appear after any match, giving some information, like score, time, etc., usually without user interaction.
+ * @author Lukas
+ *
+ */
 public class AfterMatchDisplayTextField extends TextField {
 
 	static TrueTypeFont tFont = new TrueTypeFont(new Font("Monospaced", Font.BOLD, 15), true);
 
 	private boolean pressedEnter;
 	
+	/**
+	 * Construcor of an AfterMatchDisplayTextField creates a display with a text.
+	 * @param container .
+	 * @param x .
+	 * @param y .
+	 * @param kindOfDisplay
+	 * 1: score display
+	 * 2: time display
+	 * 3: "Name eingeben"
+	 * 4: "Highscore verfehlt!"
+	 * 5: "Level erfolgreich!"
+	 * 6: "Level fehlgeschlagen"
+	 * else: empty textfield
+	 * @param scoreOrTime a given value, used in case 1 and 2 (above)
+	 */
 	public AfterMatchDisplayTextField(GUIContext container, int x, int y, int kindOfDisplay, int scoreOrTime) {
 		super(container, tFont, x, y, 200, 25);
 		this.setBackgroundColor(Color.black);
@@ -43,12 +63,17 @@ public class AfterMatchDisplayTextField extends TextField {
 		}
 	}
 	
+	/**
+	 * true if enter pressed.
+	 * @return
+	 */
 	public boolean getPressedEnter() {
 		return this.pressedEnter;
 	}
 	
 	@Override
 	public void keyPressed (int key, char c) { 
+		// only reacts to enter
 		if (key == 28) {
 			this.pressedEnter = true;
 		}
