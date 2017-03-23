@@ -31,7 +31,6 @@ public class Countdown extends Entity implements GameParameters {
 	private Action endAction;
 	private boolean startActionExecuted;
 	private Event startEvent;
-	private TimeEvent end;
 	
 	private static int idnumber = 0;
 	
@@ -67,14 +66,14 @@ public class Countdown extends Entity implements GameParameters {
 	}
 	
 	private void configureEvents(){
-		end = new TimeEvent(Math.round(length / 5.56), false); //really weird timescale of the TimeEvent
 		
-		timeOver = new ANDEvent(end, new Event("timeIsOver") {
+		timeOver = new Event("timeIsOver") {
 			@Override
 			protected boolean performAction(GameContainer arg0, StateBasedGame arg1, int arg2) {
-				return isRunning() && startActionExecuted /*&& (System.currentTimeMillis() > getEndTime()) */ ;
+				return isRunning() && startActionExecuted && (System.currentTimeMillis() > getEndTime());
 			}
-		});
+		};
+		
 		startEvent = new Event("start") {
 			
 			@Override

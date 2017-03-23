@@ -13,10 +13,10 @@ import eea.engine.event.Event;
  *
  */
 public class LifeDeductionEvent extends Event {
-	int livesCount;
+	int livesCount; //used to count the number of lives
 	public LifeDeductionEvent() {
 		super("life_deduction");
-			livesCount = Lives.getLivesAmount();
+			livesCount = Lives.getLivesAmount(); 
 		
 	}
 	@Override
