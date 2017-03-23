@@ -11,7 +11,7 @@ import eea.engine.component.Component;
  * 
  * @author Jonas Grebe
  * 
- * Item that drops a Magma Drop on the Player (same effect as the ShootPlayerItem
+ * Item that drops a Magma Drop on the Player (same effect as the ShootPlayerItem)
  *
  */
 public class MagmaDrop extends BasicItem {
