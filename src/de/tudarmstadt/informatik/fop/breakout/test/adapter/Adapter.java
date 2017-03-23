@@ -1,5 +1,6 @@
 package de.tudarmstadt.informatik.fop.breakout.test.adapter;
 
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
@@ -376,7 +377,13 @@ public class Adapter implements GameParameters {
 	public void handleKeyDown(int updatetime, Integer input) {
 		// TODO write code that handles a "key pressed" event
 		// note: do not forget to call app.updateGame(updatetime);
-		
+		app.getTestInput().setKeyDown(input);
+		try {
+			app.updateGame(updatetime);
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -385,6 +392,7 @@ public class Adapter implements GameParameters {
 	public void handleKeyDownRightArrow() {
 		// TODO write code for handling a "right arrow" key press
 		// hint: you may use the above method.
+		handleKeyDown(0, Input.KEY_RIGHT);
 	}
 
 	/**
@@ -393,5 +401,6 @@ public class Adapter implements GameParameters {
 	public void handleKeyDownLeftArrow() {
 		// TODO write code for handling a "left arrow" key press
 		// hint: you may use the above method.
+		handleKeyDown(0, Input.KEY_LEFT);
 	}
 }
