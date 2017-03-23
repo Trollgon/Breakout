@@ -42,6 +42,7 @@ public class Adapter implements GameParameters {
 
 		stick = new Stick(0);
 		ball = new Ball(stick, 0);
+		
 		this.setLives(3);
 		entityManager = StateBasedEntityManager.getInstance();
 	}
@@ -76,9 +77,6 @@ public class Adapter implements GameParameters {
 			System.setProperty("org.lwjgl.librarypath",
 					System.getProperty("user.dir") + "/native/" + System.getProperty("os.name").toLowerCase());
 		}
-
-
-		System.err.println(System.getProperty("org.lwjgl.librarypath"));
 		
 		// Initialize the game in debug mode (no GUI output)
 		breakout = new Breakout(true);
@@ -245,9 +243,13 @@ public class Adapter implements GameParameters {
 	 */
 	public boolean collides(Entity otherEntity) {
 
-		if (otherEntity instanceof Ball) {
-			return false;
+		System.out.println(ball.collides(otherEntity));
+		
+		if (otherEntity instanceof Stick) {
+			return (90 < ball.getRotation() && ball.getRotation() < 270)
+					&& ball.collides(otherEntity);
 		}
+		
 		return ball.collides(otherEntity);
 	}
 

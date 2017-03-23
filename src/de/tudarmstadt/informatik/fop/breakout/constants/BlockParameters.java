@@ -1,5 +1,10 @@
 package de.tudarmstadt.informatik.fop.breakout.constants;
 
+/**
+ * Class for holding all the block parameters and constants
+ * @author Jonas Henry Grebe
+ *
+ */
 public interface BlockParameters {
 
 	// Blocks
@@ -19,8 +24,8 @@ public interface BlockParameters {
 
 	// order of these enum elements specify their IDS:
 	// e.g. 0 is NULL, 1 is STANDARD, 2 is IRON, ...
-
-	// not all implemented
+	// not all implemented!
+	
 	public enum BlockType {
 		// 0 	 1 		  2 	3 	   4	  5		  6    7	 8
 		NULL, STANDARD, STONE, IRON, GOLD, DIAMOND, SNOW, ICE, DROPPER,

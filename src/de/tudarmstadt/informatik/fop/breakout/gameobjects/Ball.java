@@ -4,6 +4,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
@@ -121,7 +122,7 @@ public class Ball extends Entity implements GameParameters {
 		setLastCollisionEntity(getLauncher());
 
 		setPosition(getLauncher().getLaunchPos());
-
+		setSize(new Vector2f(25, 25));
 		configureEvents();
 
 		setSpeed(INITIAL_BALL_SPEED);
@@ -235,12 +236,6 @@ public class Ball extends Entity implements GameParameters {
 		// destroys this ball if it leaves the window
 		leftScreen.addAction(new DestroyEntityAction());
 
-	}
-
-	@Override
-	public boolean collides(Entity otherEntity) {
-		// TODO
-		return super.collides(otherEntity);
 	}
 
 	public Stick getLauncher() {

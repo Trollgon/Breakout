@@ -1,5 +1,10 @@
 package de.tudarmstadt.informatik.fop.breakout.constants;
 
+/**
+ * Class for holding all the item parameters and constants
+ * @author Peter Franke
+ *
+ */
 public interface ItemParameters {
 
 	// Items
