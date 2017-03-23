@@ -18,11 +18,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/slick"/>
-	<classpathentry kind="lib" path="translator.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/breakout/docs/translatorDocu.zip!/doc"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="eea.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:platform:/resource/Breakout/docs/eea_doc.zip!/"/>
