@@ -49,7 +49,7 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 	public static final float MAX_BALL_SPEED = 15f;
 	public static final float MIN_BALL_SPEED = 0.5f;
 	public static final float SPEEDUP_VALUE = 0.0001f;
-	public static final String BALL_IMAGE = "/images/guido.png";
+	public static final String BALL_IMAGE = "/images/guido_in_rl.png";
 
 	// Stick
 	public static final String COLLECT_ITEM_SOUND = "sounds/itemHitStick.wav";
