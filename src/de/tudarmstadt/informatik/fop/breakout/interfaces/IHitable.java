@@ -5,7 +5,7 @@ package de.tudarmstadt.informatik.fop.breakout.interfaces;
  * @author Tobias Otterbein, Benedikt Wartusch
  *
  */
-public interface IHitable{
+public interface IHitable {
 	
 	/**
 	 * Sets a number of necessary hits for degrading an entity

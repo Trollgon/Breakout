@@ -25,16 +25,16 @@ public class TestKeyBoardInput {
 		@Test
 		public void testNewGame() {
 			adapter.initializeGame();
-			assertTrue(adapter.getStateBasedGame().getCurrentStateID()==GameParameters.MAINMENU_STATE);
+			assertTrue(adapter.getStateBasedGame().getCurrentStateID()==GameParameters.MAIN_MENU_STATE);
 			adapter.changeToGameplayState();
-			assertTrue(adapter.getStateBasedGame().getCurrentStateID()==GameParameters.GAMEPLAY_STATE);
+			assertTrue(adapter.getStateBasedGame().getCurrentStateID()==GameParameters.STORY_GAME_STATE);
 		}
 		
 		@Test
 		public void testSitckMoveLeft() {
 			adapter.initializeGame();
 			adapter.changeToGameplayState();
-			adapter. handleKeyDownLeftArrow();
+			adapter.handleKeyDownLeftArrow();
 			assertTrue("Your stick should move left when pressing left arrow", adapter.getStickPosition().getX() < 200);
 		}
 		
@@ -42,7 +42,7 @@ public class TestKeyBoardInput {
 		public void testSitckMoveRight() {
 			adapter.initializeGame();
 			adapter.changeToGameplayState();
-			adapter. handleKeyDownRightArrow();
+			adapter.handleKeyDownRightArrow();
 			assertTrue("Your stick should move right when pressing right arrow", adapter.getStickPosition().getX() > 600);
 		}
 		

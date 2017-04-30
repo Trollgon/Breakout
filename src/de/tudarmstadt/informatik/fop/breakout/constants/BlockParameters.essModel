@@ -1,0 +1,78 @@
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::<<Unknown>>::Entity]
+X=1820
+Y=40
+
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::de.tudarmstadt.informatik.fop.breakout.constants::GameParameters]
+X=840
+Y=567
+
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks::AbstractBlock]
+X=1820
+Y=121
+
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks::DiamondBlock]
+X=1835
+Y=567
+
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks::DropperBlock]
+X=1630
+Y=567
+
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks::EarthBlock]
+X=225
+Y=567
+
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks::GlassBlock]
+X=20
+Y=567
+
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks::GoldBlock]
+X=635
+Y=567
+
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks::IceBlock]
+X=430
+Y=567
+
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks::IronBlock]
+X=3065
+Y=567
+
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks::JungleBlock]
+X=2860
+Y=567
+
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks::MagmaBlock]
+X=3475
+Y=567
+
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks::ObsidianBlock]
+X=3270
+Y=567
+
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks::SnowBlock]
+X=2245
+Y=567
+
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks::StandardBlock]
+X=2040
+Y=567
+
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks::StoneBlock]
+X=2655
+Y=567
+
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks::WoodBlock]
+X=2450
+Y=567
+
+[Box: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks - ::de.tudarmstadt.informatik.fop.breakout.interfaces::IHitable]
+X=1260
+Y=567
+
+[Diagram: ::de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks]
+OffsetX=323
+OffsetY=0
+Visibility=2
+ShowAssoc=0
+

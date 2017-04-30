@@ -45,3 +45,17 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+.idea/workspace.xml
+.idea/workspace.xml
+
+# Added by myself
+bin/
+.idea/
+.idea/workspace.xml
+.idea/misc.xml
+Breakout.iml
+Breakout.eml
+
+docs/eaa_doc.zip
+docs/slickJavaDoc.zip
+
