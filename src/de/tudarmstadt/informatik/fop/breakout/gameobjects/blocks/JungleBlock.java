@@ -68,6 +68,6 @@ public class JungleBlock extends AbstractBlock {
 		});
 
 		// starts the regeneration if block is hurt by ball
-		this.collider.addAction(startRegeneration);
+		// this.collider.addAction(startRegeneration);
 	}
 }

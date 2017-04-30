@@ -1,5 +1,6 @@
 package de.tudarmstadt.informatik.fop.breakout.test.adapter;
 
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
@@ -39,8 +40,10 @@ public class Adapter implements GameParameters {
 	public Adapter() {
 		breakout = null;
 
-		stick = new Stick();
-		ball = new Ball(stick);
+		stick = new Stick(0);
+		ball = new Ball(stick, 0);
+		
+		this.setLives(3);
 		entityManager = StateBasedEntityManager.getInstance();
 	}
 
@@ -60,10 +63,11 @@ public class Adapter implements GameParameters {
 	 * Diese Methode initialisiert das Spiel im Debug-Modus, d.h. es wird ein
 	 * AppGameContainer gestartet, der keine Fenster erzeugt und aktualisiert.
 	 * 
-	 * Sie müssen diese Methode erweitern
+	 * Sie m�ssen diese Methode erweitern
 	 */
 	public void initializeGame() {
 
+		
 		// Set the library path depending on the operating system
 		if (System.getProperty("os.name").toLowerCase().contains("windows")) {
 			System.setProperty("org.lwjgl.librarypath", System.getProperty("user.dir") + "/native/windows");
@@ -73,7 +77,7 @@ public class Adapter implements GameParameters {
 			System.setProperty("org.lwjgl.librarypath",
 					System.getProperty("user.dir") + "/native/" + System.getProperty("os.name").toLowerCase());
 		}
-
+		
 		// Initialize the game in debug mode (no GUI output)
 		breakout = new Breakout(true);
 
@@ -132,7 +136,7 @@ public class Adapter implements GameParameters {
 	 */
 	public Entity createBallInstance(String ballID) {
 
-		return new Ball(stick);
+		return new Ball(stick, 0);
 	}
 
 	/**
@@ -152,7 +156,7 @@ public class Adapter implements GameParameters {
 		BlockType[] types = BlockType.values();
 		BlockType type = types[hitsUntilDestroyed];
 
-		return LevelGenerator.getBlockByID(type, 0, 0);
+		return LevelGenerator.getBlockByID(type, 0, 0, 0);
 	}
 
 	/**
@@ -239,9 +243,13 @@ public class Adapter implements GameParameters {
 	 */
 	public boolean collides(Entity otherEntity) {
 
-		if (otherEntity instanceof Ball) {
-			return false;
+		
+		
+		if (otherEntity instanceof Stick) {
+			return (90 < ball.getRotation() && ball.getRotation() < 270)
+					&& ball.collides(otherEntity);
 		}
+		
 		return ball.collides(otherEntity);
 	}
 
@@ -296,7 +304,7 @@ public class Adapter implements GameParameters {
 	 * ********************** Block **********************
 	 * ***************************************************
 	 */
-
+	
 	/**
 	 * Sets a number of necessary hits for degrading this block
 	 * 
@@ -306,7 +314,27 @@ public class Adapter implements GameParameters {
 	 *            blockID ID of the chosen block
 	 */
 	public void setHitsLeft(int hitsLeft, String blockID) {
-		((AbstractBlock) entityManager.getEntity(STORY_GAME_STATE, blockID)).setHitsLeft(hitsLeft);
+		int yNum, xNum;
+		if (blockID.length() == 8) {
+			yNum = Integer.parseInt(blockID.substring(7, 8));
+			xNum = Integer.parseInt(blockID.substring(5, 6));
+		}
+		else {
+			yNum = Integer.parseInt(blockID.substring(8, 9));
+			xNum = Integer.parseInt(blockID.substring(5, 7));
+		}
+		int xPos = BLOCK_WIDTH / 2 + xNum * BLOCK_WIDTH;
+		int yPos = BLOCK_HEIGHT / 2 + yNum * BLOCK_HEIGHT;
+		Object[] blockAtPos = new Object[1];
+		Object[] blockAtPos2 = entityManager.getEntitiesByState(STORY_GAME_STATE).stream()
+				.filter(x -> (x instanceof AbstractBlock))
+				.filter(x -> ((x.getPosition().getX() == xPos) && (x.getPosition().getY() == yPos)))
+				.toArray();
+		if (blockAtPos2.length == 0)
+			blockAtPos[0] = null;
+		else
+			blockAtPos[0] = blockAtPos2[0];
+		((AbstractBlock) blockAtPos[0]).setHitsLeft(hitsLeft);
 	}
 
 	/**
@@ -317,7 +345,27 @@ public class Adapter implements GameParameters {
 	 * @return number of hits
 	 */
 	public int getHitsLeft(String blockID) {
-		return ((AbstractBlock) entityManager.getEntity(STORY_GAME_STATE, blockID)).getHitsLeft();
+		int yNum, xNum;
+		if (blockID.length() == 8) {
+			yNum = Integer.parseInt(blockID.substring(7, 8));
+			xNum = Integer.parseInt(blockID.substring(5, 6));
+		}
+		else {
+			yNum = Integer.parseInt(blockID.substring(8, 9));
+			xNum = Integer.parseInt(blockID.substring(5, 7));
+		}
+		int xPos = BLOCK_WIDTH / 2 + xNum * BLOCK_WIDTH;
+		int yPos = BLOCK_HEIGHT / 2 + yNum * BLOCK_HEIGHT;
+		Object[] blockAtPos = new Object[1];
+		Object[] blockAtPos2 = entityManager.getEntitiesByState(STORY_GAME_STATE).stream()
+				.filter(x -> (x instanceof AbstractBlock))
+				.filter(x -> ((x.getPosition().getX() == xPos) && (x.getPosition().getY() == yPos)))
+				.toArray();
+		if (blockAtPos2.length == 0)
+			blockAtPos[0] = null;
+		else
+			blockAtPos[0] = blockAtPos2[0];
+		return ((AbstractBlock) blockAtPos[0]).getHitsLeft();
 	}
 
 	/**
@@ -329,7 +377,27 @@ public class Adapter implements GameParameters {
 	 *            blockID ID of the chosen block
 	 */
 	public void addHitsLeft(int hitsLeft, String blockID) {
-		((AbstractBlock) entityManager.getEntity(STORY_GAME_STATE, blockID)).addHitsLeft(hitsLeft);
+		int yNum, xNum;
+		if (blockID.length() == 8) {
+			yNum = Integer.parseInt(blockID.substring(7, 8));
+			xNum = Integer.parseInt(blockID.substring(5, 6));
+		}
+		else {
+			yNum = Integer.parseInt(blockID.substring(8, 9));
+			xNum = Integer.parseInt(blockID.substring(5, 7));
+		}
+		int xPos = BLOCK_WIDTH / 2 + xNum * BLOCK_WIDTH;
+		int yPos = BLOCK_HEIGHT / 2 + yNum * BLOCK_HEIGHT;
+		Object[] blockAtPos = new Object[1];
+		Object[] blockAtPos2 = entityManager.getEntitiesByState(STORY_GAME_STATE).stream()
+				.filter(x -> (x instanceof AbstractBlock))
+				.filter(x -> ((x.getPosition().getX() == xPos) && (x.getPosition().getY() == yPos)))
+				.toArray();
+		if (blockAtPos2.length == 0)
+			blockAtPos[0] = null;
+		else
+			blockAtPos[0] = blockAtPos2[0];
+		((AbstractBlock) blockAtPos[0]).addHitsLeft(hitsLeft);
 	}
 
 	/**
@@ -340,8 +408,27 @@ public class Adapter implements GameParameters {
 	 * @return true, if block has hits left, else false
 	 */
 	public boolean hasHitsLeft(String blockID) {
-		return ((AbstractBlock) entityManager.getEntity(STORY_GAME_STATE, blockID)).hasHitsLeft();
-	}
+		int yNum, xNum;
+		if (blockID.length() == 8) {
+			yNum = Integer.parseInt(blockID.substring(7, 8));
+			xNum = Integer.parseInt(blockID.substring(5, 6));
+		}
+		else {
+			yNum = Integer.parseInt(blockID.substring(8, 9));
+			xNum = Integer.parseInt(blockID.substring(5, 7));
+		}
+		int xPos = BLOCK_WIDTH / 2 + xNum * BLOCK_WIDTH;
+		int yPos = BLOCK_HEIGHT / 2 + yNum * BLOCK_HEIGHT;
+		Object[] blockAtPos = new Object[1];
+		Object[] blockAtPos2 = entityManager.getEntitiesByState(STORY_GAME_STATE).stream()
+				.filter(x -> (x instanceof AbstractBlock))
+				.filter(x -> ((x.getPosition().getX() == xPos) && (x.getPosition().getY() == yPos)))
+				.toArray();
+		if (blockAtPos2.length == 0)
+			blockAtPos[0] = null;
+		else
+			blockAtPos[0] = blockAtPos2[0];
+		return ((AbstractBlock) blockAtPos[0]).hasHitsLeft();	}
 
 	/*
 	 * ***************************************************
@@ -375,6 +462,14 @@ public class Adapter implements GameParameters {
 	public void handleKeyDown(int updatetime, Integer input) {
 		// TODO write code that handles a "key pressed" event
 		// note: do not forget to call app.updateGame(updatetime);
+		app.getTestInput().setKeyDown(input);
+		stick.update(app, breakout, updatetime);
+		try {
+			app.updateGame(updatetime);
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -383,6 +478,8 @@ public class Adapter implements GameParameters {
 	public void handleKeyDownRightArrow() {
 		// TODO write code for handling a "right arrow" key press
 		// hint: you may use the above method.
+		handleKeyDown(200, 205);
+		System.out.println(this.stick.getPosition().getX());
 	}
 
 	/**
@@ -391,5 +488,8 @@ public class Adapter implements GameParameters {
 	public void handleKeyDownLeftArrow() {
 		// TODO write code for handling a "left arrow" key press
 		// hint: you may use the above method.
+		handleKeyDown(200, 203);
+		System.out.println(this.stick.getPosition().getX());
+
 	}
 }

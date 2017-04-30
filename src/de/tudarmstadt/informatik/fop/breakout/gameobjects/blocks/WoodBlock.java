@@ -2,6 +2,13 @@ package de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks;
 
 import org.newdawn.slick.SlickException;
 
+import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnRandomItemAction;
+
+/**
+ * class to represent a wood block
+ * @author Jonas Henry Grebe
+ *
+ */
 public class WoodBlock extends AbstractBlock {
 
 	public WoodBlock(int xPos, int yPos) {
@@ -18,6 +25,7 @@ public class WoodBlock extends AbstractBlock {
 		
 		setHitsLeft(BLOCK_WOOD_HITSLEFT);
 		setScore(BLOCK_WOOD_SCORE);
+		totalDestruction.addAction(new SpawnRandomItemAction(0.12));
 
 	}
 

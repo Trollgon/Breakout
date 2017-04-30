@@ -5,7 +5,14 @@ import java.util.Random;
 import org.newdawn.slick.SlickException;
 
 import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnItemAction;
+import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnRandomItemAction;
 
+/**
+ * class to represent a dropper block,
+ * which drops a random Item when destroyed
+ * @author Jonas Henry Grebe
+ *
+ */
 public class DropperBlock extends AbstractBlock {
 
 	public DropperBlock(int xPos, int yPos) {
@@ -23,12 +30,7 @@ public class DropperBlock extends AbstractBlock {
 		setHitsLeft(BLOCK_DROPPER_HITSLEFT);
 		setScore(BLOCK_DROPPER_SCORE);
 		
-		// get random ItemType
-		ItemType[] items = ItemType.values();
-		Random random = new Random();
-		ItemType iType = items[random.nextInt(items.length)];
-		
-		this.totalDestruction.addAction(new SpawnItemAction(iType));
+		this.totalDestruction.addAction(new SpawnRandomItemAction());
 	}
 
 }

@@ -8,7 +8,7 @@ import eea.engine.component.render.ImageRenderComponent;
 
 /**
  * factory for LiveHeart ImageRenderComponents
- * @author Jonas
+ * @author Jonas Henry Grebe
  *
  */
 public class LiveHeartFactory implements GameParameters{

@@ -38,8 +38,9 @@ public class TestBall {
 
     // angle lower 90 degrees
     adapter.setRotation(45);
+    
     // ball do not collide
-    adapter.setPosition(new Vector2f(200, borderY + adapter.getSize().getY() / 2 + 1));
+  	adapter.setPosition(new Vector2f(200, borderY + adapter.getSize().getY() / 2 + 1));
     assertFalse("no collision at top Border with angle 45 and wrong position", adapter.collides(topBorder));
     // ball do collide
     adapter.setPosition(new Vector2f(200, borderY + adapter.getSize().getY() / 2));
@@ -79,7 +80,7 @@ public class TestBall {
     assertFalse("no collision at right border with angle 180", adapter.collides(rightBorder));
     adapter.setRotation(0);
     assertFalse("no collision at right border with angle 0", adapter.collides(rightBorder));
-
+    
     // angle between 179 and 1
     adapter.setRotation(179);
     // ball do not collide

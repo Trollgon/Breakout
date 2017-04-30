@@ -1,6 +1,8 @@
 package de.tudarmstadt.informatik.fop.breakout.managers;
 
-public class Player implements Comparable<Player> {
+import de.tudarmstadt.informatik.fop.breakout.interfaces.IHighscoreEntry;
+
+public class Player implements Comparable<Player>, IHighscoreEntry {
 
 	private String name;
 	private int score;
@@ -51,6 +53,27 @@ public class Player implements Comparable<Player> {
 	@Override
 	public String toString() {
 		return (this.name + "," + this.score + "," + this.time + ",");
+	}
+
+	@Override
+	public String getPlayerName() {
+		return this.name;
+	}
+
+	@Override
+	public int getNumberOfDestroyedBlocks() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public float getElapsedTime() {
+		return this.time;
+	}
+
+	@Override
+	public double getPoints() {
+		return this.score;
 	}
 
 }

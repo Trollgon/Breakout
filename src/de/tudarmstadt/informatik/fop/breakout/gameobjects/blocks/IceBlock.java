@@ -6,7 +6,6 @@ import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnItemAction;
 
 /**
  * class to represent an ice block
- * 
  * @author Jonas Henry Grebe
  *
  */
@@ -26,6 +25,6 @@ public final class IceBlock extends AbstractBlock {
 		setHitsLeft(BLOCK_ICE_HITSLEFT);
 		setScore(BLOCK_ICE_SCORE);
 
-		this.totalDestruction.addAction(new SpawnItemAction(ItemType.SLOWDOWN));
+		this.totalDestruction.addAction(new SpawnItemAction(ItemType.SLOWDOWN, 0.3));
 	}
 }

@@ -4,6 +4,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
@@ -107,6 +108,47 @@ public class Ball extends Entity implements GameParameters {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Alternative constructor only for adapter!!!
+	 * @param launcher
+	 * @param dontcare
+	 */
+	public Ball(Stick launcher, int dontcare) {
+		super(BALL_ID);
+
+		setLauncher(launcher);
+		setLaunched(false);
+		setLastCollisionEntity(getLauncher());
+
+		setPosition(getLauncher().getLaunchPos());
+		setSize(new Vector2f(25, 25));
+		configureEvents();
+
+		setSpeed(INITIAL_BALL_SPEED);
+		setRotation(0);
+
+		setVisible(true);
+		setPassable(false);
+		
+		// adds colliders
+		this.addComponent(collider);
+		this.addComponent(blockCollider);
+		this.addComponent(topBorderCollider);
+		this.addComponent(leftBorderCollider);
+		this.addComponent(rightBorderCollider);
+		this.addComponent(borderCollider);
+		this.addComponent(stickCollider);
+
+		// adds launch events
+		this.addComponent(hasLaunched);
+		this.addComponent(hasNotLaunched);
+		this.addComponent(launchBall);
+
+		// adds leaving screen event
+		this.addComponent(leftScreen);
+
+	}
 
 	/**
 	 * configures all ball events and adds the actions
@@ -176,11 +218,11 @@ public class Ball extends Entity implements GameParameters {
 		borderCollider.addAction(new PlaySoundAction(BORDER_HIT_SOUND));
 		
 		// bounces ball at stick
+		stickCollider.addAction(new PlaySoundAction(STICK_HIT_SOUND));
 		stickCollider.addAction((arg0, arg1, arg2, arg3) -> {
 			setRotation(Physics2D.bounceStick(getRotation(), (Ball) stickCollider.getOwnerEntity(), getLauncher()));
 			});
 		
-
 		// moves ball if launched
 		hasLaunched.addAction(new MoveForwardAction(getSpeed()));
 		// sets the not launched ball on the launcher's position
@@ -194,12 +236,6 @@ public class Ball extends Entity implements GameParameters {
 		// destroys this ball if it leaves the window
 		leftScreen.addAction(new DestroyEntityAction());
 
-	}
-
-	@Override
-	public boolean collides(Entity otherEntity) {
-		// TODO
-		return super.collides(otherEntity);
 	}
 
 	public Stick getLauncher() {

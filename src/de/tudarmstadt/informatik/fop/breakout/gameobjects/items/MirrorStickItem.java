@@ -19,15 +19,15 @@ public class MirrorStickItem extends BasicItem {
 
 public MirrorStickItem(Vector2f startPosition) {
 		
-		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION, FALLING SPEED, LOGO
+		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION, CancelCondition, FALLING SPEED, LOGO
 		super(ITEM_MIRRORSTICK_ID, 10000, startPosition, true, start, end, null, 0.3f, MIRRORSTICK_LOGO_PATH);
-		// TODO Auto-generated constructor stub
+		
 	}
 	private final static Action start = new Action() {
 
 		@Override
 		public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
-			// TODO Auto-generated method stub
+			
 			Stick s = (Stick) StateBasedEntityManager.getInstance().getEntity(arg1.getCurrentStateID(), STICK_ID);
 			s.mirrorInput();
 			System.out.println("Input mirrored");

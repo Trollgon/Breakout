@@ -7,11 +7,18 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.factories.ItemFactory;
+import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnItemAction;
 import eea.engine.action.Action;
 import eea.engine.component.Component;
 import eea.engine.entity.StateBasedEntityManager;
 import eea.engine.event.basicevents.TimeEvent;
 
+/**
+ * class to represent a magma block,
+ * which drops a hurting a magma drop at random
+ * @author Jonas Henry Grebe
+ *
+ */
 public class MagmaBlock extends AbstractBlock {
 
 
@@ -26,7 +33,7 @@ public class MagmaBlock extends AbstractBlock {
 	@Override
 	void configureBlock() throws SlickException {
 		
-		// setHitSound(BLOCK_MAGMA_HIT_SOUND);
+		setHitSound(BLOCK_MAGMA_HIT_SOUND);
 
 		setType(BlockGroup.UNSTABLE);
 		setBlockImage(BLOCK_MAGMA_IMAGE);
@@ -46,12 +53,13 @@ public class MagmaBlock extends AbstractBlock {
 				// drops by 25% chance
 				if (random.nextBoolean() && random.nextBoolean()) {
 					
-					entityManager.addEntity(arg1.getCurrentStateID(), new ItemFactory(ItemType.SHOOTPLAYER, getPosition()).createEntity());	
+					entityManager.addEntity(arg1.getCurrentStateID(), new ItemFactory(ItemType.MAGMADROP, getPosition()).createEntity());	
 				}
 			}
 		});
 		
 		this.addComponent(drop);
+		totalDestruction.addAction(new SpawnItemAction(ItemType.MAGMADROP, 0.5));
 	}
 	
 

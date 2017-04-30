@@ -43,9 +43,9 @@ public class SlowDownItem extends BasicItem {
 	} ;
 	public SlowDownItem(Vector2f startPosition
 			) {
-		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION, CancelCOndition, FALLING SPEED, LOGO
+		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION, CancelCondition, FALLING SPEED, LOGO
 		super(ITEM_SLOWDOWN_ID, 10000, startPosition,true, start, end, new LifeDeductionEvent(), 0.3f, SLOWDOWN_LOGO_PATH);
-		// TODO Auto-generated constructor stub
+	
 	}
 
 }

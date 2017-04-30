@@ -6,17 +6,17 @@ import org.newdawn.slick.state.StateBasedGame;
 import de.tudarmstadt.informatik.fop.breakout.gameobjects.Lives;
 import eea.engine.event.Event;
 /**
- * 
+ * class of LifeDeduction Event
  * @author Peter Franke
  * 
  * event that fires if a Life is lost
  *
  */
 public class LifeDeductionEvent extends Event {
-	int livesCount;
+	int livesCount; //used to count the number of lives
 	public LifeDeductionEvent() {
 		super("life_deduction");
-			livesCount = Lives.getLivesAmount();
+			livesCount = Lives.getLivesAmount(); 
 		
 	}
 	@Override

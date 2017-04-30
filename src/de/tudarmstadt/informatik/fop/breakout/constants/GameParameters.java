@@ -13,16 +13,19 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 	public static final int WINDOW_WIDTH = 800;
 	public static final int WINDOW_HEIGHT = 600;
 	public static final int FRAME_RATE = 60;
+	
+	// Icon
+	public static final String GAME_ICON = "/images/icon.png";
 
 	// Sound
-	public static final float GAME_MUSIC_VOLUME = 0.02f;
-	public static final float GAME_SOUND_VOLUME = 0.02f;
+	public static final float GAME_MUSIC_VOLUME = 0.05f;
+	public static final float GAME_SOUND_VOLUME = 0.05f;
 	public static final float RAND_PITCH_TRESHOLD = 0.025f;
 	public static final float RAND_VOL_TRESHOLD = 0.05f;
 	
 	// Button
 	public static final String BUTTON_ID = "button";
-	public static final String BUTTON_IMAGE = "/images/buttons/entry.png";
+	public static final String BUTTON_IMAGE = "/images/buttons/blank_button.png";
 	public static final String BUTTON_CLICK_SOUND = "/sounds/buttonClick.wav";
 
 	// Borders
@@ -53,6 +56,8 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 	public static final String STICK_ID = "stick";
 	public static final float STICK_SPEED = 1.5f;
 	public static final String STICK_IMAGE = "/images/stick.png";
+	public static final String STICK_HIT_SOUND = "/sounds/hitStick.wav";
+
 
 	// Lives
 	public static final String LIVES_ID = "lives";
@@ -80,4 +85,6 @@ public interface GameParameters extends StateParameters, BlockParameters, ItemPa
 
 	// Highscore
 	public static final String HIGHSCORE_FILE = "highscores/highscore.hsc";
+	public static final String CLEAR_HIGHSCORE_BUTTON_ID = "clearHighscoreButton";
+
 }

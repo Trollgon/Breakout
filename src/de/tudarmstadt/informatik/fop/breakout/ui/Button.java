@@ -1,10 +1,8 @@
 package de.tudarmstadt.informatik.fop.breakout.ui;
 
-import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.state.StateBasedGame;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 import de.tudarmstadt.informatik.fop.breakout.gameactions.PlaySoundAction;
@@ -12,10 +10,8 @@ import de.tudarmstadt.informatik.fop.breakout.states.StoryGameState;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.ChangeStateAction;
 import eea.engine.action.basicactions.ChangeStateInitAction;
-import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
-import eea.engine.entity.StateBasedEntityManager;
 import eea.engine.event.ANDEvent;
 import eea.engine.event.basicevents.MouseClickedEvent;
 import eea.engine.event.basicevents.MouseEnteredEvent;
@@ -47,8 +43,8 @@ public class Button extends Entity implements GameParameters {
 		mainEvent = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
 
 		switch (zone) {
-		case JUNGLEZONE:
-			changeState = new ChangeStateInitAction(JUNGLE_ZONE_STATE);
+		case MAGMAZONE:
+			changeState = new ChangeStateInitAction(MAGMA_ZONE_STATE);
 			break;
 		case ICEZONE:
 			changeState = new ChangeStateInitAction(ICE_ZONE_STATE);
@@ -147,13 +143,14 @@ public class Button extends Entity implements GameParameters {
 
 		// sets levelID only if this Button is clicked!
 		mainEvent.addAction((gameContainer, stateBasedGame, i,
-							 component) -> ((StoryGameState) Breakout.breakout.getState(STORY_GAME_STATE)).setLevelID(levelID));
+				component) -> ((StoryGameState) Breakout.breakout.getState(STORY_GAME_STATE)).setLevelID(levelID));
 
 		// tells the StoryGameState the zoneType
-		mainEvent.addAction((arg0, arg1, arg2, arg3) -> ((StoryGameState) Breakout.breakout.getState(STORY_GAME_STATE)).setZone(zone));
+		mainEvent.addAction((arg0, arg1, arg2, arg3) -> ((StoryGameState) Breakout.breakout.getState(STORY_GAME_STATE))
+				.setZone(zone));
 
 		try {
-			this.addComponent(new ImageRenderComponent(new Image (BUTTON_IMAGE)));
+			this.addComponent(new ImageRenderComponent(new Image(BUTTON_IMAGE)));
 
 		} catch (SlickException e) {
 			e.printStackTrace();
@@ -163,7 +160,28 @@ public class Button extends Entity implements GameParameters {
 		mainEvent.addAction(changeState);
 
 		mainEvent.addAction(new PlaySoundAction(BUTTON_CLICK_SOUND));
-		
+
 		this.addComponent(mainEvent);
 	}
+
+	/**
+	 * general button constructor
+	 * @param xPos of the new button
+	 * @param yPos of the new button
+	 * @param click Action the button activates if clicked
+	 * @param image representation of the button
+	 */
+	public Button(int xPos, int yPos, Action click, Image image) {
+		super(BUTTON_ID);
+		this.setPosition(new Vector2f(xPos, yPos));
+
+		mainEvent = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
+		mainEvent.addAction(click);
+		mainEvent.addAction(new PlaySoundAction(BUTTON_CLICK_SOUND));
+
+		this.addComponent(new ImageRenderComponent(image));
+
+		this.addComponent(mainEvent);
+	}
+
 }

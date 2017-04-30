@@ -6,6 +6,11 @@ import org.newdawn.slick.openal.SoundStore;
 
 import de.tudarmstadt.informatik.fop.breakout.constants.GameParameters;
 
+/**
+ * class to manage playing of sounds
+ * @author Jonas Henry Grebe
+ *
+ */
 public class SoundManager implements GameParameters {
 
 	public static void playSound(String sound, float pitch) {

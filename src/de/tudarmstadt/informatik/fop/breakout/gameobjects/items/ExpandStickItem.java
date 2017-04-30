@@ -22,14 +22,13 @@ public ExpandStickItem(Vector2f startPosition) {
 		
 		// ITEM ID, DURATION, START POSITION, DESPAWNONDEATH, STARTACTION, ENDACTION,CancelCondition, FALLING SPEED, LOGO
 		super(ITEM_EXPANDSTICK_ID, 10000, startPosition, true, start, end, null, 0.3f, EXPANDSTICK_LOGO_PATH);
-		// TODO Auto-generated constructor stub
+		
 	}
 private static final Action start = new Action(){
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 		Stick s = (Stick) StateBasedEntityManager.getInstance().getEntity(arg1.getCurrentStateID(), STICK_ID);
-		//s.setScale(1.5f);
 		s.setSize(new Vector2f(s.getSize().getX() * 1.5f, s.getSize().getY()));
 		s.updateImage();
 		System.out.println("stick expanded");
@@ -42,7 +41,6 @@ private static final Action end = new Action(){
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2, Component arg3) {
 		Stick s = (Stick) StateBasedEntityManager.getInstance().getEntity(arg1.getCurrentStateID(), STICK_ID);
-		//s.setScale(2/3f);
 		s.setSize(new Vector2f(s.getSize().getX() * 2/3f, s.getSize().getY()));
 		s.updateImage();
 	}

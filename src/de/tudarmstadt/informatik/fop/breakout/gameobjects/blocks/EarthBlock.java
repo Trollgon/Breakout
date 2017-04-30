@@ -2,9 +2,11 @@ package de.tudarmstadt.informatik.fop.breakout.gameobjects.blocks;
 
 import org.newdawn.slick.SlickException;
 
+import de.tudarmstadt.informatik.fop.breakout.gameactions.SpawnRandomItemAction;
+
 /**
  * class to represent a Earth block
- * @author Jonas
+ * @author Jonas Henry Grebe
  *
  */
 public class EarthBlock extends AbstractBlock {
@@ -24,7 +26,7 @@ public class EarthBlock extends AbstractBlock {
 		
 		setHitsLeft(BLOCK_EARTH_HITSLEFT);
 		setScore(BLOCK_EARTH_SCORE);
-
+		totalDestruction.addAction(new SpawnRandomItemAction(0.05));
 	}
 
 
